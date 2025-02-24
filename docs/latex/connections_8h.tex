@@ -1,0 +1,264 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/connections.h File Reference}
+\hypertarget{connections_8h}{}\label{connections_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/connections.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/connections.h}}
+
+
+The server connection collection.  
+
+
+{\ttfamily \#include "{}common.\+h"{}}\newline
+{\ttfamily \#include "{}pqs.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{connections_8h_ac14e503de83952970d83278cf433b3bf}{pqs\+\_\+connections\+\_\+active}} (size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Check if a collection member is set to active. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{connections_8h_af2688b2b18b7158e2608dee67a2e7e0d}{pqs\+\_\+connections\+\_\+add}} (void)
+\begin{DoxyCompactList}\small\item\em Add an item to the connection collection and set it to active. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{connections_8h_aad1b3eb01076824c1f2c2465e352ed07}{pqs\+\_\+connections\+\_\+available}} (void)
+\begin{DoxyCompactList}\small\item\em Get the number of available (inactive) connection states in the collection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{connections_8h_a78c6e1ad00f14eb4e1ef8e8325e8eed4}{pqs\+\_\+connections\+\_\+get}} (uint32\+\_\+t instance)
+\begin{DoxyCompactList}\small\item\em Get a connection state pointer from a given instance number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{connections_8h_a301cb46554f5cc8beeb5264dd92f8f8f}{pqs\+\_\+connections\+\_\+initialize}} (size\+\_\+t count, size\+\_\+t maximum)
+\begin{DoxyCompactList}\small\item\em Initialize the connection collection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{connections_8h_a941d2297399498d702823dc0a5e1f4e2}{pqs\+\_\+connections\+\_\+clear}} (void)
+\begin{DoxyCompactList}\small\item\em Erase (clear) all the connection collection members. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{connections_8h_aa3c78493e275d50481554117d288cb8a}{pqs\+\_\+connections\+\_\+dispose}} (void)
+\begin{DoxyCompactList}\small\item\em Dispose of the connection collection state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{connections_8h_a6e0ab567197befed36188b5cf291f383}{pqs\+\_\+connections\+\_\+index}} (size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Get a connection state pointer by its collection index. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{connections_8h_a9bfe8f3968c7aba91e96682113029c2b}{pqs\+\_\+connections\+\_\+full}} (void)
+\begin{DoxyCompactList}\small\item\em Check if the connection collection is full. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{connections_8h_abc3ea9119fdffde0f4624b1ce426ef95}{pqs\+\_\+connections\+\_\+next}} (void)
+\begin{DoxyCompactList}\small\item\em Get the next available connection state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{connections_8h_ac34fa08430037985ad4cc4094a513db3}{pqs\+\_\+connections\+\_\+reset}} (uint32\+\_\+t instance)
+\begin{DoxyCompactList}\small\item\em Reset a connection in the collection. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{connections_8h_a69b88619d46ee7888c653a54cb54cf9f}{pqs\+\_\+connections\+\_\+size}} (void)
+\begin{DoxyCompactList}\small\item\em Get the total number of connection state items in the collection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{connections_8h_a1b11439996c649902ddf104f8a9d903f}{pqs\+\_\+connections\+\_\+self\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Run the self-\/test for the connection collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The server connection collection. 
+
+This header defines a collection of functions for managing the server connection states in the PQS implementation. These functions are internal (non-\/exportable) and are used to maintain an array (or collection) of connection state objects. The functions allow for initialization, addition, retrieval, reset, and disposal of connection states, as well as performing a self-\/test of the collection functionality.
+
+The collection is implemented as a dynamically allocated array of connection state structures along with a parallel array of booleans to indicate which entries are active. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{connections_8h_ac14e503de83952970d83278cf433b3bf}\index{connections.h@{connections.h}!pqs\_connections\_active@{pqs\_connections\_active}}
+\index{pqs\_connections\_active@{pqs\_connections\_active}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_active()}{pqs\_connections\_active()}}
+{\footnotesize\ttfamily \label{connections_8h_ac14e503de83952970d83278cf433b3bf} 
+bool pqs\+\_\+connections\+\_\+active (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Check if a collection member is set to active. 
+
+This function checks if the connection state at the given index in the collection is marked as active. If the index is within bounds, the function returns the boolean flag from the internal active array. Otherwise, it returns false.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The socket index number within the collection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the connection at the specified index is active; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{connections_8h_af2688b2b18b7158e2608dee67a2e7e0d}\index{connections.h@{connections.h}!pqs\_connections\_add@{pqs\_connections\_add}}
+\index{pqs\_connections\_add@{pqs\_connections\_add}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_add()}{pqs\_connections\_add()}}
+{\footnotesize\ttfamily \label{connections_8h_af2688b2b18b7158e2608dee67a2e7e0d} 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} pqs\+\_\+connections\+\_\+add (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Add an item to the connection collection and set it to active. 
+
+This function adds a new connection state to the collection if the current number of entries plus one does not exceed the maximum allowed. It reallocates the internal arrays as needed, initializes the new connection state, sets its connection identifier (cid) to its index, and marks it as active.
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the new connection state item or NULL if the maximum capacity is reached or a memory allocation failure occurs. 
+\end{DoxyReturn}
+\Hypertarget{connections_8h_aad1b3eb01076824c1f2c2465e352ed07}\index{connections.h@{connections.h}!pqs\_connections\_available@{pqs\_connections\_available}}
+\index{pqs\_connections\_available@{pqs\_connections\_available}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_available()}{pqs\_connections\_available()}}
+{\footnotesize\ttfamily \label{connections_8h_aad1b3eb01076824c1f2c2465e352ed07} 
+size\+\_\+t pqs\+\_\+connections\+\_\+available (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the number of available (inactive) connection states in the collection. 
+
+This function iterates through the connection collection and counts the number of entries that are currently marked as inactive.
+
+\begin{DoxyReturn}{Returns}
+Returns the number of available (inactive) connection states. 
+\end{DoxyReturn}
+\Hypertarget{connections_8h_a941d2297399498d702823dc0a5e1f4e2}\index{connections.h@{connections.h}!pqs\_connections\_clear@{pqs\_connections\_clear}}
+\index{pqs\_connections\_clear@{pqs\_connections\_clear}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_clear()}{pqs\_connections\_clear()}}
+{\footnotesize\ttfamily \label{connections_8h_a941d2297399498d702823dc0a5e1f4e2} 
+void pqs\+\_\+connections\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Erase (clear) all the connection collection members. 
+
+This function clears the memory for all connection state structures in the collection and resets each active flag to false. It also resets the connection identifier (cid) of each state to its index. \Hypertarget{connections_8h_aa3c78493e275d50481554117d288cb8a}\index{connections.h@{connections.h}!pqs\_connections\_dispose@{pqs\_connections\_dispose}}
+\index{pqs\_connections\_dispose@{pqs\_connections\_dispose}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_dispose()}{pqs\_connections\_dispose()}}
+{\footnotesize\ttfamily \label{connections_8h_aa3c78493e275d50481554117d288cb8a} 
+void pqs\+\_\+connections\+\_\+dispose (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Dispose of the connection collection state. 
+
+This function frees all memory allocated for the connection state array and the corresponding active flag array. It also resets the collection length and maximum capacity to zero. \Hypertarget{connections_8h_a9bfe8f3968c7aba91e96682113029c2b}\index{connections.h@{connections.h}!pqs\_connections\_full@{pqs\_connections\_full}}
+\index{pqs\_connections\_full@{pqs\_connections\_full}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_full()}{pqs\_connections\_full()}}
+{\footnotesize\ttfamily \label{connections_8h_a9bfe8f3968c7aba91e96682113029c2b} 
+bool pqs\+\_\+connections\+\_\+full (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Check if the connection collection is full. 
+
+The function iterates through the active flags in the connection collection. If every entry is marked as active, the collection is considered full.
+
+\begin{DoxyReturn}{Returns}
+Returns true if all connection state entries are active; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{connections_8h_a78c6e1ad00f14eb4e1ef8e8325e8eed4}\index{connections.h@{connections.h}!pqs\_connections\_get@{pqs\_connections\_get}}
+\index{pqs\_connections\_get@{pqs\_connections\_get}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_get()}{pqs\_connections\_get()}}
+{\footnotesize\ttfamily \label{connections_8h_a78c6e1ad00f14eb4e1ef8e8325e8eed4} 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} pqs\+\_\+connections\+\_\+get (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{instance}{}\end{DoxyParamCaption})}
+
+
+
+Get a connection state pointer from a given instance number. 
+
+The function searches through the connection collection for a connection state whose connection identifier (cid) matches the provided instance number.
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance} & The socket instance number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the connection state if found; otherwise, returns NULL. 
+\end{DoxyReturn}
+\Hypertarget{connections_8h_a6e0ab567197befed36188b5cf291f383}\index{connections.h@{connections.h}!pqs\_connections\_index@{pqs\_connections\_index}}
+\index{pqs\_connections\_index@{pqs\_connections\_index}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_index()}{pqs\_connections\_index()}}
+{\footnotesize\ttfamily \label{connections_8h_a6e0ab567197befed36188b5cf291f383} 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} pqs\+\_\+connections\+\_\+index (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Get a connection state pointer by its collection index. 
+
+This function returns a pointer to the connection state located at the specified index in the internal connection collection, provided the index is within bounds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index number within the connection collection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the connection state at the given index, or NULL if the index is out of range. 
+\end{DoxyReturn}
+\Hypertarget{connections_8h_a301cb46554f5cc8beeb5264dd92f8f8f}\index{connections.h@{connections.h}!pqs\_connections\_initialize@{pqs\_connections\_initialize}}
+\index{pqs\_connections\_initialize@{pqs\_connections\_initialize}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_initialize()}{pqs\_connections\_initialize()}}
+{\footnotesize\ttfamily \label{connections_8h_a301cb46554f5cc8beeb5264dd92f8f8f} 
+void pqs\+\_\+connections\+\_\+initialize (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{count}{, }\item[{size\+\_\+t}]{maximum}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the connection collection. 
+
+This function allocates and initializes the internal connection collection with the specified number of connection states. A minimum of one connection state is created, and the maximum number of connection states is set to the provided value. Each connection state is initialized by setting its connection identifier (cid) to its index and marking it as inactive.
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & The number of initial connection states to allocate (minimum of one). \\
+\hline
+{\em maximum} & The maximum number of connection states allowed (must be greater than or equal to count). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{connections_8h_abc3ea9119fdffde0f4624b1ce426ef95}\index{connections.h@{connections.h}!pqs\_connections\_next@{pqs\_connections\_next}}
+\index{pqs\_connections\_next@{pqs\_connections\_next}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_next()}{pqs\_connections\_next()}}
+{\footnotesize\ttfamily \label{connections_8h_abc3ea9119fdffde0f4624b1ce426ef95} 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} pqs\+\_\+connections\+\_\+next (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the next available connection state. 
+
+This function searches for the first inactive connection state in the collection and marks it as active. If the collection is already full, it attempts to add a new connection state (subject to the maximum capacity).
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the next available (or newly added) connection state, or NULL if none are available. 
+\end{DoxyReturn}
+\Hypertarget{connections_8h_ac34fa08430037985ad4cc4094a513db3}\index{connections.h@{connections.h}!pqs\_connections\_reset@{pqs\_connections\_reset}}
+\index{pqs\_connections\_reset@{pqs\_connections\_reset}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_reset()}{pqs\_connections\_reset()}}
+{\footnotesize\ttfamily \label{connections_8h_ac34fa08430037985ad4cc4094a513db3} 
+void pqs\+\_\+connections\+\_\+reset (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{instance}{}\end{DoxyParamCaption})}
+
+
+
+Reset a connection in the collection. 
+
+This function finds the connection state with the specified connection identifier (cid) and resets it. The connection state is cleared, its connection identifier is reset to its index, and its active flag is set to false.
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance} & The socket instance number (connection identifier) of the connection to reset. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{connections_8h_a1b11439996c649902ddf104f8a9d903f}\index{connections.h@{connections.h}!pqs\_connections\_self\_test@{pqs\_connections\_self\_test}}
+\index{pqs\_connections\_self\_test@{pqs\_connections\_self\_test}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_self\_test()}{pqs\_connections\_self\_test()}}
+{\footnotesize\ttfamily \label{connections_8h_a1b11439996c649902ddf104f8a9d903f} 
+void pqs\+\_\+connections\+\_\+self\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Run the self-\/test for the connection collection. 
+
+This function performs a series of tests on the connection collection to verify correct behavior\+:
+
+
+\begin{DoxyItemize}
+\item Initializes the collection with one connection state and sets the maximum to 10.
+\item Adds nine additional connection states using \doxylink{connections_8h_abc3ea9119fdffde0f4624b1ce426ef95}{pqs\+\_\+connections\+\_\+next()}, resulting in a full collection.
+\item Checks that the number of available connections is zero and that the collection is full.
+\item Resets several connection states (instances 1, 3, 5, 7, and 9) to simulate connection closure.
+\item Verifies that the collection is no longer full.
+\item Reclaims five connection states by calling \doxylink{connections_8h_abc3ea9119fdffde0f4624b1ce426ef95}{pqs\+\_\+connections\+\_\+next()} and confirms that the collection is full again.
+\item Attempts to add an extra connection state beyond the maximum capacity.
+\item Verifies that the collection size remains at the maximum (10).
+\item Finally, clears and disposes of the collection.
+\end{DoxyItemize}
+
+This self-\/test is intended for internal diagnostic purposes to ensure the integrity and proper operation of the connection management functions. \Hypertarget{connections_8h_a69b88619d46ee7888c653a54cb54cf9f}\index{connections.h@{connections.h}!pqs\_connections\_size@{pqs\_connections\_size}}
+\index{pqs\_connections\_size@{pqs\_connections\_size}!connections.h@{connections.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connections\_size()}{pqs\_connections\_size()}}
+{\footnotesize\ttfamily \label{connections_8h_a69b88619d46ee7888c653a54cb54cf9f} 
+size\+\_\+t pqs\+\_\+connections\+\_\+size (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the total number of connection state items in the collection. 
+
+This function returns the current number of connection state items in the internal connection collection.
+
+\begin{DoxyReturn}{Returns}
+Returns the total number of connection state items. 
+\end{DoxyReturn}

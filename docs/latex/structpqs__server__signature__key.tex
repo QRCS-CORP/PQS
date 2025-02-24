@@ -1,0 +1,75 @@
+\doxysection{pqs\+\_\+server\+\_\+signature\+\_\+key Struct Reference}
+\hypertarget{structpqs__server__signature__key}{}\label{structpqs__server__signature__key}\index{pqs\_server\_signature\_key@{pqs\_server\_signature\_key}}
+
+
+Structure holding a PQS server secret signature key.  
+
+
+
+
+{\ttfamily \#include $<$pqs.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structpqs__server__signature__key_a6d579765908169e6fcb1bdc8f105132d}{expiration}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpqs__server__signature__key_a671363702a893c6e3c9cfd5d9693856b}{config}} \mbox{[}\mbox{\hyperlink{pqs_8h_a8a7d77d2fcba5b18f0bf6bf716e0fbbf}{PQS\+\_\+\+CONFIG\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpqs__server__signature__key_aa467cf9fc57698ad09f9e202f3d84b81}{keyid}} \mbox{[}\mbox{\hyperlink{pqs_8h_ae2c3326c49b6835ae5e81fca6ba37f90}{PQS\+\_\+\+KEYID\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpqs__server__signature__key_ab70765ef2ea44a9e791eb20656a3bc15}{sigkey}} \mbox{[}\mbox{\hyperlink{pqs_8h_a170dfafbaa3bc7a4297dd829c1041220}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+SIGNING\+\_\+\+KEY\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpqs__server__signature__key_a7d8ae48258b2e3e00905094dc9ae22cc}{verkey}} \mbox{[}\mbox{\hyperlink{pqs_8h_ab1283ee8beebdb4910f36111b689e423}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+VERIFY\+\_\+\+KEY\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpqs__server__signature__key_a81cae8bdf619d5d3c046524f33ede5bc}{rkhash}} \mbox{[}\mbox{\hyperlink{pqs_8h_a913198ca98026c2eb156290f91aa7b65}{PQS\+\_\+\+HASH\+\_\+\+SIZE}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure holding a PQS server secret signature key. 
+
+This structure contains both the secret signing key and the public verification key, along with metadata such as expiration, configuration, key identity, and a remote login key hash. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__server__signature__key_a671363702a893c6e3c9cfd5d9693856b}\index{pqs\_server\_signature\_key@{pqs\_server\_signature\_key}!config@{config}}
+\index{config@{config}!pqs\_server\_signature\_key@{pqs\_server\_signature\_key}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{structpqs__server__signature__key_a671363702a893c6e3c9cfd5d9693856b} 
+uint8\+\_\+t config\mbox{[}\mbox{\hyperlink{pqs_8h_a8a7d77d2fcba5b18f0bf6bf716e0fbbf}{PQS\+\_\+\+CONFIG\+\_\+\+SIZE}}\mbox{]}}
+
+The cryptographic configuration string \Hypertarget{structpqs__server__signature__key_a6d579765908169e6fcb1bdc8f105132d}\index{pqs\_server\_signature\_key@{pqs\_server\_signature\_key}!expiration@{expiration}}
+\index{expiration@{expiration}!pqs\_server\_signature\_key@{pqs\_server\_signature\_key}}
+\doxysubsubsection{\texorpdfstring{expiration}{expiration}}
+{\footnotesize\ttfamily \label{structpqs__server__signature__key_a6d579765908169e6fcb1bdc8f105132d} 
+uint64\+\_\+t expiration}
+
+The expiration time (in seconds from epoch) \Hypertarget{structpqs__server__signature__key_aa467cf9fc57698ad09f9e202f3d84b81}\index{pqs\_server\_signature\_key@{pqs\_server\_signature\_key}!keyid@{keyid}}
+\index{keyid@{keyid}!pqs\_server\_signature\_key@{pqs\_server\_signature\_key}}
+\doxysubsubsection{\texorpdfstring{keyid}{keyid}}
+{\footnotesize\ttfamily \label{structpqs__server__signature__key_aa467cf9fc57698ad09f9e202f3d84b81} 
+uint8\+\_\+t keyid\mbox{[}\mbox{\hyperlink{pqs_8h_ae2c3326c49b6835ae5e81fca6ba37f90}{PQS\+\_\+\+KEYID\+\_\+\+SIZE}}\mbox{]}}
+
+The key identity string \Hypertarget{structpqs__server__signature__key_a81cae8bdf619d5d3c046524f33ede5bc}\index{pqs\_server\_signature\_key@{pqs\_server\_signature\_key}!rkhash@{rkhash}}
+\index{rkhash@{rkhash}!pqs\_server\_signature\_key@{pqs\_server\_signature\_key}}
+\doxysubsubsection{\texorpdfstring{rkhash}{rkhash}}
+{\footnotesize\ttfamily \label{structpqs__server__signature__key_a81cae8bdf619d5d3c046524f33ede5bc} 
+uint8\+\_\+t rkhash\mbox{[}\mbox{\hyperlink{pqs_8h_a913198ca98026c2eb156290f91aa7b65}{PQS\+\_\+\+HASH\+\_\+\+SIZE}}\mbox{]}}
+
+The remote login key hash \Hypertarget{structpqs__server__signature__key_ab70765ef2ea44a9e791eb20656a3bc15}\index{pqs\_server\_signature\_key@{pqs\_server\_signature\_key}!sigkey@{sigkey}}
+\index{sigkey@{sigkey}!pqs\_server\_signature\_key@{pqs\_server\_signature\_key}}
+\doxysubsubsection{\texorpdfstring{sigkey}{sigkey}}
+{\footnotesize\ttfamily \label{structpqs__server__signature__key_ab70765ef2ea44a9e791eb20656a3bc15} 
+uint8\+\_\+t sigkey\mbox{[}\mbox{\hyperlink{pqs_8h_a170dfafbaa3bc7a4297dd829c1041220}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+SIGNING\+\_\+\+KEY\+\_\+\+SIZE}}\mbox{]}}
+
+The secret signing key \Hypertarget{structpqs__server__signature__key_a7d8ae48258b2e3e00905094dc9ae22cc}\index{pqs\_server\_signature\_key@{pqs\_server\_signature\_key}!verkey@{verkey}}
+\index{verkey@{verkey}!pqs\_server\_signature\_key@{pqs\_server\_signature\_key}}
+\doxysubsubsection{\texorpdfstring{verkey}{verkey}}
+{\footnotesize\ttfamily \label{structpqs__server__signature__key_a7d8ae48258b2e3e00905094dc9ae22cc} 
+uint8\+\_\+t verkey\mbox{[}\mbox{\hyperlink{pqs_8h_ab1283ee8beebdb4910f36111b689e423}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+VERIFY\+\_\+\+KEY\+\_\+\+SIZE}}\mbox{]}}
+
+The public verification key 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqs_8h}{pqs.\+h}}\end{DoxyCompactItemize}

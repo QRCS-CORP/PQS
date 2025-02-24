@@ -1,0 +1,95 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/kex.h File Reference}
+\hypertarget{kex_8h}{}\label{kex_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/kex.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/kex.h}}
+
+
+PQS key exchange functions.  
+
+
+{\ttfamily \#include "{}common.\+h"{}}\newline
+{\ttfamily \#include "{}../\+PQS/pqs.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__kex__client__state}{pqs\+\_\+kex\+\_\+client\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em The PQS simplex client state structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__kex__server__state}{pqs\+\_\+kex\+\_\+server\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em The PQS simplex server state structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{kex_8h_aeb80d48970b9fd2904773d07efaf7f0b}\label{kex_8h_aeb80d48970b9fd2904773d07efaf7f0b} 
+typedef struct pqs\+\_\+kex\+\_\+client\+\_\+state {\bfseries pqs\+\_\+kex\+\_\+client\+\_\+state}
+\item 
+\Hypertarget{kex_8h_aa82978b4cec0571a389e775b0b57820c}\label{kex_8h_aa82978b4cec0571a389e775b0b57820c} 
+typedef struct pqs\+\_\+kex\+\_\+server\+\_\+state {\bfseries pqs\+\_\+kex\+\_\+server\+\_\+state}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} \mbox{\hyperlink{kex_8h_a480be173f82f8e298fa7e30e1a750105}{pqs\+\_\+kex\+\_\+server\+\_\+key\+\_\+exchange}} (\mbox{\hyperlink{structpqs__kex__server__state}{pqs\+\_\+kex\+\_\+server\+\_\+state}} \texorpdfstring{$\ast$}{*}kss, \mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}cns)
+\begin{DoxyCompactList}\small\item\em Run the network server version of the simplex key exchange. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} \mbox{\hyperlink{kex_8h_a56ca93910f2ef00a61dbe9d5697edd74}{pqs\+\_\+kex\+\_\+client\+\_\+key\+\_\+exchange}} (\mbox{\hyperlink{structpqs__kex__client__state}{pqs\+\_\+kex\+\_\+client\+\_\+state}} \texorpdfstring{$\ast$}{*}kcs, \mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}cns)
+\begin{DoxyCompactList}\small\item\em Run the network client version of the simplex key exchange. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS key exchange functions. 
+
+This header defines the internal functions and data structures used to perform the simplex key exchange in the Post Quantum Shell (PQS) protocol. The key exchange functions establish secure session keys between the client and server using post-\/quantum cryptographic primitives.
+
+\begin{DoxyNote}{Note}
+These functions and structures are internal and non-\/exportable. 
+\end{DoxyNote}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{kex_8h_a56ca93910f2ef00a61dbe9d5697edd74}\index{kex.h@{kex.h}!pqs\_kex\_client\_key\_exchange@{pqs\_kex\_client\_key\_exchange}}
+\index{pqs\_kex\_client\_key\_exchange@{pqs\_kex\_client\_key\_exchange}!kex.h@{kex.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_kex\_client\_key\_exchange()}{pqs\_kex\_client\_key\_exchange()}}
+{\footnotesize\ttfamily \label{kex_8h_a56ca93910f2ef00a61dbe9d5697edd74} 
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} pqs\+\_\+kex\+\_\+client\+\_\+key\+\_\+exchange (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__kex__client__state}{pqs\+\_\+kex\+\_\+client\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{kcs}{, }\item[{\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{cns}{}\end{DoxyParamCaption})}
+
+
+
+Run the network client version of the simplex key exchange. 
+
+This internal function executes the key exchange protocol on the client side. It utilizes the client key exchange state and the current connection state to negotiate and establish a secure session with the server.
+
+\begin{DoxyNote}{Note}
+This is an internal non-\/exportable API.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em kcs} & A pointer to the client key exchange state. \\
+\hline
+{\em cns} & A pointer to the connection state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \doxylink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors} value indicating the outcome of the key exchange process.
+\end{DoxyReturn}
+DOXYGEN\+\_\+\+IGNORE DOXYGEN\+\_\+\+IGNORE \Hypertarget{kex_8h_a480be173f82f8e298fa7e30e1a750105}\index{kex.h@{kex.h}!pqs\_kex\_server\_key\_exchange@{pqs\_kex\_server\_key\_exchange}}
+\index{pqs\_kex\_server\_key\_exchange@{pqs\_kex\_server\_key\_exchange}!kex.h@{kex.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_kex\_server\_key\_exchange()}{pqs\_kex\_server\_key\_exchange()}}
+{\footnotesize\ttfamily \label{kex_8h_a480be173f82f8e298fa7e30e1a750105} 
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} pqs\+\_\+kex\+\_\+server\+\_\+key\+\_\+exchange (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__kex__server__state}{pqs\+\_\+kex\+\_\+server\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{kss}{, }\item[{\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{cns}{}\end{DoxyParamCaption})}
+
+
+
+Run the network server version of the simplex key exchange. 
+
+This internal function executes the key exchange protocol on the server side. It utilizes the server key exchange state and the current connection state to negotiate and establish a secure session between the server and client.
+
+\begin{DoxyNote}{Note}
+This is an internal non-\/exportable API.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em kss} & A pointer to the server key exchange state. \\
+\hline
+{\em cns} & A pointer to the connection state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \doxylink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors} value indicating the outcome of the key exchange process. 
+\end{DoxyReturn}

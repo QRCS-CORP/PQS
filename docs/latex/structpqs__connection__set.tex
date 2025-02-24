@@ -1,0 +1,63 @@
+\doxysection{pqs\+\_\+connection\+\_\+set Struct Reference}
+\hypertarget{structpqs__connection__set}{}\label{structpqs__connection__set}\index{pqs\_connection\_set@{pqs\_connection\_set}}
+
+
+Internal structure to manage the collection of connection states.  
+
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__connection__set_a413284e676d23c5aa6136d2058c9d327}{conset}}
+\item 
+bool \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__connection__set_a08fd98a0f5a97327f63c94068513d779}{active}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structpqs__connection__set_a5c079aea7a092ef74261d0d639e8d3f8}{maximum}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structpqs__connection__set_ae809d5359ac030c60a30a8f0b2294b82}{length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal structure to manage the collection of connection states. 
+
+This structure holds\+:
+\begin{DoxyItemize}
+\item an array of connection state structures ({\ttfamily conset}),
+\item an array of boolean flags ({\ttfamily active}) that indicate whether each corresponding connection state is active,
+\item the current number of connection states allocated ({\ttfamily length}),
+\item and the maximum allowed number of connection states ({\ttfamily maximum}).
+\end{DoxyItemize}
+
+The structure is aligned for SIMD operations as required. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__connection__set_a08fd98a0f5a97327f63c94068513d779}\index{pqs\_connection\_set@{pqs\_connection\_set}!active@{active}}
+\index{active@{active}!pqs\_connection\_set@{pqs\_connection\_set}}
+\doxysubsubsection{\texorpdfstring{active}{active}}
+{\footnotesize\ttfamily \label{structpqs__connection__set_a08fd98a0f5a97327f63c94068513d779} 
+bool\texorpdfstring{$\ast$}{*} active}
+
+Pointer to the array of active flags for each connection \Hypertarget{structpqs__connection__set_a413284e676d23c5aa6136d2058c9d327}\index{pqs\_connection\_set@{pqs\_connection\_set}!conset@{conset}}
+\index{conset@{conset}!pqs\_connection\_set@{pqs\_connection\_set}}
+\doxysubsubsection{\texorpdfstring{conset}{conset}}
+{\footnotesize\ttfamily \label{structpqs__connection__set_a413284e676d23c5aa6136d2058c9d327} 
+\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}}\texorpdfstring{$\ast$}{*} conset}
+
+Pointer to the array of connection state structures \Hypertarget{structpqs__connection__set_ae809d5359ac030c60a30a8f0b2294b82}\index{pqs\_connection\_set@{pqs\_connection\_set}!length@{length}}
+\index{length@{length}!pqs\_connection\_set@{pqs\_connection\_set}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily \label{structpqs__connection__set_ae809d5359ac030c60a30a8f0b2294b82} 
+size\+\_\+t length}
+
+The current number of connection states in the collection \Hypertarget{structpqs__connection__set_a5c079aea7a092ef74261d0d639e8d3f8}\index{pqs\_connection\_set@{pqs\_connection\_set}!maximum@{maximum}}
+\index{maximum@{maximum}!pqs\_connection\_set@{pqs\_connection\_set}}
+\doxysubsubsection{\texorpdfstring{maximum}{maximum}}
+{\footnotesize\ttfamily \label{structpqs__connection__set_a5c079aea7a092ef74261d0d639e8d3f8} 
+size\+\_\+t maximum}
+
+The maximum number of connection states allowed 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/connections.\+c\end{DoxyCompactItemize}

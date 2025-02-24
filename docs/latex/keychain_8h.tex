@@ -1,0 +1,150 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/keychain.h File Reference}
+\hypertarget{keychain_8h}{}\label{keychain_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/keychain.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/keychain.h}}
+
+
+PQS key-\/chain functions.  
+
+
+{\ttfamily \#include "{}common.\+h"{}}\newline
+{\ttfamily \#include "{}pqs.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}}
+\begin{DoxyCompactList}\small\item\em The PQS asymmetric key-\/chain structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{keychain_8h_a90944a1782ff1d91897e4f596f8e440f}\label{keychain_8h_a90944a1782ff1d91897e4f596f8e440f} 
+\#define {\bfseries PQS\+\_\+\+KEYCHAIN\+\_\+\+SIZE}~(((\mbox{\hyperlink{pqs_8h_a68adf6dfe273dbdf66d4d2612aff18ca}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+PUBLIC\+\_\+\+KEY\+\_\+\+SIZE}} + \mbox{\hyperlink{pqs_8h_a22286bb64769853aca20237b2d6c985e}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+PRIVATE\+\_\+\+KEY\+\_\+\+SIZE}}) \texorpdfstring{$\ast$}{*} PQS\+\_\+\+ASYMMETRIC\+\_\+\+KEYCHAIN\+\_\+\+COUNT) + (2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqs_8h_afa9bc895b23766b4c3bb662de879cf7d}{PQS\+\_\+\+SYMMETRIC\+\_\+\+KEY\+\_\+\+SIZE}}) + sizeof(uint32\+\_\+t))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{keychain_8h_ac1e952d31b59a108184dc7c3dabf018f}\label{keychain_8h_ac1e952d31b59a108184dc7c3dabf018f} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+asymmetric\+\_\+keychain {\bfseries pqs\+\_\+asymmetric\+\_\+keychain}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{keychain_8h_a7ae66ede3506283f85465db30c5c81c4}{pqs\+\_\+keychain\+\_\+create}} (\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}keychain)
+\begin{DoxyCompactList}\small\item\em Create an asymmetric keychain. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{keychain_8h_a4a0c1baf8374c44d1fa7608e07f92747}{pqs\+\_\+keychain\+\_\+dispose}} (\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}keychain)
+\begin{DoxyCompactList}\small\item\em Release the memory and dispose of an asymmetric keychain. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{keychain_8h_a2fbeaff806750fa010b549719262b417}{pqs\+\_\+keychain\+\_\+deserialize}} (\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}keychain, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}input, size\+\_\+t inplen)
+\begin{DoxyCompactList}\small\item\em Deserailize a keychain structure. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{keychain_8h_a137f9fdf1d68653766263fc944ded0b6}{pqs\+\_\+keychain\+\_\+pop}} (\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}keychain, \mbox{\hyperlink{structpqs__asymmetric__cipher__keypair}{pqs\+\_\+asymmetric\+\_\+cipher\+\_\+keypair}} \texorpdfstring{$\ast$}{*}keypair)
+\begin{DoxyCompactList}\small\item\em Remove a key-\/set from the queue. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{keychain_8h_a153a51c69dc442a9b522ad1a2d4cebbc}{pqs\+\_\+keychain\+\_\+serialize}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}output, size\+\_\+t otplen, const \mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}keychain)
+\begin{DoxyCompactList}\small\item\em Serialize the keychain to an output array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS key-\/chain functions. 
+
+\begin{DoxyAuthor}{Author}
+John G. Underhill 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+August 18, 2024 \textbackslash{}contact\+: \href{mailto:develop@qscs.ca}{\texttt{ develop@qscs.\+ca}} 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{keychain_8h_a7ae66ede3506283f85465db30c5c81c4}\index{keychain.h@{keychain.h}!pqs\_keychain\_create@{pqs\_keychain\_create}}
+\index{pqs\_keychain\_create@{pqs\_keychain\_create}!keychain.h@{keychain.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_keychain\_create()}{pqs\_keychain\_create()}}
+{\footnotesize\ttfamily \label{keychain_8h_a7ae66ede3506283f85465db30c5c81c4} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+keychain\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}}]{keychain}{}\end{DoxyParamCaption})}
+
+
+
+Create an asymmetric keychain. 
+
+\begin{DoxyWarning}{Warning}
+The dispose function must be called to free memory buffers
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em keychain} & A pointer to the keychain structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the keychain was created successfully 
+\end{DoxyReturn}
+\Hypertarget{keychain_8h_a2fbeaff806750fa010b549719262b417}\index{keychain.h@{keychain.h}!pqs\_keychain\_deserialize@{pqs\_keychain\_deserialize}}
+\index{pqs\_keychain\_deserialize@{pqs\_keychain\_deserialize}!keychain.h@{keychain.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_keychain\_deserialize()}{pqs\_keychain\_deserialize()}}
+{\footnotesize\ttfamily \label{keychain_8h_a2fbeaff806750fa010b549719262b417} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+keychain\+\_\+deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}}]{keychain}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{input}{, }\item[{size\+\_\+t}]{inplen}{}\end{DoxyParamCaption})}
+
+
+
+Deserailize a keychain structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keychain} & A pointer to the keychain structure \\
+\hline
+{\em input} & \mbox{[}const\mbox{]} A pointer to a serialized keychain array \\
+\hline
+{\em inplen} & The size of the input array \\
+\hline
+\end{DoxyParams}
+\Hypertarget{keychain_8h_a4a0c1baf8374c44d1fa7608e07f92747}\index{keychain.h@{keychain.h}!pqs\_keychain\_dispose@{pqs\_keychain\_dispose}}
+\index{pqs\_keychain\_dispose@{pqs\_keychain\_dispose}!keychain.h@{keychain.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_keychain\_dispose()}{pqs\_keychain\_dispose()}}
+{\footnotesize\ttfamily \label{keychain_8h_a4a0c1baf8374c44d1fa7608e07f92747} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+keychain\+\_\+dispose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}}]{keychain}{}\end{DoxyParamCaption})}
+
+
+
+Release the memory and dispose of an asymmetric keychain. 
+
+\begin{DoxyWarning}{Warning}
+The caller must still dispose of the structure itself
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em keychain} & A pointer to the keychain structure \\
+\hline
+\end{DoxyParams}
+\Hypertarget{keychain_8h_a137f9fdf1d68653766263fc944ded0b6}\index{keychain.h@{keychain.h}!pqs\_keychain\_pop@{pqs\_keychain\_pop}}
+\index{pqs\_keychain\_pop@{pqs\_keychain\_pop}!keychain.h@{keychain.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_keychain\_pop()}{pqs\_keychain\_pop()}}
+{\footnotesize\ttfamily \label{keychain_8h_a137f9fdf1d68653766263fc944ded0b6} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+keychain\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}}]{keychain}{, }\item[{\mbox{\hyperlink{structpqs__asymmetric__cipher__keypair}{pqs\+\_\+asymmetric\+\_\+cipher\+\_\+keypair}} \texorpdfstring{$\ast$}{*}}]{keypair}{}\end{DoxyParamCaption})}
+
+
+
+Remove a key-\/set from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keychain} & A pointer to the keychain structure \\
+\hline
+{\em keypair} & A pointer to the keyset structure \\
+\hline
+\end{DoxyParams}
+\Hypertarget{keychain_8h_a153a51c69dc442a9b522ad1a2d4cebbc}\index{keychain.h@{keychain.h}!pqs\_keychain\_serialize@{pqs\_keychain\_serialize}}
+\index{pqs\_keychain\_serialize@{pqs\_keychain\_serialize}!keychain.h@{keychain.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_keychain\_serialize()}{pqs\_keychain\_serialize()}}
+{\footnotesize\ttfamily \label{keychain_8h_a153a51c69dc442a9b522ad1a2d4cebbc} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+keychain\+\_\+serialize (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{otplen}{, }\item[{const \mbox{\hyperlink{structpqs__asymmetric__keychain}{pqs\+\_\+asymmetric\+\_\+keychain}} \texorpdfstring{$\ast$}{*}}]{keychain}{}\end{DoxyParamCaption})}
+
+
+
+Serialize the keychain to an output array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & A pointer to the output array \\
+\hline
+{\em otplen} & The output array size \\
+\hline
+{\em keychain} & \mbox{[}const\mbox{]} A pointer to the keychain structure \\
+\hline
+\end{DoxyParams}
