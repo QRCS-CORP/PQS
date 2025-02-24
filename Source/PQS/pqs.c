@@ -1,0 +1,654 @@
+#include "pqs.h"
+#include "../PQS/logger.h"
+#include "../../QSC/QSC/async.h"
+#include "../../QSC/QSC/acp.h"
+#include "../../QSC/QSC/encoding.h"
+#include "../../QSC/QSC/intutils.h"
+#include "../../QSC/QSC/memutils.h"
+#include "../../QSC/QSC/stringutils.h"
+#include "../../QSC/QSC/timestamp.h"
+
+void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify)
+{
+	assert(cns != NULL);
+
+	if (cns != NULL)
+	{
+		if (qsc_socket_is_connected(&cns->target) == true)
+		{
+			if (notify == true)
+			{
+				if (err == pqs_error_none)
+				{
+					pqs_network_packet resp = { 0 };
+					uint8_t spct[PQS_HEADER_SIZE] = { 0 };
+
+					/* send a disconnect message */
+					resp.pmessage = spct + PQS_HEADER_SIZE;
+					resp.flag = pqs_flag_connection_terminate;
+					resp.sequence = PQS_SEQUENCE_TERMINATOR;
+					resp.msglen = 0;
+					resp.pmessage = NULL;
+
+					pqs_packet_header_serialize(&resp, spct);
+					qsc_socket_send(&cns->target, spct, sizeof(spct), qsc_socket_send_flag_none);
+				}
+				else
+				{
+					pqs_network_packet resp = { 0 };
+					uint8_t spct[PQS_HEADER_SIZE + PQS_FLAG_SIZE + PQS_MACTAG_SIZE] = { 0 };
+					uint8_t perr[PQS_ERROR_MESSAGE_SIZE] = { 0 };
+					pqs_errors qerr;
+
+					/* send a disconnect message */
+					resp.pmessage = spct + PQS_HEADER_SIZE;
+					resp.flag = pqs_flag_connection_terminate;
+					resp.sequence = PQS_SEQUENCE_TERMINATOR;
+					resp.msglen = PQS_ERROR_MESSAGE_SIZE;
+					resp.pmessage = spct + PQS_HEADER_SIZE;
+					perr[0] = err;
+
+					qerr = pqs_packet_encrypt(cns, &resp, perr, PQS_ERROR_MESSAGE_SIZE);
+
+					if (qerr == pqs_error_none)
+					{
+						pqs_packet_header_serialize(&resp, spct);
+						qsc_socket_send(&cns->target, spct, sizeof(spct), qsc_socket_send_flag_none);
+					}
+				}
+			}
+
+			/* close the socket */
+			qsc_socket_close_socket(&cns->target);
+		}
+	}
+}
+
+void pqs_connection_state_dispose(pqs_connection_state* cns)
+{
+	assert(cns != NULL);
+
+	if (cns != NULL)
+	{
+		qsc_rcs_dispose(&cns->rxcpr);
+		qsc_rcs_dispose(&cns->txcpr);
+		qsc_memutils_clear((uint8_t*)&cns->target, sizeof(qsc_socket));
+		cns->cid = 0;
+		cns->rxseq = 0;
+		cns->txseq = 0;
+		cns->exflag = pqs_flag_none;
+	}
+}
+
+const char* pqs_error_description(pqs_messages message)
+{
+	const char* dsc;
+
+	dsc = NULL;
+
+	if ((uint32_t)message < PQS_MESSAGE_STRING_DEPTH)
+	{
+		dsc = PQS_MESSAGE_STRINGS[(size_t)message];
+
+	}
+
+	return dsc;
+}
+
+const char* pqs_error_to_string(pqs_errors error)
+{
+	const char* dsc;
+
+	dsc = NULL;
+
+	if ((uint32_t)error < PQS_ERROR_STRING_DEPTH)
+	{
+		dsc = PQS_ERROR_STRINGS[(size_t)error];
+	}
+
+	return dsc;
+}
+
+void pqs_generate_keypair(pqs_client_verification_key* pubkey, pqs_server_signature_key* prikey, const uint8_t keyid[PQS_KEYID_SIZE])
+{
+	assert(prikey != NULL);
+	assert(pubkey != NULL);
+
+	if (prikey != NULL && pubkey != NULL)
+	{
+		/* add the timestamp plus duration to the key */
+		prikey->expiration = qsc_timestamp_datetime_utc() + PQS_PUBKEY_DURATION_SECONDS;
+
+		/* set the configuration string and key-identity strings */
+		qsc_memutils_copy(prikey->config, PQS_CONFIG_STRING, PQS_CONFIG_SIZE);
+		qsc_memutils_copy(prikey->keyid, keyid, PQS_KEYID_SIZE);
+
+		/* generate the signature key-pair */
+		pqs_signature_generate_keypair(prikey->verkey, prikey->sigkey, qsc_acp_generate);
+
+		/* copy the key expiration, config, key-id, and the signatures verification key, to the public key structure */
+		pubkey->expiration = prikey->expiration;
+		qsc_memutils_copy(pubkey->config, prikey->config, PQS_CONFIG_SIZE);
+		qsc_memutils_copy(pubkey->keyid, prikey->keyid, PQS_KEYID_SIZE);
+		qsc_memutils_copy(pubkey->verkey, prikey->verkey, PQS_ASYMMETRIC_VERIFY_KEY_SIZE);
+	}
+}
+
+void pqs_log_error(pqs_messages emsg, qsc_socket_exceptions err, const char* msg)
+{
+	assert(msg != NULL);
+
+	const char* pmsg;
+
+	if (emsg != pqs_messages_none)
+	{
+		pmsg = pqs_error_description(emsg);
+
+		if (pmsg != NULL)
+		{
+			if (msg != NULL)
+			{
+				char mtmp[PQS_ERROR_STRING_WIDTH * 2] = { 0 };
+
+				qsc_stringutils_copy_string(mtmp, sizeof(mtmp), pmsg);
+				qsc_stringutils_concat_strings(mtmp, sizeof(mtmp), msg);
+				pqs_logger_write(mtmp);
+			}
+			else
+			{
+				pqs_logger_write(pmsg);
+			}
+		}
+	}
+
+	if (err != qsc_socket_exception_success)
+	{
+		const char* perr;
+		const char* phdr;
+		
+		phdr = pqs_error_description(pqs_messages_socket_message);
+
+		if (phdr != NULL)
+		{
+			pqs_logger_write(phdr);
+		}
+
+		perr = qsc_socket_error_to_string(err);
+
+		if (perr != NULL)
+		{
+			pqs_logger_write(perr);
+		}
+	}
+}
+
+void pqs_log_message(pqs_messages emsg)
+{
+	const char* msg = pqs_error_description(emsg);
+
+	if (msg != NULL)
+	{
+		pqs_logger_write(msg);
+	}
+}
+
+void pqs_log_write(pqs_messages emsg, const char* msg)
+{
+	assert(msg != NULL);
+
+	const char* pmsg = pqs_error_description(emsg);
+
+	if (pmsg != NULL)
+	{
+		if (msg != NULL)
+		{
+			char mtmp[PQS_ERROR_STRING_WIDTH] = { 0 };
+
+			qsc_stringutils_copy_string(mtmp, sizeof(mtmp), pmsg);
+			qsc_stringutils_concat_strings(mtmp, sizeof(mtmp), msg);
+			pqs_logger_write(mtmp);
+		}
+		else
+		{
+			pqs_logger_write(pmsg);
+		}
+	}
+}
+
+void pqs_packet_clear(pqs_network_packet* packet)
+{
+	packet->flag = (uint8_t)pqs_flag_none;
+	packet->msglen = 0;
+	packet->sequence = 0;
+
+	if (packet->msglen != 0)
+	{
+		qsc_memutils_clear(packet->pmessage, packet->msglen);
+	}
+}
+
+pqs_errors pqs_packet_decrypt(pqs_connection_state* cns, uint8_t* message, size_t* msglen, const pqs_network_packet* packetin)
+{
+	assert(cns != NULL);
+	assert(packetin != NULL);
+	assert(message != NULL);
+	assert(msglen != NULL);
+
+	uint8_t hdr[PQS_HEADER_SIZE] = { 0 };
+	pqs_errors qerr;
+
+	qerr = pqs_error_invalid_input;
+	*msglen = 0;
+
+	if (cns != NULL && message != NULL && msglen != NULL && packetin != NULL)
+	{
+		cns->rxseq += 1;
+
+		if (packetin->sequence == cns->rxseq)
+		{
+			if (cns->exflag == pqs_flag_session_established)
+			{
+				if (pqs_packet_time_validate(packetin) == true)
+				{
+					/* serialize the header and add it to the ciphers associated data */
+					pqs_packet_header_serialize(packetin, hdr);
+
+					qsc_rcs_set_associated(&cns->rxcpr, hdr, PQS_HEADER_SIZE);
+					*msglen = packetin->msglen - PQS_MACTAG_SIZE;
+
+					/* authenticate then decrypt the data */
+					if (qsc_rcs_transform(&cns->rxcpr, message, packetin->pmessage, *msglen) == true)
+					{
+						qerr = pqs_error_none;
+					}
+					else
+					{
+						*msglen = 0;
+						qerr = pqs_error_authentication_failure;
+					}
+				}
+				else
+				{
+					qerr = pqs_error_message_time_invalid;
+				}
+			}
+			else
+			{
+				qerr = pqs_error_channel_down;
+			}
+		}
+		else
+		{
+			qerr = pqs_error_packet_unsequenced;
+		}
+	}
+
+	return qerr;
+}
+
+pqs_errors pqs_packet_encrypt(pqs_connection_state* cns, pqs_network_packet* packetout, const uint8_t* message, size_t msglen)
+{
+	assert(cns != NULL);
+	assert(message != NULL);
+	assert(packetout != NULL);
+
+	pqs_errors qerr;
+
+	qerr = pqs_error_invalid_input;
+
+	if (cns != NULL && message != NULL && packetout != NULL)
+	{
+		if (cns->exflag == pqs_flag_session_established && msglen != 0)
+		{
+			uint8_t hdr[PQS_HEADER_SIZE] = { 0 };
+
+			/* assemble the encryption packet */
+			cns->txseq += 1;
+			pqs_packet_header_create(packetout, pqs_flag_encrypted_message, cns->txseq, (uint32_t)msglen + PQS_MACTAG_SIZE);
+
+			/* serialize the header and add it to the ciphers associated data */
+			pqs_packet_header_serialize(packetout, hdr);
+			qsc_rcs_set_associated(&cns->txcpr, hdr, PQS_HEADER_SIZE);
+
+			/* encrypt the message */
+			qsc_rcs_transform(&cns->txcpr, packetout->pmessage, message, msglen);
+
+			qerr = pqs_error_none;
+		}
+		else
+		{
+			qerr = pqs_error_channel_down;
+		}
+	}
+
+	return qerr;
+}
+
+void pqs_packet_error_message(pqs_network_packet* packet, pqs_errors error)
+{
+	assert(packet != NULL);
+
+	if (packet != NULL)
+	{
+		packet->flag = pqs_flag_error_condition;
+		packet->msglen = PQS_ERROR_MESSAGE_SIZE;
+		packet->sequence = PQS_ERROR_SEQUENCE;
+		packet->pmessage[0] = (uint8_t)error;
+	}
+}
+
+void pqs_packet_header_create(pqs_network_packet* packetout, pqs_flags flag, uint64_t sequence, uint32_t msglen)
+{
+	packetout->flag = flag;
+	packetout->sequence = sequence;
+	packetout->msglen = msglen;
+	/* set the packet creation time */
+	pqs_packet_time_set(packetout);
+}
+
+void pqs_packet_header_deserialize(const uint8_t* header, pqs_network_packet* packet)
+{
+	assert(header != NULL);
+	assert(packet != NULL);
+
+	if (header != NULL && packet != NULL)
+	{
+		size_t pos;
+
+		packet->flag = header[0];
+		pos = PQS_FLAG_SIZE;
+		packet->msglen = qsc_intutils_le8to32(header + pos);
+		pos += PQS_MSGLEN_SIZE;
+		packet->sequence = qsc_intutils_le8to64(header + pos);
+		pos += PQS_SEQUENCE_SIZE;
+		packet->utctime = qsc_intutils_le8to64(header + pos);
+	}
+}
+
+void pqs_packet_header_serialize(const pqs_network_packet* packet, uint8_t* header)
+{
+	assert(header != NULL);
+	assert(packet != NULL);
+
+	if (header != NULL && packet != NULL)
+	{
+		size_t pos;
+
+		header[0] = packet->flag;
+		pos = PQS_FLAG_SIZE;
+		qsc_intutils_le32to8(header + pos, packet->msglen);
+		pos += PQS_MSGLEN_SIZE;
+		qsc_intutils_le64to8(header + pos, packet->sequence);
+		pos += PQS_SEQUENCE_SIZE;
+		qsc_intutils_le64to8(header + pos, packet->utctime);
+	}
+}
+
+pqs_errors pqs_header_validate(pqs_connection_state* cns, const pqs_network_packet* packetin, pqs_flags kexflag, pqs_flags pktflag, uint64_t sequence, uint32_t msglen)
+{
+	pqs_errors merr;
+
+	if (packetin->flag == pqs_flag_error_condition)
+	{
+		merr = (pqs_flags)packetin->pmessage[0];
+	}
+	else
+	{
+		if (pqs_packet_time_validate(packetin) == true)
+		{
+			if (packetin->msglen == msglen)
+			{
+				if (packetin->sequence == sequence)
+				{
+					if (packetin->flag == pktflag)
+					{
+						if (cns->exflag == kexflag)
+						{
+							cns->rxseq += 1;
+							merr = pqs_error_none;
+						}
+						else
+						{
+							merr = pqs_error_invalid_request;
+						}
+					}
+					else
+					{
+						merr = pqs_error_invalid_request;
+					}
+				}
+				else
+				{
+					merr = pqs_error_packet_unsequenced;
+				}
+			}
+			else
+			{
+				merr = pqs_error_receive_failure;
+			}
+		}
+		else
+		{
+			merr = pqs_error_message_time_invalid;
+		}
+	}
+
+	return merr;
+}
+
+void pqs_packet_time_set(pqs_network_packet* packet)
+{
+	packet->utctime = qsc_timestamp_datetime_utc();
+}
+
+bool pqs_packet_time_validate(const pqs_network_packet* packet)
+{
+	uint64_t ltime;
+
+	ltime = qsc_timestamp_datetime_utc();
+
+	return (ltime >= packet->utctime - PQS_PACKET_TIME_THRESHOLD && ltime <= packet->utctime + PQS_PACKET_TIME_THRESHOLD);
+}
+
+size_t pqs_packet_to_stream(const pqs_network_packet* packet, uint8_t* pstream)
+{
+	assert(packet != NULL);
+	assert(pstream != NULL);
+
+	size_t pos;
+	size_t res;
+
+	res = 0;
+
+	if (packet != NULL && pstream != NULL)
+	{
+		pstream[0] = packet->flag;
+		pos = PQS_FLAG_SIZE;
+		qsc_intutils_le32to8(pstream + pos, packet->msglen);
+		pos += PQS_MSGLEN_SIZE;
+		qsc_intutils_le64to8(pstream + pos, packet->sequence);
+		pos += PQS_SEQUENCE_SIZE;
+		qsc_intutils_le64to8(pstream + pos, packet->utctime);
+		pos += PQS_TIMESTAMP_SIZE;
+		qsc_memutils_copy(pstream + pos, packet->pmessage, packet->msglen);
+		res = (size_t)PQS_HEADER_SIZE + packet->msglen;
+	}
+
+	return res;
+}
+
+bool pqs_public_key_decode(pqs_client_verification_key* pubk, const char enck[PQS_PUBKEY_STRING_SIZE])
+{
+	assert(pubk != NULL);
+
+	char dtm[QSC_TIMESTAMP_STRING_SIZE] = { 0 };
+	char tmpvk[PQS_PUBKEY_ENCODING_SIZE] = { 0 };
+	size_t spos;
+	size_t slen;
+	bool res;
+
+	res = false;
+
+	if (pubk != NULL)
+	{
+		spos = sizeof(PQS_PUBKEY_HEADER) + sizeof(PQS_PUBKEY_VERSION) + sizeof(PQS_PUBKEY_CONFIG_PREFIX) - 1;
+		slen = PQS_CONFIG_SIZE - 1;
+		qsc_memutils_copy(pubk->config, (enck + spos), slen);
+
+		spos += slen + sizeof(PQS_PUBKEY_EXPIRATION_PREFIX) - 3;
+		qsc_intutils_hex_to_bin((enck + spos), pubk->keyid, PQS_KEYID_SIZE * 2);
+
+		spos += (PQS_KEYID_SIZE * 2) + sizeof(PQS_PUBKEY_EXPIRATION_PREFIX);
+		slen = QSC_TIMESTAMP_STRING_SIZE - 1;
+		qsc_memutils_copy(dtm, (enck + spos), slen);
+
+		pubk->expiration = qsc_timestamp_datetime_to_seconds(dtm);
+		spos += QSC_TIMESTAMP_STRING_SIZE;
+
+		qsc_stringutils_remove_line_breaks(tmpvk, sizeof(tmpvk), (enck + spos), (PQS_PUBKEY_STRING_SIZE - (spos + sizeof(PQS_PUBKEY_FOOTER))));
+		res = qsc_encoding_base64_decode(pubk->verkey, PQS_ASYMMETRIC_VERIFY_KEY_SIZE, tmpvk, PQS_PUBKEY_ENCODING_SIZE);
+	}
+
+	return res;
+}
+
+void pqs_public_key_encode(char enck[PQS_PUBKEY_STRING_SIZE], const pqs_client_verification_key* pubkey)
+{
+	assert(pubkey != NULL);
+
+	char dtm[QSC_TIMESTAMP_STRING_SIZE] = { 0 };
+	char hexid[(PQS_KEYID_SIZE * 2)] = { 0 };
+	char tmpvk[PQS_PUBKEY_ENCODING_SIZE] = { 0 };
+	size_t slen;
+	size_t spos;
+
+	if (pubkey != NULL)
+	{
+		slen = sizeof(PQS_PUBKEY_HEADER) - 1;
+		qsc_memutils_copy(enck, PQS_PUBKEY_HEADER, slen);
+		spos = slen;
+		enck[spos] = '\n';
+		++spos;
+
+		slen = sizeof(PQS_PUBKEY_VERSION) - 1;
+		qsc_memutils_copy((enck + spos), PQS_PUBKEY_VERSION, slen);
+		spos += slen;
+		enck[spos] = '\n';
+		++spos;
+
+		slen = sizeof(PQS_PUBKEY_CONFIG_PREFIX) - 1;
+		qsc_memutils_copy((enck + spos), PQS_PUBKEY_CONFIG_PREFIX, slen);
+		spos += slen;
+		slen = sizeof(PQS_CONFIG_STRING) - 1;
+		qsc_memutils_copy((enck + spos), PQS_CONFIG_STRING, slen);
+		spos += slen;
+		enck[spos] = '\n';
+		++spos;
+
+		slen = sizeof(PQS_PUBKEY_KEYID_PREFIX) - 1;
+		qsc_memutils_copy((enck + spos), PQS_PUBKEY_KEYID_PREFIX, slen);
+		spos += slen;
+		qsc_intutils_bin_to_hex(pubkey->keyid, hexid, PQS_KEYID_SIZE);
+		slen = sizeof(hexid);
+		qsc_memutils_copy((enck + spos), hexid, slen);
+		spos += slen;
+		enck[spos] = '\n';
+		++spos;
+
+		slen = sizeof(PQS_PUBKEY_EXPIRATION_PREFIX) - 1;
+		qsc_memutils_copy((enck + spos), PQS_PUBKEY_EXPIRATION_PREFIX, slen);
+		spos += slen;
+		qsc_timestamp_seconds_to_datetime(pubkey->expiration, dtm);
+		slen = sizeof(dtm) - 1;
+		qsc_memutils_copy((enck + spos), dtm, slen);
+		spos += slen;
+		enck[spos] = '\n';
+		++spos;
+
+		size_t enclen = qsc_encoding_base64_encoded_size(sizeof(pubkey->verkey));
+		slen = PQS_ASYMMETRIC_VERIFY_KEY_SIZE;
+		qsc_encoding_base64_encode(tmpvk, PQS_PUBKEY_ENCODING_SIZE, pubkey->verkey, slen);
+		spos += qsc_stringutils_add_line_breaks((enck + spos), PQS_PUBKEY_STRING_SIZE - spos, PQS_PUBKEY_LINE_LENGTH, tmpvk, sizeof(tmpvk));
+		enck[spos] = '\n';
+		++spos;
+
+		slen = sizeof(PQS_PUBKEY_FOOTER) - 1;
+		qsc_memutils_copy((enck + spos), PQS_PUBKEY_FOOTER, slen);
+		spos += slen;
+		enck[spos] = '\n';
+	}
+}
+
+void pqs_public_key_hash(uint8_t* hash, const pqs_client_verification_key* pubk)
+{
+	qsc_keccak_state ctx = { 0 };
+	uint8_t exp[PQS_TIMESTAMP_SIZE] = { 0 };
+
+	qsc_intutils_le64to8(exp, pubk->expiration);
+
+	qsc_sha3_initialize(&ctx);
+	qsc_sha3_update(&ctx, qsc_keccak_rate_256, pubk->config, PQS_CONFIG_SIZE);
+	qsc_sha3_update(&ctx, qsc_keccak_rate_256, exp, PQS_TIMESTAMP_SIZE);
+	qsc_sha3_update(&ctx, qsc_keccak_rate_256, pubk->keyid, PQS_KEYID_SIZE);
+	qsc_sha3_update(&ctx, qsc_keccak_rate_256, pubk->verkey, PQS_ASYMMETRIC_VERIFY_KEY_SIZE);
+	qsc_sha3_finalize(&ctx, qsc_keccak_rate_256, hash);
+}
+
+void pqs_signature_key_deserialize(pqs_server_signature_key* kset, const uint8_t serk[PQS_SIGKEY_ENCODED_SIZE])
+{
+	assert(kset != NULL);
+
+	size_t pos;
+
+	qsc_memutils_copy(kset->config, serk, PQS_CONFIG_SIZE);
+	pos = PQS_CONFIG_SIZE;
+	kset->expiration = qsc_intutils_le8to64((serk + pos));
+	pos += PQS_TIMESTAMP_SIZE;
+	qsc_memutils_copy(kset->keyid, (serk + pos), PQS_KEYID_SIZE);
+	pos += PQS_KEYID_SIZE;
+	qsc_memutils_copy(kset->rkhash, (serk + pos), PQS_HASH_SIZE);
+	pos += PQS_HASH_SIZE;
+	qsc_memutils_copy(kset->sigkey, (serk + pos), PQS_ASYMMETRIC_SIGNING_KEY_SIZE);
+	pos += PQS_ASYMMETRIC_SIGNING_KEY_SIZE;
+	qsc_memutils_copy(kset->verkey, (serk + pos), PQS_ASYMMETRIC_VERIFY_KEY_SIZE);
+}
+
+void pqs_signature_key_serialize(uint8_t serk[PQS_SIGKEY_ENCODED_SIZE], const pqs_server_signature_key* kset)
+{
+	assert(kset != NULL);
+
+	size_t pos;
+
+	qsc_memutils_copy(serk, kset->config, PQS_CONFIG_SIZE);
+	pos = PQS_CONFIG_SIZE;
+	qsc_intutils_le64to8((serk + pos), kset->expiration);
+	pos += PQS_TIMESTAMP_SIZE;
+	qsc_memutils_copy((serk + pos), kset->keyid, PQS_KEYID_SIZE);
+	pos += PQS_KEYID_SIZE;
+	qsc_memutils_copy((serk + pos), kset->rkhash, PQS_HASH_SIZE);
+	pos += PQS_HASH_SIZE;
+	qsc_memutils_copy((serk + pos), kset->sigkey, PQS_ASYMMETRIC_SIGNING_KEY_SIZE);
+	pos += PQS_ASYMMETRIC_SIGNING_KEY_SIZE;
+	qsc_memutils_copy((serk + pos), kset->verkey, PQS_ASYMMETRIC_VERIFY_KEY_SIZE);
+}
+
+void pqs_stream_to_packet(const uint8_t* pstream, pqs_network_packet* packet)
+{
+	assert(packet != NULL);
+	assert(pstream != NULL);
+
+	size_t pos;
+
+	if (packet != NULL && pstream != NULL)
+	{
+		packet->flag = pstream[0];
+		pos = PQS_FLAG_SIZE;
+		packet->msglen = qsc_intutils_le8to32(pstream + pos);
+		pos += PQS_MSGLEN_SIZE;
+		packet->sequence = qsc_intutils_le8to64(pstream + pos);
+		pos += PQS_SEQUENCE_SIZE;
+		packet->utctime = qsc_intutils_le8to64(pstream + pos);
+		pos += PQS_TIMESTAMP_SIZE;
+		qsc_memutils_copy(packet->pmessage, pstream + pos, packet->msglen);
+	}
+}
