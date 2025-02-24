@@ -1,0 +1,1412 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqs.h File Reference}
+\hypertarget{pqs_8h}{}\label{pqs_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqs.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqs.h}}
+
+
+PQS support header.  
+
+
+{\ttfamily \#include "{}common.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+QSC/\+QSC/dilithium.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+QSC/\+QSC/kyber.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+QSC/\+QSC/rcs.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+QSC/\+QSC/sha3.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+QSC/\+QSC/socketbase.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__asymmetric__cipher__keypair}{pqs\+\_\+asymmetric\+\_\+cipher\+\_\+keypair}}
+\begin{DoxyCompactList}\small\item\em Container for an asymmetric cipher key pair. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__asymmetric__signature__keypair}{pqs\+\_\+asymmetric\+\_\+signature\+\_\+keypair}}
+\begin{DoxyCompactList}\small\item\em Container for an asymmetric signature key pair. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}}
+\begin{DoxyCompactList}\small\item\em Represents a network packet in the PQS protocol. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}}
+\begin{DoxyCompactList}\small\item\em Structure holding a PQS client public key. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__server__signature__key}{pqs\+\_\+server\+\_\+signature\+\_\+key}}
+\begin{DoxyCompactList}\small\item\em Structure holding a PQS server secret signature key. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__keep__alive__state}{pqs\+\_\+keep\+\_\+alive\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Maintains the state for a keep-\/alive mechanism. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Maintains the state for a PQS socket connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pqs_8h_a8a7d77d2fcba5b18f0bf6bf716e0fbbf}{PQS\+\_\+\+CONFIG\+\_\+\+SIZE}}~48
+\begin{DoxyCompactList}\small\item\em The size in bytes of the protocol configuration string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_ac1544dc03487222eb03175007ce2e277}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+CIPHER\+\_\+\+TEXT\+\_\+\+SIZE}}~(QSC\+\_\+\+KYBER\+\_\+\+CIPHERTEXT\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em The size in bytes of the asymmetric cipher-\/text array. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_a22286bb64769853aca20237b2d6c985e}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+PRIVATE\+\_\+\+KEY\+\_\+\+SIZE}}~(QSC\+\_\+\+KYBER\+\_\+\+PRIVATEKEY\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em The size in bytes of the asymmetric cipher private-\/key array. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_a68adf6dfe273dbdf66d4d2612aff18ca}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+PUBLIC\+\_\+\+KEY\+\_\+\+SIZE}}~(QSC\+\_\+\+KYBER\+\_\+\+PUBLICKEY\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em The size in bytes of the asymmetric cipher public-\/key array. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_a170dfafbaa3bc7a4297dd829c1041220}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+SIGNING\+\_\+\+KEY\+\_\+\+SIZE}}~(QSC\+\_\+\+DILITHIUM\+\_\+\+PRIVATEKEY\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em The size in bytes of the asymmetric signature signing-\/key array. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_ab1283ee8beebdb4910f36111b689e423}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+VERIFY\+\_\+\+KEY\+\_\+\+SIZE}}~(QSC\+\_\+\+DILITHIUM\+\_\+\+PUBLICKEY\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em The size in bytes of the asymmetric signature verification-\/key array. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_a9cfdd6d551e84d28bdcf766585c05256}{PQS\+\_\+\+ASYMMETRIC\+\_\+\+SIGNATURE\+\_\+\+SIZE}}~(QSC\+\_\+\+DILITHIUM\+\_\+\+SIGNATURE\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em The size in bytes of the asymmetric signature array. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_a694171ba4a67a4c51d324466c7aa22f6}{PQS\+\_\+\+PUBKEY\+\_\+\+ENCODING\+\_\+\+SIZE}}~3456
+\begin{DoxyCompactList}\small\item\em The size in bytes of the encoded PQS public-\/key. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_afa9c1adbb73862d4b83e7bbb2c28cc83}{PQS\+\_\+\+PUBKEY\+\_\+\+STRING\+\_\+\+SIZE}}~3745
+\begin{DoxyCompactList}\small\item\em The size in bytes of the serialized PQS client-\/key structure. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_aac5b612ef08ad955ffd791abbb972883}\label{pqs_8h_aac5b612ef08ad955ffd791abbb972883} 
+\#define {\bfseries PQS\+\_\+\+CLIENT\+\_\+\+PORT}~33118
+\begin{DoxyCompactList}\small\item\em The default port number for PQS client connections. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_abbe3e80afe729ad2fd75283f125c4c18}{PQS\+\_\+\+CONNECTIONS\+\_\+\+INIT}}~1000
+\begin{DoxyCompactList}\small\item\em The initial size of the PQS connection queue. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_ae104ca8b020cd3043daba22c21bb1ea6}{PQS\+\_\+\+CONNECTIONS\+\_\+\+MAX}}~50000
+\begin{DoxyCompactList}\small\item\em The maximum number of concurrent PQS connections. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a00352fea67b0d01aacb148a3f09652f7}\label{pqs_8h_a00352fea67b0d01aacb148a3f09652f7} 
+\#define {\bfseries PQS\+\_\+\+CONNECTION\+\_\+\+MTU}~1500
+\begin{DoxyCompactList}\small\item\em The maximum transmission unit (MTU) size for a PQS packet. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_adb1d0a5b73a57c173e7039c1094252c2}\label{pqs_8h_adb1d0a5b73a57c173e7039c1094252c2} 
+\#define {\bfseries PQS\+\_\+\+ERROR\+\_\+\+SEQUENCE}~0x\+FF00000000000000\+ULL
+\begin{DoxyCompactList}\small\item\em The sequence number used to indicate an error in a packet. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a88d4bd8871b1b127733d45662e8eedff}\label{pqs_8h_a88d4bd8871b1b127733d45662e8eedff} 
+\#define {\bfseries PQS\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+\+SIZE}~1
+\begin{DoxyCompactList}\small\item\em The size in bytes of the error message contained in a packet. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a3a483b48163824b21dc2f5f61ab2bd7b}\label{pqs_8h_a3a483b48163824b21dc2f5f61ab2bd7b} 
+\#define {\bfseries PQS\+\_\+\+FLAG\+\_\+\+SIZE}~1
+\begin{DoxyCompactList}\small\item\em The size in bytes of the packet flag. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a913198ca98026c2eb156290f91aa7b65}\label{pqs_8h_a913198ca98026c2eb156290f91aa7b65} 
+\#define {\bfseries PQS\+\_\+\+HASH\+\_\+\+SIZE}~32
+\begin{DoxyCompactList}\small\item\em The output size in bytes of the Simplex 256-\/bit hash function. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_aed0b41896c831554485ea8b795b526de}\label{pqs_8h_aed0b41896c831554485ea8b795b526de} 
+\#define {\bfseries PQS\+\_\+\+HEADER\+\_\+\+SIZE}~21
+\begin{DoxyCompactList}\small\item\em The size in bytes of a PQS packet header. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_a4a628c0b054234a09726f5931d3e48fa}{PQS\+\_\+\+KEEPALIVE\+\_\+\+TIMEOUT}}~(120 \texorpdfstring{$\ast$}{*} 1000)
+\begin{DoxyCompactList}\small\item\em The timeout period (in milliseconds) for keep-\/alive messages. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_ae2c3326c49b6835ae5e81fca6ba37f90}\label{pqs_8h_ae2c3326c49b6835ae5e81fca6ba37f90} 
+\#define {\bfseries PQS\+\_\+\+KEYID\+\_\+\+SIZE}~16
+\begin{DoxyCompactList}\small\item\em The size in bytes of a PQS key identity. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a3d27bcc9d96e9d125c0f5d74f5f5fa25}\label{pqs_8h_a3d27bcc9d96e9d125c0f5d74f5f5fa25} 
+\#define {\bfseries PQS\+\_\+\+MACTAG\+\_\+\+SIZE}~32
+\begin{DoxyCompactList}\small\item\em The size in bytes of the MAC tag for the Simplex 256-\/bit MAC. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_aca9d9b5744bdebf9593634f45497af52}{PQS\+\_\+\+MESSAGE\+\_\+\+MAX}}~0x3\+D090000
+\begin{DoxyCompactList}\small\item\em The maximum allowed message size (in bytes) during the key exchange. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a1645f578602b5ddc187c307d0839d061}\label{pqs_8h_a1645f578602b5ddc187c307d0839d061} 
+\#define {\bfseries PQS\+\_\+\+MSGLEN\+\_\+\+SIZE}~4
+\begin{DoxyCompactList}\small\item\em The size in bytes of the packet message length field. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_aafed62da7423119c3283edcce7cd9b32}\label{pqs_8h_aafed62da7423119c3283edcce7cd9b32} 
+\#define {\bfseries PQS\+\_\+\+NONCE\+\_\+\+SIZE}~32
+\begin{DoxyCompactList}\small\item\em The size in bytes of the nonce used in symmetric encryption. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a3ea486d63659a8b0364d99dea7207d93}\label{pqs_8h_a3ea486d63659a8b0364d99dea7207d93} 
+\#define {\bfseries PQS\+\_\+\+NETWORK\+\_\+\+BUFFER\+\_\+\+SIZE}~1280
+\begin{DoxyCompactList}\small\item\em The size in bytes of the network buffer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_aa822e2b00e5f032e80cadd1551754ae9}{PQS\+\_\+\+PACKET\+\_\+\+TIME\+\_\+\+THRESHOLD}}~60
+\begin{DoxyCompactList}\small\item\em The maximum time (in seconds) a packet is considered valid. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_aa23ff1491d95b91057a350108c0e85ac}\label{pqs_8h_aa23ff1491d95b91057a350108c0e85ac} 
+\#define {\bfseries PQS\+\_\+\+PUBKEY\+\_\+\+DURATION\+\_\+\+DAYS}~365
+\begin{DoxyCompactList}\small\item\em The validity duration (in days) of a public key. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_aab6014696808b1b8371dd94d91ff6f93}{PQS\+\_\+\+PUBKEY\+\_\+\+DURATION\+\_\+\+SECONDS}}~(\mbox{\hyperlink{pqs_8h_aa23ff1491d95b91057a350108c0e85ac}{PQS\+\_\+\+PUBKEY\+\_\+\+DURATION\+\_\+\+DAYS}} \texorpdfstring{$\ast$}{*} 24 \texorpdfstring{$\ast$}{*} 60 \texorpdfstring{$\ast$}{*} 60)
+\begin{DoxyCompactList}\small\item\em The validity duration (in seconds) of a public key. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_aa51db38a9a10060cf85ca9ebe1fc70bc}\label{pqs_8h_aa51db38a9a10060cf85ca9ebe1fc70bc} 
+\#define {\bfseries PQS\+\_\+\+PUBKEY\+\_\+\+LINE\+\_\+\+LENGTH}~64
+\begin{DoxyCompactList}\small\item\em The maximum number of characters per line in a printed PQS public key. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_ab08f41136f8d64f7a26d5a2497e63d10}\label{pqs_8h_ab08f41136f8d64f7a26d5a2497e63d10} 
+\#define {\bfseries PQS\+\_\+\+SCHASH\+\_\+\+SIZE}~32
+\begin{DoxyCompactList}\small\item\em The size in bytes of the Simplex 256-\/bit session token hash. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a443e1b347c814faaa4190fd4393c69d6}\label{pqs_8h_a443e1b347c814faaa4190fd4393c69d6} 
+\#define {\bfseries PQS\+\_\+\+SECRET\+\_\+\+SIZE}~32
+\begin{DoxyCompactList}\small\item\em The size in bytes of the shared secret for each communication channel. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_ae947f846c6c5437a6428b3ab94e534ce}\label{pqs_8h_ae947f846c6c5437a6428b3ab94e534ce} 
+\#define {\bfseries PQS\+\_\+\+SEQUENCE\+\_\+\+SIZE}~8
+\begin{DoxyCompactList}\small\item\em The size in bytes of the packet sequence number. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a2647d4190b4e30e767cb6102b09fd5ba}\label{pqs_8h_a2647d4190b4e30e767cb6102b09fd5ba} 
+\#define {\bfseries PQS\+\_\+\+SEQUENCE\+\_\+\+TERMINATOR}~0x\+FFFFFFFFUL
+\begin{DoxyCompactList}\small\item\em The sequence number that indicates a packet which closes a connection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_abbbc02d5b9aa15de4b9af5be2e6b0fc4}{PQS\+\_\+\+SERVER\+\_\+\+LISTEN\+\_\+\+BACKLOG}}~0
+\begin{DoxyCompactList}\small\item\em The backlog size for the server listen socket. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a2ca961464cd12437fd9d5be18001042b}\label{pqs_8h_a2ca961464cd12437fd9d5be18001042b} 
+\#define {\bfseries PQS\+\_\+\+SERVER\+\_\+\+PORT}~3119
+\begin{DoxyCompactList}\small\item\em The default port number for PQS server connections. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_afa9bc895b23766b4c3bb662de879cf7d}\label{pqs_8h_afa9bc895b23766b4c3bb662de879cf7d} 
+\#define {\bfseries PQS\+\_\+\+SYMMETRIC\+\_\+\+KEY\+\_\+\+SIZE}~32
+\begin{DoxyCompactList}\small\item\em The size in bytes of the Simplex 256-\/bit symmetric cipher key. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_aafd9eef3e505c8e7ceb076059191f5ca}\label{pqs_8h_aafd9eef3e505c8e7ceb076059191f5ca} 
+\#define {\bfseries PQS\+\_\+\+TIMESTAMP\+\_\+\+SIZE}~8
+\begin{DoxyCompactList}\small\item\em The size in bytes of the key expiration timestamp. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pqs_8h_a305898d0a2868e77b0c0edf0f2283f5a}{PQS\+\_\+\+SIGKEY\+\_\+\+ENCODED\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em The size in bytes of the encoded secret signature key structure. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a78a69a94c5ee51c85c39bf601480b338}\label{pqs_8h_a78a69a94c5ee51c85c39bf601480b338} 
+\#define {\bfseries pqs\+\_\+cipher\+\_\+generate\+\_\+keypair}~qsc\+\_\+kyber\+\_\+generate\+\_\+keypair
+\begin{DoxyCompactList}\small\item\em Generate an asymmetric cipher key-\/pair. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_ad96c1c116bb647f4242fab72e2e53c2a}\label{pqs_8h_ad96c1c116bb647f4242fab72e2e53c2a} 
+\#define {\bfseries pqs\+\_\+cipher\+\_\+decapsulate}~qsc\+\_\+kyber\+\_\+decapsulate
+\begin{DoxyCompactList}\small\item\em Decapsulate a shared-\/secret with the asymmetric cipher. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a095b3361f5edee53d08d302a5d53a10c}\label{pqs_8h_a095b3361f5edee53d08d302a5d53a10c} 
+\#define {\bfseries pqs\+\_\+cipher\+\_\+encapsulate}~qsc\+\_\+kyber\+\_\+encapsulate
+\begin{DoxyCompactList}\small\item\em Encapsulate a shared-\/secret with the asymmetric cipher. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_ac4c573d7b4146463c80e7a32b5e53eb2}\label{pqs_8h_ac4c573d7b4146463c80e7a32b5e53eb2} 
+\#define {\bfseries pqs\+\_\+signature\+\_\+generate\+\_\+keypair}~qsc\+\_\+dilithium\+\_\+generate\+\_\+keypair
+\begin{DoxyCompactList}\small\item\em Generate an asymmetric signature key-\/pair. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_ab9bcc5ff36af31355c731f84fd8c1616}\label{pqs_8h_ab9bcc5ff36af31355c731f84fd8c1616} 
+\#define {\bfseries pqs\+\_\+signature\+\_\+sign}~qsc\+\_\+dilithium\+\_\+sign
+\begin{DoxyCompactList}\small\item\em Sign a message with the asymmetric signature scheme. \end{DoxyCompactList}\item 
+\Hypertarget{pqs_8h_a59dc0b17487ba90229a0c519c0ee4b98}\label{pqs_8h_a59dc0b17487ba90229a0c519c0ee4b98} 
+\#define {\bfseries pqs\+\_\+signature\+\_\+verify}~qsc\+\_\+dilithium\+\_\+verify
+\begin{DoxyCompactList}\small\item\em Verify a message with the asymmetric signature scheme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqs_8h_a5d24c1700388fec600f5a76a552a5a77}\label{pqs_8h_a5d24c1700388fec600f5a76a552a5a77} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffb}{pqs\+\_\+client\+\_\+commands}} {\bfseries pqs\+\_\+client\+\_\+commands}
+\item 
+\Hypertarget{pqs_8h_a5c1bb583a3e7c3c2ef87da1cb798be6b}\label{pqs_8h_a5c1bb583a3e7c3c2ef87da1cb798be6b} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} {\bfseries pqs\+\_\+errors}
+\item 
+\Hypertarget{pqs_8h_a3825afb0b26679869ae82be5b7305d21}\label{pqs_8h_a3825afb0b26679869ae82be5b7305d21} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}} {\bfseries pqs\+\_\+flags}
+\item 
+\Hypertarget{pqs_8h_a2af1a94f3acc33e226e116d812d77078}\label{pqs_8h_a2af1a94f3acc33e226e116d812d77078} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}} {\bfseries pqs\+\_\+messages}
+\item 
+\Hypertarget{pqs_8h_ae8936104655ee3c0a899763d1e71eaf1}\label{pqs_8h_ae8936104655ee3c0a899763d1e71eaf1} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+asymmetric\+\_\+cipher\+\_\+keypair {\bfseries pqs\+\_\+asymmetric\+\_\+cipher\+\_\+keypair}
+\item 
+\Hypertarget{pqs_8h_a5d87b71528b7f53b488de953ae5644dc}\label{pqs_8h_a5d87b71528b7f53b488de953ae5644dc} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+asymmetric\+\_\+signature\+\_\+keypair {\bfseries pqs\+\_\+asymmetric\+\_\+signature\+\_\+keypair}
+\item 
+\Hypertarget{pqs_8h_ae3f929c0bc9630338f6848e2cedf37ab}\label{pqs_8h_ae3f929c0bc9630338f6848e2cedf37ab} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+network\+\_\+packet {\bfseries pqs\+\_\+network\+\_\+packet}
+\item 
+\Hypertarget{pqs_8h_a6f255ded6e2ecf4854eb7f445aeb7c9f}\label{pqs_8h_a6f255ded6e2ecf4854eb7f445aeb7c9f} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+client\+\_\+verification\+\_\+key {\bfseries pqs\+\_\+client\+\_\+verification\+\_\+key}
+\item 
+\Hypertarget{pqs_8h_a685c7ef3382753d652a42d4f27270d26}\label{pqs_8h_a685c7ef3382753d652a42d4f27270d26} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+server\+\_\+signature\+\_\+key {\bfseries pqs\+\_\+server\+\_\+signature\+\_\+key}
+\item 
+\Hypertarget{pqs_8h_ae02043df0da4a8884d02e5b34a18ad99}\label{pqs_8h_ae02043df0da4a8884d02e5b34a18ad99} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+keep\+\_\+alive\+\_\+state {\bfseries pqs\+\_\+keep\+\_\+alive\+\_\+state}
+\item 
+\Hypertarget{pqs_8h_a68e8396af21aa69050dfaf6c29594d8b}\label{pqs_8h_a68e8396af21aa69050dfaf6c29594d8b} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+connection\+\_\+state {\bfseries pqs\+\_\+connection\+\_\+state}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffb}{pqs\+\_\+client\+\_\+commands}} \{ \mbox{\hyperlink{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffba0c279080d54647cb3b1ca9eaab915d4c}{pqs\+\_\+client\+\_\+command\+\_\+none}} = 0x00
+, \mbox{\hyperlink{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffba2b6ba646d015c03b19725ae2e149e4a7}{pqs\+\_\+client\+\_\+command\+\_\+cprint}} = 0x01
+, \mbox{\hyperlink{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffbab4f731f47b46f9d4158b3792f2b2ee58}{pqs\+\_\+client\+\_\+command\+\_\+execute}} = 0x02
+, \mbox{\hyperlink{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffbab7aea28a851206af0fe706b4fe0476ec}{pqs\+\_\+client\+\_\+command\+\_\+quit}} = 0x03
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of client commands in the PQS protocol. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} \{ \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a6dce84994905af4a711c319656f4e38d}{pqs\+\_\+error\+\_\+none}} = 0x00
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa45c7eb928b4af6047d5d07e74d5d0f6}{pqs\+\_\+error\+\_\+accept\+\_\+fail}} = 0x01
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a18da1d86e823a4b4dffe4940f12a9b2d}{pqs\+\_\+error\+\_\+authentication\+\_\+failure}} = 0x02
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a56e03ed5a0c0aebb481663efa5fd6f82}{pqs\+\_\+error\+\_\+bad\+\_\+keep\+\_\+alive}} = 0x03
+, \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a2e1a00f61e06cdc8de683c78ea52eb3b}{pqs\+\_\+error\+\_\+channel\+\_\+down}} = 0x04
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1685214cc86ecc9dfca23b8f33c0684c}{pqs\+\_\+error\+\_\+connection\+\_\+failure}} = 0x05
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ac3c79a0cc1040ce265f32a270e425433}{pqs\+\_\+error\+\_\+connect\+\_\+failure}} = 0x06
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2afe134950fdddb9f12061729107aa5a21}{pqs\+\_\+error\+\_\+decapsulation\+\_\+failure}} = 0x07
+, \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a427678e02bddf78e6a1f9801fb6d95aa}{pqs\+\_\+error\+\_\+decryption\+\_\+failure}} = 0x08
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a0d6ec046f073b2c313a039ed14ea471e}{pqs\+\_\+error\+\_\+establish\+\_\+failure}} = 0x09
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa80455f2cc28db3afc64b7b2a768be28}{pqs\+\_\+error\+\_\+exchange\+\_\+failure}} = 0x0A
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2abe448551fa0e427dc61439cdfe0abf88}{pqs\+\_\+error\+\_\+hash\+\_\+invalid}} = 0x0B
+, \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa0bcab58dfdef1b661337914d647a9a9}{pqs\+\_\+error\+\_\+hosts\+\_\+exceeded}} = 0x0C
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a2739e2eec783ee454b47b4a20df13af9}{pqs\+\_\+error\+\_\+invalid\+\_\+input}} = 0x0D
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a516766033a6bd9d0a338371a638900c0}{pqs\+\_\+error\+\_\+invalid\+\_\+request}} = 0x0E
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a6180a1df6cc041a439a26a8fb379fa54}{pqs\+\_\+error\+\_\+keepalive\+\_\+expired}} = 0x0F
+, \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2abf212b552722ec8c6e8131c1427e0d0f}{pqs\+\_\+error\+\_\+keepalive\+\_\+timeout}} = 0x10
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2af3a14985d808eb6797778532361a8725}{pqs\+\_\+error\+\_\+key\+\_\+expired}} = 0x11
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a3d497f93bebb7b5c70635c8c41c79ecd}{pqs\+\_\+error\+\_\+key\+\_\+unrecognized}} = 0x12
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a9a160b484f80dc6639f015568912fd62}{pqs\+\_\+error\+\_\+keychain\+\_\+fail}} = 0x13
+, \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a29595ce07da3b1c06ae94db87a5e5063}{pqs\+\_\+error\+\_\+listener\+\_\+fail}} = 0x14
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1354d605fc5483627d7f0e4c7daf0d27}{pqs\+\_\+error\+\_\+memory\+\_\+allocation}} = 0x15
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1fe38597bddb7c94949142fbbad1622c}{pqs\+\_\+error\+\_\+packet\+\_\+unsequenced}} = 0x16
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a7ff06933eb669829e209072edf0e6161}{pqs\+\_\+error\+\_\+random\+\_\+failure}} = 0x17
+, \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2acbec7b3a11fb73b9bbcdf385358ebbeb}{pqs\+\_\+error\+\_\+receive\+\_\+failure}} = 0x18
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2af189ab6bb649904a2a172c1ea4861473}{pqs\+\_\+error\+\_\+transmit\+\_\+failure}} = 0x19
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ad67ef7bfc2ea59a491cfd13712be6c24}{pqs\+\_\+error\+\_\+unknown\+\_\+protocol}} = 0x1A
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a33319f85cf42cf0b90f0af6015e57ae2}{pqs\+\_\+error\+\_\+verify\+\_\+failure}} = 0x1B
+, \newline
+\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a82640969c4711d683ebdeebf37a6f76c}{pqs\+\_\+error\+\_\+login\+\_\+failure}} = 0x1C
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a940b521335c7ed6bfa8e73bcec079d58}{pqs\+\_\+error\+\_\+login\+\_\+success}} = 0x1D
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2afdad1bbff87ce2879f50d87d3569d992}{pqs\+\_\+error\+\_\+message\+\_\+time\+\_\+invalid}} = 0x1E
+, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ac1c8674b5a4141aa67c49bde0c4a4668}{pqs\+\_\+error\+\_\+connection\+\_\+refused}} = 0x1F
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of error codes returned by PQS functions. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}} \{ \newline
+\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a53603ab4250d9f5b3b05de88d84d4dc0}{pqs\+\_\+flag\+\_\+none}} = 0x00
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ad32ee8ff5bce662f312dc2424530e756}{pqs\+\_\+flag\+\_\+connect\+\_\+request}} = 0x01
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a705d7216cb5169d012e4fbbfc7cda616}{pqs\+\_\+flag\+\_\+connect\+\_\+response}} = 0x02
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a3ebf235020b4048cd7febdb8b100ac07}{pqs\+\_\+flag\+\_\+connection\+\_\+terminate}} = 0x03
+, \newline
+\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a498355686183d8ba9e5abf71c91b26c1}{pqs\+\_\+flag\+\_\+encrypted\+\_\+message}} = 0x04
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a3a2a17e188d1fd802693e121ef8cfd0e}{pqs\+\_\+flag\+\_\+exstart\+\_\+request}} = 0x05
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a684bbd4b336ad6af5296519b8fea6bfa}{pqs\+\_\+flag\+\_\+exstart\+\_\+response}} = 0x06
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a828c8ea1438f2da1f5e750740a2fa019}{pqs\+\_\+flag\+\_\+exchange\+\_\+request}} = 0x07
+, \newline
+\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ae3ea7d04d6bd8f9755adb9739696585b}{pqs\+\_\+flag\+\_\+exchange\+\_\+response}} = 0x08
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a96044893eac579787944bfd300a038cb}{pqs\+\_\+flag\+\_\+establish\+\_\+request}} = 0x09
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21acbc69623cb1a2b31294e96043a222f08}{pqs\+\_\+flag\+\_\+establish\+\_\+response}} = 0x0A
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ac9491241a117a33225c7dfbed2b4138f}{pqs\+\_\+flag\+\_\+keep\+\_\+alive\+\_\+request}} = 0x0B
+, \newline
+\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a0b4b761c874218e13422d7c254017926}{pqs\+\_\+flag\+\_\+keep\+\_\+alive\+\_\+response}} = 0x0C
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a47e233d451674127cb1491abffef9f52}{pqs\+\_\+flag\+\_\+remote\+\_\+connected}} = 0x0E
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a49186548eaf2aa7097e7a03b49fac4c6}{pqs\+\_\+flag\+\_\+remote\+\_\+terminated}} = 0x0F
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a40e466f2763ba9d08964c2e8c02317da}{pqs\+\_\+flag\+\_\+session\+\_\+established}} = 0x10
+, \newline
+\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21aab9467f934e4c9d2364942bbe053e23f}{pqs\+\_\+flag\+\_\+session\+\_\+establish\+\_\+verify}} = 0x11
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21af3127c42e249fe03f9cb9326e32f2cc8}{pqs\+\_\+flag\+\_\+unrecognized\+\_\+protocol}} = 0x12
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21aacfda80ffe4ccf2c8739ad9ce7b48ee5}{pqs\+\_\+flag\+\_\+asymmetric\+\_\+ratchet\+\_\+request}} = 0x13
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ac8bebd06acf6c8c4cb44359143a84e9c}{pqs\+\_\+flag\+\_\+asymmetric\+\_\+ratchet\+\_\+response}} = 0x14
+, \newline
+\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a17ac535bc1980ba3dbbbbf052a8b014c}{pqs\+\_\+flag\+\_\+symmetric\+\_\+ratchet\+\_\+request}} = 0x15
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a1b025d0179d6bb405100a57cf82681db}{pqs\+\_\+flag\+\_\+transfer\+\_\+request}} = 0x16
+, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a8bb0a9329963a0f4e476f2ef3cbaf47b}{pqs\+\_\+flag\+\_\+error\+\_\+condition}} = 0x\+FF
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of packet flags used in the PQS protocol. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}} \{ \newline
+\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ade87a3d9fec84305e0cc65021dbc1ed4}{pqs\+\_\+messages\+\_\+none}} = 0x00
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a550957d1b11ddb03d73959c8994d63d7}{pqs\+\_\+messages\+\_\+accept\+\_\+fail}} = 0x01
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a0bfaca34490fdea349e089101fba82b4}{pqs\+\_\+messages\+\_\+listen\+\_\+fail}} = 0x02
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7aad4201d9e966b695f276bcf606d57466}{pqs\+\_\+messages\+\_\+bind\+\_\+fail}} = 0x03
+, \newline
+\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7abceaf17df0e95c831f61cf5ea5ad319f}{pqs\+\_\+messages\+\_\+create\+\_\+fail}} = 0x04
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ad88b67e0ff86d4b00436d48409fd2853}{pqs\+\_\+messages\+\_\+connect\+\_\+success}} = 0x05
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a9eb60279c3df04cd4f799f6e46748733}{pqs\+\_\+messages\+\_\+receive\+\_\+fail}} = 0x06
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7aef7cd3d1d1935b7b451c6a09959969c6}{pqs\+\_\+messages\+\_\+allocate\+\_\+fail}} = 0x07
+, \newline
+\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a120ca90d17d45b3d3195d624e1a41567}{pqs\+\_\+messages\+\_\+kex\+\_\+fail}} = 0x08
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a5d040af4ee1366360849010fc97ae1ba}{pqs\+\_\+messages\+\_\+disconnect}} = 0x09
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a20a5fb830cf10c8e672b93523a769df2}{pqs\+\_\+messages\+\_\+disconnect\+\_\+fail}} = 0x0A
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a07cfb270cd47f055ee8a98b447d6292f}{pqs\+\_\+messages\+\_\+socket\+\_\+message}} = 0x0B
+, \newline
+\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a1430b2816d6e57fb32a6a8c29746d955}{pqs\+\_\+messages\+\_\+queue\+\_\+empty}} = 0x0C
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ae29ca68d5f6444811dc8476f18545f19}{pqs\+\_\+messages\+\_\+listener\+\_\+fail}} = 0x0D
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a9bb45db50b6566c4bf328f474c2c26bb}{pqs\+\_\+messages\+\_\+sockalloc\+\_\+fail}} = 0x0E
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ac0c2b9ae153a436e41406f80a96bd9a3}{pqs\+\_\+messages\+\_\+decryption\+\_\+fail}} = 0x0F
+, \newline
+\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a0a96b103c754a8ac5657b2beca1de746}{pqs\+\_\+messages\+\_\+keepalive\+\_\+fail}} = 0x10
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7acec30f54573ffaa3d3a70cbb80f0a324}{pqs\+\_\+messages\+\_\+keepalive\+\_\+timeout}} = 0x11
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7af2f29ccf9916771d78df098b20210874}{pqs\+\_\+messages\+\_\+connection\+\_\+fail}} = 0x12
+, \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ad4a6e65713b614a84d779bc8216b7625}{pqs\+\_\+messages\+\_\+invalid\+\_\+request}} = 0x13
+, \newline
+\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a53cb9d8fa924660190d50444d46ac7cb}{pqs\+\_\+messages\+\_\+connection\+\_\+refused}} = 0x14
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of logging and status messages used by PQS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_ae9febce860842e65ac7f18e7f6c487d7}{pqs\+\_\+connection\+\_\+close}} (\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}cns, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} err, bool notify)
+\begin{DoxyCompactList}\small\item\em Closes the network connection between hosts. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_ab5613865f799786d9e2e9243d804a6dd}{pqs\+\_\+connection\+\_\+state\+\_\+dispose}} (\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}cns)
+\begin{DoxyCompactList}\small\item\em Resets and disposes of the connection state. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqs_8h_ab7223e83d1c919fb289966fafafdbb92}{pqs\+\_\+error\+\_\+description}} (\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}} emsg)
+\begin{DoxyCompactList}\small\item\em Retrieves the description string for a given message enumeration. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqs_8h_acf55aad3e6e3b1718fcf3831bc05146c}{pqs\+\_\+error\+\_\+to\+\_\+string}} (\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} error)
+\begin{DoxyCompactList}\small\item\em Converts an error code to its corresponding string description. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a3a3bcc20202a0be3248dd191e08f8f4e}{pqs\+\_\+generate\+\_\+keypair}} (\mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}pubkey, \mbox{\hyperlink{structpqs__server__signature__key}{pqs\+\_\+server\+\_\+signature\+\_\+key}} \texorpdfstring{$\ast$}{*}prikey, const uint8\+\_\+t keyid\mbox{[}\mbox{\hyperlink{pqs_8h_ae2c3326c49b6835ae5e81fca6ba37f90}{PQS\+\_\+\+KEYID\+\_\+\+SIZE}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Generates a PQS key pair. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_abc051ea21de8e0b2d3986caffa95495b}{pqs\+\_\+log\+\_\+error}} (\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}} emsg, qsc\+\_\+socket\+\_\+exceptions err, const char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Logs an error message along with socket error details. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_af643086f2053d23feea7e8b069c0bfe3}{pqs\+\_\+log\+\_\+message}} (\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}} emsg)
+\begin{DoxyCompactList}\small\item\em Logs a message based on the provided message enumeration. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a7bd7b33cf6a16e6fa0e53e10075ca393}{pqs\+\_\+log\+\_\+write}} (\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}} emsg, const char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Logs a message with an accompanying description. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a9a5b469fee98924556dd3ed3aa8ada1d}{pqs\+\_\+packet\+\_\+clear}} (\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Clears the state of a network packet. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} \mbox{\hyperlink{pqs_8h_a375e452c1782900e2122cddd97c5acc9}{pqs\+\_\+packet\+\_\+decrypt}} (\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}cns, uint8\+\_\+t \texorpdfstring{$\ast$}{*}message, size\+\_\+t \texorpdfstring{$\ast$}{*}msglen, const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packetin)
+\begin{DoxyCompactList}\small\item\em Decrypts an incoming packet\textquotesingle{}s payload. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} \mbox{\hyperlink{pqs_8h_af824fab2069e41e7214a5c221feea5bd}{pqs\+\_\+packet\+\_\+encrypt}} (\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}cns, \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packetout, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}message, size\+\_\+t msglen)
+\begin{DoxyCompactList}\small\item\em Encrypts a message and constructs an output packet. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a8805de179385a1242d96c9a53c5dc11d}{pqs\+\_\+packet\+\_\+error\+\_\+message}} (\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet, \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} error)
+\begin{DoxyCompactList}\small\item\em Populates a packet structure with an error message. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a92cdef42014b0ae69f508bb7c2dea832}{pqs\+\_\+packet\+\_\+header\+\_\+create}} (\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packetout, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}} flag, uint64\+\_\+t sequence, uint32\+\_\+t msglen)
+\begin{DoxyCompactList}\small\item\em Creates and populates a packet header. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_adb5a00fcf0bd3e17063c66876c1bc142}{pqs\+\_\+packet\+\_\+header\+\_\+deserialize}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}header, \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Deserializes a byte array into a packet header. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a2174bf6ad43ecef39c94c086815a2066}{pqs\+\_\+packet\+\_\+header\+\_\+serialize}} (const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet, uint8\+\_\+t \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Serializes a packet header into a byte array. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} \mbox{\hyperlink{pqs_8h_a9beb79d34a5a09ad1a404cdfa9ac6746}{pqs\+\_\+header\+\_\+validate}} (\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}cns, const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packetin, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}} kexflag, \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}} pktflag, uint64\+\_\+t sequence, uint32\+\_\+t msglen)
+\begin{DoxyCompactList}\small\item\em Validates a packet header and its associated timestamp. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_ac25af08a6338f40b7e1b7bf542b133e5}{pqs\+\_\+packet\+\_\+time\+\_\+set}} (\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Sets the packet\textquotesingle{}s UTC timestamp to the current time. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqs_8h_aa886599f707532ec0b6b501a9d8d8576}{pqs\+\_\+packet\+\_\+time\+\_\+validate}} (const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Validates the timestamp of a packet against the local UTC time. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t \mbox{\hyperlink{pqs_8h_a3e0dd4d9be558d58c834f0f11c1b1216}{pqs\+\_\+packet\+\_\+to\+\_\+stream}} (const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet, uint8\+\_\+t \texorpdfstring{$\ast$}{*}pstream)
+\begin{DoxyCompactList}\small\item\em Serializes a full packet (header and payload) into a byte stream. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqs_8h_aaa81ce08736d00a444ec817dec9eb89e}{pqs\+\_\+public\+\_\+key\+\_\+decode}} (\mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}pubk, const char enck\mbox{[}\mbox{\hyperlink{pqs_8h_afa9c1adbb73862d4b83e7bbb2c28cc83}{PQS\+\_\+\+PUBKEY\+\_\+\+STRING\+\_\+\+SIZE}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Decodes an encoded public key string into a client verification key structure. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a857293e2f03bde81bc9fcc8eb1f5f92e}{pqs\+\_\+public\+\_\+key\+\_\+encode}} (char enck\mbox{[}\mbox{\hyperlink{pqs_8h_afa9c1adbb73862d4b83e7bbb2c28cc83}{PQS\+\_\+\+PUBKEY\+\_\+\+STRING\+\_\+\+SIZE}}\mbox{]}, const \mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}pubkey)
+\begin{DoxyCompactList}\small\item\em Encodes a client public key structure into a printable string. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a1f7af9d1f15b9ca5a34af385faff9795}{pqs\+\_\+public\+\_\+key\+\_\+hash}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}hash, const \mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}pubk)
+\begin{DoxyCompactList}\small\item\em Computes a hash of a public key structure. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_ad721a9a8196dde1c5126b92740c3f171}{pqs\+\_\+signature\+\_\+key\+\_\+deserialize}} (\mbox{\hyperlink{structpqs__server__signature__key}{pqs\+\_\+server\+\_\+signature\+\_\+key}} \texorpdfstring{$\ast$}{*}kset, const uint8\+\_\+t serk\mbox{[}\mbox{\hyperlink{pqs_8h_a305898d0a2868e77b0c0edf0f2283f5a}{PQS\+\_\+\+SIGKEY\+\_\+\+ENCODED\+\_\+\+SIZE}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Deserializes an encoded secret signature key into a server signature key structure. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_a5f8322f984be8c6bbdf2575d4bd7ec45}{pqs\+\_\+signature\+\_\+key\+\_\+serialize}} (uint8\+\_\+t serk\mbox{[}\mbox{\hyperlink{pqs_8h_a305898d0a2868e77b0c0edf0f2283f5a}{PQS\+\_\+\+SIGKEY\+\_\+\+ENCODED\+\_\+\+SIZE}}\mbox{]}, const \mbox{\hyperlink{structpqs__server__signature__key}{pqs\+\_\+server\+\_\+signature\+\_\+key}} \texorpdfstring{$\ast$}{*}kset)
+\begin{DoxyCompactList}\small\item\em Serializes a server secret signature key structure into an encoded array. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqs_8h_adb9c6f4bafb45d52975932aaa9f18245}{pqs\+\_\+stream\+\_\+to\+\_\+packet}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}pstream, \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Deserializes a byte stream into a network packet structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS support header. 
+
+This header defines the common parameters, macros, data structures, enumerations, and function prototypes used by both the PQS client and server implementations. PQS (Post Quantum Shell) implements a one-\/way trust, client-\/server key-\/exchange model designed for efficiency and 256-\/bit post-\/quantum security. The underlying cryptographic primitives are provided by the QSC library, using combinations of the Dilithium (for signatures) and Kyber (for key encapsulation) schemes.
+
+The protocol configuration is determined at compile-\/time by preprocessor definitions (such as QSC\+\_\+\+DILITHIUM\+\_\+\+S1\+P2544, QSC\+\_\+\+KYBER\+\_\+\+S1\+P1632, etc.) defined in the QSC library\textquotesingle{}s \doxylink{common_8h_source}{common.\+h} file. Although library defaults are used by default, the parameter sets may be changed to suit different security or performance requirements.
+
+The file also defines the structures for network packets, connection state, and key containers, along with function prototypes for operations such as connection management, encryption/decryption, logging, public key encoding/decoding, and key generation.
+
+\begin{DoxyNote}{Note}
+This header does not include any test functions. The test routines (if implemented elsewhere) validate operations such as key generation, packet encryption/decryption, and error handling.
+\end{DoxyNote}
+\begin{DoxyParagraph}{Project Description\+:}
+The PQS exchange is a one-\/way trust, client-\/server key-\/exchange model in which the client trusts the server, and a single shared secret is securely shared between them. Designed for efficiency, the Simplex exchange is fast and lightweight, while providing 256-\/bit post-\/quantum security, ensuring protection against future quantum-\/based threats. This protocol is versatile and applicable to a wide range of secure communications and key distribution scenarios. 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pqs_8h_ac1544dc03487222eb03175007ce2e277}\index{pqs.h@{pqs.h}!PQS\_ASYMMETRIC\_CIPHER\_TEXT\_SIZE@{PQS\_ASYMMETRIC\_CIPHER\_TEXT\_SIZE}}
+\index{PQS\_ASYMMETRIC\_CIPHER\_TEXT\_SIZE@{PQS\_ASYMMETRIC\_CIPHER\_TEXT\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_ASYMMETRIC\_CIPHER\_TEXT\_SIZE}{PQS\_ASYMMETRIC\_CIPHER\_TEXT\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_ac1544dc03487222eb03175007ce2e277} 
+\#define PQS\+\_\+\+ASYMMETRIC\+\_\+\+CIPHER\+\_\+\+TEXT\+\_\+\+SIZE~(QSC\+\_\+\+KYBER\+\_\+\+CIPHERTEXT\+\_\+\+SIZE)}
+
+
+
+The size in bytes of the asymmetric cipher-\/text array. 
+
+This macro is defined as the value of QSC\+\_\+\+KYBER\+\_\+\+CIPHERTEXT\+\_\+\+SIZE, representing the output size for the Kyber key encapsulation mechanism. \Hypertarget{pqs_8h_a22286bb64769853aca20237b2d6c985e}\index{pqs.h@{pqs.h}!PQS\_ASYMMETRIC\_PRIVATE\_KEY\_SIZE@{PQS\_ASYMMETRIC\_PRIVATE\_KEY\_SIZE}}
+\index{PQS\_ASYMMETRIC\_PRIVATE\_KEY\_SIZE@{PQS\_ASYMMETRIC\_PRIVATE\_KEY\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_ASYMMETRIC\_PRIVATE\_KEY\_SIZE}{PQS\_ASYMMETRIC\_PRIVATE\_KEY\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_a22286bb64769853aca20237b2d6c985e} 
+\#define PQS\+\_\+\+ASYMMETRIC\+\_\+\+PRIVATE\+\_\+\+KEY\+\_\+\+SIZE~(QSC\+\_\+\+KYBER\+\_\+\+PRIVATEKEY\+\_\+\+SIZE)}
+
+
+
+The size in bytes of the asymmetric cipher private-\/key array. 
+
+This is defined in terms of QSC\+\_\+\+KYBER\+\_\+\+PRIVATEKEY\+\_\+\+SIZE. \Hypertarget{pqs_8h_a68adf6dfe273dbdf66d4d2612aff18ca}\index{pqs.h@{pqs.h}!PQS\_ASYMMETRIC\_PUBLIC\_KEY\_SIZE@{PQS\_ASYMMETRIC\_PUBLIC\_KEY\_SIZE}}
+\index{PQS\_ASYMMETRIC\_PUBLIC\_KEY\_SIZE@{PQS\_ASYMMETRIC\_PUBLIC\_KEY\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_ASYMMETRIC\_PUBLIC\_KEY\_SIZE}{PQS\_ASYMMETRIC\_PUBLIC\_KEY\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_a68adf6dfe273dbdf66d4d2612aff18ca} 
+\#define PQS\+\_\+\+ASYMMETRIC\+\_\+\+PUBLIC\+\_\+\+KEY\+\_\+\+SIZE~(QSC\+\_\+\+KYBER\+\_\+\+PUBLICKEY\+\_\+\+SIZE)}
+
+
+
+The size in bytes of the asymmetric cipher public-\/key array. 
+
+This value is taken from QSC\+\_\+\+KYBER\+\_\+\+PUBLICKEY\+\_\+\+SIZE. \Hypertarget{pqs_8h_a9cfdd6d551e84d28bdcf766585c05256}\index{pqs.h@{pqs.h}!PQS\_ASYMMETRIC\_SIGNATURE\_SIZE@{PQS\_ASYMMETRIC\_SIGNATURE\_SIZE}}
+\index{PQS\_ASYMMETRIC\_SIGNATURE\_SIZE@{PQS\_ASYMMETRIC\_SIGNATURE\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_ASYMMETRIC\_SIGNATURE\_SIZE}{PQS\_ASYMMETRIC\_SIGNATURE\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_a9cfdd6d551e84d28bdcf766585c05256} 
+\#define PQS\+\_\+\+ASYMMETRIC\+\_\+\+SIGNATURE\+\_\+\+SIZE~(QSC\+\_\+\+DILITHIUM\+\_\+\+SIGNATURE\+\_\+\+SIZE)}
+
+
+
+The size in bytes of the asymmetric signature array. 
+
+This value is defined as QSC\+\_\+\+DILITHIUM\+\_\+\+SIGNATURE\+\_\+\+SIZE. \Hypertarget{pqs_8h_a170dfafbaa3bc7a4297dd829c1041220}\index{pqs.h@{pqs.h}!PQS\_ASYMMETRIC\_SIGNING\_KEY\_SIZE@{PQS\_ASYMMETRIC\_SIGNING\_KEY\_SIZE}}
+\index{PQS\_ASYMMETRIC\_SIGNING\_KEY\_SIZE@{PQS\_ASYMMETRIC\_SIGNING\_KEY\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_ASYMMETRIC\_SIGNING\_KEY\_SIZE}{PQS\_ASYMMETRIC\_SIGNING\_KEY\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_a170dfafbaa3bc7a4297dd829c1041220} 
+\#define PQS\+\_\+\+ASYMMETRIC\+\_\+\+SIGNING\+\_\+\+KEY\+\_\+\+SIZE~(QSC\+\_\+\+DILITHIUM\+\_\+\+PRIVATEKEY\+\_\+\+SIZE)}
+
+
+
+The size in bytes of the asymmetric signature signing-\/key array. 
+
+This value corresponds to QSC\+\_\+\+DILITHIUM\+\_\+\+PRIVATEKEY\+\_\+\+SIZE. \Hypertarget{pqs_8h_ab1283ee8beebdb4910f36111b689e423}\index{pqs.h@{pqs.h}!PQS\_ASYMMETRIC\_VERIFY\_KEY\_SIZE@{PQS\_ASYMMETRIC\_VERIFY\_KEY\_SIZE}}
+\index{PQS\_ASYMMETRIC\_VERIFY\_KEY\_SIZE@{PQS\_ASYMMETRIC\_VERIFY\_KEY\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_ASYMMETRIC\_VERIFY\_KEY\_SIZE}{PQS\_ASYMMETRIC\_VERIFY\_KEY\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_ab1283ee8beebdb4910f36111b689e423} 
+\#define PQS\+\_\+\+ASYMMETRIC\+\_\+\+VERIFY\+\_\+\+KEY\+\_\+\+SIZE~(QSC\+\_\+\+DILITHIUM\+\_\+\+PUBLICKEY\+\_\+\+SIZE)}
+
+
+
+The size in bytes of the asymmetric signature verification-\/key array. 
+
+This value corresponds to QSC\+\_\+\+DILITHIUM\+\_\+\+PUBLICKEY\+\_\+\+SIZE. \Hypertarget{pqs_8h_a8a7d77d2fcba5b18f0bf6bf716e0fbbf}\index{pqs.h@{pqs.h}!PQS\_CONFIG\_SIZE@{PQS\_CONFIG\_SIZE}}
+\index{PQS\_CONFIG\_SIZE@{PQS\_CONFIG\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_CONFIG\_SIZE}{PQS\_CONFIG\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_a8a7d77d2fcba5b18f0bf6bf716e0fbbf} 
+\#define PQS\+\_\+\+CONFIG\+\_\+\+SIZE~48}
+
+
+
+The size in bytes of the protocol configuration string. 
+
+This constant defines the fixed length (48 bytes) of the configuration string that specifies the selected cryptographic primitive parameter set. \Hypertarget{pqs_8h_abbe3e80afe729ad2fd75283f125c4c18}\index{pqs.h@{pqs.h}!PQS\_CONNECTIONS\_INIT@{PQS\_CONNECTIONS\_INIT}}
+\index{PQS\_CONNECTIONS\_INIT@{PQS\_CONNECTIONS\_INIT}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_CONNECTIONS\_INIT}{PQS\_CONNECTIONS\_INIT}}
+{\footnotesize\ttfamily \label{pqs_8h_abbe3e80afe729ad2fd75283f125c4c18} 
+\#define PQS\+\_\+\+CONNECTIONS\+\_\+\+INIT~1000}
+
+
+
+The initial size of the PQS connection queue. 
+
+This value is used when initializing the connection state. \Hypertarget{pqs_8h_ae104ca8b020cd3043daba22c21bb1ea6}\index{pqs.h@{pqs.h}!PQS\_CONNECTIONS\_MAX@{PQS\_CONNECTIONS\_MAX}}
+\index{PQS\_CONNECTIONS\_MAX@{PQS\_CONNECTIONS\_MAX}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_CONNECTIONS\_MAX}{PQS\_CONNECTIONS\_MAX}}
+{\footnotesize\ttfamily \label{pqs_8h_ae104ca8b020cd3043daba22c21bb1ea6} 
+\#define PQS\+\_\+\+CONNECTIONS\+\_\+\+MAX~50000}
+
+
+
+The maximum number of concurrent PQS connections. 
+
+This is calculated based on an approximate memory footprint per connection. For example, with a 256GB DRAM system, the maximum may be set to 50,000 connections. \Hypertarget{pqs_8h_a4a628c0b054234a09726f5931d3e48fa}\index{pqs.h@{pqs.h}!PQS\_KEEPALIVE\_TIMEOUT@{PQS\_KEEPALIVE\_TIMEOUT}}
+\index{PQS\_KEEPALIVE\_TIMEOUT@{PQS\_KEEPALIVE\_TIMEOUT}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_KEEPALIVE\_TIMEOUT}{PQS\_KEEPALIVE\_TIMEOUT}}
+{\footnotesize\ttfamily \label{pqs_8h_a4a628c0b054234a09726f5931d3e48fa} 
+\#define PQS\+\_\+\+KEEPALIVE\+\_\+\+TIMEOUT~(120 \texorpdfstring{$\ast$}{*} 1000)}
+
+
+
+The timeout period (in milliseconds) for keep-\/alive messages. 
+
+The default value is 2 minutes. \Hypertarget{pqs_8h_aca9d9b5744bdebf9593634f45497af52}\index{pqs.h@{pqs.h}!PQS\_MESSAGE\_MAX@{PQS\_MESSAGE\_MAX}}
+\index{PQS\_MESSAGE\_MAX@{PQS\_MESSAGE\_MAX}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_MESSAGE\_MAX}{PQS\_MESSAGE\_MAX}}
+{\footnotesize\ttfamily \label{pqs_8h_aca9d9b5744bdebf9593634f45497af52} 
+\#define PQS\+\_\+\+MESSAGE\+\_\+\+MAX~0x3\+D090000}
+
+
+
+The maximum allowed message size (in bytes) during the key exchange. 
+
+This value is approximately 1 GB. \Hypertarget{pqs_8h_aa822e2b00e5f032e80cadd1551754ae9}\index{pqs.h@{pqs.h}!PQS\_PACKET\_TIME\_THRESHOLD@{PQS\_PACKET\_TIME\_THRESHOLD}}
+\index{PQS\_PACKET\_TIME\_THRESHOLD@{PQS\_PACKET\_TIME\_THRESHOLD}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_PACKET\_TIME\_THRESHOLD}{PQS\_PACKET\_TIME\_THRESHOLD}}
+{\footnotesize\ttfamily \label{pqs_8h_aa822e2b00e5f032e80cadd1551754ae9} 
+\#define PQS\+\_\+\+PACKET\+\_\+\+TIME\+\_\+\+THRESHOLD~60}
+
+
+
+The maximum time (in seconds) a packet is considered valid. 
+
+This threshold can be tuned based on network conditions. For interior networks with synchronized clocks, it might be as low as 1 second; for exterior networks, it may be higher. \Hypertarget{pqs_8h_aab6014696808b1b8371dd94d91ff6f93}\index{pqs.h@{pqs.h}!PQS\_PUBKEY\_DURATION\_SECONDS@{PQS\_PUBKEY\_DURATION\_SECONDS}}
+\index{PQS\_PUBKEY\_DURATION\_SECONDS@{PQS\_PUBKEY\_DURATION\_SECONDS}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_PUBKEY\_DURATION\_SECONDS}{PQS\_PUBKEY\_DURATION\_SECONDS}}
+{\footnotesize\ttfamily \label{pqs_8h_aab6014696808b1b8371dd94d91ff6f93} 
+\#define PQS\+\_\+\+PUBKEY\+\_\+\+DURATION\+\_\+\+SECONDS~(\mbox{\hyperlink{pqs_8h_aa23ff1491d95b91057a350108c0e85ac}{PQS\+\_\+\+PUBKEY\+\_\+\+DURATION\+\_\+\+DAYS}} \texorpdfstring{$\ast$}{*} 24 \texorpdfstring{$\ast$}{*} 60 \texorpdfstring{$\ast$}{*} 60)}
+
+
+
+The validity duration (in seconds) of a public key. 
+
+Calculated from PQS\+\_\+\+PUBKEY\+\_\+\+DURATION\+\_\+\+DAYS. \Hypertarget{pqs_8h_a694171ba4a67a4c51d324466c7aa22f6}\index{pqs.h@{pqs.h}!PQS\_PUBKEY\_ENCODING\_SIZE@{PQS\_PUBKEY\_ENCODING\_SIZE}}
+\index{PQS\_PUBKEY\_ENCODING\_SIZE@{PQS\_PUBKEY\_ENCODING\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_PUBKEY\_ENCODING\_SIZE}{PQS\_PUBKEY\_ENCODING\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_a694171ba4a67a4c51d324466c7aa22f6} 
+\#define PQS\+\_\+\+PUBKEY\+\_\+\+ENCODING\+\_\+\+SIZE~3456}
+
+
+
+The size in bytes of the encoded PQS public-\/key. 
+
+The encoding size varies depending on the selected Dilithium parameter set. \Hypertarget{pqs_8h_afa9c1adbb73862d4b83e7bbb2c28cc83}\index{pqs.h@{pqs.h}!PQS\_PUBKEY\_STRING\_SIZE@{PQS\_PUBKEY\_STRING\_SIZE}}
+\index{PQS\_PUBKEY\_STRING\_SIZE@{PQS\_PUBKEY\_STRING\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_PUBKEY\_STRING\_SIZE}{PQS\_PUBKEY\_STRING\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_afa9c1adbb73862d4b83e7bbb2c28cc83} 
+\#define PQS\+\_\+\+PUBKEY\+\_\+\+STRING\+\_\+\+SIZE~3745}
+
+
+
+The size in bytes of the serialized PQS client-\/key structure. 
+
+This defines the length of the string produced when encoding a public key. \Hypertarget{pqs_8h_abbbc02d5b9aa15de4b9af5be2e6b0fc4}\index{pqs.h@{pqs.h}!PQS\_SERVER\_LISTEN\_BACKLOG@{PQS\_SERVER\_LISTEN\_BACKLOG}}
+\index{PQS\_SERVER\_LISTEN\_BACKLOG@{PQS\_SERVER\_LISTEN\_BACKLOG}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_SERVER\_LISTEN\_BACKLOG}{PQS\_SERVER\_LISTEN\_BACKLOG}}
+{\footnotesize\ttfamily \label{pqs_8h_abbbc02d5b9aa15de4b9af5be2e6b0fc4} 
+\#define PQS\+\_\+\+SERVER\+\_\+\+LISTEN\+\_\+\+BACKLOG~0}
+
+
+
+The backlog size for the server listen socket. 
+
+Set to zero since concurrent connections are disallowed at the listen level. \Hypertarget{pqs_8h_a305898d0a2868e77b0c0edf0f2283f5a}\index{pqs.h@{pqs.h}!PQS\_SIGKEY\_ENCODED\_SIZE@{PQS\_SIGKEY\_ENCODED\_SIZE}}
+\index{PQS\_SIGKEY\_ENCODED\_SIZE@{PQS\_SIGKEY\_ENCODED\_SIZE}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_SIGKEY\_ENCODED\_SIZE}{PQS\_SIGKEY\_ENCODED\_SIZE}}
+{\footnotesize\ttfamily \label{pqs_8h_a305898d0a2868e77b0c0edf0f2283f5a} 
+\#define PQS\+\_\+\+SIGKEY\+\_\+\+ENCODED\+\_\+\+SIZE}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ (\mbox{\hyperlink{pqs_8h_ae2c3326c49b6835ae5e81fca6ba37f90}{PQS\_KEYID\_SIZE}}\ +\ \mbox{\hyperlink{pqs_8h_aafd9eef3e505c8e7ceb076059191f5ca}{PQS\_TIMESTAMP\_SIZE}}\ +\ \mbox{\hyperlink{pqs_8h_a8a7d77d2fcba5b18f0bf6bf716e0fbbf}{PQS\_CONFIG\_SIZE}}\ +\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{pqs_8h_a913198ca98026c2eb156290f91aa7b65}{PQS\_HASH\_SIZE}}\ +\ \mbox{\hyperlink{pqs_8h_a170dfafbaa3bc7a4297dd829c1041220}{PQS\_ASYMMETRIC\_SIGNING\_KEY\_SIZE}}\ +\ \mbox{\hyperlink{pqs_8h_ab1283ee8beebdb4910f36111b689e423}{PQS\_ASYMMETRIC\_VERIFY\_KEY\_SIZE}})}
+
+\end{DoxyCode}
+
+
+The size in bytes of the encoded secret signature key structure. 
+
+The encoded key consists of the key identity, timestamp, configuration string, public key hash, signature key, and verification key. 
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffb}\index{pqs.h@{pqs.h}!pqs\_client\_commands@{pqs\_client\_commands}}
+\index{pqs\_client\_commands@{pqs\_client\_commands}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_client\_commands}{pqs\_client\_commands}}
+{\footnotesize\ttfamily \label{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffb} 
+enum \mbox{\hyperlink{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffb}{pqs\+\_\+client\+\_\+commands}}}
+
+
+
+Enumeration of client commands in the PQS protocol. 
+
+DOXYGEN\+\_\+\+IGNORE
+
+/\texorpdfstring{$\ast$}{*}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \hypertarget{pqs_8h_autotoc_md0}{}\doxysubsubsection{\texorpdfstring{Error code string parameters}{Error code string parameters}}\label{pqs_8h_autotoc_md0}
+DOXYGEN\+\_\+\+IGNORE DOXYGEN\+\_\+\+IGNORE
+
+These commands are used by the client to indicate the desired operation. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_client\_command\_none@{pqs\_client\_command\_none}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_client\_command\_none@{pqs\_client\_command\_none}}}\Hypertarget{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffba0c279080d54647cb3b1ca9eaab915d4c}\label{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffba0c279080d54647cb3b1ca9eaab915d4c} 
+pqs\+\_\+client\+\_\+command\+\_\+none&No command was specified \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_client\_command\_cprint@{pqs\_client\_command\_cprint}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_client\_command\_cprint@{pqs\_client\_command\_cprint}}}\Hypertarget{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffba2b6ba646d015c03b19725ae2e149e4a7}\label{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffba2b6ba646d015c03b19725ae2e149e4a7} 
+pqs\+\_\+client\+\_\+command\+\_\+cprint&The certificate print command \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_client\_command\_execute@{pqs\_client\_command\_execute}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_client\_command\_execute@{pqs\_client\_command\_execute}}}\Hypertarget{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffbab4f731f47b46f9d4158b3792f2b2ee58}\label{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffbab4f731f47b46f9d4158b3792f2b2ee58} 
+pqs\+\_\+client\+\_\+command\+\_\+execute&The execute command \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_client\_command\_quit@{pqs\_client\_command\_quit}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_client\_command\_quit@{pqs\_client\_command\_quit}}}\Hypertarget{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffbab7aea28a851206af0fe706b4fe0476ec}\label{pqs_8h_a959d5ffe2362c0fdfbbea1ce2b6e8ffbab7aea28a851206af0fe706b4fe0476ec} 
+pqs\+\_\+client\+\_\+command\+\_\+quit&The quit command \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}\index{pqs.h@{pqs.h}!pqs\_errors@{pqs\_errors}}
+\index{pqs\_errors@{pqs\_errors}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_errors}{pqs\_errors}}
+{\footnotesize\ttfamily \label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2} 
+enum \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}}}
+
+
+
+Enumeration of error codes returned by PQS functions. 
+
+These error values indicate various failure conditions encountered during connection establishment, encryption/decryption, key exchange, and other operations. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_none@{pqs\_error\_none}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_none@{pqs\_error\_none}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a6dce84994905af4a711c319656f4e38d}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a6dce84994905af4a711c319656f4e38d} 
+pqs\+\_\+error\+\_\+none&No error was detected \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_accept\_fail@{pqs\_error\_accept\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_accept\_fail@{pqs\_error\_accept\_fail}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa45c7eb928b4af6047d5d07e74d5d0f6}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa45c7eb928b4af6047d5d07e74d5d0f6} 
+pqs\+\_\+error\+\_\+accept\+\_\+fail&The socket accept function returned an error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_authentication\_failure@{pqs\_error\_authentication\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_authentication\_failure@{pqs\_error\_authentication\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a18da1d86e823a4b4dffe4940f12a9b2d}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a18da1d86e823a4b4dffe4940f12a9b2d} 
+pqs\+\_\+error\+\_\+authentication\+\_\+failure&The symmetric cipher had an authentication failure \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_bad\_keep\_alive@{pqs\_error\_bad\_keep\_alive}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_bad\_keep\_alive@{pqs\_error\_bad\_keep\_alive}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a56e03ed5a0c0aebb481663efa5fd6f82}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a56e03ed5a0c0aebb481663efa5fd6f82} 
+pqs\+\_\+error\+\_\+bad\+\_\+keep\+\_\+alive&The keep alive check failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_channel\_down@{pqs\_error\_channel\_down}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_channel\_down@{pqs\_error\_channel\_down}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a2e1a00f61e06cdc8de683c78ea52eb3b}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a2e1a00f61e06cdc8de683c78ea52eb3b} 
+pqs\+\_\+error\+\_\+channel\+\_\+down&The communications channel has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_connection\_failure@{pqs\_error\_connection\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_connection\_failure@{pqs\_error\_connection\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1685214cc86ecc9dfca23b8f33c0684c}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1685214cc86ecc9dfca23b8f33c0684c} 
+pqs\+\_\+error\+\_\+connection\+\_\+failure&The device could not make a connection to the remote host \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_connect\_failure@{pqs\_error\_connect\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_connect\_failure@{pqs\_error\_connect\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ac3c79a0cc1040ce265f32a270e425433}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ac3c79a0cc1040ce265f32a270e425433} 
+pqs\+\_\+error\+\_\+connect\+\_\+failure&The transmission failed at the KEX connection phase \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_decapsulation\_failure@{pqs\_error\_decapsulation\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_decapsulation\_failure@{pqs\_error\_decapsulation\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2afe134950fdddb9f12061729107aa5a21}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2afe134950fdddb9f12061729107aa5a21} 
+pqs\+\_\+error\+\_\+decapsulation\+\_\+failure&The asymmetric cipher failed to decapsulate the shared secret \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_decryption\_failure@{pqs\_error\_decryption\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_decryption\_failure@{pqs\_error\_decryption\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a427678e02bddf78e6a1f9801fb6d95aa}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a427678e02bddf78e6a1f9801fb6d95aa} 
+pqs\+\_\+error\+\_\+decryption\+\_\+failure&The decryption authentication has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_establish\_failure@{pqs\_error\_establish\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_establish\_failure@{pqs\_error\_establish\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a0d6ec046f073b2c313a039ed14ea471e}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a0d6ec046f073b2c313a039ed14ea471e} 
+pqs\+\_\+error\+\_\+establish\+\_\+failure&The transmission failed at the KEX establish phase \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_exchange\_failure@{pqs\_error\_exchange\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_exchange\_failure@{pqs\_error\_exchange\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa80455f2cc28db3afc64b7b2a768be28}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa80455f2cc28db3afc64b7b2a768be28} 
+pqs\+\_\+error\+\_\+exchange\+\_\+failure&The transmission failed at the KEX exchange phase \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_hash\_invalid@{pqs\_error\_hash\_invalid}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_hash\_invalid@{pqs\_error\_hash\_invalid}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2abe448551fa0e427dc61439cdfe0abf88}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2abe448551fa0e427dc61439cdfe0abf88} 
+pqs\+\_\+error\+\_\+hash\+\_\+invalid&The public-\/key hash is invalid \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_hosts\_exceeded@{pqs\_error\_hosts\_exceeded}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_hosts\_exceeded@{pqs\_error\_hosts\_exceeded}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa0bcab58dfdef1b661337914d647a9a9}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2aa0bcab58dfdef1b661337914d647a9a9} 
+pqs\+\_\+error\+\_\+hosts\+\_\+exceeded&The server has run out of socket connections \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_invalid\_input@{pqs\_error\_invalid\_input}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_invalid\_input@{pqs\_error\_invalid\_input}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a2739e2eec783ee454b47b4a20df13af9}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a2739e2eec783ee454b47b4a20df13af9} 
+pqs\+\_\+error\+\_\+invalid\+\_\+input&The expected input was invalid \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_invalid\_request@{pqs\_error\_invalid\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_invalid\_request@{pqs\_error\_invalid\_request}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a516766033a6bd9d0a338371a638900c0}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a516766033a6bd9d0a338371a638900c0} 
+pqs\+\_\+error\+\_\+invalid\+\_\+request&The packet flag was unexpected \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_keepalive\_expired@{pqs\_error\_keepalive\_expired}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_keepalive\_expired@{pqs\_error\_keepalive\_expired}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a6180a1df6cc041a439a26a8fb379fa54}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a6180a1df6cc041a439a26a8fb379fa54} 
+pqs\+\_\+error\+\_\+keepalive\+\_\+expired&The keep alive has expired with no response \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_keepalive\_timeout@{pqs\_error\_keepalive\_timeout}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_keepalive\_timeout@{pqs\_error\_keepalive\_timeout}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2abf212b552722ec8c6e8131c1427e0d0f}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2abf212b552722ec8c6e8131c1427e0d0f} 
+pqs\+\_\+error\+\_\+keepalive\+\_\+timeout&The decryption authentication has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_key\_expired@{pqs\_error\_key\_expired}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_key\_expired@{pqs\_error\_key\_expired}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2af3a14985d808eb6797778532361a8725}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2af3a14985d808eb6797778532361a8725} 
+pqs\+\_\+error\+\_\+key\+\_\+expired&The PQS public key has expired \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_key\_unrecognized@{pqs\_error\_key\_unrecognized}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_key\_unrecognized@{pqs\_error\_key\_unrecognized}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a3d497f93bebb7b5c70635c8c41c79ecd}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a3d497f93bebb7b5c70635c8c41c79ecd} 
+pqs\+\_\+error\+\_\+key\+\_\+unrecognized&The key identity is unrecognized \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_keychain\_fail@{pqs\_error\_keychain\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_keychain\_fail@{pqs\_error\_keychain\_fail}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a9a160b484f80dc6639f015568912fd62}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a9a160b484f80dc6639f015568912fd62} 
+pqs\+\_\+error\+\_\+keychain\+\_\+fail&The ratchet operation has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_listener\_fail@{pqs\_error\_listener\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_listener\_fail@{pqs\_error\_listener\_fail}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a29595ce07da3b1c06ae94db87a5e5063}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a29595ce07da3b1c06ae94db87a5e5063} 
+pqs\+\_\+error\+\_\+listener\+\_\+fail&The listener function failed to initialize \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_memory\_allocation@{pqs\_error\_memory\_allocation}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_memory\_allocation@{pqs\_error\_memory\_allocation}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1354d605fc5483627d7f0e4c7daf0d27}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1354d605fc5483627d7f0e4c7daf0d27} 
+pqs\+\_\+error\+\_\+memory\+\_\+allocation&The server has run out of memory \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_packet\_unsequenced@{pqs\_error\_packet\_unsequenced}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_packet\_unsequenced@{pqs\_error\_packet\_unsequenced}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1fe38597bddb7c94949142fbbad1622c}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a1fe38597bddb7c94949142fbbad1622c} 
+pqs\+\_\+error\+\_\+packet\+\_\+unsequenced&The packet was received out of sequence \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_random\_failure@{pqs\_error\_random\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_random\_failure@{pqs\_error\_random\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a7ff06933eb669829e209072edf0e6161}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a7ff06933eb669829e209072edf0e6161} 
+pqs\+\_\+error\+\_\+random\+\_\+failure&The random generator has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_receive\_failure@{pqs\_error\_receive\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_receive\_failure@{pqs\_error\_receive\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2acbec7b3a11fb73b9bbcdf385358ebbeb}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2acbec7b3a11fb73b9bbcdf385358ebbeb} 
+pqs\+\_\+error\+\_\+receive\+\_\+failure&The receiver failed at the network layer \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_transmit\_failure@{pqs\_error\_transmit\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_transmit\_failure@{pqs\_error\_transmit\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2af189ab6bb649904a2a172c1ea4861473}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2af189ab6bb649904a2a172c1ea4861473} 
+pqs\+\_\+error\+\_\+transmit\+\_\+failure&The transmitter failed at the network layer \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_unknown\_protocol@{pqs\_error\_unknown\_protocol}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_unknown\_protocol@{pqs\_error\_unknown\_protocol}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ad67ef7bfc2ea59a491cfd13712be6c24}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ad67ef7bfc2ea59a491cfd13712be6c24} 
+pqs\+\_\+error\+\_\+unknown\+\_\+protocol&The protocol string was not recognized \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_verify\_failure@{pqs\_error\_verify\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_verify\_failure@{pqs\_error\_verify\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a33319f85cf42cf0b90f0af6015e57ae2}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a33319f85cf42cf0b90f0af6015e57ae2} 
+pqs\+\_\+error\+\_\+verify\+\_\+failure&The expected data could not be verified \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_login\_failure@{pqs\_error\_login\_failure}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_login\_failure@{pqs\_error\_login\_failure}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a82640969c4711d683ebdeebf37a6f76c}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a82640969c4711d683ebdeebf37a6f76c} 
+pqs\+\_\+error\+\_\+login\+\_\+failure&The client received an authentication failure response \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_login\_success@{pqs\_error\_login\_success}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_login\_success@{pqs\_error\_login\_success}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a940b521335c7ed6bfa8e73bcec079d58}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2a940b521335c7ed6bfa8e73bcec079d58} 
+pqs\+\_\+error\+\_\+login\+\_\+success&The client received an authentication success response \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_message\_time\_invalid@{pqs\_error\_message\_time\_invalid}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_message\_time\_invalid@{pqs\_error\_message\_time\_invalid}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2afdad1bbff87ce2879f50d87d3569d992}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2afdad1bbff87ce2879f50d87d3569d992} 
+pqs\+\_\+error\+\_\+message\+\_\+time\+\_\+invalid&The packet valid time has expired \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_error\_connection\_refused@{pqs\_error\_connection\_refused}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_error\_connection\_refused@{pqs\_error\_connection\_refused}}}\Hypertarget{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ac1c8674b5a4141aa67c49bde0c4a4668}\label{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2ac1c8674b5a4141aa67c49bde0c4a4668} 
+pqs\+\_\+error\+\_\+connection\+\_\+refused&The connection was refused by the remote server \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}\index{pqs.h@{pqs.h}!pqs\_flags@{pqs\_flags}}
+\index{pqs\_flags@{pqs\_flags}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_flags}{pqs\_flags}}
+{\footnotesize\ttfamily \label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21} 
+enum \mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}}}
+
+
+
+Enumeration of packet flags used in the PQS protocol. 
+
+The flags indicate the type or purpose of a packet (e.\+g., connection requests, key exchange phases, keep alive messages, error conditions, etc.). \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_none@{pqs\_flag\_none}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_none@{pqs\_flag\_none}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a53603ab4250d9f5b3b05de88d84d4dc0}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a53603ab4250d9f5b3b05de88d84d4dc0} 
+pqs\+\_\+flag\+\_\+none&No flag was specified \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_connect\_request@{pqs\_flag\_connect\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_connect\_request@{pqs\_flag\_connect\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ad32ee8ff5bce662f312dc2424530e756}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ad32ee8ff5bce662f312dc2424530e756} 
+pqs\+\_\+flag\+\_\+connect\+\_\+request&The PQS key-\/exchange client connection request flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_connect\_response@{pqs\_flag\_connect\_response}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_connect\_response@{pqs\_flag\_connect\_response}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a705d7216cb5169d012e4fbbfc7cda616}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a705d7216cb5169d012e4fbbfc7cda616} 
+pqs\+\_\+flag\+\_\+connect\+\_\+response&The PQS key-\/exchange server connection response flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_connection\_terminate@{pqs\_flag\_connection\_terminate}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_connection\_terminate@{pqs\_flag\_connection\_terminate}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a3ebf235020b4048cd7febdb8b100ac07}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a3ebf235020b4048cd7febdb8b100ac07} 
+pqs\+\_\+flag\+\_\+connection\+\_\+terminate&The connection is to be terminated \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_encrypted\_message@{pqs\_flag\_encrypted\_message}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_encrypted\_message@{pqs\_flag\_encrypted\_message}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a498355686183d8ba9e5abf71c91b26c1}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a498355686183d8ba9e5abf71c91b26c1} 
+pqs\+\_\+flag\+\_\+encrypted\+\_\+message&The message has been encrypted \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_exstart\_request@{pqs\_flag\_exstart\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_exstart\_request@{pqs\_flag\_exstart\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a3a2a17e188d1fd802693e121ef8cfd0e}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a3a2a17e188d1fd802693e121ef8cfd0e} 
+pqs\+\_\+flag\+\_\+exstart\+\_\+request&The PQS key-\/exchange client exstart request flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_exstart\_response@{pqs\_flag\_exstart\_response}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_exstart\_response@{pqs\_flag\_exstart\_response}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a684bbd4b336ad6af5296519b8fea6bfa}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a684bbd4b336ad6af5296519b8fea6bfa} 
+pqs\+\_\+flag\+\_\+exstart\+\_\+response&The PQS key-\/exchange server exstart response flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_exchange\_request@{pqs\_flag\_exchange\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_exchange\_request@{pqs\_flag\_exchange\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a828c8ea1438f2da1f5e750740a2fa019}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a828c8ea1438f2da1f5e750740a2fa019} 
+pqs\+\_\+flag\+\_\+exchange\+\_\+request&The PQS key-\/exchange client exchange request flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_exchange\_response@{pqs\_flag\_exchange\_response}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_exchange\_response@{pqs\_flag\_exchange\_response}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ae3ea7d04d6bd8f9755adb9739696585b}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ae3ea7d04d6bd8f9755adb9739696585b} 
+pqs\+\_\+flag\+\_\+exchange\+\_\+response&The PQS key-\/exchange server exchange response flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_establish\_request@{pqs\_flag\_establish\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_establish\_request@{pqs\_flag\_establish\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a96044893eac579787944bfd300a038cb}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a96044893eac579787944bfd300a038cb} 
+pqs\+\_\+flag\+\_\+establish\+\_\+request&The PQS key-\/exchange client establish request flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_establish\_response@{pqs\_flag\_establish\_response}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_establish\_response@{pqs\_flag\_establish\_response}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21acbc69623cb1a2b31294e96043a222f08}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21acbc69623cb1a2b31294e96043a222f08} 
+pqs\+\_\+flag\+\_\+establish\+\_\+response&The PQS key-\/exchange server establish response flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_keep\_alive\_request@{pqs\_flag\_keep\_alive\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_keep\_alive\_request@{pqs\_flag\_keep\_alive\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ac9491241a117a33225c7dfbed2b4138f}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ac9491241a117a33225c7dfbed2b4138f} 
+pqs\+\_\+flag\+\_\+keep\+\_\+alive\+\_\+request&The packet contains a keep alive request \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_keep\_alive\_response@{pqs\_flag\_keep\_alive\_response}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_keep\_alive\_response@{pqs\_flag\_keep\_alive\_response}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a0b4b761c874218e13422d7c254017926}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a0b4b761c874218e13422d7c254017926} 
+pqs\+\_\+flag\+\_\+keep\+\_\+alive\+\_\+response&The packet contains a keep alive response \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_remote\_connected@{pqs\_flag\_remote\_connected}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_remote\_connected@{pqs\_flag\_remote\_connected}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a47e233d451674127cb1491abffef9f52}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a47e233d451674127cb1491abffef9f52} 
+pqs\+\_\+flag\+\_\+remote\+\_\+connected&The remote host is connected flag \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_remote\_terminated@{pqs\_flag\_remote\_terminated}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_remote\_terminated@{pqs\_flag\_remote\_terminated}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a49186548eaf2aa7097e7a03b49fac4c6}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a49186548eaf2aa7097e7a03b49fac4c6} 
+pqs\+\_\+flag\+\_\+remote\+\_\+terminated&The remote host has terminated the connection \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_session\_established@{pqs\_flag\_session\_established}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_session\_established@{pqs\_flag\_session\_established}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a40e466f2763ba9d08964c2e8c02317da}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a40e466f2763ba9d08964c2e8c02317da} 
+pqs\+\_\+flag\+\_\+session\+\_\+established&The exchange is in the established state \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_session\_establish\_verify@{pqs\_flag\_session\_establish\_verify}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_session\_establish\_verify@{pqs\_flag\_session\_establish\_verify}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21aab9467f934e4c9d2364942bbe053e23f}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21aab9467f934e4c9d2364942bbe053e23f} 
+pqs\+\_\+flag\+\_\+session\+\_\+establish\+\_\+verify&The exchange is in the established verify state \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_unrecognized\_protocol@{pqs\_flag\_unrecognized\_protocol}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_unrecognized\_protocol@{pqs\_flag\_unrecognized\_protocol}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21af3127c42e249fe03f9cb9326e32f2cc8}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21af3127c42e249fe03f9cb9326e32f2cc8} 
+pqs\+\_\+flag\+\_\+unrecognized\+\_\+protocol&The protocol string is not recognized \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_asymmetric\_ratchet\_request@{pqs\_flag\_asymmetric\_ratchet\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_asymmetric\_ratchet\_request@{pqs\_flag\_asymmetric\_ratchet\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21aacfda80ffe4ccf2c8739ad9ce7b48ee5}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21aacfda80ffe4ccf2c8739ad9ce7b48ee5} 
+pqs\+\_\+flag\+\_\+asymmetric\+\_\+ratchet\+\_\+request&The host has received an asymmetric key ratchet request \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_asymmetric\_ratchet\_response@{pqs\_flag\_asymmetric\_ratchet\_response}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_asymmetric\_ratchet\_response@{pqs\_flag\_asymmetric\_ratchet\_response}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ac8bebd06acf6c8c4cb44359143a84e9c}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21ac8bebd06acf6c8c4cb44359143a84e9c} 
+pqs\+\_\+flag\+\_\+asymmetric\+\_\+ratchet\+\_\+response&The host has received an asymmetric key ratchet request \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_symmetric\_ratchet\_request@{pqs\_flag\_symmetric\_ratchet\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_symmetric\_ratchet\_request@{pqs\_flag\_symmetric\_ratchet\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a17ac535bc1980ba3dbbbbf052a8b014c}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a17ac535bc1980ba3dbbbbf052a8b014c} 
+pqs\+\_\+flag\+\_\+symmetric\+\_\+ratchet\+\_\+request&The host has received a symmetric key ratchet request \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_transfer\_request@{pqs\_flag\_transfer\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_transfer\_request@{pqs\_flag\_transfer\_request}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a1b025d0179d6bb405100a57cf82681db}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a1b025d0179d6bb405100a57cf82681db} 
+pqs\+\_\+flag\+\_\+transfer\+\_\+request&Reserved -\/ The host has received a transfer request \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_flag\_error\_condition@{pqs\_flag\_error\_condition}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_flag\_error\_condition@{pqs\_flag\_error\_condition}}}\Hypertarget{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a8bb0a9329963a0f4e476f2ef3cbaf47b}\label{pqs_8h_a106ddacf884570d5fd3543d12b94fb21a8bb0a9329963a0f4e476f2ef3cbaf47b} 
+pqs\+\_\+flag\+\_\+error\+\_\+condition&The connection experienced an error \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}\index{pqs.h@{pqs.h}!pqs\_messages@{pqs\_messages}}
+\index{pqs\_messages@{pqs\_messages}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_messages}{pqs\_messages}}
+{\footnotesize\ttfamily \label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7} 
+enum \mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}}}
+
+
+
+Enumeration of logging and status messages used by PQS. 
+
+These messages correspond to various events and errors occurring within the protocol, and are used for diagnostic logging. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_none@{pqs\_messages\_none}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_none@{pqs\_messages\_none}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ade87a3d9fec84305e0cc65021dbc1ed4}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ade87a3d9fec84305e0cc65021dbc1ed4} 
+pqs\+\_\+messages\+\_\+none&No configuration was specified \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_accept\_fail@{pqs\_messages\_accept\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_accept\_fail@{pqs\_messages\_accept\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a550957d1b11ddb03d73959c8994d63d7}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a550957d1b11ddb03d73959c8994d63d7} 
+pqs\+\_\+messages\+\_\+accept\+\_\+fail&The socket accept failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_listen\_fail@{pqs\_messages\_listen\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_listen\_fail@{pqs\_messages\_listen\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a0bfaca34490fdea349e089101fba82b4}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a0bfaca34490fdea349e089101fba82b4} 
+pqs\+\_\+messages\+\_\+listen\+\_\+fail&The listener socket could not connect \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_bind\_fail@{pqs\_messages\_bind\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_bind\_fail@{pqs\_messages\_bind\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7aad4201d9e966b695f276bcf606d57466}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7aad4201d9e966b695f276bcf606d57466} 
+pqs\+\_\+messages\+\_\+bind\+\_\+fail&The listener socket could not bind to the address \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_create\_fail@{pqs\_messages\_create\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_create\_fail@{pqs\_messages\_create\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7abceaf17df0e95c831f61cf5ea5ad319f}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7abceaf17df0e95c831f61cf5ea5ad319f} 
+pqs\+\_\+messages\+\_\+create\+\_\+fail&The listener socket could not be created \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_connect\_success@{pqs\_messages\_connect\_success}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_connect\_success@{pqs\_messages\_connect\_success}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ad88b67e0ff86d4b00436d48409fd2853}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ad88b67e0ff86d4b00436d48409fd2853} 
+pqs\+\_\+messages\+\_\+connect\+\_\+success&The server connected to a host \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_receive\_fail@{pqs\_messages\_receive\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_receive\_fail@{pqs\_messages\_receive\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a9eb60279c3df04cd4f799f6e46748733}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a9eb60279c3df04cd4f799f6e46748733} 
+pqs\+\_\+messages\+\_\+receive\+\_\+fail&The socket receive function failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_allocate\_fail@{pqs\_messages\_allocate\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_allocate\_fail@{pqs\_messages\_allocate\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7aef7cd3d1d1935b7b451c6a09959969c6}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7aef7cd3d1d1935b7b451c6a09959969c6} 
+pqs\+\_\+messages\+\_\+allocate\+\_\+fail&The server memory allocation request has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_kex\_fail@{pqs\_messages\_kex\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_kex\_fail@{pqs\_messages\_kex\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a120ca90d17d45b3d3195d624e1a41567}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a120ca90d17d45b3d3195d624e1a41567} 
+pqs\+\_\+messages\+\_\+kex\+\_\+fail&The key exchange has experienced a failure \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_disconnect@{pqs\_messages\_disconnect}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_disconnect@{pqs\_messages\_disconnect}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a5d040af4ee1366360849010fc97ae1ba}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a5d040af4ee1366360849010fc97ae1ba} 
+pqs\+\_\+messages\+\_\+disconnect&The server has disconnected the client \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_disconnect\_fail@{pqs\_messages\_disconnect\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_disconnect\_fail@{pqs\_messages\_disconnect\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a20a5fb830cf10c8e672b93523a769df2}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a20a5fb830cf10c8e672b93523a769df2} 
+pqs\+\_\+messages\+\_\+disconnect\+\_\+fail&The server has disconnected the client due to an error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_socket\_message@{pqs\_messages\_socket\_message}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_socket\_message@{pqs\_messages\_socket\_message}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a07cfb270cd47f055ee8a98b447d6292f}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a07cfb270cd47f055ee8a98b447d6292f} 
+pqs\+\_\+messages\+\_\+socket\+\_\+message&The server has had a socket level error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_queue\_empty@{pqs\_messages\_queue\_empty}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_queue\_empty@{pqs\_messages\_queue\_empty}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a1430b2816d6e57fb32a6a8c29746d955}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a1430b2816d6e57fb32a6a8c29746d955} 
+pqs\+\_\+messages\+\_\+queue\+\_\+empty&The server has reached the maximum number of connections \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_listener\_fail@{pqs\_messages\_listener\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_listener\_fail@{pqs\_messages\_listener\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ae29ca68d5f6444811dc8476f18545f19}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ae29ca68d5f6444811dc8476f18545f19} 
+pqs\+\_\+messages\+\_\+listener\+\_\+fail&The server listener socket has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_sockalloc\_fail@{pqs\_messages\_sockalloc\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_sockalloc\_fail@{pqs\_messages\_sockalloc\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a9bb45db50b6566c4bf328f474c2c26bb}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a9bb45db50b6566c4bf328f474c2c26bb} 
+pqs\+\_\+messages\+\_\+sockalloc\+\_\+fail&The server has run out of socket connections \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_decryption\_fail@{pqs\_messages\_decryption\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_decryption\_fail@{pqs\_messages\_decryption\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ac0c2b9ae153a436e41406f80a96bd9a3}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ac0c2b9ae153a436e41406f80a96bd9a3} 
+pqs\+\_\+messages\+\_\+decryption\+\_\+fail&The message decryption has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_keepalive\_fail@{pqs\_messages\_keepalive\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_keepalive\_fail@{pqs\_messages\_keepalive\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a0a96b103c754a8ac5657b2beca1de746}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a0a96b103c754a8ac5657b2beca1de746} 
+pqs\+\_\+messages\+\_\+keepalive\+\_\+fail&The keepalive function has failed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_keepalive\_timeout@{pqs\_messages\_keepalive\_timeout}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_keepalive\_timeout@{pqs\_messages\_keepalive\_timeout}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7acec30f54573ffaa3d3a70cbb80f0a324}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7acec30f54573ffaa3d3a70cbb80f0a324} 
+pqs\+\_\+messages\+\_\+keepalive\+\_\+timeout&The keepalive period has been exceeded \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_connection\_fail@{pqs\_messages\_connection\_fail}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_connection\_fail@{pqs\_messages\_connection\_fail}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7af2f29ccf9916771d78df098b20210874}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7af2f29ccf9916771d78df098b20210874} 
+pqs\+\_\+messages\+\_\+connection\+\_\+fail&The connection failed or was interrupted \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_invalid\_request@{pqs\_messages\_invalid\_request}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_invalid\_request@{pqs\_messages\_invalid\_request}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ad4a6e65713b614a84d779bc8216b7625}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7ad4a6e65713b614a84d779bc8216b7625} 
+pqs\+\_\+messages\+\_\+invalid\+\_\+request&The function received an invalid request \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_messages\_connection\_refused@{pqs\_messages\_connection\_refused}!pqs.h@{pqs.h}}\index{pqs.h@{pqs.h}!pqs\_messages\_connection\_refused@{pqs\_messages\_connection\_refused}}}\Hypertarget{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a53cb9d8fa924660190d50444d46ac7cb}\label{pqs_8h_a9b65fb38e9be4024416faf252ade50d7a53cb9d8fa924660190d50444d46ac7cb} 
+pqs\+\_\+messages\+\_\+connection\+\_\+refused&The remote host is busy and refused the connection \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pqs_8h_ae9febce860842e65ac7f18e7f6c487d7}\index{pqs.h@{pqs.h}!pqs\_connection\_close@{pqs\_connection\_close}}
+\index{pqs\_connection\_close@{pqs\_connection\_close}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connection\_close()}{pqs\_connection\_close()}}
+{\footnotesize\ttfamily \label{pqs_8h_ae9febce860842e65ac7f18e7f6c487d7} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+connection\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{cns}{, }\item[{\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}}}]{err}{, }\item[{bool}]{notify}{}\end{DoxyParamCaption})}
+
+
+
+Closes the network connection between hosts. 
+
+If the connection is active, this function optionally sends a disconnect notification. In the case of a normal disconnect (no error), a simple disconnect packet is transmitted. If an error has occurred, an error packet is encrypted and sent before closing the connection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cns} & A pointer to the connection state structure. \\
+\hline
+{\em err} & The error code to be reported (if any). \\
+\hline
+{\em notify} & Set to true to notify the remote host of the connection closure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_ab5613865f799786d9e2e9243d804a6dd}\index{pqs.h@{pqs.h}!pqs\_connection\_state\_dispose@{pqs\_connection\_state\_dispose}}
+\index{pqs\_connection\_state\_dispose@{pqs\_connection\_state\_dispose}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_connection\_state\_dispose()}{pqs\_connection\_state\_dispose()}}
+{\footnotesize\ttfamily \label{pqs_8h_ab5613865f799786d9e2e9243d804a6dd} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+connection\+\_\+state\+\_\+dispose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{cns}{}\end{DoxyParamCaption})}
+
+
+
+Resets and disposes of the connection state. 
+
+This function disposes of the internal cipher states and clears the socket and sequence information in the connection state structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cns} & A pointer to the connection state structure to dispose. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_ab7223e83d1c919fb289966fafafdbb92}\index{pqs.h@{pqs.h}!pqs\_error\_description@{pqs\_error\_description}}
+\index{pqs\_error\_description@{pqs\_error\_description}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_error\_description()}{pqs\_error\_description()}}
+{\footnotesize\ttfamily \label{pqs_8h_ab7223e83d1c919fb289966fafafdbb92} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} pqs\+\_\+error\+\_\+description (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}}}]{emsg}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the description string for a given message enumeration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em emsg} & The message enumeration value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the corresponding message string, or NULL if invalid. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_acf55aad3e6e3b1718fcf3831bc05146c}\index{pqs.h@{pqs.h}!pqs\_error\_to\_string@{pqs\_error\_to\_string}}
+\index{pqs\_error\_to\_string@{pqs\_error\_to\_string}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_error\_to\_string()}{pqs\_error\_to\_string()}}
+{\footnotesize\ttfamily \label{pqs_8h_acf55aad3e6e3b1718fcf3831bc05146c} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} pqs\+\_\+error\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}}}]{error}{}\end{DoxyParamCaption})}
+
+
+
+Converts an error code to its corresponding string description. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & The error code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the error description string, or NULL if invalid. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_a3a3bcc20202a0be3248dd191e08f8f4e}\index{pqs.h@{pqs.h}!pqs\_generate\_keypair@{pqs\_generate\_keypair}}
+\index{pqs\_generate\_keypair@{pqs\_generate\_keypair}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_generate\_keypair()}{pqs\_generate\_keypair()}}
+{\footnotesize\ttfamily \label{pqs_8h_a3a3bcc20202a0be3248dd191e08f8f4e} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+generate\+\_\+keypair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}}]{pubkey}{, }\item[{\mbox{\hyperlink{structpqs__server__signature__key}{pqs\+\_\+server\+\_\+signature\+\_\+key}} \texorpdfstring{$\ast$}{*}}]{prikey}{, }\item[{const uint8\+\_\+t}]{keyid}{\mbox{[}\+PQS\+\_\+\+KEYID\+\_\+\+SIZE\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Generates a PQS key pair. 
+
+This function creates a new asymmetric signature key pair for the server. The expiration time is set to the current UTC time plus the public key duration. The configuration string and key identity are copied to the server key structure, and the generated verification key is also copied to the client public key structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pubkey} & A pointer to the client public key structure (output). \\
+\hline
+{\em prikey} & A pointer to the server secret key structure (output). \\
+\hline
+{\em keyid} & A pointer to a key identity string (input). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a9beb79d34a5a09ad1a404cdfa9ac6746}\index{pqs.h@{pqs.h}!pqs\_header\_validate@{pqs\_header\_validate}}
+\index{pqs\_header\_validate@{pqs\_header\_validate}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_header\_validate()}{pqs\_header\_validate()}}
+{\footnotesize\ttfamily \label{pqs_8h_a9beb79d34a5a09ad1a404cdfa9ac6746} 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} pqs\+\_\+header\+\_\+validate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{cns}{, }\item[{const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packetin}{, }\item[{\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}}}]{kexflag}{, }\item[{\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}}}]{pktflag}{, }\item[{uint64\+\_\+t}]{sequence}{, }\item[{uint32\+\_\+t}]{msglen}{}\end{DoxyParamCaption})}
+
+
+
+Validates a packet header and its associated timestamp. 
+
+Checks that the packet\textquotesingle{}s message length, sequence number, flag, and timestamp are as expected. If the packet carries an error flag, the error code is extracted from the payload.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cns} & A pointer to the connection state structure. \\
+\hline
+{\em packetin} & A pointer to the input packet structure. \\
+\hline
+{\em kexflag} & The expected key exchange stage flag. \\
+\hline
+{\em pktflag} & The expected packet flag. \\
+\hline
+{\em sequence} & The expected packet sequence number. \\
+\hline
+{\em msglen} & The expected length of the message payload. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors} value indicating the result of the validation. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_abc051ea21de8e0b2d3986caffa95495b}\index{pqs.h@{pqs.h}!pqs\_log\_error@{pqs\_log\_error}}
+\index{pqs\_log\_error@{pqs\_log\_error}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_log\_error()}{pqs\_log\_error()}}
+{\footnotesize\ttfamily \label{pqs_8h_abc051ea21de8e0b2d3986caffa95495b} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+log\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}}}]{emsg}{, }\item[{qsc\+\_\+socket\+\_\+exceptions}]{err}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Logs an error message along with socket error details. 
+
+This function writes an error message based on the provided message enumeration and appends additional error information from the socket exception if present.
+
+
+\begin{DoxyParams}{Parameters}
+{\em emsg} & The message enumeration indicating the error type. \\
+\hline
+{\em err} & The socket exception value. \\
+\hline
+{\em msg} & A constant string providing additional context (input). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_af643086f2053d23feea7e8b069c0bfe3}\index{pqs.h@{pqs.h}!pqs\_log\_message@{pqs\_log\_message}}
+\index{pqs\_log\_message@{pqs\_log\_message}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_log\_message()}{pqs\_log\_message()}}
+{\footnotesize\ttfamily \label{pqs_8h_af643086f2053d23feea7e8b069c0bfe3} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+log\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}}}]{emsg}{}\end{DoxyParamCaption})}
+
+
+
+Logs a message based on the provided message enumeration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em emsg} & The message enumeration to be logged. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a7bd7b33cf6a16e6fa0e53e10075ca393}\index{pqs.h@{pqs.h}!pqs\_log\_write@{pqs\_log\_write}}
+\index{pqs\_log\_write@{pqs\_log\_write}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_log\_write()}{pqs\_log\_write()}}
+{\footnotesize\ttfamily \label{pqs_8h_a7bd7b33cf6a16e6fa0e53e10075ca393} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+log\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqs_8h_a9b65fb38e9be4024416faf252ade50d7}{pqs\+\_\+messages}}}]{emsg}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Logs a message with an accompanying description. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em emsg} & The message enumeration. \\
+\hline
+{\em msg} & A constant string containing additional information. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a9a5b469fee98924556dd3ed3aa8ada1d}\index{pqs.h@{pqs.h}!pqs\_packet\_clear@{pqs\_packet\_clear}}
+\index{pqs\_packet\_clear@{pqs\_packet\_clear}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_clear()}{pqs\_packet\_clear()}}
+{\footnotesize\ttfamily \label{pqs_8h_a9a5b469fee98924556dd3ed3aa8ada1d} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+packet\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Clears the state of a network packet. 
+
+Resets the packet flag, message length, and sequence number to default values. If the packet contains a message payload, it is cleared.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A pointer to the packet structure to clear. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a375e452c1782900e2122cddd97c5acc9}\index{pqs.h@{pqs.h}!pqs\_packet\_decrypt@{pqs\_packet\_decrypt}}
+\index{pqs\_packet\_decrypt@{pqs\_packet\_decrypt}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_decrypt()}{pqs\_packet\_decrypt()}}
+{\footnotesize\ttfamily \label{pqs_8h_a375e452c1782900e2122cddd97c5acc9} 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} pqs\+\_\+packet\+\_\+decrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{cns}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{message}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{msglen}{, }\item[{const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packetin}{}\end{DoxyParamCaption})}
+
+
+
+Decrypts an incoming packet\textquotesingle{}s payload. 
+
+This function verifies the packet sequence number and timestamp before attempting to decrypt the payload using the associated receive cipher state. The decrypted message is copied to the output buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cns} & A pointer to the connection state structure. \\
+\hline
+{\em message} & An output buffer for the decrypted message. \\
+\hline
+{\em msglen} & A pointer to a size variable to receive the length of the decrypted message. \\
+\hline
+{\em packetin} & A constant pointer to the input packet structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors} value indicating the status of the decryption operation. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_af824fab2069e41e7214a5c221feea5bd}\index{pqs.h@{pqs.h}!pqs\_packet\_encrypt@{pqs\_packet\_encrypt}}
+\index{pqs\_packet\_encrypt@{pqs\_packet\_encrypt}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_encrypt()}{pqs\_packet\_encrypt()}}
+{\footnotesize\ttfamily \label{pqs_8h_af824fab2069e41e7214a5c221feea5bd} 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}} pqs\+\_\+packet\+\_\+encrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__connection__state}{pqs\+\_\+connection\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{cns}{, }\item[{\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packetout}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{message}{, }\item[{size\+\_\+t}]{msglen}{}\end{DoxyParamCaption})}
+
+
+
+Encrypts a message and constructs an output packet. 
+
+This function increments the transmit sequence number, creates a packet header, and sets the associated data for the transmit cipher state before encrypting the provided message payload.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cns} & A pointer to the connection state structure. \\
+\hline
+{\em packetout} & A pointer to the output packet structure to be populated. \\
+\hline
+{\em message} & A constant pointer to the input message to encrypt. \\
+\hline
+{\em msglen} & The length in bytes of the input message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors} value indicating the status of the encryption operation. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_a8805de179385a1242d96c9a53c5dc11d}\index{pqs.h@{pqs.h}!pqs\_packet\_error\_message@{pqs\_packet\_error\_message}}
+\index{pqs\_packet\_error\_message@{pqs\_packet\_error\_message}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_error\_message()}{pqs\_packet\_error\_message()}}
+{\footnotesize\ttfamily \label{pqs_8h_a8805de179385a1242d96c9a53c5dc11d} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+packet\+\_\+error\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{, }\item[{\mbox{\hyperlink{pqs_8h_a2c9a6e74f4ff60d25602074a1d70a4e2}{pqs\+\_\+errors}}}]{error}{}\end{DoxyParamCaption})}
+
+
+
+Populates a packet structure with an error message. 
+
+Sets the packet flag to indicate an error, assigns a predefined sequence number, and writes the error code into the message payload.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A pointer to the packet structure (output). \\
+\hline
+{\em error} & The error code to embed in the packet. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a92cdef42014b0ae69f508bb7c2dea832}\index{pqs.h@{pqs.h}!pqs\_packet\_header\_create@{pqs\_packet\_header\_create}}
+\index{pqs\_packet\_header\_create@{pqs\_packet\_header\_create}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_header\_create()}{pqs\_packet\_header\_create()}}
+{\footnotesize\ttfamily \label{pqs_8h_a92cdef42014b0ae69f508bb7c2dea832} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+packet\+\_\+header\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packetout}{, }\item[{\mbox{\hyperlink{pqs_8h_a106ddacf884570d5fd3543d12b94fb21}{pqs\+\_\+flags}}}]{flag}{, }\item[{uint64\+\_\+t}]{sequence}{, }\item[{uint32\+\_\+t}]{msglen}{}\end{DoxyParamCaption})}
+
+
+
+Creates and populates a packet header. 
+
+This function sets the flag, sequence number, and message length in the packet header, and assigns the current UTC time as the creation timestamp.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packetout} & A pointer to the output packet structure. \\
+\hline
+{\em flag} & The packet flag indicating the packet type. \\
+\hline
+{\em sequence} & The packet sequence number. \\
+\hline
+{\em msglen} & The length in bytes of the message payload. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_adb5a00fcf0bd3e17063c66876c1bc142}\index{pqs.h@{pqs.h}!pqs\_packet\_header\_deserialize@{pqs\_packet\_header\_deserialize}}
+\index{pqs\_packet\_header\_deserialize@{pqs\_packet\_header\_deserialize}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_header\_deserialize()}{pqs\_packet\_header\_deserialize()}}
+{\footnotesize\ttfamily \label{pqs_8h_adb5a00fcf0bd3e17063c66876c1bc142} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+packet\+\_\+header\+\_\+deserialize (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{header}{, }\item[{\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Deserializes a byte array into a packet header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em header} & A constant pointer to the byte array representing the packet header. \\
+\hline
+{\em packet} & A pointer to the packet structure to populate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a2174bf6ad43ecef39c94c086815a2066}\index{pqs.h@{pqs.h}!pqs\_packet\_header\_serialize@{pqs\_packet\_header\_serialize}}
+\index{pqs\_packet\_header\_serialize@{pqs\_packet\_header\_serialize}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_header\_serialize()}{pqs\_packet\_header\_serialize()}}
+{\footnotesize\ttfamily \label{pqs_8h_a2174bf6ad43ecef39c94c086815a2066} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+packet\+\_\+header\+\_\+serialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{header}{}\end{DoxyParamCaption})}
+
+
+
+Serializes a packet header into a byte array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A constant pointer to the packet structure to serialize. \\
+\hline
+{\em header} & A pointer to the byte array that will receive the serialized header. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_ac25af08a6338f40b7e1b7bf542b133e5}\index{pqs.h@{pqs.h}!pqs\_packet\_time\_set@{pqs\_packet\_time\_set}}
+\index{pqs\_packet\_time\_set@{pqs\_packet\_time\_set}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_time\_set()}{pqs\_packet\_time\_set()}}
+{\footnotesize\ttfamily \label{pqs_8h_ac25af08a6338f40b7e1b7bf542b133e5} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+packet\+\_\+time\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Sets the packet\textquotesingle{}s UTC timestamp to the current time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A pointer to the network packet whose timestamp is to be set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_aa886599f707532ec0b6b501a9d8d8576}\index{pqs.h@{pqs.h}!pqs\_packet\_time\_validate@{pqs\_packet\_time\_validate}}
+\index{pqs\_packet\_time\_validate@{pqs\_packet\_time\_validate}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_time\_validate()}{pqs\_packet\_time\_validate()}}
+{\footnotesize\ttfamily \label{pqs_8h_aa886599f707532ec0b6b501a9d8d8576} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+packet\+\_\+time\+\_\+validate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Validates the timestamp of a packet against the local UTC time. 
+
+Ensures that the packet\textquotesingle{}s timestamp is within the acceptable time threshold (PQS\+\_\+\+PACKET\+\_\+\+TIME\+\_\+\+THRESHOLD) relative to the current UTC time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A constant pointer to the network packet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the packet timestamp is valid; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_a3e0dd4d9be558d58c834f0f11c1b1216}\index{pqs.h@{pqs.h}!pqs\_packet\_to\_stream@{pqs\_packet\_to\_stream}}
+\index{pqs\_packet\_to\_stream@{pqs\_packet\_to\_stream}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_packet\_to\_stream()}{pqs\_packet\_to\_stream()}}
+{\footnotesize\ttfamily \label{pqs_8h_a3e0dd4d9be558d58c834f0f11c1b1216} 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t pqs\+\_\+packet\+\_\+to\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pstream}{}\end{DoxyParamCaption})}
+
+
+
+Serializes a full packet (header and payload) into a byte stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A constant pointer to the packet structure to serialize. \\
+\hline
+{\em pstream} & A pointer to the output byte array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total number of bytes written to the byte stream. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_aaa81ce08736d00a444ec817dec9eb89e}\index{pqs.h@{pqs.h}!pqs\_public\_key\_decode@{pqs\_public\_key\_decode}}
+\index{pqs\_public\_key\_decode@{pqs\_public\_key\_decode}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_public\_key\_decode()}{pqs\_public\_key\_decode()}}
+{\footnotesize\ttfamily \label{pqs_8h_aaa81ce08736d00a444ec817dec9eb89e} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+public\+\_\+key\+\_\+decode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}}]{pubk}{, }\item[{const char}]{enck}{\mbox{[}\+PQS\+\_\+\+PUBKEY\+\_\+\+STRING\+\_\+\+SIZE\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Decodes an encoded public key string into a client verification key structure. 
+
+This function parses the encoded string (which includes header, configuration, key identity, expiration timestamp, and base64-\/encoded verification key) and populates the client key structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pubk} & A pointer to the output client verification key structure. \\
+\hline
+{\em enck} & A constant encoded public key string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if decoding and parsing were successful; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqs_8h_a857293e2f03bde81bc9fcc8eb1f5f92e}\index{pqs.h@{pqs.h}!pqs\_public\_key\_encode@{pqs\_public\_key\_encode}}
+\index{pqs\_public\_key\_encode@{pqs\_public\_key\_encode}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_public\_key\_encode()}{pqs\_public\_key\_encode()}}
+{\footnotesize\ttfamily \label{pqs_8h_a857293e2f03bde81bc9fcc8eb1f5f92e} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+public\+\_\+key\+\_\+encode (\begin{DoxyParamCaption}\item[{char}]{enck}{\mbox{[}\+PQS\+\_\+\+PUBKEY\+\_\+\+STRING\+\_\+\+SIZE\mbox{]}, }\item[{const \mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}}]{pubkey}{}\end{DoxyParamCaption})}
+
+
+
+Encodes a client public key structure into a printable string. 
+
+The encoded string includes the header, version, configuration, key identity, expiration timestamp, and a base64-\/encoded verification key, formatted with line breaks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enck} & A pointer to the output encoded public key string. \\
+\hline
+{\em pubkey} & A constant pointer to the client verification key structure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a1f7af9d1f15b9ca5a34af385faff9795}\index{pqs.h@{pqs.h}!pqs\_public\_key\_hash@{pqs\_public\_key\_hash}}
+\index{pqs\_public\_key\_hash@{pqs\_public\_key\_hash}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_public\_key\_hash()}{pqs\_public\_key\_hash()}}
+{\footnotesize\ttfamily \label{pqs_8h_a1f7af9d1f15b9ca5a34af385faff9795} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+public\+\_\+key\+\_\+hash (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{hash}{, }\item[{const \mbox{\hyperlink{structpqs__client__verification__key}{pqs\+\_\+client\+\_\+verification\+\_\+key}} \texorpdfstring{$\ast$}{*}}]{pubk}{}\end{DoxyParamCaption})}
+
+
+
+Computes a hash of a public key structure. 
+
+Uses the SHA3/\+Keccak hash function to compute a 256-\/bit hash over the public key\textquotesingle{}s configuration, expiration, key identity, and verification key.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & An output array to receive the hash (must be at least PQS\+\_\+\+HASH\+\_\+\+SIZE bytes). \\
+\hline
+{\em pubk} & A constant pointer to the client verification key structure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_ad721a9a8196dde1c5126b92740c3f171}\index{pqs.h@{pqs.h}!pqs\_signature\_key\_deserialize@{pqs\_signature\_key\_deserialize}}
+\index{pqs\_signature\_key\_deserialize@{pqs\_signature\_key\_deserialize}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_signature\_key\_deserialize()}{pqs\_signature\_key\_deserialize()}}
+{\footnotesize\ttfamily \label{pqs_8h_ad721a9a8196dde1c5126b92740c3f171} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+signature\+\_\+key\+\_\+deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__server__signature__key}{pqs\+\_\+server\+\_\+signature\+\_\+key}} \texorpdfstring{$\ast$}{*}}]{kset}{, }\item[{const uint8\+\_\+t}]{serk}{\mbox{[}\+PQS\+\_\+\+SIGKEY\+\_\+\+ENCODED\+\_\+\+SIZE\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Deserializes an encoded secret signature key into a server signature key structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kset} & A pointer to the output server signature key structure. \\
+\hline
+{\em serk} & A constant array containing the encoded secret key. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_a5f8322f984be8c6bbdf2575d4bd7ec45}\index{pqs.h@{pqs.h}!pqs\_signature\_key\_serialize@{pqs\_signature\_key\_serialize}}
+\index{pqs\_signature\_key\_serialize@{pqs\_signature\_key\_serialize}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_signature\_key\_serialize()}{pqs\_signature\_key\_serialize()}}
+{\footnotesize\ttfamily \label{pqs_8h_a5f8322f984be8c6bbdf2575d4bd7ec45} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+signature\+\_\+key\+\_\+serialize (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{serk}{\mbox{[}\+PQS\+\_\+\+SIGKEY\+\_\+\+ENCODED\+\_\+\+SIZE\mbox{]}, }\item[{const \mbox{\hyperlink{structpqs__server__signature__key}{pqs\+\_\+server\+\_\+signature\+\_\+key}} \texorpdfstring{$\ast$}{*}}]{kset}{}\end{DoxyParamCaption})}
+
+
+
+Serializes a server secret signature key structure into an encoded array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serk} & A pointer to the output encoded key array. \\
+\hline
+{\em kset} & A constant pointer to the server signature key structure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqs_8h_adb9c6f4bafb45d52975932aaa9f18245}\index{pqs.h@{pqs.h}!pqs\_stream\_to\_packet@{pqs\_stream\_to\_packet}}
+\index{pqs\_stream\_to\_packet@{pqs\_stream\_to\_packet}!pqs.h@{pqs.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_stream\_to\_packet()}{pqs\_stream\_to\_packet()}}
+{\footnotesize\ttfamily \label{pqs_8h_adb9c6f4bafb45d52975932aaa9f18245} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+stream\+\_\+to\+\_\+packet (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pstream}{, }\item[{\mbox{\hyperlink{structpqs__network__packet}{pqs\+\_\+network\+\_\+packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Deserializes a byte stream into a network packet structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pstream} & A constant pointer to the input byte stream. \\
+\hline
+{\em packet} & A pointer to the packet structure to populate. \\
+\hline
+\end{DoxyParams}

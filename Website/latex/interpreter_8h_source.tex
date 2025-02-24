@@ -1,0 +1,72 @@
+\doxysection{interpreter.\+h}
+\hypertarget{interpreter_8h_source}{}\label{interpreter_8h_source}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/interpreter.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/interpreter.h}}
+\mbox{\hyperlink{interpreter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ 2025\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ NOTICE:\ This\ software\ and\ all\ accompanying\ materials\ are\ the\ exclusive\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ property\ of\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation\ (QRCS).}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ The\ intellectual\ and\ technical\ concepts\ contained\ within\ this\ implementation\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ are\ proprietary\ to\ QRCS\ and\ its\ authorized\ licensors\ and\ are\ protected\ under\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ applicable\ U.S.\ and\ international\ copyright,\ patent,\ and\ trade\ secret\ laws.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ CRYPTOGRAPHIC\ STANDARDS:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ -\/\ This\ software\ includes\ implementations\ of\ cryptographic\ algorithms\ such\ as\ }}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ SHA3,\ AES,\ and\ others.\ These\ algorithms\ are\ public\ domain\ or\ standardized\ }}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ by\ organizations\ such\ as\ NIST\ and\ are\ NOT\ the\ property\ of\ QRCS.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ -\/\ However,\ all\ source\ code,\ optimizations,\ and\ implementations\ in\ this\ library\ }}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ are\ original\ works\ of\ QRCS\ and\ are\ protected\ under\ this\ license.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ RESTRICTIONS:}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ -\/\ Redistribution,\ modification,\ or\ unauthorized\ distribution\ of\ this\ software,\ }}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ \ \ in\ whole\ or\ in\ part,\ is\ strictly\ prohibited.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ -\/\ This\ software\ is\ provided\ for\ non-\/commercial,\ educational,\ and\ research\ }}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ \ purposes\ only.\ Commercial\ use\ in\ any\ form\ is\ expressly\ forbidden.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ -\/\ Licensing\ and\ authorized\ distribution\ are\ solely\ at\ the\ discretion\ of\ QRCS.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ -\/\ Any\ use\ of\ this\ software\ implies\ acceptance\ of\ these\ restrictions.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ DISCLAIMER:}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ "{}as\ is,"{}\ without\ warranty\ of\ any\ kind,\ express\ or\ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ implied,\ including\ but\ not\ limited\ to\ warranties\ of\ merchantability\ or\ fitness\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ for\ a\ particular\ purpose.\ QRCS\ disclaims\ all\ liability\ for\ any\ direct,\ indirect,\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ incidental,\ or\ consequential\ damages\ resulting\ from\ the\ use\ or\ misuse\ of\ this\ software.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ FULL\ LICENSE:}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ This\ software\ is\ subject\ to\ the\ **Quantum\ Resistant\ Cryptographic\ Solutions\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ Proprietary\ License\ (QRCS-\/PL)**.\ The\ complete\ license\ terms\ are\ included\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ in\ the\ LICENSE.txt\ file\ distributed\ with\ this\ software.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ Written\ by:\ John\ G.\ Underhill}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ Contact:\ john.underhill@protonmail.com}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ PQS\_SERVER\_INTERPRETER\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ PQS\_SERVER\_INTERPRETER\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}common.h"{}}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ PQS\_INTERPRETER\_COMMAND\_BUFFER\_SIZE\ 128}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ PQS\_INTERPRETER\_COMMAND\_EXECUTE\_SIZE\ 10240000}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00088\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{interpreter_8h_a8268f26bbd16f57d7aeb80efa722dd25}{pqs\_interpreter\_extract\_paramater}}(\textcolor{keywordtype}{char}*\ param,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00104\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{interpreter_8h_a7dd10113b566da07fbbd9a9181dd0b19}{pqs\_interpreter\_extract\_paramaters}}(\textcolor{keywordtype}{char}*\ param1,\ \textcolor{keywordtype}{char}*\ param2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00120\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{interpreter_8h_a542b067e9a1ed2272058aab2c475fec6}{pqs\_interpreter\_file\_to\_stream}}(uint8\_t*\ result,\ \textcolor{keywordtype}{size\_t}\ reslen,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ parameter);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00133\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{interpreter_8h_a64d84c5f1a20fe82bd5908c11f9f5f64}{pqs\_interpreter\_file\_buffer\_length}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ parameter);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00149\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{interpreter_8h_a944bc3cf4ee530c05bd0ac1bc6f7b096}{pqs\_interpreter\_stream\_to\_file}}(uint8\_t*\ result,\ \textcolor{keywordtype}{size\_t}\ reslen,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ parameter,\ \textcolor{keywordtype}{size\_t}\ parlen);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00164\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{interpreter_8h_a4838b8dade97a80374662fb66428c5b6}{pqs\_interpreter\_command\_execute}}(\textcolor{keywordtype}{char}*\ result,\ \textcolor{keywordtype}{size\_t}\ reslen,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ parameter);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00176\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{interpreter_8h_a6da9e9c784d2538e2c4acd77a29dc17f}{pqs\_interpreter\_initialize}}();}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00185\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interpreter_8h_a8807f1cf9b792e03105e3f2175ee6fe7}{pqs\_interpreter\_cleanup}}();}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

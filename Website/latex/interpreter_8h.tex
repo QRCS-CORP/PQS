@@ -1,0 +1,232 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/interpreter.h File Reference}
+\hypertarget{interpreter_8h}{}\label{interpreter_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/interpreter.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/interpreter.h}}
+
+
+The command interpreter functions.  
+
+
+{\ttfamily \#include "{}common.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{interpreter_8h_a7cd4e8d43cd5f3a5238d9e8cbbe0dd6a}{PQS\+\_\+\+INTERPRETER\+\_\+\+COMMAND\+\_\+\+BUFFER\+\_\+\+SIZE}}~128
+\begin{DoxyCompactList}\small\item\em The command buffer size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{interpreter_8h_aaf7603e89960c0cb9891973194b8e1a7}{PQS\+\_\+\+INTERPRETER\+\_\+\+COMMAND\+\_\+\+EXECUTE\+\_\+\+SIZE}}~10240000
+\begin{DoxyCompactList}\small\item\em The command execute buffer size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{interpreter_8h_a8268f26bbd16f57d7aeb80efa722dd25}{pqs\+\_\+interpreter\+\_\+extract\+\_\+paramater}} (char \texorpdfstring{$\ast$}{*}param, const char \texorpdfstring{$\ast$}{*}message)
+\begin{DoxyCompactList}\small\item\em Extract a parameter from a string. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{interpreter_8h_a7dd10113b566da07fbbd9a9181dd0b19}{pqs\+\_\+interpreter\+\_\+extract\+\_\+paramaters}} (char \texorpdfstring{$\ast$}{*}param1, char \texorpdfstring{$\ast$}{*}param2, const char \texorpdfstring{$\ast$}{*}message)
+\begin{DoxyCompactList}\small\item\em Extract two parameters from a string. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t \mbox{\hyperlink{interpreter_8h_a542b067e9a1ed2272058aab2c475fec6}{pqs\+\_\+interpreter\+\_\+file\+\_\+to\+\_\+stream}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}result, size\+\_\+t reslen, const char \texorpdfstring{$\ast$}{*}parameter)
+\begin{DoxyCompactList}\small\item\em Copy a file to a byte array. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t \mbox{\hyperlink{interpreter_8h_a64d84c5f1a20fe82bd5908c11f9f5f64}{pqs\+\_\+interpreter\+\_\+file\+\_\+buffer\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}parameter)
+\begin{DoxyCompactList}\small\item\em Get the length of a file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t \mbox{\hyperlink{interpreter_8h_a944bc3cf4ee530c05bd0ac1bc6f7b096}{pqs\+\_\+interpreter\+\_\+stream\+\_\+to\+\_\+file}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}result, size\+\_\+t reslen, const char \texorpdfstring{$\ast$}{*}parameter, size\+\_\+t parlen)
+\begin{DoxyCompactList}\small\item\em Copy a byte stream to a file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t \mbox{\hyperlink{interpreter_8h_a4838b8dade97a80374662fb66428c5b6}{pqs\+\_\+interpreter\+\_\+command\+\_\+execute}} (char \texorpdfstring{$\ast$}{*}result, size\+\_\+t reslen, const char \texorpdfstring{$\ast$}{*}parameter)
+\begin{DoxyCompactList}\small\item\em Execute a command and return its output. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{interpreter_8h_a6da9e9c784d2538e2c4acd77a29dc17f}{pqs\+\_\+interpreter\+\_\+initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the command interpreter. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{interpreter_8h_a8807f1cf9b792e03105e3f2175ee6fe7}{pqs\+\_\+interpreter\+\_\+cleanup}} ()
+\begin{DoxyCompactList}\small\item\em Clean up the command interpreter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The command interpreter functions. 
+
+This header defines the functions and macros used to implement the command interpreter for PQS. The interpreter supports operations such as parameter extraction from command strings, converting files to and from byte streams, and executing system commands with their output captured. Platform-\/specific support is provided for Windows and non-\/\+Windows systems.
+
+The public API includes functions to initialize and clean up the interpreter, extract parameters, perform file I/O operations, and execute commands. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{interpreter_8h_a7cd4e8d43cd5f3a5238d9e8cbbe0dd6a}\index{interpreter.h@{interpreter.h}!PQS\_INTERPRETER\_COMMAND\_BUFFER\_SIZE@{PQS\_INTERPRETER\_COMMAND\_BUFFER\_SIZE}}
+\index{PQS\_INTERPRETER\_COMMAND\_BUFFER\_SIZE@{PQS\_INTERPRETER\_COMMAND\_BUFFER\_SIZE}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_INTERPRETER\_COMMAND\_BUFFER\_SIZE}{PQS\_INTERPRETER\_COMMAND\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{interpreter_8h_a7cd4e8d43cd5f3a5238d9e8cbbe0dd6a} 
+\#define PQS\+\_\+\+INTERPRETER\+\_\+\+COMMAND\+\_\+\+BUFFER\+\_\+\+SIZE~128}
+
+
+
+The command buffer size. 
+
+This macro defines the size (in bytes) of the buffer used for reading command output. \Hypertarget{interpreter_8h_aaf7603e89960c0cb9891973194b8e1a7}\index{interpreter.h@{interpreter.h}!PQS\_INTERPRETER\_COMMAND\_EXECUTE\_SIZE@{PQS\_INTERPRETER\_COMMAND\_EXECUTE\_SIZE}}
+\index{PQS\_INTERPRETER\_COMMAND\_EXECUTE\_SIZE@{PQS\_INTERPRETER\_COMMAND\_EXECUTE\_SIZE}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{PQS\_INTERPRETER\_COMMAND\_EXECUTE\_SIZE}{PQS\_INTERPRETER\_COMMAND\_EXECUTE\_SIZE}}
+{\footnotesize\ttfamily \label{interpreter_8h_aaf7603e89960c0cb9891973194b8e1a7} 
+\#define PQS\+\_\+\+INTERPRETER\+\_\+\+COMMAND\+\_\+\+EXECUTE\+\_\+\+SIZE~10240000}
+
+
+
+The command execute buffer size. 
+
+This macro defines the maximum size (in bytes) for the output buffer when executing a command. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{interpreter_8h_a8807f1cf9b792e03105e3f2175ee6fe7}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_cleanup@{pqs\_interpreter\_cleanup}}
+\index{pqs\_interpreter\_cleanup@{pqs\_interpreter\_cleanup}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_cleanup()}{pqs\_interpreter\_cleanup()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a8807f1cf9b792e03105e3f2175ee6fe7} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+interpreter\+\_\+cleanup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clean up the command interpreter. 
+
+This function releases resources allocated by the command interpreter. On Windows, it terminates the command process and closes any associated handles. \Hypertarget{interpreter_8h_a4838b8dade97a80374662fb66428c5b6}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_command\_execute@{pqs\_interpreter\_command\_execute}}
+\index{pqs\_interpreter\_command\_execute@{pqs\_interpreter\_command\_execute}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_command\_execute()}{pqs\_interpreter\_command\_execute()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a4838b8dade97a80374662fb66428c5b6} 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t pqs\+\_\+interpreter\+\_\+command\+\_\+execute (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{size\+\_\+t}]{reslen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{parameter}{}\end{DoxyParamCaption})}
+
+
+
+Execute a command and return its output. 
+
+This function executes a system command specified by the parameter string and captures its output. The command output is stored in the provided result buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The output buffer that will receive the command result string. \\
+\hline
+{\em reslen} & The length (in bytes) of the result buffer. \\
+\hline
+{\em parameter} & \mbox{[}const\mbox{]} The command string to be executed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes written to the result buffer containing the command output. 
+\end{DoxyReturn}
+\Hypertarget{interpreter_8h_a8268f26bbd16f57d7aeb80efa722dd25}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_extract\_paramater@{pqs\_interpreter\_extract\_paramater}}
+\index{pqs\_interpreter\_extract\_paramater@{pqs\_interpreter\_extract\_paramater}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_extract\_paramater()}{pqs\_interpreter\_extract\_paramater()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a8268f26bbd16f57d7aeb80efa722dd25} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+interpreter\+\_\+extract\+\_\+paramater (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{param}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Extract a parameter from a string. 
+
+This function searches the input message string for a parameter by locating the first space character and extracting the substring that follows. The extracted parameter is copied into the provided buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The output buffer that will receive the parameter string. \\
+\hline
+{\em message} & \mbox{[}const\mbox{]} The input message string containing the parameter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if a parameter was successfully extracted; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{interpreter_8h_a7dd10113b566da07fbbd9a9181dd0b19}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_extract\_paramaters@{pqs\_interpreter\_extract\_paramaters}}
+\index{pqs\_interpreter\_extract\_paramaters@{pqs\_interpreter\_extract\_paramaters}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_extract\_paramaters()}{pqs\_interpreter\_extract\_paramaters()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a7dd10113b566da07fbbd9a9181dd0b19} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+interpreter\+\_\+extract\+\_\+paramaters (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{param1}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{param2}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Extract two parameters from a string. 
+
+This function parses the input message string to extract two separate parameters. It uses delimiters, such as a comma and space, to determine the boundaries of each parameter and copies the resulting substrings into the provided buffers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em param1} & The output buffer for the first parameter. \\
+\hline
+{\em param2} & The output buffer for the second parameter. \\
+\hline
+{\em message} & \mbox{[}const\mbox{]} The input message string containing the parameters.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the parameters were successfully extracted; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{interpreter_8h_a64d84c5f1a20fe82bd5908c11f9f5f64}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_file\_buffer\_length@{pqs\_interpreter\_file\_buffer\_length}}
+\index{pqs\_interpreter\_file\_buffer\_length@{pqs\_interpreter\_file\_buffer\_length}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_file\_buffer\_length()}{pqs\_interpreter\_file\_buffer\_length()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a64d84c5f1a20fe82bd5908c11f9f5f64} 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t pqs\+\_\+interpreter\+\_\+file\+\_\+buffer\+\_\+length (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{parameter}{}\end{DoxyParamCaption})}
+
+
+
+Get the length of a file. 
+
+This function retrieves the size (in bytes) of a file specified by the parameter string. It extracts the file path and queries the file system to determine the file length.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & \mbox{[}const\mbox{]} The file path or paths string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the length of the file in bytes. 
+\end{DoxyReturn}
+\Hypertarget{interpreter_8h_a542b067e9a1ed2272058aab2c475fec6}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_file\_to\_stream@{pqs\_interpreter\_file\_to\_stream}}
+\index{pqs\_interpreter\_file\_to\_stream@{pqs\_interpreter\_file\_to\_stream}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_file\_to\_stream()}{pqs\_interpreter\_file\_to\_stream()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a542b067e9a1ed2272058aab2c475fec6} 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t pqs\+\_\+interpreter\+\_\+file\+\_\+to\+\_\+stream (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{size\+\_\+t}]{reslen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{parameter}{}\end{DoxyParamCaption})}
+
+
+
+Copy a file to a byte array. 
+
+This function reads the contents of a file specified by the parameter string and writes the file data into a provided byte array. The output includes a constructed result string that contains the file path, name, and extension followed by the file data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The output byte array that will receive the file stream. \\
+\hline
+{\em reslen} & The length (in bytes) of the result buffer. \\
+\hline
+{\em parameter} & \mbox{[}const\mbox{]} The parameter string specifying the file to be read.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the total number of bytes written to the result stream. 
+\end{DoxyReturn}
+\Hypertarget{interpreter_8h_a6da9e9c784d2538e2c4acd77a29dc17f}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_initialize@{pqs\_interpreter\_initialize}}
+\index{pqs\_interpreter\_initialize@{pqs\_interpreter\_initialize}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_initialize()}{pqs\_interpreter\_initialize()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a6da9e9c784d2538e2c4acd77a29dc17f} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+interpreter\+\_\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the command interpreter. 
+
+This function initializes the interpreter. On Windows systems, it creates pipes and launches a hidden command shell (cmd.\+exe) to execute commands. On non-\/\+Windows systems, it sets the internal state to active.
+
+\begin{DoxyReturn}{Returns}
+Returns true if the interpreter was successfully initialized; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{interpreter_8h_a944bc3cf4ee530c05bd0ac1bc6f7b096}\index{interpreter.h@{interpreter.h}!pqs\_interpreter\_stream\_to\_file@{pqs\_interpreter\_stream\_to\_file}}
+\index{pqs\_interpreter\_stream\_to\_file@{pqs\_interpreter\_stream\_to\_file}!interpreter.h@{interpreter.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_interpreter\_stream\_to\_file()}{pqs\_interpreter\_stream\_to\_file()}}
+{\footnotesize\ttfamily \label{interpreter_8h_a944bc3cf4ee530c05bd0ac1bc6f7b096} 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t pqs\+\_\+interpreter\+\_\+stream\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{size\+\_\+t}]{reslen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{parameter}{, }\item[{size\+\_\+t}]{parlen}{}\end{DoxyParamCaption})}
+
+
+
+Copy a byte stream to a file. 
+
+This function writes the data from a byte stream to a file. The file destination is determined by the parameter string, and the number of bytes to write is given by the parameter length.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The output parameter result string. \\
+\hline
+{\em reslen} & The length (in bytes) of the result buffer. \\
+\hline
+{\em parameter} & \mbox{[}const\mbox{]} The parameter string specifying the destination file. \\
+\hline
+{\em parlen} & The length (in bytes) of the parameter string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes written to the file. 
+\end{DoxyReturn}
