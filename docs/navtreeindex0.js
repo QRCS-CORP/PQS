@@ -38,7 +38,7 @@ var NAVTREEINDEX0 =
 "index.html#crypto_sec":[0,2],
 "index.html#hash_sec":[0,2,2],
 "index.html#intro_sec":[0,0],
-"index.html#license_sec":[0,3],
+"index.html#library_dependencies":[0,2,3],
 "index.html#protocol_sec":[0,1],
 "index.html#sym_sec":[0,2,1],
 "interpreter_8h.html":[2,0,0,4],
