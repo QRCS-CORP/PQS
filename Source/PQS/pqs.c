@@ -70,8 +70,8 @@ void pqs_connection_state_dispose(pqs_connection_state* cns)
 
 	if (cns != NULL)
 	{
-		qsc_rcs_dispose(&cns->rxcpr);
-		qsc_rcs_dispose(&cns->txcpr);
+		pqs_cipher_dispose(&cns->rxcpr);
+		pqs_cipher_dispose(&cns->txcpr);
 		qsc_memutils_clear((uint8_t*)&cns->target, sizeof(qsc_socket));
 		cns->cid = 0;
 		cns->rxseq = 0;
@@ -253,11 +253,11 @@ pqs_errors pqs_packet_decrypt(pqs_connection_state* cns, uint8_t* message, size_
 					/* serialize the header and add it to the ciphers associated data */
 					pqs_packet_header_serialize(packetin, hdr);
 
-					qsc_rcs_set_associated(&cns->rxcpr, hdr, PQS_HEADER_SIZE);
+					pqs_cipher_set_associated(&cns->rxcpr, hdr, PQS_HEADER_SIZE);
 					*msglen = packetin->msglen - PQS_MACTAG_SIZE;
 
 					/* authenticate then decrypt the data */
-					if (qsc_rcs_transform(&cns->rxcpr, message, packetin->pmessage, *msglen) == true)
+					if (pqs_cipher_transform(&cns->rxcpr, message, packetin->pmessage, *msglen) == true)
 					{
 						qerr = pqs_error_none;
 					}
@@ -308,10 +308,10 @@ pqs_errors pqs_packet_encrypt(pqs_connection_state* cns, pqs_network_packet* pac
 
 			/* serialize the header and add it to the ciphers associated data */
 			pqs_packet_header_serialize(packetout, hdr);
-			qsc_rcs_set_associated(&cns->txcpr, hdr, PQS_HEADER_SIZE);
+			pqs_cipher_set_associated(&cns->txcpr, hdr, PQS_HEADER_SIZE);
 
 			/* encrypt the message */
-			qsc_rcs_transform(&cns->txcpr, packetout->pmessage, message, msglen);
+			pqs_cipher_transform(&cns->txcpr, packetout->pmessage, message, msglen);
 
 			qerr = pqs_error_none;
 		}

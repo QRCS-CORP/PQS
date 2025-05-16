@@ -25,8 +25,8 @@ static void client_state_initialize(pqs_kex_client_state* kcs, pqs_connection_st
 	qsc_memutils_copy(kcs->keyid, pubk->keyid, PQS_KEYID_SIZE);
 	qsc_memutils_copy(kcs->verkey, pubk->verkey, PQS_ASYMMETRIC_VERIFY_KEY_SIZE);
 	kcs->expiration = pubk->expiration;
-	qsc_rcs_dispose(&cns->rxcpr);
-	qsc_rcs_dispose(&cns->txcpr);
+	pqs_cipher_dispose(&cns->rxcpr);
+	pqs_cipher_dispose(&cns->txcpr);
 	cns->exflag = pqs_flag_none;
 	cns->cid = 0;
 	cns->rxseq = 0;

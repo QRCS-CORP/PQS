@@ -32,8 +32,8 @@ static void server_state_initialize(pqs_kex_server_state* kss, const server_rece
 	qsc_memutils_copy(kss->verkey, prcv->pprik->verkey, PQS_ASYMMETRIC_VERIFY_KEY_SIZE);
 	kss->expiration = prcv->pprik->expiration;
 	prcv->pcns->target.instance = qsc_acp_uint32();
-	qsc_rcs_dispose(&prcv->pcns->rxcpr);
-	qsc_rcs_dispose(&prcv->pcns->txcpr);
+	pqs_cipher_dispose(&prcv->pcns->rxcpr);
+	pqs_cipher_dispose(&prcv->pcns->txcpr);
 	prcv->pcns->exflag = pqs_flag_none;
 	prcv->pcns->cid = 0;
 	prcv->pcns->rxseq = 0;

@@ -213,22 +213,22 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 				qsc_cshake_squeezeblocks(&kstate, qsc_keccak_rate_256, prnd, 2);
 
 				/* initialize the symmetric cipher, and raise client channel-1 tx */
-				qsc_rcs_keyparams kp1;
+				pqs_cipher_keyparams kp1;
 				kp1.key = prnd;
 				kp1.keylen = PQS_SYMMETRIC_KEY_SIZE;
 				kp1.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE;
 				kp1.info = NULL;
 				kp1.infolen = 0;
-				qsc_rcs_initialize(&cns->txcpr, &kp1, true);
+				pqs_cipher_initialize(&cns->txcpr, &kp1, true);
 
 				/* initialize the symmetric cipher, and raise client channel-1 rx */
-				qsc_rcs_keyparams kp2;
+				pqs_cipher_keyparams kp2;
 				kp2.key = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE;
 				kp2.keylen = PQS_SYMMETRIC_KEY_SIZE;
 				kp2.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE + PQS_SYMMETRIC_KEY_SIZE;
 				kp2.info = NULL;
 				kp2.infolen = 0;
-				qsc_rcs_initialize(&cns->rxcpr, &kp2, false);
+				pqs_cipher_initialize(&cns->rxcpr, &kp2, false);
 
 				cns->exflag = pqs_flag_exchange_request;
 				qerr = pqs_error_none;
@@ -427,22 +427,22 @@ static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, 
 			qsc_cshake_squeezeblocks(&kstate, qsc_keccak_rate_256, prnd, 2);
 
 			/* initialize the symmetric cipher, and raise client channel-1 tx */
-			qsc_rcs_keyparams kp1;
+			pqs_cipher_keyparams kp1;
 			kp1.key = prnd;
 			kp1.keylen = PQS_SYMMETRIC_KEY_SIZE;
 			kp1.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE;
 			kp1.info = NULL;
 			kp1.infolen = 0;
-			qsc_rcs_initialize(&cns->rxcpr, &kp1, false);
+			pqs_cipher_initialize(&cns->rxcpr, &kp1, false);
 
 			/* initialize the symmetric cipher, and raise client channel-1 rx */
-			qsc_rcs_keyparams kp2;
+			pqs_cipher_keyparams kp2;
 			kp2.key = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE;
 			kp2.keylen = PQS_SYMMETRIC_KEY_SIZE;
 			kp2.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE + PQS_SYMMETRIC_KEY_SIZE;
 			kp2.info = NULL;
 			kp2.infolen = 0;
-			qsc_rcs_initialize(&cns->txcpr, &kp2, true);
+			pqs_cipher_initialize(&cns->txcpr, &kp2, true);
 
 			/* assemble the exchange-response packet */
 			pqs_packet_header_create(packetout, pqs_flag_exchange_response, cns->txseq, KEX_EXCHANGE_RESPONSE_MESSAGE_SIZE);

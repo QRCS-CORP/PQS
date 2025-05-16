@@ -271,19 +271,48 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
 
             while (true)
             {
-                Sleep(10);
+                Sleep(150);
 
                 if (PeekNamedPipe(m_interpreter_command_state.hotpr, NULL, 0, NULL, &bavail, NULL) == TRUE)
                 {
-                    if (bavail == 0)
+                    if (bavail != 0)
+                    {
+                        if (tlen + bavail >= reslen)
+                        {
+                            char* tmpr;
+
+                            tmpr = qsc_memutils_realloc(result, reslen + bavail + sizeof(char));
+
+                            if (tmpr != NULL)
+                            {
+                                result = tmpr;
+                                reslen += bavail + sizeof(char);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                        if (ReadFile(m_interpreter_command_state.hotpr, result + tlen, (DWORD)(reslen - tlen), &bread, NULL) == TRUE)
+                        {
+                            tlen += bread;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                        Sleep(10);
+                    }
+                    else
                     {
                         break;
                     }
-
-                    if (ReadFile(m_interpreter_command_state.hotpr, result + tlen, (DWORD)(reslen - tlen), &bread, NULL) == TRUE)
-                    {
-                        tlen += bread;
-                    }
+                }
+                else
+                {
+                    break;
                 }
             }
         }
@@ -312,9 +341,21 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
 
                 if (slen != 0)
                 {
-                    if ((tlen + slen) > reslen)
+                    if (tlen + slen > reslen)
                     {
-                        break;
+                        char* tmpr;
+
+                        tmpr = qsc_memutils_realloc(result, reslen + slen + sizeof(char));
+
+                        if (tmpr != NULL)
+                        {
+                            result = tmpr;
+                            reslen += slen + sizeof(char);
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
 
                     qsc_memutils_copy(result + tlen, rbuf, slen);

@@ -43,7 +43,6 @@
 #include "common.h"
 #include "../../QSC/QSC/dilithium.h"
 #include "../../QSC/QSC/kyber.h"
-#include "../../QSC/QSC/rcs.h"
 #include "../../QSC/QSC/sha3.h"
 #include "../../QSC/QSC/socketbase.h"
 
@@ -82,6 +81,31 @@
 /*=============================================================================
                               Macros and Constants
 =============================================================================*/
+
+/*!
+* \def PQS_USE_RCS_ENCRYPTION
+* \brief If the RCS encryption option is chosen SKDP uses the more modern RCS stream cipher with KMAC/QMAC authentication.
+* The default symmetric cipher/authenticator is AES-256/GCM (GMAC Counter Mode) NIST standardized per SP800-38a.
+*/
+//#define PQS_USE_RCS_ENCRYPTION
+
+#if defined(PQS_USE_RCS_ENCRYPTION)
+#	include "../../QSC/QSC/rcs.h"
+#	define pqs_cipher_state qsc_rcs_state
+#	define pqs_cipher_dispose qsc_rcs_dispose
+#	define pqs_cipher_initialize qsc_rcs_initialize
+#	define pqs_cipher_keyparams qsc_rcs_keyparams
+#	define pqs_cipher_set_associated qsc_rcs_set_associated
+#	define pqs_cipher_transform qsc_rcs_transform
+#else
+#	include "../../QSC/QSC/aes.h"
+#	define pqs_cipher_state qsc_aes_gcm256_state
+#	define pqs_cipher_dispose qsc_aes_gcm256_dispose
+#	define pqs_cipher_initialize qsc_aes_gcm256_initialize
+#	define pqs_cipher_keyparams qsc_aes_keyparams
+#	define pqs_cipher_set_associated qsc_aes_gcm256_set_associated
+#	define pqs_cipher_transform qsc_aes_gcm256_transform
+#endif
 
 /*!
  * \def PQS_CONFIG_SIZE
@@ -315,7 +339,11 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * \def PQS_MACTAG_SIZE
  * \brief The size in bytes of the MAC tag for the Simplex 256-bit MAC.
  */
-#define PQS_MACTAG_SIZE 32
+#if defined(PQS_USE_RCS_ENCRYPTION)
+#	define PQS_MACTAG_SIZE 32
+#else
+#	define PQS_MACTAG_SIZE 16
+#endif
 
 /*!
  * \def PQS_MESSAGE_MAX
@@ -335,7 +363,11 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * \def PQS_NONCE_SIZE
  * \brief The size in bytes of the nonce used in symmetric encryption.
  */
-#define PQS_NONCE_SIZE 32
+#if defined(PQS_USE_RCS_ENCRYPTION)
+#	define PQS_NONCE_SIZE 32
+#else
+#	define PQS_NONCE_SIZE 16
+#endif
 
 /*!
  * \def PQS_NETWORK_BUFFER_SIZE
@@ -789,8 +821,8 @@ PQS_EXPORT_API typedef struct pqs_keep_alive_state
 PQS_EXPORT_API typedef struct pqs_connection_state
 {
 	qsc_socket target;       /*!< The target socket structure */
-	qsc_rcs_state rxcpr;     /*!< The receive channel cipher state */
-	qsc_rcs_state txcpr;     /*!< The transmit channel cipher state */
+	pqs_cipher_state rxcpr;  /*!< The receive channel cipher state */
+	pqs_cipher_state txcpr;  /*!< The transmit channel cipher state */
 	uint64_t rxseq;          /*!< The receive channel packet sequence number */
 	uint64_t txseq;          /*!< The transmit channel packet sequence number */
 	uint32_t cid;            /*!< The connection instance count */
