@@ -23,28 +23,35 @@ FetchContent_MakeAvailable(QSC)
 
 # ─── PQS static library ───────────────────────────────────────────────
 file(GLOB_RECURSE PQS_SOURCES
-     "Source/PQS/*.c")
+     "${PROJECT_SOURCE_DIR}/Source/PQS/*.c"
+)
 
 add_library(pqs STATIC ${PQS_SOURCES})
+
+# Tell the compiler where to find your headers:
+#  - any .h in Source/PQS
+#  - specifically appclt.h & friends in the Client and Server subdirs
 target_include_directories(pqs
   PUBLIC
-    ${PROJECT_SOURCE_DIR}/Source/PQS/include     # public API headers
-  PRIVATE
-    ${PROJECT_SOURCE_DIR}/Source/PQS/Client      # where appclt.h lives
-    ${PROJECT_SOURCE_DIR}/Source/PQS/Server      # where server.h lives
+    "${PROJECT_SOURCE_DIR}/Source/PQS"
+    "${PROJECT_SOURCE_DIR}/Source/PQS/Client"
+    "${PROJECT_SOURCE_DIR}/Source/PQS/Server"
 )
+
 target_link_libraries(pqs PUBLIC qsc)
 
 # ─── PQS client executable ────────────────────────────────────────────
 file(GLOB_RECURSE PQS_CLIENT_SOURCES
-     "Source/Client/*.c")
+     "${PROJECT_SOURCE_DIR}/Source/Client/*.c"
+)
 
 add_executable(pqs_client ${PQS_CLIENT_SOURCES})
 target_link_libraries(pqs_client PRIVATE pqs)
 
 # ─── PQS server executable ────────────────────────────────────────────
 file(GLOB_RECURSE PQS_SERVER_SOURCES
-     "Source/Server/*.c")
+     "${PROJECT_SOURCE_DIR}/Source/Server/*.c"
+)
 
 add_executable(pqs_server ${PQS_SERVER_SOURCES})
 target_link_libraries(pqs_server PRIVATE pqs)
@@ -54,9 +61,13 @@ option(PQS_STRICT "Treat warnings as errors" ON)
 
 foreach(target pqs pqs_client pqs_server)
   if(MSVC)
-    target_compile_options(${target} PRIVATE /W4 $<$<BOOL:${PQS_STRICT}>:/WX>)
+    target_compile_options(${target}
+      PRIVATE /W4 $<$<BOOL:${PQS_STRICT}>:/WX>
+    )
   else()
-    target_compile_options(${target} PRIVATE -Wall -Wextra -pedantic
-                           $<$<BOOL:${PQS_STRICT}>:-Werror>)
+    target_compile_options(${target}
+      PRIVATE -Wall -Wextra -pedantic
+              $<$<BOOL:${PQS_STRICT}>:-Werror>
+    )
   endif()
 endforeach()
