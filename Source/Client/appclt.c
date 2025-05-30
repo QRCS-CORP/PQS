@@ -72,15 +72,15 @@ static size_t client_get_host_name(char* name)
 	char host[QSC_NETUTILS_HOSTS_NAME_SIZE] = { 0 };
 	size_t hlen;
 
-	hlen = 0;
+	hlen = 0U;
 
 	if (qsc_netutils_get_host_name(host) == true)
 	{
 		hlen = qsc_stringutils_string_size(host);
 
-		if (hlen >= PQS_CLIENT_PROMPT_MAX - 2)
+		if (hlen >= PQS_CLIENT_PROMPT_MAX - 2U)
 		{
-			hlen = PQS_CLIENT_PROMPT_MAX - 2;
+			hlen = PQS_CLIENT_PROMPT_MAX - 2U;
 		}
 
 		qsc_stringutils_copy_string(name, PQS_CLIENT_PROMPT_MAX, host);
@@ -96,7 +96,7 @@ static void client_get_prompt(void)
 
 	hlen = client_get_host_name(host);
 
-	if (hlen > 0)
+	if (hlen > 0U)
 	{
 		qsc_stringutils_copy_string(m_client_connection_state.prompt, PQS_CLIENT_PROMPT_MAX, host);
 		qsc_stringutils_concat_strings(m_client_connection_state.prompt, PQS_CLIENT_PROMPT_MAX, "> ");
@@ -113,7 +113,7 @@ static void client_set_prompt(const char* message, size_t msglen)
 	{
 		int64_t npos;
 
-		npos = qsc_stringutils_reverse_find_string(message, "\n", msglen - 1);
+		npos = qsc_stringutils_reverse_find_string(message, "\n", msglen - 1U);
 
 		if (npos > 0 && msglen - npos > 0)
 		{
@@ -137,7 +137,7 @@ static void client_print_message(const char* message)
 	{
 		slen = qsc_stringutils_string_size(message);
 
-		if (slen != 0)
+		if (slen != 0U)
 		{
 			client_print_prompt();
 			qsc_consoleutils_print_line(message);
@@ -164,15 +164,15 @@ static void client_print_banner(void)
 	qsc_consoleutils_print_line("Enter the address, server public key, and password to connect.");
 	qsc_consoleutils_print_line("Type 'quit' to close the connection and exit the application.");
 	qsc_consoleutils_print_line("");
-	qsc_consoleutils_print_line("Release:   v1.0.0.0a (A1)");
-	qsc_consoleutils_print_line("Date:      August 1, 2024");
-	qsc_consoleutils_print_line("Contact:   john.underhill@protonmail.com");
+	qsc_consoleutils_print_line("Release:   v1.0.0.0B (A1)");
+	qsc_consoleutils_print_line("Date:      May 30, 2025");
+	qsc_consoleutils_print_line("Contact:   contact@qrcscorp.ca");
 	qsc_consoleutils_print_line("");
 }
 
 static bool client_ipv4_dialogue(qsc_ipinfo_ipv4_address* address)
 {
-	uint8_t pskey[PQS_PUBKEY_STRING_SIZE] = { 0 };
+	uint8_t pskey[PQS_PUBKEY_STRING_SIZE] = { 0U };
 	char fpath[QSC_SYSTEM_MAX_PATH + 1] = { 0 };
 	char sadd[QSC_IPINFO_IPV4_STRNLEN] = { 0 };
 	qsc_ipinfo_ipv4_address addv4t = { 0 };
@@ -211,7 +211,7 @@ static bool client_ipv4_dialogue(qsc_ipinfo_ipv4_address* address)
 		client_print_message("");
 		slen = qsc_consoleutils_get_line(fpath, sizeof(fpath)) - 1;
 
-		if (slen > 0)
+		if (slen > 0U)
 		{
 			if (qsc_fileutils_exists(fpath) == true && 
 				qsc_stringutils_string_contains(fpath, PQS_PUBKEY_NAME) == true)
@@ -238,9 +238,9 @@ static bool client_ipv4_dialogue(qsc_ipinfo_ipv4_address* address)
 static void client_connection_login(pqs_connection_state* cns)
 {
 	pqs_network_packet spkt = { 0 };
-	uint8_t rhsh[QSC_SHA3_256_HASH_SIZE] = { 0 };
-	char sin[PQS_CLIENT_PASSWORD_LENGTH_MAX + 1] = { 0 };
-	uint8_t smsg[PQS_HEADER_SIZE + PQS_HASH_SIZE + PQS_MACTAG_SIZE] = { 0 };
+	uint8_t rhsh[QSC_SHA3_256_HASH_SIZE] = { 0U };
+	char sin[PQS_CLIENT_PASSWORD_LENGTH_MAX + 1U] = { 0 };
+	uint8_t smsg[PQS_HEADER_SIZE + PQS_HASH_SIZE + PQS_MACTAG_SIZE] = { 0U };
 	size_t mlen;
 
 	++m_client_connection_state.lcounter;
@@ -308,7 +308,7 @@ static void client_receive_callback(pqs_connection_state* cns, const uint8_t* me
 			qsc_stringutils_concat_strings(m_client_connection_state.prompt, PQS_CLIENT_PROMPT_MAX, "> ");
 
 			m_client_connection_state.connected = true;
-			m_client_connection_state.lcounter = 0;
+			m_client_connection_state.lcounter = 0U;
 		}
 		else
 		{
@@ -355,7 +355,7 @@ static bool client_login_loop(pqs_connection_state* cns)
 	size_t lcnt;
 	bool bres;
 
-	lcnt = 0;
+	lcnt = 0U;
 	bres = true;
 
 	/* send the login message */
@@ -374,14 +374,14 @@ static bool client_login_loop(pqs_connection_state* cns)
 			if (m_client_connection_state.lcounter > PQS_CLIENT_LOGIN_ATTEMPTS_MAX)
 			{
 				qsc_consoleutils_print_safe("Maximum login attempts exceeded, exiting program.");
-				m_client_connection_state.lcounter = 0;
+				m_client_connection_state.lcounter = 0U;
 				bres = false;
 				break;
 			}
 			else if (lcnt > PQS_CLIENT_LOGIN_TIME_MAXIMUM)
 			{
 				qsc_consoleutils_print_safe("Maximum login time exceeded, exiting program.");
-				m_client_connection_state.lcounter = 0;
+				m_client_connection_state.lcounter = 0U;
 				bres = false;
 				break;
 			}
@@ -405,20 +405,20 @@ static void client_send_loop(pqs_connection_state* cns)
 
 	if (bres == true)
 	{
-		char sin[PQS_CLIENT_INPUT_MAX + sizeof(char)] = {0};
+		char sin[PQS_CLIENT_INPUT_MAX + sizeof(char)] = { 0 };
 		size_t mlen;
 
-		mlen = 0;
+		mlen = 0U;
 
 		/* start the send loop */
 		while (true)
 		{
 			client_print_prompt();
 
-			if (mlen > 0)
+			if (mlen > 0U)
 			{
 				pqs_network_packet spkt = { 0 };
-				uint8_t msg[PQS_CLIENT_INPUT_MAX + PQS_MACTAG_SIZE] = { 0 };
+				uint8_t msg[PQS_CLIENT_INPUT_MAX + PQS_MACTAG_SIZE] = { 0U };
 
 				/* cache the command */
 				m_client_connection_state.command = client_command_from_string(sin);
@@ -459,10 +459,10 @@ static void client_send_loop(pqs_connection_state* cns)
 
 			mlen = qsc_consoleutils_get_line(sin, sizeof(sin)) - 1;
 
-			if (mlen > 0 && (sin[0] == '\n' || sin[0] == '\r'))
+			if (mlen > 0U && (sin[0U] == '\n' || sin[0U] == '\r'))
 			{
 				client_print_message("");
-				mlen = 0;
+				mlen = 0U;
 			}
 		}
 	}
@@ -479,17 +479,17 @@ int main(void)
 	res = false;
 	ectr = 0;
 	m_client_connection_state.connected = false;
-	m_client_connection_state.lcounter = 0;
+	m_client_connection_state.lcounter = 0U;
 
 	qsc_consoleutils_set_virtual_terminal();
 	qsc_consoleutils_set_window_title("PQS Client - Not Connected");
-	qsc_consoleutils_set_window_buffer(1600, 6000);
-	qsc_consoleutils_set_window_size(1000, 600);
+	qsc_consoleutils_set_window_buffer(1600U, 6000U);
+	qsc_consoleutils_set_window_size(1000U, 600U);
 
 	client_get_prompt();
 	client_print_banner();
 
-	while (ectr < 3)
+	while (ectr < 3U)
 	{
 		res = client_ipv4_dialogue(&addv4t);
 

@@ -35,9 +35,9 @@ static void server_state_initialize(pqs_kex_server_state* kss, const server_rece
 	pqs_cipher_dispose(&prcv->pcns->rxcpr);
 	pqs_cipher_dispose(&prcv->pcns->txcpr);
 	prcv->pcns->exflag = pqs_flag_none;
-	prcv->pcns->cid = 0;
-	prcv->pcns->rxseq = 0;
-	prcv->pcns->txseq = 0;
+	prcv->pcns->cid = 0U;
+	prcv->pcns->rxseq = 0U;
+	prcv->pcns->txseq = 0U;
 }
 
 static pqs_errors server_key_exchange(server_receiver_state* prcv)
@@ -106,8 +106,8 @@ static void server_receive_loop(server_receiver_state* prcv)
 		{
 			while (prcv->pcns->target.connection_status == qsc_socket_state_connected)
 			{
-				mlen = 0;
-				slen = 0;
+				mlen = 0U;
+				slen = 0U;
 
 				plen = qsc_socket_peek(&prcv->pcns->target, rbuf, PQS_HEADER_SIZE);
 
@@ -125,7 +125,7 @@ static void server_receive_loop(server_receiver_state* prcv)
 							qsc_memutils_clear(rbuf, plen);
 							mlen = qsc_socket_receive(&prcv->pcns->target, rbuf, plen, qsc_socket_receive_flag_none);
 
-							if (mlen != 0)
+							if (mlen != 0U)
 							{
 								pkt.pmessage = rbuf + PQS_HEADER_SIZE;
 

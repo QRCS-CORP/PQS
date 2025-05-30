@@ -53,10 +53,10 @@ pqs_connection_state* pqs_connections_add(void)
 
 	cns = NULL;
 
-	if ((m_connection_set.length + 1) <= m_connection_set.maximum)
+	if ((m_connection_set.length + 1U) <= m_connection_set.maximum)
 	{
-		m_connection_set.conset = qsc_memutils_realloc(m_connection_set.conset, (m_connection_set.length + 1) * sizeof(pqs_connection_state));
-		m_connection_set.active = qsc_memutils_realloc(m_connection_set.active, (m_connection_set.length + 1) * sizeof(bool));
+		m_connection_set.conset = qsc_memutils_realloc(m_connection_set.conset, (m_connection_set.length + 1U) * sizeof(pqs_connection_state));
+		m_connection_set.active = qsc_memutils_realloc(m_connection_set.active, (m_connection_set.length + 1U) * sizeof(bool));
 
 		if (m_connection_set.conset != NULL && m_connection_set.active != NULL)
 		{
@@ -77,7 +77,7 @@ size_t pqs_connections_available(void)
 
 	count = 0;
 
-	for (size_t i = 0; i < m_connection_set.length; ++i)
+	for (size_t i = 0U; i < m_connection_set.length; ++i)
 	{
 		if (m_connection_set.active[i] == false)
 		{
@@ -92,7 +92,7 @@ void pqs_connections_clear(void)
 {
 	qsc_memutils_clear(m_connection_set.conset, sizeof(pqs_connection_state) * m_connection_set.length);
 
-	for (size_t i = 0; i < m_connection_set.length; ++i)
+	for (size_t i = 0U; i < m_connection_set.length; ++i)
 	{
 		m_connection_set.active[i] = false;
 		m_connection_set.conset[i].cid = (uint32_t)i;
@@ -118,8 +118,8 @@ void pqs_connections_dispose(void)
 		m_connection_set.active = NULL;
 	}
 
-	m_connection_set.length = 0;
-	m_connection_set.maximum = 0;
+	m_connection_set.length = 0U;
+	m_connection_set.maximum = 0U;
 }
 
 pqs_connection_state* pqs_connections_index(size_t index)
@@ -142,7 +142,7 @@ bool pqs_connections_full(void)
 
 	res = true;
 
-	for (size_t i = 0; i < m_connection_set.length; ++i)
+	for (size_t i = 0U; i < m_connection_set.length; ++i)
 	{
 		if (m_connection_set.active[i] == false)
 		{
@@ -160,7 +160,7 @@ pqs_connection_state* pqs_connections_get(uint32_t instance)
 
 	res = NULL;
 
-	for (size_t i = 0; i < m_connection_set.length; ++i)
+	for (size_t i = 0U; i < m_connection_set.length; ++i)
 	{
 		if (m_connection_set.conset[i].cid == instance)
 		{
@@ -173,11 +173,11 @@ pqs_connection_state* pqs_connections_get(uint32_t instance)
 
 void pqs_connections_initialize(size_t count, size_t maximum)
 {
-	assert(count != 0);
-	assert(maximum != 0);
+	assert(count != 0U);
+	assert(maximum != 0U);
 	assert(count <= maximum);
 	
-	if (count != 0 && maximum != 0 && count <= maximum)
+	if (count != 0U && maximum != 0 && count <= maximum)
 	{
 		m_connection_set.length = count;
 		m_connection_set.maximum = maximum;
@@ -188,7 +188,7 @@ void pqs_connections_initialize(size_t count, size_t maximum)
 		{
 			qsc_memutils_clear(m_connection_set.conset, sizeof(pqs_connection_state) * m_connection_set.length);
 
-			for (size_t i = 0; i < count; ++i)
+			for (size_t i = 0U; i < count; ++i)
 			{
 				m_connection_set.conset[i].cid = (uint32_t)i;
 				m_connection_set.active[i] = false;
@@ -205,7 +205,7 @@ pqs_connection_state* pqs_connections_next(void)
 
 	if (pqs_connections_full() == false)
 	{
-		for (size_t i = 0; i < m_connection_set.length; ++i)
+		for (size_t i = 0U; i < m_connection_set.length; ++i)
 		{
 			if (m_connection_set.active[i] == false)
 			{
@@ -225,7 +225,7 @@ pqs_connection_state* pqs_connections_next(void)
 
 void pqs_connections_reset(uint32_t instance)
 {
-	for (size_t i = 0; i < m_connection_set.length; ++i)
+	for (size_t i = 0U; i < m_connection_set.length; ++i)
 	{
 		if (m_connection_set.conset[i].cid == instance)
 		{
@@ -245,16 +245,16 @@ size_t pqs_connections_size(void)
 #if defined(QSC_DEBUG_MODE)
 void pqs_connections_self_test(void)
 {
-	pqs_connection_state* xn[20] = { 0 };
+	pqs_connection_state* xn[20U] = { 0 };
 	size_t cnt;
 	bool full;
 
 	(void)cnt;
 	(void)full;
 
-	pqs_connections_initialize(1, 10); /* init with 1 */
+	pqs_connections_initialize(1U, 10U); /* init with 1 */
 
-	for (size_t i = 1; i < 10; ++i)
+	for (size_t i = 1U; i < 10U; ++i)
 	{
 		xn[i] = pqs_connections_next(); /* init next 9 */
 	}
@@ -262,23 +262,23 @@ void pqs_connections_self_test(void)
 	cnt = pqs_connections_available(); /* expected 0 */
 	full = pqs_connections_full(); /* expected true */
 
-	pqs_connections_reset(1); /* release 5 */
-	pqs_connections_reset(3);
-	pqs_connections_reset(5);
-	pqs_connections_reset(7);
-	pqs_connections_reset(9);
+	pqs_connections_reset(1U); /* release 5 */
+	pqs_connections_reset(3U);
+	pqs_connections_reset(5U);
+	pqs_connections_reset(7U);
+	pqs_connections_reset(9U);
 
 	full = pqs_connections_full(); /* expected false */
 
-	xn[11] = pqs_connections_next(); /* reclaim 5 */
-	xn[12] = pqs_connections_next();
-	xn[13] = pqs_connections_next();
-	xn[14] = pqs_connections_next();
-	xn[15] = pqs_connections_next();
+	xn[11U] = pqs_connections_next(); /* reclaim 5 */
+	xn[12U] = pqs_connections_next();
+	xn[13U] = pqs_connections_next();
+	xn[14U] = pqs_connections_next();
+	xn[15U] = pqs_connections_next();
 
 	full = pqs_connections_full(); /* expected true */
 
-	xn[16] = pqs_connections_next(); /* should exceed max */
+	xn[16U] = pqs_connections_next(); /* should exceed max */
 
 	cnt = pqs_connections_size(); /* expected 10 */
 

@@ -17,7 +17,7 @@
 
 #define KEX_EXCHANGE_REQUEST_MESSAGE_SIZE (PQS_ASYMMETRIC_CIPHER_TEXT_SIZE)
 #define KEX_EXCHANGE_REQUEST_PACKET_SIZE (PQS_HEADER_SIZE + KEX_EXCHANGE_REQUEST_MESSAGE_SIZE)
-#define KEX_EXCHANGE_RESPONSE_MESSAGE_SIZE (0)
+#define KEX_EXCHANGE_RESPONSE_MESSAGE_SIZE 0U
 #define KEX_EXCHANGE_RESPONSE_PACKET_SIZE (PQS_HEADER_SIZE + KEX_EXCHANGE_RESPONSE_MESSAGE_SIZE)
 /** \endcond DOXYGEN_IGNORE */
 
@@ -30,7 +30,7 @@ static void kex_send_network_error(const qsc_socket* sock, pqs_errors error)
 	if (qsc_socket_is_connected(sock) == true)
 	{
 		pqs_network_packet resp = { 0 };
-		uint8_t spct[PQS_HEADER_SIZE + PQS_ERROR_MESSAGE_SIZE] = { 0 };
+		uint8_t spct[PQS_HEADER_SIZE + PQS_ERROR_MESSAGE_SIZE] = { 0U };
 
 		resp.pmessage = spct + PQS_HEADER_SIZE;
 		pqs_packet_error_message(&resp, error);
@@ -48,7 +48,7 @@ static void kex_client_reset(pqs_kex_client_state* kcs)
 		qsc_memutils_clear(kcs->keyid, PQS_KEYID_SIZE);
 		qsc_memutils_clear(kcs->schash, PQS_SCHASH_SIZE);
 		qsc_memutils_clear(kcs->verkey, PQS_ASYMMETRIC_VERIFY_KEY_SIZE);
-		kcs->expiration = 0;
+		kcs->expiration = 0U;
 	}
 }
 
@@ -161,23 +161,23 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 	assert(packetin != NULL);
 	assert(packetout != NULL);
 
-	uint8_t khash[PQS_SCHASH_SIZE] = { 0 };
+	uint8_t khash[PQS_SCHASH_SIZE] = { 0U };
 	size_t mlen;
 	size_t slen;
 	pqs_errors qerr;
 
 	if (kcs != NULL && packetin != NULL && packetout != NULL)
 	{
-		slen = 0;
+		slen = 0U;
 		mlen = PQS_ASYMMETRIC_SIGNATURE_SIZE + PQS_HASH_SIZE;
 
 		/* verify the asymmetric signature */
 		if (pqs_signature_verify(khash, &slen, packetin->pmessage, mlen, kcs->verkey) == true)
 		{
 			qsc_keccak_state kstate = { 0 };
-			uint8_t phash[PQS_HASH_SIZE] = { 0 };
-			uint8_t shdr[PQS_HEADER_SIZE] = { 0 };
-			uint8_t ssec[PQS_SECRET_SIZE] = { 0 };
+			uint8_t phash[PQS_HASH_SIZE] = { 0U };
+			uint8_t shdr[PQS_HEADER_SIZE] = { 0U };
+			uint8_t ssec[PQS_SECRET_SIZE] = { 0U };
 			const uint8_t* pubk = packetin->pmessage + mlen;
 
 			pqs_packet_header_serialize(packetin, shdr);
@@ -193,7 +193,7 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 			/* verify the public key hash */
 			if (qsc_intutils_verify(phash, khash, PQS_HASH_SIZE) == 0)
 			{
-				uint8_t prnd[(QSC_KECCAK_256_RATE * 2)] = { 0 };
+				uint8_t prnd[(QSC_KECCAK_256_RATE * 2)] = { 0U };
 
 				/* generate, and encapsulate the secret */
 
@@ -204,7 +204,7 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 				pqs_packet_header_create(packetout, pqs_flag_exchange_request, cns->txseq, KEX_EXCHANGE_REQUEST_MESSAGE_SIZE);
 
 				/* initialize cSHAKE k = H(sec, sch) */
-				qsc_cshake_initialize(&kstate, qsc_keccak_rate_256, ssec, PQS_SECRET_SIZE, kcs->schash, PQS_SCHASH_SIZE, NULL, 0);
+				qsc_cshake_initialize(&kstate, qsc_keccak_rate_256, ssec, PQS_SECRET_SIZE, kcs->schash, PQS_SCHASH_SIZE, NULL, 0U);
 				qsc_cshake_squeezeblocks(&kstate, qsc_keccak_rate_256, prnd, 2);
 
 				/* initialize the symmetric cipher, and raise client channel-1 tx */
@@ -216,7 +216,7 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 				kp1.noncelen = PQS_NONCE_SIZE;
 #endif
 				kp1.info = NULL;
-				kp1.infolen = 0;
+				kp1.infolen = 0U;
 				pqs_cipher_initialize(&cns->txcpr, &kp1, true);
 
 				/* initialize the symmetric cipher, and raise client channel-1 rx */
@@ -225,10 +225,10 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 				kp2.keylen = PQS_SYMMETRIC_KEY_SIZE;
 				kp2.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE + PQS_SYMMETRIC_KEY_SIZE;
 #if !defined(PQS_USE_RCS_ENCRYPTION)
-				kp1.noncelen = PQS_NONCE_SIZE;
+				kp2.noncelen = PQS_NONCE_SIZE;
 #endif
 				kp2.info = NULL;
-				kp2.infolen = 0;
+				kp2.infolen = 0U;
 				pqs_cipher_initialize(&cns->rxcpr, &kp2, false);
 
 				cns->exflag = pqs_flag_exchange_request;
@@ -307,8 +307,8 @@ static pqs_errors kex_server_connect_response(pqs_kex_server_state* kss, pqs_con
 	assert(packetin != NULL);
 	assert(packetout != NULL);
 
-	char confs[PQS_CONFIG_SIZE + 1] = { 0 };
-	uint8_t phash[PQS_HASH_SIZE] = { 0 };
+	char confs[PQS_CONFIG_SIZE + 1U] = { 0 };
+	uint8_t phash[PQS_HASH_SIZE] = { 0U };
 	qsc_keccak_state kstate = { 0 };
 	pqs_errors qerr;
 	uint64_t tm;
@@ -332,7 +332,7 @@ static pqs_errors kex_server_connect_response(pqs_kex_server_state* kss, pqs_con
 				/* compare the state configuration string to the message configuration string */
 				if (qsc_stringutils_compare_strings(confs, PQS_CONFIG_STRING, PQS_CONFIG_SIZE) == true)
 				{
-					uint8_t shdr[PQS_HEADER_SIZE] = { 0 };
+					uint8_t shdr[PQS_HEADER_SIZE] = { 0U };
 
 					qsc_memutils_clear(kss->schash, PQS_SCHASH_SIZE);
 
@@ -415,13 +415,13 @@ static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, 
 
 	if (kss != NULL && packetin != NULL && packetout != NULL)
 	{
-		uint8_t ssec[PQS_SECRET_SIZE] = { 0 };
+		uint8_t ssec[PQS_SECRET_SIZE] = { 0U };
 
 		/* decapsulate the shared secret */
 		if (pqs_cipher_decapsulate(ssec, packetin->pmessage, kss->prikey) == true)
 		{
 			qsc_keccak_state kstate = { 0 };
-			uint8_t prnd[(QSC_KECCAK_256_RATE * 2)] = { 0 };
+			uint8_t prnd[(QSC_KECCAK_256_RATE * 2)] = { 0U };
 
 			/* initialize cSHAKE k = H(ssec, sch) */
 			qsc_cshake_initialize(&kstate, qsc_keccak_rate_256, ssec, sizeof(ssec), kss->schash, PQS_SCHASH_SIZE, NULL, 0);
@@ -436,7 +436,7 @@ static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, 
 			kp1.noncelen = PQS_NONCE_SIZE;
 #endif
 			kp1.info = NULL;
-			kp1.infolen = 0;
+			kp1.infolen = 0U;
 			pqs_cipher_initialize(&cns->rxcpr, &kp1, false);
 
 			/* initialize the symmetric cipher, and raise client channel-1 rx */
@@ -445,10 +445,10 @@ static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, 
 			kp2.keylen = PQS_SYMMETRIC_KEY_SIZE;
 			kp2.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE + PQS_SYMMETRIC_KEY_SIZE;
 #if !defined(PQS_USE_RCS_ENCRYPTION)
-			kp1.noncelen = PQS_NONCE_SIZE;
+			kp2.noncelen = PQS_NONCE_SIZE;
 #endif
 			kp2.info = NULL;
-			kp2.infolen = 0;
+			kp2.infolen = 0U;
 			pqs_cipher_initialize(&cns->txcpr, &kp2, true);
 
 			/* assemble the exchange-response packet */
@@ -695,7 +695,7 @@ pqs_errors pqs_kex_server_key_exchange(pqs_kex_server_state* kss, pqs_connection
 
 						if (slen == KEX_CONNECT_RESPONSE_PACKET_SIZE)
 						{
-							cns->txseq += 1;
+							cns->txseq += 1U;
 							rbuf = qsc_memutils_realloc(rbuf, KEX_EXCHANGE_REQUEST_PACKET_SIZE);
 
 							if (rbuf != NULL)
@@ -729,7 +729,7 @@ pqs_errors pqs_kex_server_key_exchange(pqs_kex_server_state* kss, pqs_connection
 
 											if (slen == KEX_EXCHANGE_RESPONSE_PACKET_SIZE)
 											{
-												cns->txseq += 1;
+												cns->txseq += 1U;
 											}
 											else
 											{

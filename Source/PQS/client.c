@@ -16,7 +16,6 @@ typedef struct client_receiver_state
 	void (*callback)(pqs_connection_state*, const uint8_t*, size_t);
 } client_receiver_state;
 
-
 typedef struct client_receive_loop_args_t
 {
 	client_receiver_state* prcv;
@@ -34,9 +33,9 @@ static void client_state_initialize(pqs_kex_client_state* kcs, pqs_connection_st
 	pqs_cipher_dispose(&cns->rxcpr);
 	pqs_cipher_dispose(&cns->txcpr);
 	cns->exflag = pqs_flag_none;
-	cns->cid = 0;
-	cns->rxseq = 0;
-	cns->txseq = 0;
+	cns->cid = 0U;
+	cns->rxseq = 0U;
+	cns->txseq = 0U;
 }
 
 static void client_receive_loop(client_receiver_state* prcv)
@@ -59,8 +58,8 @@ static void client_receive_loop(client_receiver_state* prcv)
 	{
 		while (prcv->pcns->target.connection_status == qsc_socket_state_connected)
 		{
-			mlen = 0;
-			slen = 0;
+			mlen = 0U;
+			slen = 0U;
 			qsc_memutils_clear(rbuf, PQS_HEADER_SIZE);
 
 			plen = qsc_socket_peek(&prcv->pcns->target, rbuf, PQS_HEADER_SIZE);
@@ -69,7 +68,7 @@ static void client_receive_loop(client_receiver_state* prcv)
 			{
 				pqs_packet_header_deserialize(rbuf, &pkt);
 
-				if (pkt.msglen > 0 && pkt.msglen <= PQS_MESSAGE_MAX)
+				if (pkt.msglen > 0U && pkt.msglen <= PQS_MESSAGE_MAX)
 				{
 					plen = pkt.msglen + PQS_HEADER_SIZE;
 					rbuf = (uint8_t*)qsc_memutils_realloc(rbuf, plen);
@@ -79,7 +78,7 @@ static void client_receive_loop(client_receiver_state* prcv)
 						qsc_memutils_clear(rbuf, plen);
 						mlen = qsc_socket_receive(&prcv->pcns->target, rbuf, plen, qsc_socket_receive_flag_wait_all);
 
-						if (mlen > 0)
+						if (mlen > 0U)
 						{
 							pkt.pmessage = rbuf + PQS_HEADER_SIZE;
 
@@ -213,6 +212,7 @@ pqs_errors pqs_client_connect_ipv4(const pqs_client_verification_key* pubk,
 
 	pqs_kex_client_state* kcs;
 	client_receiver_state* prcv;
+	client_receive_loop_args largs = { 0 };
 	qsc_socket_exceptions serr;
 	pqs_errors qerr;
 
@@ -251,7 +251,8 @@ pqs_errors pqs_client_connect_ipv4(const pqs_client_verification_key* pubk,
 					if (qerr == pqs_error_none)
 					{
 						/* start the receive loop on a new thread */
-						qsc_async_thread_create(&client_receive_loop_wrapper, prcv);
+						largs.prcv = prcv;
+						qsc_async_thread_create(&client_receive_loop_wrapper, &largs);
 
 						/* start the send loop on the main thread */
 						send_func(prcv->pcns);

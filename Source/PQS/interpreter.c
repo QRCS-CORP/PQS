@@ -31,7 +31,7 @@ bool pqs_interpreter_extract_paramater(char* param, const char* message)
     size_t slen;
     int64_t ipos;
 
-    slen = 0;
+    slen = 0U;
     ipos = qsc_stringutils_find_string(message, " ");
 
     if (ipos > 0)
@@ -39,13 +39,13 @@ bool pqs_interpreter_extract_paramater(char* param, const char* message)
         pstr = message + ipos + 1;
         slen = qsc_stringutils_string_size(pstr);
 
-        if (slen > 0)
+        if (slen > 0U)
         {
             slen = qsc_stringutils_copy_string(param, slen, pstr);
         }
     }
 
-    return (slen > 0);
+    return (slen > 0U);
 }
 
 bool pqs_interpreter_extract_paramaters(char* param1, char* param2, const char* message)
@@ -58,6 +58,7 @@ bool pqs_interpreter_extract_paramaters(char* param1, char* param2, const char* 
     slen = 0;
 
     ibeg = qsc_stringutils_find_string(message, ",") + 1;
+
     if (ibeg > 0)
     {
         pstr = qsc_stringutils_reverse_sub_string(message, ", ") + 1;
@@ -66,7 +67,7 @@ bool pqs_interpreter_extract_paramaters(char* param1, char* param2, const char* 
         {
             slen = qsc_stringutils_string_size(pstr);
 
-            if (slen > 0)
+            if (slen > 0U)
             {
                 qsc_stringutils_copy_string(param2, slen, pstr);
                 pstr = qsc_stringutils_sub_string(message, " ");
@@ -84,7 +85,7 @@ bool pqs_interpreter_extract_paramaters(char* param1, char* param2, const char* 
         }
     }
 
-    return (slen > 0);
+    return (slen > 0U);
 }
 
 size_t pqs_interpreter_file_buffer_length(const char* parameter)
@@ -93,7 +94,7 @@ size_t pqs_interpreter_file_buffer_length(const char* parameter)
     char spath[QSC_FILEUTILS_MAX_PATH] = { 0 };
     size_t slen;
 
-    slen = 0;
+    slen = 0U;
 
     pqs_interpreter_extract_paramaters(spath, dpath, parameter);
 
@@ -111,16 +112,16 @@ size_t pqs_interpreter_file_to_stream(uint8_t* result, size_t reslen, const char
     char spath[QSC_FILEUTILS_MAX_PATH] = { 0 };
     size_t slen;
 
-    slen = 0;
+    slen = 0U;
 
     if (pqs_interpreter_extract_paramaters(spath, dpath, parameter) == true)
     {
-        if (qsc_fileutils_exists(spath) == true && qsc_stringutils_string_size(dpath) > 0)
+        if (qsc_fileutils_exists(spath) == true && qsc_stringutils_string_size(dpath) > 0U)
         {
             /* copy the path string */
             slen = qsc_stringutils_copy_string((char*)result, reslen, dpath);
 
-            if ((char)result[slen - 1] != '\\')
+            if ((char)result[slen - 1U] != '\\')
             {
                 slen += qsc_stringutils_copy_string((char*)result + slen, reslen - slen, "\\");
             }
@@ -143,14 +144,14 @@ size_t pqs_interpreter_stream_to_file(uint8_t* result, size_t reslen, const char
     size_t plen;
     size_t slen;
 
-    slen = 0;
+    slen = 0U;
     pstr = qsc_stringutils_sub_string(parameter, "\n");
 
     if (pstr != NULL)
     {
         plen = qsc_stringutils_string_size(pstr);
 
-        if (plen > 0)
+        if (plen > 0U)
         {
             slen = qsc_fileutils_copy_stream_to_file(pstr, parameter + plen, parlen - plen);
 
@@ -158,12 +159,12 @@ size_t pqs_interpreter_stream_to_file(uint8_t* result, size_t reslen, const char
             {
                 plen = qsc_stringutils_copy_string((char*)result, reslen, "File written to ");
                 plen = qsc_stringutils_copy_string((char*)result + plen, reslen - plen, pstr);
-                result[plen] = 0;
+                result[plen] = 0U;
             }
         }
     }
 
-    if (slen == 0)
+    if (slen == 0U)
     {
         slen = qsc_stringutils_copy_string((char*)result, reslen, "The file could not be saved, check the arguments.");
     }
@@ -235,7 +236,7 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
     assert(m_interpreter_command_state.active == true);
     assert(parameter != NULL);
     assert(result != NULL);
-    assert(reslen > 0);
+    assert(reslen > 0U);
 
     size_t tlen;
 
@@ -248,7 +249,7 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
         DWORD bwrit;
         size_t slen;
 
-        slen = strnlen_s(parameter, sizeof(param) - 1);
+        slen = strnlen_s(parameter, sizeof(param) - 1U);
         qsc_memutils_copy(param, parameter, slen);
         param[slen] = '\n';
         ++slen;
@@ -258,7 +259,7 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
             DWORD bavail;
             DWORD bread;
 
-            slen = 0;
+            slen = 0U;
 
             while (true)
             {
@@ -316,9 +317,9 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
     size_t slen;
 
     fp = NULL;
-    slen = 0;
+    slen = 0U;
 
-    if (m_interpreter_command_state.active == true && parameter != NULL && result != NULL && reslen > 0)
+    if (m_interpreter_command_state.active == true && parameter != NULL && result != NULL && reslen > 0U)
     {
         fp = popen(parameter, "rt");
 
@@ -328,7 +329,7 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
             {
                 slen = fread(rbuf, sizeof(uint8_t), PQS_INTERPRETER_COMMAND_BUFFER_SIZE, fp);
 
-                if (slen != 0)
+                if (slen != 0U)
                 {
                     if (tlen + slen > reslen)
                     {
@@ -357,7 +358,7 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
                 }
             };
 
-            if (tlen == 0)
+            if (tlen == 0U)
             {
                 const char emsg[] = " is not recognized as an internal or external command, operable program or batch file.";
 
@@ -379,7 +380,7 @@ void pqs_interpreter_cleanup(void)
 #if defined(QSC_SYSTEM_OS_WINDOWS)
     if (m_interpreter_command_state.active) 
     {
-        TerminateProcess(m_interpreter_command_state.hproc, 0);
+        TerminateProcess(m_interpreter_command_state.hproc, 0U);
         CloseHandle(m_interpreter_command_state.hinpw);
         CloseHandle(m_interpreter_command_state.hotpr);
         CloseHandle(m_interpreter_command_state.hproc);

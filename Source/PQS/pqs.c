@@ -21,7 +21,7 @@ void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify
 				if (err == pqs_error_none)
 				{
 					pqs_network_packet resp = { 0 };
-					uint8_t spct[PQS_HEADER_SIZE] = { 0 };
+					uint8_t spct[PQS_HEADER_SIZE] = { 0U };
 
 					/* send a disconnect message */
 					resp.pmessage = spct + PQS_HEADER_SIZE;
@@ -36,8 +36,8 @@ void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify
 				else
 				{
 					pqs_network_packet resp = { 0 };
-					uint8_t spct[PQS_HEADER_SIZE + PQS_FLAG_SIZE + PQS_MACTAG_SIZE] = { 0 };
-					uint8_t perr[PQS_ERROR_MESSAGE_SIZE] = { 0 };
+					uint8_t spct[PQS_HEADER_SIZE + PQS_FLAG_SIZE + PQS_MACTAG_SIZE] = { 0U };
+					uint8_t perr[PQS_ERROR_MESSAGE_SIZE] = { 0U };
 					pqs_errors qerr;
 
 					/* send a disconnect message */
@@ -46,7 +46,7 @@ void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify
 					resp.sequence = PQS_SEQUENCE_TERMINATOR;
 					resp.msglen = PQS_ERROR_MESSAGE_SIZE;
 					resp.pmessage = spct + PQS_HEADER_SIZE;
-					perr[0] = err;
+					perr[0U] = err;
 
 					qerr = pqs_packet_encrypt(cns, &resp, perr, PQS_ERROR_MESSAGE_SIZE);
 
@@ -73,9 +73,9 @@ void pqs_connection_state_dispose(pqs_connection_state* cns)
 		pqs_cipher_dispose(&cns->rxcpr);
 		pqs_cipher_dispose(&cns->txcpr);
 		qsc_memutils_clear((uint8_t*)&cns->target, sizeof(qsc_socket));
-		cns->cid = 0;
-		cns->rxseq = 0;
-		cns->txseq = 0;
+		cns->cid = 0U;
+		cns->rxseq = 0U;
+		cns->txseq = 0U;
 		cns->exflag = pqs_flag_none;
 	}
 }
@@ -148,7 +148,7 @@ void pqs_log_error(pqs_messages emsg, qsc_socket_exceptions err, const char* msg
 		{
 			if (msg != NULL)
 			{
-				char mtmp[PQS_ERROR_STRING_WIDTH * 2] = { 0 };
+				char mtmp[PQS_ERROR_STRING_WIDTH * 2U] = { 0 };
 
 				qsc_stringutils_copy_string(mtmp, sizeof(mtmp), pmsg);
 				qsc_stringutils_concat_strings(mtmp, sizeof(mtmp), msg);
@@ -218,10 +218,10 @@ void pqs_log_write(pqs_messages emsg, const char* msg)
 void pqs_packet_clear(pqs_network_packet* packet)
 {
 	packet->flag = (uint8_t)pqs_flag_none;
-	packet->msglen = 0;
-	packet->sequence = 0;
+	packet->msglen = 0U;
+	packet->sequence = 0U;
 
-	if (packet->msglen != 0)
+	if (packet->msglen != 0U)
 	{
 		qsc_memutils_clear(packet->pmessage, packet->msglen);
 	}
@@ -234,11 +234,11 @@ pqs_errors pqs_packet_decrypt(pqs_connection_state* cns, uint8_t* message, size_
 	assert(message != NULL);
 	assert(msglen != NULL);
 
-	uint8_t hdr[PQS_HEADER_SIZE] = { 0 };
+	uint8_t hdr[PQS_HEADER_SIZE] = { 0U };
 	pqs_errors qerr;
 
 	qerr = pqs_error_invalid_input;
-	*msglen = 0;
+	*msglen = 0U;
 
 	if (cns != NULL && message != NULL && msglen != NULL && packetin != NULL)
 	{
@@ -263,7 +263,7 @@ pqs_errors pqs_packet_decrypt(pqs_connection_state* cns, uint8_t* message, size_
 					}
 					else
 					{
-						*msglen = 0;
+						*msglen = 0U;
 						qerr = pqs_error_authentication_failure;
 					}
 				}
@@ -298,12 +298,12 @@ pqs_errors pqs_packet_encrypt(pqs_connection_state* cns, pqs_network_packet* pac
 
 	if (cns != NULL && message != NULL && packetout != NULL)
 	{
-		if (cns->exflag == pqs_flag_session_established && msglen != 0)
+		if (cns->exflag == pqs_flag_session_established && msglen != 0U)
 		{
-			uint8_t hdr[PQS_HEADER_SIZE] = { 0 };
+			uint8_t hdr[PQS_HEADER_SIZE] = { 0U };
 
 			/* assemble the encryption packet */
-			cns->txseq += 1;
+			cns->txseq += 1U;
 			pqs_packet_header_create(packetout, pqs_flag_encrypted_message, cns->txseq, (uint32_t)msglen + PQS_MACTAG_SIZE);
 
 			/* serialize the header and add it to the ciphers associated data */
@@ -333,7 +333,7 @@ void pqs_packet_error_message(pqs_network_packet* packet, pqs_errors error)
 		packet->flag = pqs_flag_error_condition;
 		packet->msglen = PQS_ERROR_MESSAGE_SIZE;
 		packet->sequence = PQS_ERROR_SEQUENCE;
-		packet->pmessage[0] = (uint8_t)error;
+		packet->pmessage[0U] = (uint8_t)error;
 	}
 }
 
@@ -355,7 +355,7 @@ void pqs_packet_header_deserialize(const uint8_t* header, pqs_network_packet* pa
 	{
 		size_t pos;
 
-		packet->flag = header[0];
+		packet->flag = header[0U];
 		pos = PQS_FLAG_SIZE;
 		packet->msglen = qsc_intutils_le8to32(header + pos);
 		pos += PQS_MSGLEN_SIZE;
@@ -374,7 +374,7 @@ void pqs_packet_header_serialize(const pqs_network_packet* packet, uint8_t* head
 	{
 		size_t pos;
 
-		header[0] = packet->flag;
+		header[0U] = packet->flag;
 		pos = PQS_FLAG_SIZE;
 		qsc_intutils_le32to8(header + pos, packet->msglen);
 		pos += PQS_MSGLEN_SIZE;
@@ -390,7 +390,7 @@ pqs_errors pqs_header_validate(pqs_connection_state* cns, const pqs_network_pack
 
 	if (packetin->flag == pqs_flag_error_condition)
 	{
-		merr = (pqs_errors)packetin->pmessage[0];
+		merr = (pqs_errors)packetin->pmessage[0U];
 	}
 	else
 	{
@@ -404,7 +404,7 @@ pqs_errors pqs_header_validate(pqs_connection_state* cns, const pqs_network_pack
 					{
 						if (cns->exflag == kexflag)
 						{
-							cns->rxseq += 1;
+							cns->rxseq += 1U;
 							merr = pqs_error_none;
 						}
 						else
@@ -458,11 +458,11 @@ size_t pqs_packet_to_stream(const pqs_network_packet* packet, uint8_t* pstream)
 	size_t pos;
 	size_t res;
 
-	res = 0;
+	res = 0U;
 
 	if (packet != NULL && pstream != NULL)
 	{
-		pstream[0] = packet->flag;
+		pstream[0U] = packet->flag;
 		pos = PQS_FLAG_SIZE;
 		qsc_intutils_le32to8(pstream + pos, packet->msglen);
 		pos += PQS_MSGLEN_SIZE;
@@ -491,15 +491,15 @@ bool pqs_public_key_decode(pqs_client_verification_key* pubk, const char enck[PQ
 
 	if (pubk != NULL)
 	{
-		spos = sizeof(PQS_PUBKEY_HEADER) + sizeof(PQS_PUBKEY_VERSION) + sizeof(PQS_PUBKEY_CONFIG_PREFIX) - 1;
-		slen = PQS_CONFIG_SIZE - 1;
+		spos = sizeof(PQS_PUBKEY_HEADER) + sizeof(PQS_PUBKEY_VERSION) + sizeof(PQS_PUBKEY_CONFIG_PREFIX) - 1U;
+		slen = PQS_CONFIG_SIZE - 1U;
 		qsc_memutils_copy(pubk->config, (enck + spos), slen);
 
-		spos += slen + sizeof(PQS_PUBKEY_EXPIRATION_PREFIX) - 3;
-		qsc_intutils_hex_to_bin((enck + spos), pubk->keyid, PQS_KEYID_SIZE * 2);
+		spos += slen + sizeof(PQS_PUBKEY_EXPIRATION_PREFIX) - 3U;
+		qsc_intutils_hex_to_bin((enck + spos), pubk->keyid, PQS_KEYID_SIZE * 2U);
 
 		spos += (PQS_KEYID_SIZE * 2) + sizeof(PQS_PUBKEY_EXPIRATION_PREFIX);
-		slen = QSC_TIMESTAMP_STRING_SIZE - 1;
+		slen = QSC_TIMESTAMP_STRING_SIZE - 1U;
 		qsc_memutils_copy(dtm, (enck + spos), slen);
 
 		pubk->expiration = qsc_timestamp_datetime_to_seconds(dtm);
@@ -524,28 +524,28 @@ void pqs_public_key_encode(char enck[PQS_PUBKEY_STRING_SIZE], const pqs_client_v
 
 	if (pubkey != NULL)
 	{
-		slen = sizeof(PQS_PUBKEY_HEADER) - 1;
+		slen = sizeof(PQS_PUBKEY_HEADER) - 1U;
 		qsc_memutils_copy(enck, PQS_PUBKEY_HEADER, slen);
 		spos = slen;
 		enck[spos] = '\n';
 		++spos;
 
-		slen = sizeof(PQS_PUBKEY_VERSION) - 1;
+		slen = sizeof(PQS_PUBKEY_VERSION) - 1U;
 		qsc_memutils_copy((enck + spos), PQS_PUBKEY_VERSION, slen);
 		spos += slen;
 		enck[spos] = '\n';
 		++spos;
 
-		slen = sizeof(PQS_PUBKEY_CONFIG_PREFIX) - 1;
+		slen = sizeof(PQS_PUBKEY_CONFIG_PREFIX) - 1U;
 		qsc_memutils_copy((enck + spos), PQS_PUBKEY_CONFIG_PREFIX, slen);
 		spos += slen;
-		slen = sizeof(PQS_CONFIG_STRING) - 1;
+		slen = sizeof(PQS_CONFIG_STRING) - 1U;
 		qsc_memutils_copy((enck + spos), PQS_CONFIG_STRING, slen);
 		spos += slen;
 		enck[spos] = '\n';
 		++spos;
 
-		slen = sizeof(PQS_PUBKEY_KEYID_PREFIX) - 1;
+		slen = sizeof(PQS_PUBKEY_KEYID_PREFIX) - 1U;
 		qsc_memutils_copy((enck + spos), PQS_PUBKEY_KEYID_PREFIX, slen);
 		spos += slen;
 		qsc_intutils_bin_to_hex(pubkey->keyid, hexid, PQS_KEYID_SIZE);
@@ -555,11 +555,11 @@ void pqs_public_key_encode(char enck[PQS_PUBKEY_STRING_SIZE], const pqs_client_v
 		enck[spos] = '\n';
 		++spos;
 
-		slen = sizeof(PQS_PUBKEY_EXPIRATION_PREFIX) - 1;
+		slen = sizeof(PQS_PUBKEY_EXPIRATION_PREFIX) - 1U;
 		qsc_memutils_copy((enck + spos), PQS_PUBKEY_EXPIRATION_PREFIX, slen);
 		spos += slen;
 		qsc_timestamp_seconds_to_datetime(pubkey->expiration, dtm);
-		slen = sizeof(dtm) - 1;
+		slen = sizeof(dtm) - 1U;
 		qsc_memutils_copy((enck + spos), dtm, slen);
 		spos += slen;
 		enck[spos] = '\n';
@@ -572,7 +572,7 @@ void pqs_public_key_encode(char enck[PQS_PUBKEY_STRING_SIZE], const pqs_client_v
 		enck[spos] = '\n';
 		++spos;
 
-		slen = sizeof(PQS_PUBKEY_FOOTER) - 1;
+		slen = sizeof(PQS_PUBKEY_FOOTER) - 1U;
 		qsc_memutils_copy((enck + spos), PQS_PUBKEY_FOOTER, slen);
 		spos += slen;
 		enck[spos] = '\n';
@@ -582,7 +582,7 @@ void pqs_public_key_encode(char enck[PQS_PUBKEY_STRING_SIZE], const pqs_client_v
 void pqs_public_key_hash(uint8_t* hash, const pqs_client_verification_key* pubk)
 {
 	qsc_keccak_state ctx = { 0 };
-	uint8_t exp[PQS_TIMESTAMP_SIZE] = { 0 };
+	uint8_t exp[PQS_TIMESTAMP_SIZE] = { 0U };
 
 	qsc_intutils_le64to8(exp, pubk->expiration);
 
@@ -641,7 +641,7 @@ void pqs_stream_to_packet(const uint8_t* pstream, pqs_network_packet* packet)
 
 	if (packet != NULL && pstream != NULL)
 	{
-		packet->flag = pstream[0];
+		packet->flag = pstream[0U];
 		pos = PQS_FLAG_SIZE;
 		packet->msglen = qsc_intutils_le8to32(pstream + pos);
 		pos += PQS_MSGLEN_SIZE;

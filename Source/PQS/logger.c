@@ -78,7 +78,7 @@ void pqs_logger_print(void)
 	size_t lctr;
 	size_t mlen;
 
-	lctr = 0;
+	lctr = 0U;
 
 	if (pqs_logger_exists() == true)
 	{
@@ -87,13 +87,13 @@ void pqs_logger_print(void)
 			mlen = qsc_fileutils_read_line(m_log_path, buf, sizeof(buf), lctr);
 			++lctr;
 
-			if (mlen > 0)
+			if (mlen > 0U)
 			{
 				qsc_consoleutils_print_line(buf);
 				qsc_memutils_clear(buf, mlen);
 			}
 		} 
-		while (mlen > 0);
+		while (mlen > 0U);
 	}
 }
 
@@ -104,7 +104,7 @@ void pqs_logger_read(char* output, size_t otplen)
 	if (pqs_logger_exists() == true)
 	{
 		mtx = qsc_async_mutex_lock_ex();
-		qsc_fileutils_safe_read(m_log_path, 0, output, otplen);
+		qsc_fileutils_safe_read(m_log_path, 0U, output, otplen);
 		qsc_async_mutex_unlock_ex(mtx);
 	}
 }
@@ -124,7 +124,7 @@ void pqs_logger_reset(void)
 		qsc_fileutils_create(m_log_path);
 	}
 
-	qsc_fileutils_write_line(m_log_path, PQS_LOGGER_HEAD, sizeof(PQS_LOGGER_HEAD) - 1);
+	qsc_fileutils_write_line(m_log_path, PQS_LOGGER_HEAD, sizeof(PQS_LOGGER_HEAD) - 1U);
 	qsc_timestamp_current_datetime(dtm);
 	mlen = qsc_stringutils_concat_strings(msg, sizeof(msg), dtm);
 	qsc_fileutils_write_line(m_log_path, msg, mlen);
@@ -134,7 +134,7 @@ size_t pqs_logger_size(void)
 {
 	size_t res;
 
-	res = 0;
+	res = 0U;
 
 	if (pqs_logger_exists() == true)
 	{
@@ -147,7 +147,7 @@ size_t pqs_logger_size(void)
 bool pqs_logger_write(const char* message)
 {
 	char buf[PQS_LOGGING_MESSAGE_MAX + QSC_TIMESTAMP_STRING_SIZE + 4] = { 0 };
-	char dlm[4] = " : ";
+	char dlm[4U] = " : ";
 	qsc_mutex mtx;
 	size_t blen;
 	size_t mlen;
@@ -156,7 +156,7 @@ bool pqs_logger_write(const char* message)
 	res = pqs_logger_exists();
 	mlen = qsc_stringutils_string_size(message);
 
-	if (res == true && mlen <= PQS_LOGGING_MESSAGE_MAX && mlen > 0)
+	if (res == true && mlen <= PQS_LOGGING_MESSAGE_MAX && mlen > 0U)
 	{
 		qsc_timestamp_current_datetime(buf);
 		qsc_stringutils_concat_strings(buf, sizeof(buf), dlm);
@@ -173,7 +173,7 @@ bool pqs_logger_write(const char* message)
 #if defined(QSC_DEBUG_MODE)
 bool pqs_logger_test(void)
 {
-	char buf[4 * PQS_LOGGING_MESSAGE_MAX] = { 0 };
+	char buf[4U * PQS_LOGGING_MESSAGE_MAX] = { 0U };
 	char msg1[] = "This is a test message: 1";
 	char msg2[] = "This is a test message: 2";
 	char msg3[] = "This is a test message: 3";

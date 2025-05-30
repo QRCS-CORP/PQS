@@ -80,9 +80,9 @@ static size_t server_get_host_name(char* name)
 	{
 		hlen = qsc_stringutils_string_size(host);
 
-		if (hlen >= PQS_SERVER_PROMPT_MAX - 2)
+		if (hlen >= PQS_SERVER_PROMPT_MAX - 2U)
 		{
-			hlen = PQS_SERVER_PROMPT_MAX - 2;
+			hlen = PQS_SERVER_PROMPT_MAX - 2U;
 		}
 
 		qsc_memutils_copy(name, host, hlen);
@@ -122,7 +122,7 @@ static void server_print_message(const char* message)
 	{
 		slen = qsc_stringutils_string_size(message);
 
-		if (slen != 0)
+		if (slen != 0U)
 		{
 			server_print_prompt();
 			qsc_consoleutils_print_line(message);
@@ -152,9 +152,9 @@ static void server_print_banner(void)
 	qsc_consoleutils_print_line("PQS: Post Quantum Shell Server");
 	qsc_consoleutils_print_line("Quantum-Secure remote command shell server.");
 	qsc_consoleutils_print_line("");
-	qsc_consoleutils_print_line("Release:   v1.0.0.0a (A1)");
-	qsc_consoleutils_print_line("Date:      August 1, 2024");
-	qsc_consoleutils_print_line("Contact:   john.underhill@protonmail.com");
+	qsc_consoleutils_print_line("Release:   v1.0.0.0b (A1)");
+	qsc_consoleutils_print_line("Date:      May 25, 2025");
+	qsc_consoleutils_print_line("Contact:   contact@pqrcscorp.ca");
 	qsc_consoleutils_print_line("");
 }
 
@@ -195,7 +195,7 @@ static bool server_prikey_exists(void)
 static bool server_password_minimum_check(const char* password, size_t passlen)
 {
 	assert(password != NULL);
-	assert(passlen != 0);
+	assert(passlen != 0U);
 
 	bool res;
 	uint8_t hsp;
@@ -203,11 +203,11 @@ static bool server_password_minimum_check(const char* password, size_t passlen)
 	uint8_t nsp;
 
 	res = false;
-	hsp = 0;
-	lsp = 0;
-	nsp = 0;
+	hsp = 0U;
+	lsp = 0U;
+	nsp = 0U;
 
-	if (password != NULL && passlen != 0)
+	if (password != NULL && passlen != 0U)
 	{
 		if (passlen >= PQS_SERVER_PASSWORD_MIN && passlen <= PQS_SERVER_PASSWORD_MAX)
 		{
@@ -256,7 +256,7 @@ static bool server_password_challenge(uint8_t* rkhash)
 	size_t lcnt;
 	bool res;
 
-	lcnt = 0;
+	lcnt = 0U;
 	res = false;
 
 	server_print_message("Enter the remote password to start.");
@@ -265,8 +265,8 @@ static bool server_password_challenge(uint8_t* rkhash)
 	while (true)
 	{
 		char pass[PQS_SERVER_PASSWORD_MAX] = { 0 };
-		uint8_t phsh[QSC_SHA3_256_HASH_SIZE] = { 0 };
-		uint8_t rhsh[QSC_SHA3_256_HASH_SIZE] = { 0 };
+		uint8_t phsh[QSC_SHA3_256_HASH_SIZE] = { 0U };
+		uint8_t rhsh[QSC_SHA3_256_HASH_SIZE] = { 0U };
 		size_t plen;
 
 		++lcnt;
@@ -301,8 +301,8 @@ static bool server_password_challenge(uint8_t* rkhash)
 
 static bool server_key_dialogue(pqs_server_signature_key* prik, pqs_client_verification_key* pubk, uint8_t keyid[PQS_KEYID_SIZE])
 {
-	uint8_t spub[PQS_PUBKEY_STRING_SIZE] = { 0 };
-	uint8_t spri[PQS_SIGKEY_ENCODED_SIZE] = { 0 };
+	uint8_t spub[PQS_PUBKEY_STRING_SIZE] = { 0U };
+	uint8_t spri[PQS_SIGKEY_ENCODED_SIZE] = { 0U };
 	char dir[QSC_SYSTEM_MAX_PATH] = { 0 };
 	char fpath[QSC_SYSTEM_MAX_PATH] = { 0 };
 	bool res;
@@ -429,12 +429,12 @@ static void server_send_message(pqs_connection_state* cns, const uint8_t* messag
 {
 	assert(cns != NULL);
 	assert(message != NULL);
-	assert(msglen != 0);
+	assert(msglen != 0U);
 
 	uint8_t* pmsg;
 	size_t mlen;
 
-	if (msglen > 0)
+	if (msglen > 0U)
 	{
 		mlen = PQS_HEADER_SIZE + msglen + PQS_MACTAG_SIZE;
 		pmsg = (uint8_t*)qsc_memutils_malloc(mlen);
@@ -468,11 +468,11 @@ static bool server_command_execute(pqs_connection_state* cns, const char* messag
 		qsc_memutils_clear(sres, slen);
 		slen = pqs_interpreter_command_execute(sres, slen, message);
 
-		if (slen > 0)
+		if (slen > 0U)
 		{
 			slen = qsc_stringutils_remove_null_chars(sres, slen);
 			
-			if (slen > 0)
+			if (slen > 0U)
 			{
 				server_send_message(cns, (const uint8_t*)sres, slen);
 			}
@@ -481,7 +481,7 @@ static bool server_command_execute(pqs_connection_state* cns, const char* messag
 		qsc_memutils_alloc_free(sres);
 	}
 
-	return (slen > 0);
+	return (slen > 0U);
 }
 
 static void server_disconnect_callback(pqs_connection_state* cns)
@@ -489,8 +489,8 @@ static void server_disconnect_callback(pqs_connection_state* cns)
 	qsc_mutex mtx;
 
 	m_server_connection_state.connected = false;
-	m_server_connection_state.instance = 0;
-	m_server_connection_state.lcount = 0;
+	m_server_connection_state.instance = 0U;
+	m_server_connection_state.lcount = 0U;
 
 	mtx = qsc_async_mutex_lock_ex();
 	pqs_interpreter_cleanup();
@@ -530,25 +530,25 @@ static void server_receive_callback(pqs_connection_state* cns, const uint8_t* me
 	{
 		/* start the login */
 
-		uint8_t pkh[PQS_HASH_SIZE] = { 0 };
+		uint8_t pkh[PQS_HASH_SIZE] = { 0U };
 
 		server_hash_remote_password(pkh, (const char*)message, msglen);
 		++m_server_connection_state.lcount;
 
 		if (m_server_connection_state.lcount <= PQS_SERVER_MAX_LOGIN)
 		{
-			uint8_t msg[PQS_HASH_SIZE] = { 0 };
+			uint8_t msg[PQS_HASH_SIZE] = { 0U };
 
 			if (qsc_memutils_are_equal(pkh, m_server_connection_state.rkhash, PQS_HASH_SIZE) == true)
 			{
 				/* send the servers details */
 				 
-				msg[0] = (uint8_t)pqs_error_login_success;
+				msg[0U] = (uint8_t)pqs_error_login_success;
 				
 				server_get_host_name((char*)msg + PQS_ERROR_MESSAGE_SIZE);
 				server_send_message(cns, msg, sizeof(msg));
 
-				m_server_connection_state.lcount = 0;
+				m_server_connection_state.lcount = 0U;
 				m_server_connection_state.connected = true;
 
 				qsc_consoleutils_print_safe("Connected to ");
@@ -560,14 +560,14 @@ static void server_receive_callback(pqs_connection_state* cns, const uint8_t* me
 			else
 			{
 				/* send the client an error message */
-				msg[0] = (uint8_t)pqs_error_login_failure;
+				msg[0U] = (uint8_t)pqs_error_login_failure;
 				server_send_message(cns, msg, sizeof(msg));
 			}
 		}
 		else
 		{
 			/* authentication failed, close connection */
-			m_server_connection_state.lcount = 0;
+			m_server_connection_state.lcount = 0U;
 			pqs_connection_close(cns, pqs_error_login_failure, true);
 
 			server_print_prompt();
@@ -582,7 +582,7 @@ static void server_command_loop(qsc_socket* source)
 	char sin[PQS_SERVER_INPUT_MAX] = { 0 };
 	size_t mlen;
 
-	mlen = 0;
+	mlen = 0U;
 
 	server_print_message("Type 'quit' to shut down the server.");
 
@@ -590,9 +590,9 @@ static void server_command_loop(qsc_socket* source)
 	while (true)
 	{
 		server_print_prompt();
-		mlen = qsc_consoleutils_get_line(sin, sizeof(sin)) - 1;
+		mlen = qsc_consoleutils_get_line(sin, sizeof(sin)) - 1U;
 
-		if (mlen > 0)
+		if (mlen > 0U)
 		{
 			if (qsc_stringutils_strings_equal(sin, "quit") == true)
 			{
@@ -622,17 +622,17 @@ int main(void)
 	pqs_client_verification_key pubk = { 0 };
 	pqs_server_signature_key prik = { 0 };
 	qsc_socket source = { 0 };
-	uint8_t kid[PQS_KEYID_SIZE] = { 0 };
+	uint8_t kid[PQS_KEYID_SIZE] = { 0U };
 	pqs_errors qerr;
 
 	qsc_consoleutils_set_virtual_terminal();
 	qsc_consoleutils_set_window_title("PQS Server");
-	qsc_consoleutils_set_window_buffer(2000, 6000);
-	qsc_consoleutils_set_window_size(1000, 600);
+	qsc_consoleutils_set_window_buffer(2000U, 6000U);
+	qsc_consoleutils_set_window_size(1000U, 600U);
 
 	server_get_prompt();
 	m_server_connection_state.connected = false;
-	m_server_connection_state.lcount = 0;
+	m_server_connection_state.lcount = 0U;
 	server_print_banner();
 
 	if (server_key_dialogue(&prik, &pubk, kid) == true)
