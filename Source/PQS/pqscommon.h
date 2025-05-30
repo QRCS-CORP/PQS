@@ -40,6 +40,12 @@
 #ifndef PQS_MASTER_COMMON_H
 #define PQS_MASTER_COMMON_H
 
+#if defined(__posix) || defined(__posix__) || defined(__USE_POSIX) || defined(_POSIX_VERSION) || defined(__MACH__) || \
+    defined(__linux) || defined(__linux__) || defined(__gnu_linux__) || defined(__unix) || defined(__unix__) || \
+    defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+#define _POSIX_C_SOURCE 200809L
+#endif
+
 #include <assert.h>
 #include <errno.h>
 #include <stdbool.h>
