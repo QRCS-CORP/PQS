@@ -47,7 +47,7 @@ bool pqs_connections_active(size_t index)
 	return res;
 }
 
-pqs_connection_state* pqs_connections_add()
+pqs_connection_state* pqs_connections_add(void)
 {
 	pqs_connection_state* cns;
 
@@ -71,7 +71,7 @@ pqs_connection_state* pqs_connections_add()
 	return cns;
 }
 
-size_t pqs_connections_available()
+size_t pqs_connections_available(void)
 {
 	size_t count;
 
@@ -88,7 +88,7 @@ size_t pqs_connections_available()
 	return count;
 }
 
-void pqs_connections_clear()
+void pqs_connections_clear(void)
 {
 	qsc_memutils_clear(m_connection_set.conset, sizeof(pqs_connection_state) * m_connection_set.length);
 
@@ -99,7 +99,7 @@ void pqs_connections_clear()
 	}
 }
 
-void pqs_connections_dispose()
+void pqs_connections_dispose(void)
 {
 	if (m_connection_set.conset != NULL)
 	{
@@ -136,7 +136,7 @@ pqs_connection_state* pqs_connections_index(size_t index)
 	return res;
 }
 
-bool pqs_connections_full()
+bool pqs_connections_full(void)
 {
 	bool res;
 
@@ -237,7 +237,7 @@ void pqs_connections_reset(uint32_t instance)
 	}
 }
 
-size_t pqs_connections_size()
+size_t pqs_connections_size(void)
 {
 	return m_connection_set.length;
 }
@@ -247,6 +247,9 @@ void pqs_connections_self_test()
 	pqs_connection_state* xn[20] = { 0 };
 	size_t cnt;
 	bool full;
+
+	(void)cnt;
+	(void)full;
 
 	pqs_connections_initialize(1, 10); /* init with 1 */
 
