@@ -248,6 +248,7 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
 
     size_t tlen;
 
+    tlen = 0;
 #if defined(QSC_SYSTEM_OS_WINDOWS)
 
     if (m_interpreter_command_state.active == true && parameter != NULL && result != NULL && reslen > 0)
@@ -256,7 +257,6 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
         DWORD bwrit;
         size_t slen;
 
-        tlen = 0;
         slen = strnlen_s(parameter, sizeof(param) - 1);
         qsc_memutils_copy(param, parameter, slen);
         param[slen] = '\n';
@@ -323,11 +323,9 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
     FILE *fp;
     char rbuf[PQS_INTERPRETER_COMMAND_BUFFER_SIZE] = { 0 };
     size_t slen;
-    size_t tlen;
 
     fp = NULL;
     slen = 0;
-    tlen = 0;
 
     if (m_interpreter_command_state.active == true && parameter != NULL && result != NULL && reslen > 0)
     {
