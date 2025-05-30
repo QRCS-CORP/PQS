@@ -19,7 +19,7 @@ typedef struct client_receiver_state
 
 typedef struct client_receive_loop_args_t
 {
-	const client_receiver_state* prcv;
+	client_receiver_state* prcv;
 } client_receive_loop_args;
 /** \endcond DOXYGEN_IGNORE */
 
