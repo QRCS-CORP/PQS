@@ -15,6 +15,12 @@ typedef struct client_receiver_state
 	pqs_connection_state* pcns;
 	void (*callback)(pqs_connection_state*, const uint8_t*, size_t);
 } client_receiver_state;
+
+
+typedef struct client_receive_loop_args_t
+{
+	const client_receiver_state* prcv;
+} client_receive_loop_args;
 /** \endcond DOXYGEN_IGNORE */
 
 /* Private Functions */
@@ -185,6 +191,16 @@ static void client_connection_dispose(client_receiver_state* prcv)
 
 /* Public Functions */
 
+static void client_receive_loop_wrapper(void* state)
+{
+	client_receive_loop_args* args = (client_receive_loop_args*)state;
+
+	if (args != NULL)
+	{
+		client_receive_loop(args->prcv);
+	}
+}
+
 pqs_errors pqs_client_connect_ipv4(const pqs_client_verification_key* pubk, 
 	const qsc_ipinfo_ipv4_address* address, uint16_t port, 
 	void (*send_func)(pqs_connection_state*), 
@@ -235,7 +251,7 @@ pqs_errors pqs_client_connect_ipv4(const pqs_client_verification_key* pubk,
 					if (qerr == pqs_error_none)
 					{
 						/* start the receive loop on a new thread */
-						qsc_async_thread_create(&client_receive_loop, prcv);
+						qsc_async_thread_create(&client_receive_loop_wrapper, prcv);
 
 						/* start the send loop on the main thread */
 						send_func(prcv->pcns);
