@@ -255,7 +255,6 @@ static void client_connection_login(pqs_connection_state* cns)
 	char sin[PQS_CLIENT_PASSWORD_LENGTH_MAX + 1] = { 0 };
 	uint8_t smsg[PQS_HEADER_SIZE + PQS_HASH_SIZE + PQS_MACTAG_SIZE] = { 0 };
 	size_t mlen;
-	size_t slen;
 
 	++m_client_connection_state.lcounter;
 
@@ -273,7 +272,7 @@ static void client_connection_login(pqs_connection_state* cns)
 	pqs_packet_header_serialize(&spkt, smsg);
 
 	/* send to the server */
-	slen = qsc_socket_send(&cns->target, smsg, sizeof(smsg), qsc_socket_send_flag_none);
+	(void)qsc_socket_send(&cns->target, smsg, sizeof(smsg), qsc_socket_send_flag_none);
 }
 
 static const char* client_format_message(const uint8_t* message, size_t msglen)
@@ -312,7 +311,7 @@ static void client_receive_callback(pqs_connection_state* cns, const uint8_t* me
 			client_print_prompt();
 
 			qsc_stringutils_copy_string(title, sizeof(title), "PQS Client - connected to ");
-			qsc_stringutils_concat_strings(title, sizeof(title), cns->target.address);
+			qsc_stringutils_concat_strings(title, sizeof(title), (const char*)cns->target.address);
 			qsc_consoleutils_set_window_title(title);
 
 			qsc_consoleutils_print_safe("Connected to server: ");
@@ -331,7 +330,7 @@ static void client_receive_callback(pqs_connection_state* cns, const uint8_t* me
 	}
 }
 
-static void client_print_pubkey()
+static void client_print_pubkey(void)
 {
 	char enck[PQS_PUBKEY_STRING_SIZE] = { 0 };
 
