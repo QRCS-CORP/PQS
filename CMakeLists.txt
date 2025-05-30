@@ -2,74 +2,51 @@ cmake_minimum_required(VERSION 3.15)
 
 project(PQS_Complete C)
 
-# ─── Language standard ────────────────────────────────────────────────
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
-# ─── Output directories (lib / bin) ───────────────────────────────────
+# Output dirs
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# ─── Fetch QSC library (uses the main branch) ─────────────────────────
+# Download and build QSC
 include(FetchContent)
 FetchContent_Declare(
   QSC
   GIT_REPOSITORY https://github.com/QRCS-CORP/QSC.git
-  GIT_TAG        master
+  GIT_TAG master
 )
 FetchContent_MakeAvailable(QSC)
 
-# ─── PQS static library ───────────────────────────────────────────────
-file(GLOB_RECURSE PQS_SOURCES
-     "${PROJECT_SOURCE_DIR}/Source/PQS/*.c"
-)
+# PQS Static Library
+file(GLOB_RECURSE PQS_SOURCES "Source/PQS/*.c")
+file(GLOB_RECURSE PQS_HEADERS "Source/PQS/include/*.h")
 
-add_library(pqs STATIC ${PQS_SOURCES})
-
-# Here we add NOT only your public API headers under Source/PQS/include,
-# but also the real location of appclt.h (and server.h) under Source/Client
-# and Source/Server so that #include "appclt.h" will be found on all platforms :contentReference[oaicite:0]{index=0}.
-target_include_directories(pqs
-  PUBLIC
-    "${PROJECT_SOURCE_DIR}/Source/PQS/include"
-  PRIVATE
-    "${PROJECT_SOURCE_DIR}/Source/Client"
-    "${PROJECT_SOURCE_DIR}/Source/Server"
-    "${PROJECT_SOURCE_DIR}/Source/PQS"
-)
-
+add_library(pqs STATIC ${PQS_SOURCES} ${PQS_HEADERS})
+target_include_directories(pqs PUBLIC Source/PQS)
 target_link_libraries(pqs PUBLIC qsc)
 
-# ─── PQS client executable ────────────────────────────────────────────
-file(GLOB_RECURSE PQS_CLIENT_SOURCES
-     "${PROJECT_SOURCE_DIR}/Source/Client/*.c"
-)
+# PQS Client
+file(GLOB_RECURSE SKDP_CLIENT_SOURCES "Source/Client/*.c")
 
 add_executable(pqs_client ${PQS_CLIENT_SOURCES})
+target_include_directories(pqs_client PRIVATE "Source/Client")
 target_link_libraries(pqs_client PRIVATE pqs)
 
-# ─── PQS server executable ────────────────────────────────────────────
-file(GLOB_RECURSE PQS_SERVER_SOURCES
-     "${PROJECT_SOURCE_DIR}/Source/Server/*.c"
-)
+# PQS Server
+file(GLOB_RECURSE SKDP_SERVER_SOURCES "Source/Server/*.c")
 
 add_executable(pqs_server ${PQS_SERVER_SOURCES})
+target_include_directories(pqs_server PRIVATE Source/Server)
 target_link_libraries(pqs_server PRIVATE pqs)
 
-# ─── Warnings / strict mode toggle ────────────────────────────────────
-option(PQS_STRICT "Treat warnings as errors" ON)
-
+# Warnings
 foreach(target pqs pqs_client pqs_server)
-  if(MSVC)
-    target_compile_options(${target}
-      PRIVATE /W4 $<$<BOOL:${PQS_STRICT}>:/WX>
-    )
+  if (MSVC)
+    target_compile_options(${target} PRIVATE /W4 /WX)
   else()
-    target_compile_options(${target}
-      PRIVATE -Wall -Wextra -pedantic
-              $<$<BOOL:${PQS_STRICT}>:-Werror>
-    )
+    target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic -Werror)
   endif()
 endforeach()
