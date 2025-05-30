@@ -85,7 +85,7 @@ static void server_receiver_dispose(server_receiver_state* prcv)
 
 static void server_receive_loop(server_receiver_state* prcv)
 {
-	assert(prcv != NULL);
+	PQS_ASSERT(prcv != NULL);
 
 	pqs_network_packet pkt = { 0 };
 	char cadd[QSC_SOCKET_ADDRESS_MAX_SIZE] = { 0 };
@@ -246,9 +246,9 @@ static pqs_errors server_start(const pqs_server_signature_key* kset,
 	void (*receive_callback)(pqs_connection_state*, const uint8_t*, size_t),
 	void (*disconnect_callback)(pqs_connection_state*))
 {
-	assert(kset != NULL);
-	assert(source != NULL);
-	assert(receive_callback != NULL);
+	PQS_ASSERT(kset != NULL);
+	PQS_ASSERT(source != NULL);
+	PQS_ASSERT(receive_callback != NULL);
 
 	qsc_socket_exceptions res;
 	pqs_errors qerr;
@@ -352,8 +352,8 @@ pqs_errors pqs_server_start_ipv4(qsc_socket* source,
 	void (*receive_callback)(pqs_connection_state*, const uint8_t*, size_t),
 	void (*disconnect_callback)(pqs_connection_state*))
 {
-	assert(kset != NULL);
-	assert(receive_callback != NULL);
+	PQS_ASSERT(kset != NULL);
+	PQS_ASSERT(receive_callback != NULL);
 
 	qsc_ipinfo_ipv4_address addt = { 0 };
 	qsc_socket_exceptions res;
@@ -401,8 +401,8 @@ pqs_errors pqs_server_start_ipv6(qsc_socket* source,
 	void (*receive_callback)(pqs_connection_state*, const uint8_t*, size_t),
 	void (*disconnect_callback)(pqs_connection_state*))
 {
-	assert(kset != NULL);
-	assert(receive_callback != NULL);
+	PQS_ASSERT(kset != NULL);
+	PQS_ASSERT(receive_callback != NULL);
 
 	qsc_ipinfo_ipv6_address addt = { 0 };
 	qsc_socket_exceptions res;

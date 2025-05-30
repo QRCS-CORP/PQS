@@ -40,7 +40,7 @@ static void client_state_initialize(pqs_kex_client_state* kcs, pqs_connection_st
 
 static void client_receive_loop(client_receiver_state* prcv)
 {
-	assert(prcv != NULL);
+	PQS_ASSERT(prcv != NULL);
 
 	pqs_network_packet pkt = { 0 };
 	char cadd[QSC_SOCKET_ADDRESS_MAX_SIZE] = { 0 };
@@ -205,10 +205,10 @@ pqs_errors pqs_client_connect_ipv4(const pqs_client_verification_key* pubk,
 	void (*send_func)(pqs_connection_state*), 
 	void (*receive_callback)(pqs_connection_state*, const uint8_t*, size_t))
 {
-	assert(pubk != NULL);
-	assert(send_func != NULL);
-	assert(send_func != NULL);
-	assert(receive_callback != NULL);
+	PQS_ASSERT(pubk != NULL);
+	PQS_ASSERT(send_func != NULL);
+	PQS_ASSERT(send_func != NULL);
+	PQS_ASSERT(receive_callback != NULL);
 
 	pqs_kex_client_state* kcs;
 	client_receiver_state* prcv;
@@ -317,10 +317,10 @@ pqs_errors pqs_client_connect_ipv6(const pqs_client_verification_key* pubk,
 	void (*send_func)(pqs_connection_state*), 
 	void (*receive_callback)(pqs_connection_state*, const uint8_t*, size_t))
 {
-	assert(pubk != NULL);
-	assert(send_func != NULL);
-	assert(send_func != NULL);
-	assert(receive_callback != NULL);
+	PQS_ASSERT(pubk != NULL);
+	PQS_ASSERT(send_func != NULL);
+	PQS_ASSERT(send_func != NULL);
+	PQS_ASSERT(receive_callback != NULL);
 
 	pqs_kex_client_state* kcs;
 	client_receiver_state* prcv;

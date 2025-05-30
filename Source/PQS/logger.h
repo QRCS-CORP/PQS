@@ -154,7 +154,7 @@ size_t pqs_logger_size(void);
  */
 bool pqs_logger_write(const char* message);
 
-#if defined(QSC_DEBUG_MODE)
+#if defined(PQS_DEBUG_MODE)
 /**
  * \brief Perform a manual test of the logger functions.
  *

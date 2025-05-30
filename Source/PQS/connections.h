@@ -196,7 +196,7 @@ void pqs_connections_reset(uint32_t instance);
  */
 size_t pqs_connections_size(void);
 
-#if defined(QSC_DEBUG_MODE)
+#if defined(PQS_DEBUG_MODE)
 /**
  * \brief Run the self-test for the connection collection.
  *

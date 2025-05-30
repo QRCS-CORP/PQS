@@ -170,7 +170,7 @@ bool pqs_logger_write(const char* message)
 	return res;
 }
 
-#if defined(QSC_DEBUG_MODE)
+#if defined(PQS_DEBUG_MODE)
 bool pqs_logger_test(void)
 {
 	char buf[4U * PQS_LOGGING_MESSAGE_MAX] = { 0U };

@@ -96,6 +96,25 @@
 #else
 #	define PQS_EXPORT_API
 #endif
+
+#if defined(DEBUG) || defined(_DEBUG) || defined(__DEBUG__) || (defined(__GNUC__) && !defined(__OPTIMIZE__))
+  /*!
+   * \def PQS_DEBUG_MODE
+   * \brief Defined when the build is in debug mode.
+   */
+#	define PQS_DEBUG_MODE
+#endif
+
+#ifdef PQS_DEBUG_MODE
+  /*!
+   * \def PQS_ASSERT
+   * \brief Define the assert function and guarantee it as debug only.
+   */
+#  define PQS_ASSERT(expr) assert(expr)
+#else
+#  define PQS_ASSERT(expr) ((void)0)
+#endif
+
 /** \endcond DOXYGEN_IGNORE */
 
 #endif

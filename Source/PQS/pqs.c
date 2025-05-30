@@ -10,7 +10,7 @@
 
 void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify)
 {
-	assert(cns != NULL);
+	PQS_ASSERT(cns != NULL);
 
 	if (cns != NULL)
 	{
@@ -66,7 +66,7 @@ void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify
 
 void pqs_connection_state_dispose(pqs_connection_state* cns)
 {
-	assert(cns != NULL);
+	PQS_ASSERT(cns != NULL);
 
 	if (cns != NULL)
 	{
@@ -111,8 +111,8 @@ const char* pqs_error_to_string(pqs_errors error)
 
 void pqs_generate_keypair(pqs_client_verification_key* pubkey, pqs_server_signature_key* prikey, const uint8_t keyid[PQS_KEYID_SIZE])
 {
-	assert(prikey != NULL);
-	assert(pubkey != NULL);
+	PQS_ASSERT(prikey != NULL);
+	PQS_ASSERT(pubkey != NULL);
 
 	if (prikey != NULL && pubkey != NULL)
 	{
@@ -136,7 +136,7 @@ void pqs_generate_keypair(pqs_client_verification_key* pubkey, pqs_server_signat
 
 void pqs_log_error(pqs_messages emsg, qsc_socket_exceptions err, const char* msg)
 {
-	assert(msg != NULL);
+	PQS_ASSERT(msg != NULL);
 
 	const char* pmsg;
 
@@ -194,7 +194,7 @@ void pqs_log_message(pqs_messages emsg)
 
 void pqs_log_write(pqs_messages emsg, const char* msg)
 {
-	assert(msg != NULL);
+	PQS_ASSERT(msg != NULL);
 
 	const char* pmsg = pqs_error_description(emsg);
 
@@ -229,10 +229,10 @@ void pqs_packet_clear(pqs_network_packet* packet)
 
 pqs_errors pqs_packet_decrypt(pqs_connection_state* cns, uint8_t* message, size_t* msglen, const pqs_network_packet* packetin)
 {
-	assert(cns != NULL);
-	assert(packetin != NULL);
-	assert(message != NULL);
-	assert(msglen != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(packetin != NULL);
+	PQS_ASSERT(message != NULL);
+	PQS_ASSERT(msglen != NULL);
 
 	uint8_t hdr[PQS_HEADER_SIZE] = { 0U };
 	pqs_errors qerr;
@@ -288,9 +288,9 @@ pqs_errors pqs_packet_decrypt(pqs_connection_state* cns, uint8_t* message, size_
 
 pqs_errors pqs_packet_encrypt(pqs_connection_state* cns, pqs_network_packet* packetout, const uint8_t* message, size_t msglen)
 {
-	assert(cns != NULL);
-	assert(message != NULL);
-	assert(packetout != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(message != NULL);
+	PQS_ASSERT(packetout != NULL);
 
 	pqs_errors qerr;
 
@@ -326,7 +326,7 @@ pqs_errors pqs_packet_encrypt(pqs_connection_state* cns, pqs_network_packet* pac
 
 void pqs_packet_error_message(pqs_network_packet* packet, pqs_errors error)
 {
-	assert(packet != NULL);
+	PQS_ASSERT(packet != NULL);
 
 	if (packet != NULL)
 	{
@@ -348,8 +348,8 @@ void pqs_packet_header_create(pqs_network_packet* packetout, pqs_flags flag, uin
 
 void pqs_packet_header_deserialize(const uint8_t* header, pqs_network_packet* packet)
 {
-	assert(header != NULL);
-	assert(packet != NULL);
+	PQS_ASSERT(header != NULL);
+	PQS_ASSERT(packet != NULL);
 
 	if (header != NULL && packet != NULL)
 	{
@@ -367,8 +367,8 @@ void pqs_packet_header_deserialize(const uint8_t* header, pqs_network_packet* pa
 
 void pqs_packet_header_serialize(const pqs_network_packet* packet, uint8_t* header)
 {
-	assert(header != NULL);
-	assert(packet != NULL);
+	PQS_ASSERT(header != NULL);
+	PQS_ASSERT(packet != NULL);
 
 	if (header != NULL && packet != NULL)
 	{
@@ -452,8 +452,8 @@ bool pqs_packet_time_validate(const pqs_network_packet* packet)
 
 size_t pqs_packet_to_stream(const pqs_network_packet* packet, uint8_t* pstream)
 {
-	assert(packet != NULL);
-	assert(pstream != NULL);
+	PQS_ASSERT(packet != NULL);
+	PQS_ASSERT(pstream != NULL);
 
 	size_t pos;
 	size_t res;
@@ -479,7 +479,7 @@ size_t pqs_packet_to_stream(const pqs_network_packet* packet, uint8_t* pstream)
 
 bool pqs_public_key_decode(pqs_client_verification_key* pubk, const char enck[PQS_PUBKEY_STRING_SIZE])
 {
-	assert(pubk != NULL);
+	PQS_ASSERT(pubk != NULL);
 
 	char dtm[QSC_TIMESTAMP_STRING_SIZE] = { 0 };
 	char tmpvk[PQS_PUBKEY_ENCODING_SIZE] = { 0 };
@@ -514,7 +514,7 @@ bool pqs_public_key_decode(pqs_client_verification_key* pubk, const char enck[PQ
 
 void pqs_public_key_encode(char enck[PQS_PUBKEY_STRING_SIZE], const pqs_client_verification_key* pubkey)
 {
-	assert(pubkey != NULL);
+	PQS_ASSERT(pubkey != NULL);
 
 	char dtm[QSC_TIMESTAMP_STRING_SIZE] = { 0 };
 	char hexid[(PQS_KEYID_SIZE * 2)] = { 0 };
@@ -596,7 +596,7 @@ void pqs_public_key_hash(uint8_t* hash, const pqs_client_verification_key* pubk)
 
 void pqs_signature_key_deserialize(pqs_server_signature_key* kset, const uint8_t serk[PQS_SIGKEY_ENCODED_SIZE])
 {
-	assert(kset != NULL);
+	PQS_ASSERT(kset != NULL);
 
 	size_t pos;
 
@@ -615,7 +615,7 @@ void pqs_signature_key_deserialize(pqs_server_signature_key* kset, const uint8_t
 
 void pqs_signature_key_serialize(uint8_t serk[PQS_SIGKEY_ENCODED_SIZE], const pqs_server_signature_key* kset)
 {
-	assert(kset != NULL);
+	PQS_ASSERT(kset != NULL);
 
 	size_t pos;
 
@@ -634,8 +634,8 @@ void pqs_signature_key_serialize(uint8_t serk[PQS_SIGKEY_ENCODED_SIZE], const pq
 
 void pqs_stream_to_packet(const uint8_t* pstream, pqs_network_packet* packet)
 {
-	assert(packet != NULL);
-	assert(pstream != NULL);
+	PQS_ASSERT(packet != NULL);
+	PQS_ASSERT(pstream != NULL);
 
 	size_t pos;
 

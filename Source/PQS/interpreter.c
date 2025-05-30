@@ -233,10 +233,10 @@ bool pqs_interpreter_initialize(void)
 
 size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* parameter)
 {
-    assert(m_interpreter_command_state.active == true);
-    assert(parameter != NULL);
-    assert(result != NULL);
-    assert(reslen > 0U);
+    PQS_ASSERT(m_interpreter_command_state.active == true);
+    PQS_ASSERT(parameter != NULL);
+    PQS_ASSERT(result != NULL);
+    PQS_ASSERT(reslen > 0U);
 
     size_t tlen;
 

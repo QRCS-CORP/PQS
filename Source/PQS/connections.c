@@ -173,9 +173,9 @@ pqs_connection_state* pqs_connections_get(uint32_t instance)
 
 void pqs_connections_initialize(size_t count, size_t maximum)
 {
-	assert(count != 0U);
-	assert(maximum != 0U);
-	assert(count <= maximum);
+	PQS_ASSERT(count != 0U);
+	PQS_ASSERT(maximum != 0U);
+	PQS_ASSERT(count <= maximum);
 	
 	if (count != 0U && maximum != 0 && count <= maximum)
 	{
@@ -242,7 +242,7 @@ size_t pqs_connections_size(void)
 	return m_connection_set.length;
 }
 
-#if defined(QSC_DEBUG_MODE)
+#if defined(PQS_DEBUG_MODE)
 void pqs_connections_self_test(void)
 {
 	pqs_connection_state* xn[20U] = { 0 };

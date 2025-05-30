@@ -194,8 +194,8 @@ static bool server_prikey_exists(void)
 
 static bool server_password_minimum_check(const char* password, size_t passlen)
 {
-	assert(password != NULL);
-	assert(passlen != 0U);
+	PQS_ASSERT(password != NULL);
+	PQS_ASSERT(passlen != 0U);
 
 	bool res;
 	uint8_t hsp;
@@ -427,9 +427,9 @@ static bool server_key_dialogue(pqs_server_signature_key* prik, pqs_client_verif
 
 static void server_send_message(pqs_connection_state* cns, const uint8_t* message, size_t msglen)
 {
-	assert(cns != NULL);
-	assert(message != NULL);
-	assert(msglen != 0U);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(message != NULL);
+	PQS_ASSERT(msglen != 0U);
 
 	uint8_t* pmsg;
 	size_t mlen;

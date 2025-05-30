@@ -25,7 +25,7 @@
 
 static void kex_send_network_error(const qsc_socket* sock, pqs_errors error)
 {
-	assert(sock != NULL);
+	PQS_ASSERT(sock != NULL);
 
 	if (qsc_socket_is_connected(sock) == true)
 	{
@@ -41,7 +41,7 @@ static void kex_send_network_error(const qsc_socket* sock, pqs_errors error)
 
 static void kex_client_reset(pqs_kex_client_state* kcs)
 {
-	assert(kcs != NULL);
+	PQS_ASSERT(kcs != NULL);
 
 	if (kcs != NULL)
 	{
@@ -63,7 +63,7 @@ static bool kex_server_keyid_verify(const uint8_t* keyid, const uint8_t* message
 
 static void kex_server_reset(pqs_kex_server_state* kss)
 {
-	assert(kss != NULL);
+	PQS_ASSERT(kss != NULL);
 
 	if (kss != NULL)
 	{
@@ -90,9 +90,9 @@ C{ kid, cfg }-> S
 */
 static pqs_errors kex_client_connect_request(pqs_kex_client_state* kcs, pqs_connection_state* cns, pqs_network_packet* packetout)
 {
-	assert(kcs != NULL);
-	assert(cns != NULL);
-	assert(packetout != NULL);
+	PQS_ASSERT(kcs != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(packetout != NULL);
 
 	pqs_errors qerr;
 
@@ -156,10 +156,10 @@ C{ cpt } -> S
 */
 static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, pqs_connection_state* cns, const pqs_network_packet* packetin, pqs_network_packet* packetout)
 {
-	assert(kcs != NULL);
-	assert(cns != NULL);
-	assert(packetin != NULL);
-	assert(packetout != NULL);
+	PQS_ASSERT(kcs != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(packetin != NULL);
+	PQS_ASSERT(packetout != NULL);
 
 	uint8_t khash[PQS_SCHASH_SIZE] = { 0U };
 	size_t mlen;
@@ -264,9 +264,9 @@ The client sets the operational state to session established, and is now ready t
 */
 static pqs_errors kex_client_establish_verify(const pqs_kex_client_state* kcs, pqs_connection_state* cns, const pqs_network_packet* packetin)
 {
-	assert(kcs != NULL);
-	assert(cns != NULL);
-	assert(packetin != NULL);
+	PQS_ASSERT(kcs != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(packetin != NULL);
 
 	pqs_errors qerr;
 
@@ -302,10 +302,10 @@ S{ spkh, pk } -> C
 */
 static pqs_errors kex_server_connect_response(pqs_kex_server_state* kss, pqs_connection_state* cns, const pqs_network_packet* packetin, pqs_network_packet* packetout)
 {
-	assert(kss != NULL);
-	assert(cns != NULL);
-	assert(packetin != NULL);
-	assert(packetout != NULL);
+	PQS_ASSERT(kss != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(packetin != NULL);
+	PQS_ASSERT(packetout != NULL);
 
 	char confs[PQS_CONFIG_SIZE + 1U] = { 0 };
 	uint8_t phash[PQS_HASH_SIZE] = { 0U };
@@ -406,10 +406,10 @@ S{ f } -> C
 */
 static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, pqs_connection_state* cns, const pqs_network_packet* packetin, pqs_network_packet* packetout)
 {
-	assert(kss != NULL);
-	assert(cns != NULL);
-	assert(packetin != NULL);
-	assert(packetout != NULL);
+	PQS_ASSERT(kss != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(packetin != NULL);
+	PQS_ASSERT(packetout != NULL);
 
 	pqs_errors qerr;
 
@@ -475,8 +475,8 @@ static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, 
 
 pqs_errors pqs_kex_client_key_exchange(pqs_kex_client_state* kcs, pqs_connection_state* cns)
 {
-	assert(kcs != NULL);
-	assert(cns != NULL);
+	PQS_ASSERT(kcs != NULL);
+	PQS_ASSERT(cns != NULL);
 
 	uint8_t* rbuf;
 	uint8_t* sbuf;
@@ -647,8 +647,8 @@ pqs_errors pqs_kex_client_key_exchange(pqs_kex_client_state* kcs, pqs_connection
 
 pqs_errors pqs_kex_server_key_exchange(pqs_kex_server_state* kss, pqs_connection_state* cns)
 {
-	assert(kss != NULL);
-	assert(cns != NULL);
+	PQS_ASSERT(kss != NULL);
+	PQS_ASSERT(cns != NULL);
 
 	uint8_t* rbuf;
 	uint8_t* sbuf;
