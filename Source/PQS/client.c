@@ -1,13 +1,13 @@
 #include "client.h"
-#include "../PQS/kex.h"
-#include "../PQS/logger.h"
-#include "../../QSC/QSC/acp.h"
-#include "../../QSC/QSC/async.h"
-#include "../../QSC/QSC/intutils.h"
-#include "../../QSC/QSC/memutils.h"
-#include "../../QSC/QSC/sha3.h"
-#include "../../QSC/QSC/socketserver.h"
-#include "../../QSC/QSC/timestamp.h"
+#include "kex.h"
+#include "logger.h"
+#include "acp.h"
+#include "async.h"
+#include "intutils.h"
+#include "memutils.h"
+#include "sha3.h"
+#include "socketserver.h"
+#include "timestamp.h"
 
 /** \cond DOXYGEN_IGNORE */
 typedef struct client_receiver_state

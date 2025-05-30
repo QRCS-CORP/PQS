@@ -1,13 +1,13 @@
 ﻿#include "kex.h"
-#include "../../QSC/QSC/acp.h"
-#include "../../QSC/QSC/encoding.h"
-#include "../../QSC/QSC/intutils.h"
-#include "../../QSC/QSC/memutils.h"
-#include "../../QSC/QSC/rcs.h"
-#include "../../QSC/QSC/sha3.h"
-#include "../../QSC/QSC/socketserver.h"
-#include "../../QSC/QSC/stringutils.h"
-#include "../../QSC/QSC/timestamp.h"
+#include "acp.h"
+#include "encoding.h"
+#include "intutils.h"
+#include "memutils.h"
+#include "rcs.h"
+#include "sha3.h"
+#include "socketserver.h"
+#include "stringutils.h"
+#include "timestamp.h"
 
 /** \cond DOXYGEN_IGNORE */
 #define KEX_CONNECT_REQUEST_MESSAGE_SIZE (PQS_KEYID_SIZE + PQS_CONFIG_SIZE)
@@ -217,6 +217,9 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 				kp1.key = prnd;
 				kp1.keylen = PQS_SYMMETRIC_KEY_SIZE;
 				kp1.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE;
+#if !defined(PQS_USE_RCS_ENCRYPTION)
+				kp1.noncelen = PQS_NONCE_SIZE;
+#endif
 				kp1.info = NULL;
 				kp1.infolen = 0;
 				pqs_cipher_initialize(&cns->txcpr, &kp1, true);
@@ -226,6 +229,9 @@ static pqs_errors kex_client_exchange_request(const pqs_kex_client_state* kcs, p
 				kp2.key = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE;
 				kp2.keylen = PQS_SYMMETRIC_KEY_SIZE;
 				kp2.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE + PQS_SYMMETRIC_KEY_SIZE;
+#if !defined(PQS_USE_RCS_ENCRYPTION)
+				kp1.noncelen = PQS_NONCE_SIZE;
+#endif
 				kp2.info = NULL;
 				kp2.infolen = 0;
 				pqs_cipher_initialize(&cns->rxcpr, &kp2, false);
@@ -431,6 +437,9 @@ static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, 
 			kp1.key = prnd;
 			kp1.keylen = PQS_SYMMETRIC_KEY_SIZE;
 			kp1.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE;
+#if !defined(PQS_USE_RCS_ENCRYPTION)
+			kp1.noncelen = PQS_NONCE_SIZE;
+#endif
 			kp1.info = NULL;
 			kp1.infolen = 0;
 			pqs_cipher_initialize(&cns->rxcpr, &kp1, false);
@@ -440,6 +449,9 @@ static pqs_errors kex_server_exchange_response(const pqs_kex_server_state* kss, 
 			kp2.key = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE;
 			kp2.keylen = PQS_SYMMETRIC_KEY_SIZE;
 			kp2.nonce = prnd + PQS_SYMMETRIC_KEY_SIZE + PQS_NONCE_SIZE + PQS_SYMMETRIC_KEY_SIZE;
+#if !defined(PQS_USE_RCS_ENCRYPTION)
+			kp1.noncelen = PQS_NONCE_SIZE;
+#endif
 			kp2.info = NULL;
 			kp2.infolen = 0;
 			pqs_cipher_initialize(&cns->txcpr, &kp2, true);

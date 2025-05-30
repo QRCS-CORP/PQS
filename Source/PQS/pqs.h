@@ -40,11 +40,11 @@
 #ifndef PQS_H
 #define PQS_H
 
-#include "common.h"
-#include "../../QSC/QSC/dilithium.h"
-#include "../../QSC/QSC/kyber.h"
-#include "../../QSC/QSC/sha3.h"
-#include "../../QSC/QSC/socketbase.h"
+#include "pqscommon.h"
+#include "dilithium.h"
+#include "kyber.h"
+#include "sha3.h"
+#include "socketbase.h"
 
 /**
  * \file pqs.h
@@ -90,7 +90,7 @@
 //#define PQS_USE_RCS_ENCRYPTION
 
 #if defined(PQS_USE_RCS_ENCRYPTION)
-#	include "../../QSC/QSC/rcs.h"
+#	include "rcs.h"
 #	define pqs_cipher_state qsc_rcs_state
 #	define pqs_cipher_dispose qsc_rcs_dispose
 #	define pqs_cipher_initialize qsc_rcs_initialize
@@ -98,7 +98,7 @@
 #	define pqs_cipher_set_associated qsc_rcs_set_associated
 #	define pqs_cipher_transform qsc_rcs_transform
 #else
-#	include "../../QSC/QSC/aes.h"
+#	include "aes.h"
 #	define pqs_cipher_state qsc_aes_gcm256_state
 #	define pqs_cipher_dispose qsc_aes_gcm256_dispose
 #	define pqs_cipher_initialize qsc_aes_gcm256_initialize

@@ -40,7 +40,7 @@
 #ifndef PQS_SERVER_INTERPRETER_H
 #define PQS_SERVER_INTERPRETER_H
 
-#include "common.h"
+#include "pqscommon.h"
 
 /**
  * \file interpreter.h

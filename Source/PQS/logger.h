@@ -40,7 +40,7 @@
 #ifndef PQS_LOGGER_H
 #define PQS_LOGGER_H
 
-#include "common.h"
+#include "pqscommon.h"
 
 /**
  * \file logger.h

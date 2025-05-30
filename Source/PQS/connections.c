@@ -1,6 +1,6 @@
 #include "connections.h"
-#include "../../QSC/QSC/common.h"
-#include "../../QSC/QSC/memutils.h"
+#include "pqscommon.h"
+#include "memutils.h"
 
 /**
  * \struct pqs_connection_set

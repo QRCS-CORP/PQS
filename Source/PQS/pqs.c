@@ -1,12 +1,12 @@
 #include "pqs.h"
-#include "../PQS/logger.h"
-#include "../../QSC/QSC/async.h"
-#include "../../QSC/QSC/acp.h"
-#include "../../QSC/QSC/encoding.h"
-#include "../../QSC/QSC/intutils.h"
-#include "../../QSC/QSC/memutils.h"
-#include "../../QSC/QSC/stringutils.h"
-#include "../../QSC/QSC/timestamp.h"
+#include "logger.h"
+#include "async.h"
+#include "acp.h"
+#include "encoding.h"
+#include "intutils.h"
+#include "memutils.h"
+#include "stringutils.h"
+#include "timestamp.h"
 
 void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify)
 {
@@ -390,7 +390,7 @@ pqs_errors pqs_header_validate(pqs_connection_state* cns, const pqs_network_pack
 
 	if (packetin->flag == pqs_flag_error_condition)
 	{
-		merr = (pqs_flags)packetin->pmessage[0];
+		merr = (pqs_errors)packetin->pmessage[0];
 	}
 	else
 	{

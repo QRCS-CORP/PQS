@@ -1,8 +1,8 @@
 #include "interpreter.h"
-#include "../../QSC/QSC/consoleutils.h"
-#include "../../QSC/QSC/fileutils.h"
-#include "../../QSC/QSC/memutils.h"
-#include "../../QSC/QSC/stringutils.h"
+#include "consoleutils.h"
+#include "fileutils.h"
+#include "memutils.h"
+#include "stringutils.h"
 #if defined(QSC_SYSTEM_OS_WINDOWS)
 #   include <windows.h>
 #elif defined(QSC_SYSTEM_OS_POSIX)

@@ -40,9 +40,14 @@
 #ifndef PQS_SERVER_APP_H
 #define PQS_SERVER_APP_H
 
-#include "common.h"
-#include "../../QSC/QSC/socketbase.h"
-#include "../../QSC/QSC/socketserver.h"
+#include <assert.h>
+#include <errno.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <string.h>
+#include "pqscommon.h"
+#include "socketbase.h"
+#include "socketserver.h"
 
 /**
 * \file appsrv.h

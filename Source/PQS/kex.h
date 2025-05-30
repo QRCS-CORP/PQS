@@ -41,8 +41,8 @@
 #ifndef PQS_KEX_H
 #define PQS_KEX_H
 
-#include "common.h"
-#include "../PQS/pqs.h"
+#include "pqscommon.h"
+#include "pqs.h"
 
 /**
  * \file kex.h

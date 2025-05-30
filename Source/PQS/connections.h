@@ -40,7 +40,6 @@
 #ifndef PQS_CONNECTIONS_H
 #define PQS_CONNECTIONS_H
 
-#include "common.h"
 #include "pqs.h"
 
 /**
