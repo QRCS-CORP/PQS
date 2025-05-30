@@ -61,6 +61,12 @@ typedef struct server_connection_state
 	bool connected;
 } server_connection_state;
 
+
+typedef struct server_command_loop_args_t
+{
+	qsc_socket* source;
+} server_command_loop_args;
+
 static server_connection_state m_server_connection_state;
 
 static size_t server_get_host_name(char* name)
@@ -525,7 +531,7 @@ static void server_disconnect_callback(pqs_connection_state* cns)
 	mtx = qsc_async_mutex_lock_ex();
 	pqs_interpreter_cleanup();
 	qsc_consoleutils_print_safe("Disconnected from host: ");
-	qsc_consoleutils_print_line(cns->target.address);
+	qsc_consoleutils_print_line((const char*)cns->target.address);
 	server_print_prompt();
 	qsc_async_mutex_unlock_ex(mtx);
 }
@@ -637,6 +643,16 @@ static void server_command_loop(qsc_socket* source)
 	server_print_prompt();
 }
 
+static void server_command_loop_wrapper(void* state)
+{
+	server_command_loop_args* args = (server_command_loop_args*)state;
+
+	if (args != NULL)
+	{
+		server_command_loop(args->source);
+	}
+}
+
 int main(void)
 {
 	pqs_client_verification_key pubk = { 0 };
@@ -658,7 +674,7 @@ int main(void)
 	if (server_key_dialogue(&prik, &pubk, kid) == true)
 	{
 		server_print_message("Waiting for a connection...");
-		qsc_async_thread_create(&server_command_loop, &source);
+		qsc_async_thread_create(&server_command_loop_wrapper, &source);
 
 		qerr = pqs_server_start_ipv4(&source, &prik, &server_receive_callback, &server_disconnect_callback);
 
