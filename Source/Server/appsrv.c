@@ -86,7 +86,7 @@ static size_t server_get_host_name(char* name)
 	return hlen;
 }
 
-static void server_get_prompt()
+static void server_get_prompt(void)
 {
 	char host[PQS_SERVER_PROMPT_MAX] = { 0 };
 	size_t hlen;

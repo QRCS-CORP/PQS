@@ -37,7 +37,6 @@
  * Contact: john.underhill@protonmail.com
  */
 
-
 #include "appclt.h"
 #include "client.h"
 #include "interpreter.h"
@@ -90,7 +89,7 @@ static size_t client_get_host_name(char* name)
 	return hlen;
 }
 
-static void client_get_prompt()
+static void client_get_prompt(void)
 {
 	char host[PQS_CLIENT_PROMPT_MAX] = { 0 };
 	size_t hlen;

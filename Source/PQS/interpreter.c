@@ -180,7 +180,7 @@ size_t pqs_interpreter_stream_to_file(uint8_t* result, size_t reslen, const char
     return slen;
 }
 
-bool pqs_interpreter_initialize()
+bool pqs_interpreter_initialize(void)
 {
 #if defined(QSC_SYSTEM_OS_WINDOWS)
 
@@ -383,7 +383,7 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
     return tlen;
 }
 
-void pqs_interpreter_cleanup() 
+void pqs_interpreter_cleanup(void) 
 {
 #if defined(QSC_SYSTEM_OS_WINDOWS)
     if (m_interpreter_command_state.active) 

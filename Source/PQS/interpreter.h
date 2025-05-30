@@ -173,7 +173,7 @@ PQS_EXPORT_API size_t pqs_interpreter_command_execute(char* result, size_t resle
  *
  * \return Returns true if the interpreter was successfully initialized; otherwise, false.
  */
-PQS_EXPORT_API bool pqs_interpreter_initialize();
+PQS_EXPORT_API bool pqs_interpreter_initialize(void);
 
 /**
  * \brief Clean up the command interpreter.
@@ -182,6 +182,6 @@ PQS_EXPORT_API bool pqs_interpreter_initialize();
  * This function releases resources allocated by the command interpreter. On Windows, it terminates the
  * command process and closes any associated handles.
  */
-PQS_EXPORT_API void pqs_interpreter_cleanup();
+PQS_EXPORT_API void pqs_interpreter_cleanup(void);
 
 #endif

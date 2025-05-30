@@ -510,8 +510,8 @@ static const char PQS_PUBKEY_CONFIG_PREFIX[] = "Configuration: ";
 static const char PQS_PUBKEY_KEYID_PREFIX[] = "Host ID: ";
 static const char PQS_PUBKEY_EXPIRATION_PREFIX[] = "Expiration: ";
 static const char PQS_PUBKEY_FOOTER[] = "------END PQS PUBLIC KEY BLOCK------";
-/** \endcond DOXYGEN_IGNORE
-* 
+/** \endcond DOXYGEN_IGNORE */
+
 /*----------------------------------------------------------------------------
    Error code string parameters
 -----------------------------------------------------------------------------*/

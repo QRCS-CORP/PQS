@@ -149,4 +149,3 @@ pqs_errors pqs_kex_server_key_exchange(pqs_kex_server_state* kss, pqs_connection
 pqs_errors pqs_kex_client_key_exchange(pqs_kex_client_state* kcs, pqs_connection_state* cns);
 
 #endif
-
