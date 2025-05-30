@@ -360,7 +360,7 @@ pqs_errors pqs_client_connect_ipv6(const pqs_client_verification_key* pubk,
 					if (qerr == pqs_error_none)
 					{
 						/* start the receive loop on a new thread */
-						qsc_async_thread_create(&client_receive_loop, prcv);
+						qsc_async_thread_create(&client_receive_loop_wrapper, prcv);
 
 						/* start the send loop on the main thread */
 						send_func(prcv->pcns);
