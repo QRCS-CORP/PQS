@@ -15,9 +15,11 @@
 
 typedef struct interpreter_command_state
 {
+#if defined(QSC_SYSTEM_OS_WINDOWS)
     HANDLE hinpw;
     HANDLE hotpr;
     HANDLE hproc;
+#endif
     bool active;
 } interpreter_command_state;
 
