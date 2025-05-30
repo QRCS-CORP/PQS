@@ -24,7 +24,7 @@ FetchContent_MakeAvailable(QSC)
 file(GLOB_RECURSE PQS_SOURCES "Source/PQS/*.c")
 file(GLOB_RECURSE PQS_HEADERS "Source/PQS/include/*.h")
 
-add_library(pqs STATIC ${SKDP_SOURCES} ${PQS_HEADERS})
+add_library(pqs STATIC ${PQS_SOURCES} ${PQS_HEADERS})
 target_include_directories(pqs PUBLIC Source/PQS)
 target_link_libraries(pqs PUBLIC qsc)
 
