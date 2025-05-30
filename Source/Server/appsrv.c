@@ -114,11 +114,6 @@ static void server_print_prompt(void)
 	qsc_consoleutils_print_safe(m_server_connection_state.prompt);
 }
 
-static void server_print_prompt_line(void)
-{
-	qsc_consoleutils_print_line(m_server_connection_state.prompt);
-}
-
 static void server_print_message(const char* message)
 {
 	size_t slen;
@@ -149,17 +144,6 @@ static void server_print_error(pqs_errors error)
 	if (msg != NULL)
 	{
 		server_print_message(msg);
-	}
-}
-
-static void server_print_string(const char* message)
-{
-	if (message != NULL)
-	{
-		if (qsc_stringutils_string_size(message) > 0)
-		{
-			qsc_consoleutils_print_safe(message);
-		}
 	}
 }
 
@@ -202,26 +186,6 @@ static bool server_prikey_exists(void)
 	{
 		qsc_folderutils_append_delimiter(fpath);
 		qsc_stringutils_concat_strings(fpath, sizeof(fpath), PQS_PRIKEY_NAME);
-		res = qsc_fileutils_exists(fpath);
-	}
-
-	return res;
-}
-
-static bool server_pubkey_exists(char fpath[QSC_SYSTEM_MAX_PATH], size_t pathlen)
-{
-	bool res;
-
-	qsc_folderutils_get_directory(qsc_folderutils_directories_user_documents, fpath);
-	qsc_folderutils_append_delimiter(fpath);
-	qsc_stringutils_concat_strings(fpath, pathlen, PQS_APP_PATH);
-	res = qsc_folderutils_directory_exists(fpath);
-
-	if (res == true)
-	{
-		qsc_folderutils_append_delimiter(fpath);
-		qsc_stringutils_concat_strings(fpath, pathlen, PQS_PUBKEY_NAME);
-
 		res = qsc_fileutils_exists(fpath);
 	}
 
