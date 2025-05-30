@@ -37,7 +37,6 @@
  * Contact: john.underhill@protonmail.com
  */
 
-
 #ifndef PQS_MASTER_COMMON_H
 #define PQS_MASTER_COMMON_H
 

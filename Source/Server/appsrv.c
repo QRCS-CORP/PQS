@@ -37,7 +37,6 @@
  * Contact: john.underhill@protonmail.com
  */
 
-
 #include "appsrv.h"
 #include "interpreter.h"
 #include "server.h"
@@ -277,7 +276,7 @@ static void server_hash_remote_password(uint8_t* rhash, const char* password, si
 	qsc_scb_state scbx = { 0 };
 
 	/* use cost based kdf to generate the stored comparison value */
-	qsc_scb_initialize(&scbx, password, passlen, NULL, 0, PQS_CRYPTO_PHASH_CPU_COST, PQS_CRYPTO_PHASH_MEMORY_COST);
+	qsc_scb_initialize(&scbx, (const uint8_t*)password, passlen, NULL, 0, PQS_CRYPTO_PHASH_CPU_COST, PQS_CRYPTO_PHASH_MEMORY_COST);
 	qsc_scb_generate(&scbx, rhash, PQS_HASH_SIZE);
 	qsc_scb_dispose(&scbx);
 }
@@ -303,8 +302,8 @@ static bool server_password_challenge(uint8_t* rkhash)
 		++lcnt;
 		plen = qsc_consoleutils_masked_password(pass, sizeof(pass));
 
-		qsc_sha3_compute256(rhsh, pass, plen);
-		server_hash_remote_password(phsh, rhsh, sizeof(rhsh));
+		qsc_sha3_compute256(rhsh, (const uint8_t*)pass, plen);
+		server_hash_remote_password(phsh, (const char*)rhsh, sizeof(rhsh));
 
 		if (qsc_memutils_are_equal(phsh, rkhash, PQS_HASH_SIZE) == true)
 		{
@@ -400,7 +399,7 @@ static bool server_key_dialogue(pqs_server_signature_key* prik, pqs_client_verif
 			{
 				pqs_generate_keypair(pubk, prik, keyid);
 				pqs_public_key_encode((char*)spub, pubk);
-				server_print_message(spub);
+				server_print_message((const char*)spub);
 
 				res = qsc_fileutils_copy_stream_to_file(fpath, (char*)spub, sizeof(spub));
 
@@ -425,8 +424,8 @@ static bool server_key_dialogue(pqs_server_signature_key* prik, pqs_client_verif
 						{
 							uint8_t rhsh[QSC_SHA3_256_HASH_SIZE] = { 0 };
 
-							qsc_sha3_compute256(rhsh, pass, plen);
-							server_hash_remote_password(prik->rkhash, rhsh, sizeof(rhsh));
+							qsc_sha3_compute256(rhsh, (const uint8_t*)pass, plen);
+							server_hash_remote_password(prik->rkhash, (const char*)rhsh, sizeof(rhsh));
 							qsc_memutils_copy(m_server_connection_state.rkhash, prik->rkhash, PQS_HASH_SIZE);
 							break;
 						}
@@ -490,8 +489,9 @@ static bool server_command_execute(pqs_connection_state* cns, const char* messag
 	char* sres;
 	size_t slen;
 
+	(void)msglen;
 	slen = PQS_INTERPRETER_COMMAND_EXECUTE_SIZE;
-	sres = (uint8_t*)qsc_memutils_malloc(slen);
+	sres = (char*)qsc_memutils_malloc(slen);
 
 	if (sres != NULL)
 	{
@@ -504,7 +504,7 @@ static bool server_command_execute(pqs_connection_state* cns, const char* messag
 			
 			if (slen > 0)
 			{
-				server_send_message(cns, sres, slen);
+				server_send_message(cns, (const uint8_t*)sres, slen);
 			}
 		}
 
@@ -562,7 +562,7 @@ static void server_receive_callback(pqs_connection_state* cns, const uint8_t* me
 
 		uint8_t pkh[PQS_HASH_SIZE] = { 0 };
 
-		server_hash_remote_password(pkh, message, msglen);
+		server_hash_remote_password(pkh, (const char*)message, msglen);
 		++m_server_connection_state.lcount;
 
 		if (m_server_connection_state.lcount <= PQS_SERVER_MAX_LOGIN)
@@ -575,7 +575,7 @@ static void server_receive_callback(pqs_connection_state* cns, const uint8_t* me
 				 
 				msg[0] = (uint8_t)pqs_error_login_success;
 				
-				server_get_host_name(msg + PQS_ERROR_MESSAGE_SIZE);
+				server_get_host_name((char*)msg + PQS_ERROR_MESSAGE_SIZE);
 				server_send_message(cns, msg, sizeof(msg));
 
 				m_server_connection_state.lcount = 0;
@@ -658,7 +658,7 @@ int main(void)
 	if (server_key_dialogue(&prik, &pubk, kid) == true)
 	{
 		server_print_message("Waiting for a connection...");
-		qsc_async_thread_create((void*)&server_command_loop, &source);
+		qsc_async_thread_create(&server_command_loop, &source);
 
 		qerr = pqs_server_start_ipv4(&source, &prik, &server_receive_callback, &server_disconnect_callback);
 

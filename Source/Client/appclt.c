@@ -265,7 +265,7 @@ static void client_connection_login(pqs_connection_state* cns)
 	mlen = qsc_consoleutils_masked_password(sin, sizeof(sin));
 
 	/* hash the password before sending it to the server */
-	qsc_sha3_compute256(rhsh, sin, mlen);
+	qsc_sha3_compute256(rhsh, (uint8_t*)sin, mlen);
 
 	/* convert the packet to bytes */
 	spkt.pmessage = smsg + PQS_HEADER_SIZE;
@@ -280,7 +280,8 @@ static const char* client_format_message(const uint8_t* message, size_t msglen)
 {
 	int64_t npos;
 
-	npos = qsc_stringutils_find_string(message, "\n");
+	(void)msglen;
+	npos = qsc_stringutils_find_string((char*)message, "\n");
 
 	if (npos < 0)
 	{
@@ -296,7 +297,7 @@ static void client_receive_callback(pqs_connection_state* cns, const uint8_t* me
 	{
 		const char* pstr;
 
-		client_set_prompt(message, msglen);
+		client_set_prompt((const char*)message, msglen);
 		pstr = client_format_message(message, msglen);
 		qsc_consoleutils_print_safe(pstr);
 	}
@@ -307,7 +308,7 @@ static void client_receive_callback(pqs_connection_state* cns, const uint8_t* me
 			const char* sprmt;
 			char title[PQS_CLIENT_TITLE_SIZE] = { 0 };
 
-			sprmt = message + PQS_ERROR_MESSAGE_SIZE;
+			sprmt = (const char*)message + PQS_ERROR_MESSAGE_SIZE;
 			client_print_prompt();
 
 			qsc_stringutils_copy_string(title, sizeof(title), "PQS Client - connected to ");
@@ -360,7 +361,7 @@ static size_t client_alloc_file_stream(uint8_t* pmsg, const char* command)
 				res = pqs_interpreter_file_to_stream(pmsg, res, command);
 				pmsg = (uint8_t*)qsc_memutils_realloc(pmsg, res);
 
-				if (pmsg = NULL)
+				if (pmsg == NULL)
 				{
 					res = 0;
 				}

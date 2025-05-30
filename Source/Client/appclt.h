@@ -1,4 +1,3 @@
-
 /* 2025 Quantum Resistant Cryptographic Solutions Corporation
  * All Rights Reserved.
  *
@@ -37,7 +36,6 @@
  * Written by: John G. Underhill
  * Contact: john.underhill@protonmail.com
  */
-
 
 #ifndef PQS_CLIENT_APP_H
 #define PQS_CLIENT_APP_H
