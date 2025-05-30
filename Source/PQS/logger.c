@@ -58,7 +58,7 @@ void pqs_logger_initialize(const char* path)
 	}
 }
 
-bool pqs_logger_exists()
+bool pqs_logger_exists(void)
 {
 	bool res;
 
@@ -72,7 +72,7 @@ bool pqs_logger_exists()
 	return res;
 }
 
-void pqs_logger_print()
+void pqs_logger_print(void)
 {
 	char buf[PQS_LOGGING_MESSAGE_MAX] = { 0 };
 	size_t lctr;
@@ -109,7 +109,7 @@ void pqs_logger_read(char* output, size_t otplen)
 	}
 }
 
-void pqs_logger_reset()
+void pqs_logger_reset(void)
 {
 	char dtm[QSC_TIMESTAMP_STRING_SIZE] = { 0 };
 	char msg[PQS_LOGGING_MESSAGE_MAX] = "Created: ";
@@ -130,7 +130,7 @@ void pqs_logger_reset()
 	qsc_fileutils_write_line(m_log_path, msg, mlen);
 }
 
-size_t pqs_logger_size()
+size_t pqs_logger_size(void)
 {
 	size_t res;
 
@@ -170,7 +170,8 @@ bool pqs_logger_write(const char* message)
 	return res;
 }
 
-bool pqs_logger_test()
+#if defined(QSC_DEBUG_MODE)
+bool pqs_logger_test(void)
 {
 	char buf[4 * PQS_LOGGING_MESSAGE_MAX] = { 0 };
 	char msg1[] = "This is a test message: 1";
@@ -178,10 +179,8 @@ bool pqs_logger_test()
 	char msg3[] = "This is a test message: 3";
 	char msg4[] = "This is a test message: 4";
 	size_t flen;
-	size_t mlen;
 	bool res;
 
-	mlen = qsc_stringutils_string_size(msg1);
 	pqs_logger_initialize(NULL);
 	res = pqs_logger_exists();
 
@@ -205,3 +204,4 @@ bool pqs_logger_test()
 
 	return res;
 }
+#endif
