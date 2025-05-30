@@ -197,7 +197,7 @@ void pqs_connections_initialize(size_t count, size_t maximum)
 	}
 }
 
-pqs_connection_state* pqs_connections_next()
+pqs_connection_state* pqs_connections_next(void)
 {
 	pqs_connection_state* res;
 
@@ -242,7 +242,8 @@ size_t pqs_connections_size(void)
 	return m_connection_set.length;
 }
 
-void pqs_connections_self_test()
+#if defined(QSC_DEBUG_MODE)
+void pqs_connections_self_test(void)
 {
 	pqs_connection_state* xn[20] = { 0 };
 	size_t cnt;
@@ -284,3 +285,4 @@ void pqs_connections_self_test()
 	pqs_connections_clear();
 	pqs_connections_dispose();
 }
+#endif
