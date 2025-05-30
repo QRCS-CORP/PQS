@@ -13,7 +13,6 @@
 #   error The operating system is not supported!
 #endif
 
-#if defined(QSC_SYSTEM_OS_WINDOWS)
 typedef struct interpreter_command_state
 {
     HANDLE hinpw;
@@ -23,7 +22,6 @@ typedef struct interpreter_command_state
 } interpreter_command_state;
 
 static interpreter_command_state m_interpreter_command_state = { 0 };
-#endif
 
 static void interpreter_print_message(const char* prompt, const char* line)
 {
@@ -103,12 +101,9 @@ size_t pqs_interpreter_file_buffer_length(const char* parameter)
 
     pqs_interpreter_extract_paramaters(spath, dpath, parameter);
 
-    if (spath != NULL)
+    if (qsc_fileutils_exists(spath) == true)
     {
-        if (qsc_fileutils_exists(spath) == true)
-        {
-            slen = qsc_fileutils_get_size(spath) + QSC_FILEUTILS_MAX_PATH;
-        }
+        slen = qsc_fileutils_get_size(spath) + QSC_FILEUTILS_MAX_PATH;
     }
 
     return slen;
