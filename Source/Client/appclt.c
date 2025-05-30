@@ -129,19 +129,6 @@ static void client_print_prompt(void)
 	qsc_consoleutils_print_safe(m_client_connection_state.prompt);
 }
 
-static void client_print_error(pqs_errors error)
-{
-	const char* msg;
-
-	msg = pqs_error_to_string(error);
-
-	if (msg != NULL)
-	{
-		client_print_prompt();
-		qsc_consoleutils_print_line(msg);
-	}
-}
-
 static void client_print_message(const char* message)
 {
 	size_t slen;
@@ -337,38 +324,6 @@ static void client_print_pubkey(void)
 	client_print_string("\n");
 	pqs_public_key_encode(enck, &m_client_connection_state.pubkey);
 	client_print_string(enck);
-}
-
-static size_t client_alloc_file_stream(uint8_t* pmsg, const char* command)
-{
-	char dst[PQS_CLIENT_INPUT_MAX] = { 0 };
-	char src[PQS_CLIENT_INPUT_MAX] = { 0 };
-	size_t res;
-
-	res = 0;
-
-	if (pqs_interpreter_extract_paramaters(src, dst, command))
-	{
-		if (qsc_fileutils_exists(src) == true)
-		{
-			res = qsc_fileutils_get_size(src);
-			res += qsc_stringutils_string_size(command);
-			pmsg = (uint8_t*)qsc_memutils_malloc(res);
-
-			if (pmsg != NULL)
-			{
-				res = pqs_interpreter_file_to_stream(pmsg, res, command);
-				pmsg = (uint8_t*)qsc_memutils_realloc(pmsg, res);
-
-				if (pmsg == NULL)
-				{
-					res = 0;
-				}
-			}
-		}
-	}
-
-	return res;
 }
 
 static pqs_client_commands client_command_from_string(char* command)
