@@ -17,7 +17,7 @@ include(FetchContent)
 FetchContent_Declare(
   QSC
   GIT_REPOSITORY https://github.com/QRCS-CORP/QSC.git
-  GIT_TAG master
+  GIT_TAG        master
 )
 FetchContent_MakeAvailable(QSC)
 
@@ -28,14 +28,16 @@ file(GLOB_RECURSE PQS_SOURCES
 
 add_library(pqs STATIC ${PQS_SOURCES})
 
-# Tell the compiler where to find your headers:
-#  - any .h in Source/PQS
-#  - specifically appclt.h & friends in the Client and Server subdirs
+# Here we add NOT only your public API headers under Source/PQS/include,
+# but also the real location of appclt.h (and server.h) under Source/Client
+# and Source/Server so that #include "appclt.h" will be found on all platforms :contentReference[oaicite:0]{index=0}.
 target_include_directories(pqs
   PUBLIC
+    "${PROJECT_SOURCE_DIR}/Source/PQS/include"
+  PRIVATE
+    "${PROJECT_SOURCE_DIR}/Source/Client"
+    "${PROJECT_SOURCE_DIR}/Source/Server"
     "${PROJECT_SOURCE_DIR}/Source/PQS"
-    "${PROJECT_SOURCE_DIR}/Source/PQS/Client"
-    "${PROJECT_SOURCE_DIR}/Source/PQS/Server"
 )
 
 target_link_libraries(pqs PUBLIC qsc)
