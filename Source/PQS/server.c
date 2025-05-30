@@ -325,7 +325,7 @@ static pqs_errors server_start(const pqs_server_signature_key* kset,
 
 /* Public Functions */
 
-void pqs_server_pause()
+void pqs_server_pause(void)
 {
 	m_server_pause = true;
 }
@@ -342,7 +342,7 @@ void pqs_server_quit(qsc_socket* listener)
 	}
 }
 
-void pqs_server_resume()
+void pqs_server_resume(void)
 {
 	m_server_pause = false;
 }
