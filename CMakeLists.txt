@@ -17,7 +17,7 @@ include(FetchContent)
 FetchContent_Declare(
   QSC
   GIT_REPOSITORY https://github.com/QRCS-CORP/QSC.git
-  GIT_TAG main
+  GIT_TAG master
 )
 FetchContent_MakeAvailable(QSC)
 
