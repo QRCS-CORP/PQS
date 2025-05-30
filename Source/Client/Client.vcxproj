@@ -148,18 +148,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="appclt.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="appclt.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\QSC\QSC\QSC.vcxproj">
       <Project>{7b7f8e47-0f7c-4273-a229-a7ab2a452ea9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\PQS\PQS.vcxproj">
       <Project>{780c43a1-9916-4b86-ae1b-f5f4b74993a9}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="appclt.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="appclt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
