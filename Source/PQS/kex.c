@@ -22,11 +22,6 @@
 /** \endcond DOXYGEN_IGNORE */
 
 /** \cond DOXYGEN_IGNORE */
-static void kex_subheader_serialize(uint8_t* pstream, const pqs_network_packet* packetin)
-{
-	qsc_intutils_le64to8(pstream, packetin->sequence);
-	qsc_intutils_le64to8(pstream + sizeof(uint64_t), packetin->utctime);
-}
 
 static void kex_send_network_error(const qsc_socket* sock, pqs_errors error)
 {
