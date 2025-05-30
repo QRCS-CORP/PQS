@@ -25,12 +25,6 @@ typedef struct interpreter_command_state
 
 static interpreter_command_state m_interpreter_command_state = { 0 };
 
-static void interpreter_print_message(const char* prompt, const char* line)
-{
-    qsc_consoleutils_print_safe(prompt);
-    qsc_consoleutils_print_line(line);
-}
-
 bool pqs_interpreter_extract_paramater(char* param, const char* message)
 {
     const char* pstr;
