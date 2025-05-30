@@ -29,17 +29,17 @@ target_include_directories(pqs PUBLIC Source/PQS)
 target_link_libraries(pqs PUBLIC qsc)
 
 # PQS Client
-file(GLOB_RECURSE PQS_CLIENT_SOURCES "Source/PQS Client/*.c")
+file(GLOB_RECURSE PQS_CLIENT_SOURCES "Source/Client/*.c")
 
 add_executable(pqs_client ${PQS_CLIENT_SOURCES})
-target_include_directories(pqs_client PRIVATE "Source/PQS Client")
+target_include_directories(pqs_client PRIVATE "Source/Client")
 target_link_libraries(pqs_client PRIVATE pqs)
 
 # SKDP Server
-file(GLOB_RECURSE PQS_SERVER_SOURCES "Source/PQS Server/*.c")
+file(GLOB_RECURSE PQS_SERVER_SOURCES "Source/Server/*.c")
 
 add_executable(pqs_server ${PQS_SERVER_SOURCES})
-target_include_directories(pqs_server PRIVATE Source/PQS Server)
+target_include_directories(pqs_server PRIVATE Source/Server)
 target_link_libraries(pqs_server PRIVATE pqs)
 
 # Warnings
