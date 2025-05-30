@@ -522,6 +522,7 @@ int main(void)
 	pqs_errors perr;
 	bool res;
 
+	res = false;
 	ectr = 0;
 	m_client_connection_state.connected = false;
 	m_client_connection_state.lcounter = 0;
