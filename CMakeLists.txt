@@ -28,7 +28,11 @@ file(GLOB_RECURSE PQS_SOURCES
 add_library(pqs STATIC ${PQS_SOURCES})
 target_include_directories(pqs
   PUBLIC
-    ${PROJECT_SOURCE_DIR}/Source/PQS/include)
+    ${PROJECT_SOURCE_DIR}/Source/PQS/include     # public API headers
+  PRIVATE
+    ${PROJECT_SOURCE_DIR}/Source/PQS/Client      # where appclt.h lives
+    ${PROJECT_SOURCE_DIR}/Source/PQS/Server      # where server.h lives
+)
 target_link_libraries(pqs PUBLIC qsc)
 
 # ─── PQS client executable ────────────────────────────────────────────
