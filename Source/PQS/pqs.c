@@ -565,7 +565,7 @@ void pqs_public_key_encode(char enck[PQS_PUBKEY_STRING_SIZE], const pqs_client_v
 		enck[spos] = '\n';
 		++spos;
 
-		size_t enclen = qsc_encoding_base64_encoded_size(sizeof(pubkey->verkey));
+		//size_t enclen = qsc_encoding_base64_encoded_size(sizeof(pubkey->verkey));
 		slen = PQS_ASYMMETRIC_VERIFY_KEY_SIZE;
 		qsc_encoding_base64_encode(tmpvk, PQS_PUBKEY_ENCODING_SIZE, pubkey->verkey, slen);
 		spos += qsc_stringutils_add_line_breaks((enck + spos), PQS_PUBKEY_STRING_SIZE - spos, PQS_PUBKEY_LINE_LENGTH, tmpvk, sizeof(tmpvk));

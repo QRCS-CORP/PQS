@@ -131,7 +131,7 @@ size_t pqs_interpreter_file_to_stream(uint8_t* result, size_t reslen, const char
 
             if ((char)result[slen - 1] != '\\')
             {
-                slen += qsc_stringutils_copy_string(result + slen, reslen - slen, "\\");
+                slen += qsc_stringutils_copy_string((char*)result + slen, reslen - slen, "\\");
             }
 
             slen += qsc_fileutils_get_name((char*)result + slen, reslen - slen, spath);
@@ -167,14 +167,14 @@ size_t pqs_interpreter_stream_to_file(uint8_t* result, size_t reslen, const char
             {
                 plen = qsc_stringutils_copy_string((char*)result, reslen, "File written to ");
                 plen = qsc_stringutils_copy_string((char*)result + plen, reslen - plen, pstr);
-                (char)result[plen] = 0;
+                result[plen] = 0;
             }
         }
     }
 
     if (slen == 0)
     {
-        slen = qsc_stringutils_copy_string(result, reslen, "The file could not be saved, check the arguments.");
+        slen = qsc_stringutils_copy_string((char*)result, reslen, "The file could not be saved, check the arguments.");
     }
 
     return slen;

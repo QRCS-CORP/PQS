@@ -145,7 +145,7 @@ static void server_receive_loop(server_receiver_state* prcv)
 										if (qerr == pqs_error_none)
 										{
 											/* send the decrypted message to the receive callback */
-											prcv->receive_callback(prcv->pcns, (char*)mstr, mlen);
+											prcv->receive_callback(prcv->pcns, mstr, mlen);
 										}
 										else
 										{
