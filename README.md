@@ -4,6 +4,12 @@ The Post Quantum Shell Protocol
 
 ## Introduction
 
+[![Build](https://github.com/QRCS-CORP/PQS/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/QRCS-CORP/PQS/actions/workflows/build.yml)
+[![CodeQL](https://github.com/QRCS-CORP/PQS/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/QRCS-CORP/PQS/actions/workflows/codeql-analysis.yml)
+[![Platforms](https://img.shields.io/badge/platforms-Linux%20|%20macOS%20|%20Windows-blue)](#)
+[![docs](https://img.shields.io/badge/docs-online-brightgreen)](https://qrcs-corp.github.io/PQS/)
+[![Security Policy](https://img.shields.io/badge/security-policy-blue)](https://github.com/QRCS-CORP/PQS/security/policy)  
+
 The Post Quantum Shell (PQS) project implements a secure, post-quantum key exchange protocol based on a one-way trust model. In this model, the client trusts the server, and a single shared secret is securely established between them. PQS is designed for efficiency, using the Simplex exchange that is both fast and lightweight while providing 256-bit post-quantum security. This ensures robust protection against future quantum-based threats.
 
 [PQS Help Documentation](https://qrcs-corp.github.io/PQS/)  
