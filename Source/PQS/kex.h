@@ -106,7 +106,7 @@ typedef struct pqs_kex_client_state
 typedef struct pqs_kex_server_state
 {
     uint8_t keyid[PQS_KEYID_SIZE];                          /*!< The key identity string */
-    uint8_t schash[PQS_SCHASH_SIZE];                         /*!< The session token hash */
+    uint8_t schash[PQS_SCHASH_SIZE];                        /*!< The session token hash */
     uint8_t prikey[PQS_ASYMMETRIC_PRIVATE_KEY_SIZE];        /*!< The asymmetric cipher private key */
     uint8_t pubkey[PQS_ASYMMETRIC_PUBLIC_KEY_SIZE];         /*!< The asymmetric cipher public key */
     uint8_t sigkey[PQS_ASYMMETRIC_SIGNING_KEY_SIZE];        /*!< The asymmetric signature signing-key */

@@ -61,7 +61,7 @@
  *
  * This macro defines the maximum number of characters allowed in a single log message.
  */
-#define PQS_LOGGING_MESSAGE_MAX 256
+#define PQS_LOGGING_MESSAGE_MAX 256U
 
 /*!
  * \brief The default path for the PQS logger.

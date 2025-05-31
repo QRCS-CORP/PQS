@@ -62,7 +62,7 @@
  *
  * This macro defines the size (in bytes) of the buffer used for reading command output.
  */
-#define PQS_INTERPRETER_COMMAND_BUFFER_SIZE 128
+#define PQS_INTERPRETER_COMMAND_BUFFER_SIZE 128U
 
 /*!
  * \def PQS_INTERPRETER_COMMAND_EXECUTE_SIZE
@@ -70,7 +70,7 @@
  *
  * This macro defines the maximum size (in bytes) for the output buffer when executing a command.
  */
-#define PQS_INTERPRETER_COMMAND_EXECUTE_SIZE 10240000
+#define PQS_INTERPRETER_COMMAND_EXECUTE_SIZE 10240000UL
 
 /**
  * \brief Extract a parameter from a string.

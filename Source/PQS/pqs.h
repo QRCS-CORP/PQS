@@ -114,7 +114,7 @@
  * This constant defines the fixed length (48 bytes) of the configuration string that
  * specifies the selected cryptographic primitive parameter set.
  */
-#define PQS_CONFIG_SIZE 48
+#define PQS_CONFIG_SIZE 48U
 
 /*!
  * \def PQS_CONFIG_STRING
@@ -237,11 +237,11 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * The encoding size varies depending on the selected Dilithium parameter set.
  */
 #if defined(QSC_DILITHIUM_S1P2544)
-#	define PQS_PUBKEY_ENCODING_SIZE 1752
+#	define PQS_PUBKEY_ENCODING_SIZE 1752U
 #elif defined(QSC_DILITHIUM_S3P4016)
-#	define PQS_PUBKEY_ENCODING_SIZE 2604
+#	define PQS_PUBKEY_ENCODING_SIZE 2604U
 #elif defined(QSC_DILITHIUM_S5P4880)
-#	define PQS_PUBKEY_ENCODING_SIZE 3456
+#	define PQS_PUBKEY_ENCODING_SIZE 3456U
 #else
 #	error invalid dilithium parameter!
 #endif
@@ -253,11 +253,11 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * This defines the length of the string produced when encoding a public key.
  */
 #if defined(QSC_DILITHIUM_S1P2544)
-#	define PQS_PUBKEY_STRING_SIZE 2014
+#	define PQS_PUBKEY_STRING_SIZE 2014U
 #elif defined(QSC_DILITHIUM_S3P4016)
-#	define PQS_PUBKEY_STRING_SIZE 2879
+#	define PQS_PUBKEY_STRING_SIZE 2879U
 #elif defined(QSC_DILITHIUM_S5P4880)
-#	define PQS_PUBKEY_STRING_SIZE 3745
+#	define PQS_PUBKEY_STRING_SIZE 3745U
 #else
 #	error invalid dilithium parameter!
 #endif
@@ -266,7 +266,7 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * \def PQS_CLIENT_PORT
  * \brief The default port number for PQS client connections.
  */
-#define PQS_CLIENT_PORT 33118
+#define PQS_CLIENT_PORT 33118U
 
 /*!
  * \def PQS_CONNECTIONS_INIT
@@ -274,7 +274,7 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  *
  * This value is used when initializing the connection state.
  */
-#define PQS_CONNECTIONS_INIT 1000
+#define PQS_CONNECTIONS_INIT 1000U
 
 /*!
  * \def PQS_CONNECTIONS_MAX
@@ -283,13 +283,13 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * This is calculated based on an approximate memory footprint per connection. For example,
  * with a 256GB DRAM system, the maximum may be set to 50,000 connections.
  */
-#define PQS_CONNECTIONS_MAX 50000
+#define PQS_CONNECTIONS_MAX 50000U
 
 /*!
  * \def PQS_CONNECTION_MTU
  * \brief The maximum transmission unit (MTU) size for a PQS packet.
  */
-#define PQS_CONNECTION_MTU 1500
+#define PQS_CONNECTION_MTU 1500U
 
 /*!
  * \def PQS_ERROR_SEQUENCE
@@ -301,25 +301,25 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * \def PQS_ERROR_MESSAGE_SIZE
  * \brief The size in bytes of the error message contained in a packet.
  */
-#define PQS_ERROR_MESSAGE_SIZE 1
+#define PQS_ERROR_MESSAGE_SIZE 1U
 
 /*!
  * \def PQS_FLAG_SIZE
  * \brief The size in bytes of the packet flag.
  */
-#define PQS_FLAG_SIZE 1
+#define PQS_FLAG_SIZE 1U
 
 /*!
  * \def PQS_HASH_SIZE
  * \brief The output size in bytes of the Simplex 256-bit hash function.
  */
-#define PQS_HASH_SIZE 32
+#define PQS_HASH_SIZE 32U
 
 /*!
  * \def PQS_HEADER_SIZE
  * \brief The size in bytes of a PQS packet header.
  */
-#define PQS_HEADER_SIZE 21
+#define PQS_HEADER_SIZE 21U
 
 /*!
  * \def PQS_KEEPALIVE_TIMEOUT
@@ -327,22 +327,22 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  *
  * The default value is 2 minutes.
  */
-#define PQS_KEEPALIVE_TIMEOUT (120 * 1000)
+#define PQS_KEEPALIVE_TIMEOUT (120U * 1000U)
 
 /*!
  * \def PQS_KEYID_SIZE
  * \brief The size in bytes of a PQS key identity.
  */
-#define PQS_KEYID_SIZE 16
+#define PQS_KEYID_SIZE 16U
 
 /*!
  * \def PQS_MACTAG_SIZE
  * \brief The size in bytes of the MAC tag for the Simplex 256-bit MAC.
  */
 #if defined(PQS_USE_RCS_ENCRYPTION)
-#	define PQS_MACTAG_SIZE 32
+#	define PQS_MACTAG_SIZE 32U
 #else
-#	define PQS_MACTAG_SIZE 16
+#	define PQS_MACTAG_SIZE 16U
 #endif
 
 /*!
@@ -351,29 +351,29 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  *
  * This value is approximately 1 GB.
  */
-#define PQS_MESSAGE_MAX 0x3D090000
+#define PQS_MESSAGE_MAX 0x3D090000UL
 
 /*!
  * \def PQS_MSGLEN_SIZE
  * \brief The size in bytes of the packet message length field.
  */
-#define PQS_MSGLEN_SIZE 4
+#define PQS_MSGLEN_SIZE 4U
 
 /*!
  * \def PQS_NONCE_SIZE
  * \brief The size in bytes of the nonce used in symmetric encryption.
  */
 #if defined(PQS_USE_RCS_ENCRYPTION)
-#	define PQS_NONCE_SIZE 32
+#	define PQS_NONCE_SIZE 32UL
 #else
-#	define PQS_NONCE_SIZE 16
+#	define PQS_NONCE_SIZE 16U
 #endif
 
 /*!
  * \def PQS_NETWORK_BUFFER_SIZE
  * \brief The size in bytes of the network buffer.
  */
-#define PQS_NETWORK_BUFFER_SIZE 1280
+#define PQS_NETWORK_BUFFER_SIZE 1280U
 
 /*!
  * \def PQS_PACKET_TIME_THRESHOLD
@@ -382,13 +382,13 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  * This threshold can be tuned based on network conditions. For interior networks with
  * synchronized clocks, it might be as low as 1 second; for exterior networks, it may be higher.
  */
-#define PQS_PACKET_TIME_THRESHOLD 60
+#define PQS_PACKET_TIME_THRESHOLD 60U
 
 /*!
  * \def PQS_PUBKEY_DURATION_DAYS
  * \brief The validity duration (in days) of a public key.
  */
-#define PQS_PUBKEY_DURATION_DAYS 365
+#define PQS_PUBKEY_DURATION_DAYS 365U
 
 /*!
  * \def PQS_PUBKEY_DURATION_SECONDS
@@ -396,31 +396,31 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  *
  * Calculated from PQS_PUBKEY_DURATION_DAYS.
  */
-#define PQS_PUBKEY_DURATION_SECONDS (PQS_PUBKEY_DURATION_DAYS * 24 * 60 * 60)
+#define PQS_PUBKEY_DURATION_SECONDS (PQS_PUBKEY_DURATION_DAYS * 24U * 60U * 60U)
 
 /*!
  * \def PQS_PUBKEY_LINE_LENGTH
  * \brief The maximum number of characters per line in a printed PQS public key.
  */
-#define PQS_PUBKEY_LINE_LENGTH 64
+#define PQS_PUBKEY_LINE_LENGTH 64U
 
 /*!
  * \def PQS_SCHASH_SIZE
  * \brief The size in bytes of the Simplex 256-bit session token hash.
  */
-#define PQS_SCHASH_SIZE 32
+#define PQS_SCHASH_SIZE 32U
 
 /*!
  * \def PQS_SECRET_SIZE
  * \brief The size in bytes of the shared secret for each communication channel.
  */
-#define PQS_SECRET_SIZE 32
+#define PQS_SECRET_SIZE 32U
 
 /*!
  * \def PQS_SEQUENCE_SIZE
  * \brief The size in bytes of the packet sequence number.
  */
-#define PQS_SEQUENCE_SIZE 8
+#define PQS_SEQUENCE_SIZE 8U
 
 /*!
  * \def PQS_SEQUENCE_TERMINATOR
@@ -434,25 +434,25 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  *
  * Set to zero since concurrent connections are disallowed at the listen level.
  */
-#define PQS_SERVER_LISTEN_BACKLOG 0
+#define PQS_SERVER_LISTEN_BACKLOG 0U
 
 /*!
  * \def PQS_SERVER_PORT
  * \brief The default port number for PQS server connections.
  */
-#define PQS_SERVER_PORT 3119
+#define PQS_SERVER_PORT 3119U
 
 /*!
  * \def PQS_SYMMETRIC_KEY_SIZE
  * \brief The size in bytes of the Simplex 256-bit symmetric cipher key.
  */
-#define PQS_SYMMETRIC_KEY_SIZE 32
+#define PQS_SYMMETRIC_KEY_SIZE 32U
 
 /*!
  * \def PQS_TIMESTAMP_SIZE
  * \brief The size in bytes of the key expiration timestamp.
  */
-#define PQS_TIMESTAMP_SIZE 8
+#define PQS_TIMESTAMP_SIZE 8U
 
 /*!
  * \def PQS_SIGKEY_ENCODED_SIZE
@@ -517,10 +517,10 @@ static const char PQS_PUBKEY_FOOTER[] = "------END PQS PUBLIC KEY BLOCK------";
 -----------------------------------------------------------------------------*/
 
 /** \cond DOXYGEN_IGNORE */
-#define PQS_ERROR_STRING_DEPTH 32
-#define PQS_ERROR_STRING_WIDTH 128
-#define PQS_MESSAGE_STRING_DEPTH 21
-#define PQS_MESSAGE_STRING_WIDTH 128
+#define PQS_ERROR_STRING_DEPTH 32U
+#define PQS_ERROR_STRING_WIDTH 128U
+#define PQS_MESSAGE_STRING_DEPTH 21U
+#define PQS_MESSAGE_STRING_WIDTH 128U
 /** \endcond DOXYGEN_IGNORE */
 
 /** \cond DOXYGEN_IGNORE
@@ -601,10 +601,10 @@ static const char PQS_ERROR_STRINGS[PQS_ERROR_STRING_DEPTH][PQS_ERROR_STRING_WID
  */
 PQS_EXPORT_API typedef enum pqs_client_commands
 {
-	pqs_client_command_none = 0x00,         /*!< No command was specified */
-	pqs_client_command_cprint = 0x01,       /*!< The certificate print command */
-	pqs_client_command_execute = 0x02,      /*!< The execute command */
-	pqs_client_command_quit = 0x03,         /*!< The quit command */
+	pqs_client_command_none = 0x00U,        /*!< No command was specified */
+	pqs_client_command_cprint = 0x01U,      /*!< The certificate print command */
+	pqs_client_command_execute = 0x02U,     /*!< The execute command */
+	pqs_client_command_quit = 0x03U,        /*!< The quit command */
 } pqs_client_commands;
 
 /*!
@@ -616,38 +616,38 @@ PQS_EXPORT_API typedef enum pqs_client_commands
  */
 PQS_EXPORT_API typedef enum pqs_errors
 {
-	pqs_error_none = 0x00,                  /*!< No error was detected */
-	pqs_error_accept_fail = 0x01,           /*!< The socket accept function returned an error */
-	pqs_error_authentication_failure = 0x02,/*!< The symmetric cipher had an authentication failure */
-	pqs_error_bad_keep_alive = 0x03,        /*!< The keep alive check failed */
-	pqs_error_channel_down = 0x04,          /*!< The communications channel has failed */
-	pqs_error_connection_failure = 0x05,    /*!< The device could not make a connection to the remote host */
-	pqs_error_connect_failure = 0x06,       /*!< The transmission failed at the KEX connection phase */
-	pqs_error_decapsulation_failure = 0x07, /*!< The asymmetric cipher failed to decapsulate the shared secret */
-	pqs_error_decryption_failure = 0x08,    /*!< The decryption authentication has failed */
-	pqs_error_establish_failure = 0x09,     /*!< The transmission failed at the KEX establish phase */
-	pqs_error_exchange_failure = 0x0A,      /*!< The transmission failed at the KEX exchange phase */
-	pqs_error_hash_invalid = 0x0B,          /*!< The public-key hash is invalid */
-	pqs_error_hosts_exceeded = 0x0C,        /*!< The server has run out of socket connections */
-	pqs_error_invalid_input = 0x0D,         /*!< The expected input was invalid */
-	pqs_error_invalid_request = 0x0E,       /*!< The packet flag was unexpected */
-	pqs_error_keepalive_expired = 0x0F,     /*!< The keep alive has expired with no response */
-	pqs_error_keepalive_timeout = 0x10,     /*!< The decryption authentication has failed */
-	pqs_error_key_expired = 0x11,           /*!< The PQS public key has expired  */
-	pqs_error_key_unrecognized = 0x12,      /*!< The key identity is unrecognized */
-	pqs_error_keychain_fail = 0x13,         /*!< The ratchet operation has failed */
-	pqs_error_listener_fail = 0x14,         /*!< The listener function failed to initialize */
-	pqs_error_memory_allocation = 0x15,     /*!< The server has run out of memory */
-	pqs_error_packet_unsequenced = 0x16,    /*!< The packet was received out of sequence */
-	pqs_error_random_failure = 0x17,        /*!< The random generator has failed */
-	pqs_error_receive_failure = 0x18,       /*!< The receiver failed at the network layer */
-	pqs_error_transmit_failure = 0x19,      /*!< The transmitter failed at the network layer */
-	pqs_error_unknown_protocol = 0x1A,      /*!< The protocol string was not recognized */
-	pqs_error_verify_failure = 0x1B,        /*!< The expected data could not be verified */
-	pqs_error_login_failure = 0x1C,         /*!< The client received an authentication failure response */
-	pqs_error_login_success = 0x1D,         /*!< The client received an authentication success response */
-	pqs_error_message_time_invalid = 0x1E,  /*!< The packet valid time has expired */
-	pqs_error_connection_refused = 0x1F,    /*!< The connection was refused by the remote server */
+	pqs_error_none = 0x00U,                  /*!< No error was detected */
+	pqs_error_accept_fail = 0x01U,           /*!< The socket accept function returned an error */
+	pqs_error_authentication_failure = 0x02U,/*!< The symmetric cipher had an authentication failure */
+	pqs_error_bad_keep_alive = 0x03U,        /*!< The keep alive check failed */
+	pqs_error_channel_down = 0x04U,          /*!< The communications channel has failed */
+	pqs_error_connection_failure = 0x05U,    /*!< The device could not make a connection to the remote host */
+	pqs_error_connect_failure = 0x06U,       /*!< The transmission failed at the KEX connection phase */
+	pqs_error_decapsulation_failure = 0x07U, /*!< The asymmetric cipher failed to decapsulate the shared secret */
+	pqs_error_decryption_failure = 0x08U,    /*!< The decryption authentication has failed */
+	pqs_error_establish_failure = 0x09U,     /*!< The transmission failed at the KEX establish phase */
+	pqs_error_exchange_failure = 0x0AU,      /*!< The transmission failed at the KEX exchange phase */
+	pqs_error_hash_invalid = 0x0BU,          /*!< The public-key hash is invalid */
+	pqs_error_hosts_exceeded = 0x0CU,        /*!< The server has run out of socket connections */
+	pqs_error_invalid_input = 0x0DU,         /*!< The expected input was invalid */
+	pqs_error_invalid_request = 0x0EU,       /*!< The packet flag was unexpected */
+	pqs_error_keepalive_expired = 0x0FU,     /*!< The keep alive has expired with no response */
+	pqs_error_keepalive_timeout = 0x10U,     /*!< The decryption authentication has failed */
+	pqs_error_key_expired = 0x11U,           /*!< The PQS public key has expired  */
+	pqs_error_key_unrecognized = 0x12U,      /*!< The key identity is unrecognized */
+	pqs_error_keychain_fail = 0x13U,         /*!< The ratchet operation has failed */
+	pqs_error_listener_fail = 0x14U,         /*!< The listener function failed to initialize */
+	pqs_error_memory_allocation = 0x15U,     /*!< The server has run out of memory */
+	pqs_error_packet_unsequenced = 0x16U,    /*!< The packet was received out of sequence */
+	pqs_error_random_failure = 0x17U,        /*!< The random generator has failed */
+	pqs_error_receive_failure = 0x18U,       /*!< The receiver failed at the network layer */
+	pqs_error_transmit_failure = 0x19U,      /*!< The transmitter failed at the network layer */
+	pqs_error_unknown_protocol = 0x1AU,      /*!< The protocol string was not recognized */
+	pqs_error_verify_failure = 0x1BU,        /*!< The expected data could not be verified */
+	pqs_error_login_failure = 0x1CU,         /*!< The client received an authentication failure response */
+	pqs_error_login_success = 0x1DU,         /*!< The client received an authentication success response */
+	pqs_error_message_time_invalid = 0x1EU,  /*!< The packet valid time has expired */
+	pqs_error_connection_refused = 0x1FU,    /*!< The connection was refused by the remote server */
 } pqs_errors;
 
 /*!
@@ -659,29 +659,29 @@ PQS_EXPORT_API typedef enum pqs_errors
  */
 PQS_EXPORT_API typedef enum pqs_flags
 {
-	pqs_flag_none = 0x00,                           /*!< No flag was specified */
-	pqs_flag_connect_request = 0x01,                /*!< The PQS key-exchange client connection request flag  */
-	pqs_flag_connect_response = 0x02,               /*!< The PQS key-exchange server connection response flag */
-	pqs_flag_connection_terminate = 0x03,           /*!< The connection is to be terminated */
-	pqs_flag_encrypted_message = 0x04,              /*!< The message has been encrypted */
-	pqs_flag_exstart_request = 0x05,                /*!< The PQS key-exchange client exstart request flag */
-	pqs_flag_exstart_response = 0x06,               /*!< The PQS key-exchange server exstart response flag */
-	pqs_flag_exchange_request = 0x07,               /*!< The PQS key-exchange client exchange request flag */
-	pqs_flag_exchange_response = 0x08,              /*!< The PQS key-exchange server exchange response flag */
-	pqs_flag_establish_request = 0x09,              /*!< The PQS key-exchange client establish request flag */
-	pqs_flag_establish_response = 0x0A,             /*!< The PQS key-exchange server establish response flag */
-	pqs_flag_keep_alive_request = 0x0B,             /*!< The packet contains a keep alive request */
-	pqs_flag_keep_alive_response = 0x0C,            /*!< The packet contains a keep alive response */
-	pqs_flag_remote_connected = 0x0E,               /*!< The remote host is connected flag */
-	pqs_flag_remote_terminated = 0x0F,              /*!< The remote host has terminated the connection */
-	pqs_flag_session_established = 0x10,            /*!< The exchange is in the established state */
-	pqs_flag_session_establish_verify = 0x11,       /*!< The exchange is in the established verify state */
-	pqs_flag_unrecognized_protocol = 0x12,          /*!< The protocol string is not recognized */
-	pqs_flag_asymmetric_ratchet_request = 0x13,     /*!< The host has received an asymmetric key ratchet request */
-	pqs_flag_asymmetric_ratchet_response = 0x14,    /*!< The host has received an asymmetric key ratchet request */
-	pqs_flag_symmetric_ratchet_request = 0x15,      /*!< The host has received a symmetric key ratchet request */
-	pqs_flag_transfer_request = 0x16,               /*!< Reserved - The host has received a transfer request */
-	pqs_flag_error_condition = 0xFF,                /*!< The connection experienced an error */
+	pqs_flag_none = 0x00U,                           /*!< No flag was specified */
+	pqs_flag_connect_request = 0x01U,                /*!< The PQS key-exchange client connection request flag  */
+	pqs_flag_connect_response = 0x02U,               /*!< The PQS key-exchange server connection response flag */
+	pqs_flag_connection_terminate = 0x03U,           /*!< The connection is to be terminated */
+	pqs_flag_encrypted_message = 0x04U,              /*!< The message has been encrypted */
+	pqs_flag_exstart_request = 0x05U,                /*!< The PQS key-exchange client exstart request flag */
+	pqs_flag_exstart_response = 0x06U,               /*!< The PQS key-exchange server exstart response flag */
+	pqs_flag_exchange_request = 0x07U,               /*!< The PQS key-exchange client exchange request flag */
+	pqs_flag_exchange_response = 0x08U,              /*!< The PQS key-exchange server exchange response flag */
+	pqs_flag_establish_request = 0x09U,              /*!< The PQS key-exchange client establish request flag */
+	pqs_flag_establish_response = 0x0AU,             /*!< The PQS key-exchange server establish response flag */
+	pqs_flag_keep_alive_request = 0x0BU,             /*!< The packet contains a keep alive request */
+	pqs_flag_keep_alive_response = 0x0CU,            /*!< The packet contains a keep alive response */
+	pqs_flag_remote_connected = 0x0EU,               /*!< The remote host is connected flag */
+	pqs_flag_remote_terminated = 0x0FU,              /*!< The remote host has terminated the connection */
+	pqs_flag_session_established = 0x10U,            /*!< The exchange is in the established state */
+	pqs_flag_session_establish_verify = 0x11U,       /*!< The exchange is in the established verify state */
+	pqs_flag_unrecognized_protocol = 0x12U,          /*!< The protocol string is not recognized */
+	pqs_flag_asymmetric_ratchet_request = 0x13U,     /*!< The host has received an asymmetric key ratchet request */
+	pqs_flag_asymmetric_ratchet_response = 0x14U,    /*!< The host has received an asymmetric key ratchet request */
+	pqs_flag_symmetric_ratchet_request = 0x15U,      /*!< The host has received a symmetric key ratchet request */
+	pqs_flag_transfer_request = 0x16U,               /*!< Reserved - The host has received a transfer request */
+	pqs_flag_error_condition = 0xFFU,                /*!< The connection experienced an error */
 } pqs_flags;
 
 /*!
@@ -693,27 +693,27 @@ PQS_EXPORT_API typedef enum pqs_flags
  */
 PQS_EXPORT_API typedef enum pqs_messages
 {
-	pqs_messages_none = 0x00,             /*!< No configuration was specified */
-	pqs_messages_accept_fail = 0x01,      /*!< The socket accept failed */
-	pqs_messages_listen_fail = 0x02,      /*!< The listener socket could not connect */
-	pqs_messages_bind_fail = 0x03,        /*!< The listener socket could not bind to the address */
-	pqs_messages_create_fail = 0x04,      /*!< The listener socket could not be created */
-	pqs_messages_connect_success = 0x05,  /*!< The server connected to a host */
-	pqs_messages_receive_fail = 0x06,     /*!< The socket receive function failed */
-	pqs_messages_allocate_fail = 0x07,    /*!< The server memory allocation request has failed */
-	pqs_messages_kex_fail = 0x08,         /*!< The key exchange has experienced a failure */
-	pqs_messages_disconnect = 0x09,       /*!< The server has disconnected the client */
-	pqs_messages_disconnect_fail = 0x0A,  /*!< The server has disconnected the client due to an error */
-	pqs_messages_socket_message = 0x0B,   /*!< The server has had a socket level error */
-	pqs_messages_queue_empty = 0x0C,      /*!< The server has reached the maximum number of connections */
-	pqs_messages_listener_fail = 0x0D,    /*!< The server listener socket has failed */
-	pqs_messages_sockalloc_fail = 0x0E,   /*!< The server has run out of socket connections */
-	pqs_messages_decryption_fail = 0x0F,  /*!< The message decryption has failed */
-	pqs_messages_keepalive_fail = 0x10,   /*!< The keepalive function has failed */
-	pqs_messages_keepalive_timeout = 0x11,/*!< The keepalive period has been exceeded */
-	pqs_messages_connection_fail = 0x12,  /*!< The connection failed or was interrupted */
-	pqs_messages_invalid_request = 0x13,  /*!< The function received an invalid request */
-	pqs_messages_connection_refused = 0x14, /*!< The remote host is busy and refused the connection */
+	pqs_messages_none = 0x00U,             /*!< No configuration was specified */
+	pqs_messages_accept_fail = 0x01U,      /*!< The socket accept failed */
+	pqs_messages_listen_fail = 0x02U,      /*!< The listener socket could not connect */
+	pqs_messages_bind_fail = 0x03U,        /*!< The listener socket could not bind to the address */
+	pqs_messages_create_fail = 0x04U,      /*!< The listener socket could not be created */
+	pqs_messages_connect_success = 0x05U,  /*!< The server connected to a host */
+	pqs_messages_receive_fail = 0x06U,     /*!< The socket receive function failed */
+	pqs_messages_allocate_fail = 0x07U,    /*!< The server memory allocation request has failed */
+	pqs_messages_kex_fail = 0x08U,         /*!< The key exchange has experienced a failure */
+	pqs_messages_disconnect = 0x09U,       /*!< The server has disconnected the client */
+	pqs_messages_disconnect_fail = 0x0AU,  /*!< The server has disconnected the client due to an error */
+	pqs_messages_socket_message = 0x0BU,   /*!< The server has had a socket level error */
+	pqs_messages_queue_empty = 0x0CU,      /*!< The server has reached the maximum number of connections */
+	pqs_messages_listener_fail = 0x0DU,    /*!< The server listener socket has failed */
+	pqs_messages_sockalloc_fail = 0x0EU,   /*!< The server has run out of socket connections */
+	pqs_messages_decryption_fail = 0x0FU,  /*!< The message decryption has failed */
+	pqs_messages_keepalive_fail = 0x10U,   /*!< The keepalive function has failed */
+	pqs_messages_keepalive_timeout = 0x11U,/*!< The keepalive period has been exceeded */
+	pqs_messages_connection_fail = 0x12U,  /*!< The connection failed or was interrupted */
+	pqs_messages_invalid_request = 0x13U,  /*!< The function received an invalid request */
+	pqs_messages_connection_refused = 0x14U, /*!< The remote host is busy and refused the connection */
 } pqs_messages;
 
 /*=============================================================================

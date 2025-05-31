@@ -66,7 +66,7 @@
  * This macro defines the time interval (in milliseconds) during which the server will pause
  * accepting new connection requests.
  */
-#define PQS_SERVER_PAUSE_INTERVAL 100
+#define PQS_SERVER_PAUSE_INTERVAL 100U
 
 /**
  * \brief Pause the server, suspending new joins.
