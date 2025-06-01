@@ -25,7 +25,7 @@ file(GLOB_RECURSE PQS_SOURCES "Source/PQS/*.c")
 file(GLOB_RECURSE PQS_HEADERS "Source/PQS/include/*.h")
 
 add_library(pqs STATIC ${PQS_SOURCES} ${PQS_HEADERS})
-target_include_directories(pqs PUBLIC Source/PQS)
+target_include_directories(pqs PUBLIC "Source/PQS")
 target_link_libraries(pqs PUBLIC qsc)
 
 # PQS Client
@@ -39,7 +39,7 @@ target_link_libraries(pqs_client PRIVATE pqs)
 file(GLOB_RECURSE PQS_SERVER_SOURCES "Source/Server/*.c")
 
 add_executable(pqs_server ${PQS_SERVER_SOURCES})
-target_include_directories(pqs_server PRIVATE Source/Server)
+target_include_directories(pqs_server PRIVATE "Source/Server")
 target_link_libraries(pqs_server PRIVATE pqs)
 
 # Warnings
