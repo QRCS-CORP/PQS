@@ -577,11 +577,13 @@ static void server_receive_callback(pqs_connection_state* cns, const uint8_t* me
 	}
 }
 
-static void server_command_loop(qsc_socket* source)
+static void server_command_loop(void* src)
 {
 	char sin[PQS_SERVER_INPUT_MAX] = { 0 };
+	qsc_socket* psrc;
 	size_t mlen;
 
+	psrc = (qsc_socket*)src;
 	mlen = 0U;
 
 	server_print_message("Type 'quit' to shut down the server.");
@@ -596,7 +598,7 @@ static void server_command_loop(qsc_socket* source)
 		{
 			if (qsc_stringutils_strings_equal(sin, "quit") == true)
 			{
-				pqs_server_quit(source);
+				pqs_server_quit(psrc);
 				break;
 			}
 		}
@@ -605,16 +607,6 @@ static void server_command_loop(qsc_socket* source)
 	}
 
 	server_print_prompt();
-}
-
-static void server_command_loop_wrapper(void* state)
-{
-	server_command_loop_args* args = (server_command_loop_args*)state;
-
-	if (args != NULL)
-	{
-		server_command_loop(args->source);
-	}
 }
 
 int main(void)
@@ -638,7 +630,7 @@ int main(void)
 	if (server_key_dialogue(&prik, &pubk, kid) == true)
 	{
 		server_print_message("Waiting for a connection...");
-		qsc_async_thread_create(&server_command_loop_wrapper, &source);
+		qsc_async_thread_create(&server_command_loop, &source);
 
 		qerr = pqs_server_start_ipv4(&source, &prik, &server_receive_callback, &server_disconnect_callback);
 
