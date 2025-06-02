@@ -115,7 +115,7 @@ static void client_set_prompt(const char* message, size_t msglen)
 
 		npos = qsc_stringutils_reverse_find_string(message, "\n", msglen - 1U);
 
-		if (npos > 0 && msglen - (size_t)npos > 0)
+		if (npos > 0 && (msglen - (size_t)npos) > 0)
 		{
 			++npos;
 			qsc_memutils_clear(m_client_connection_state.prompt, PQS_CLIENT_PROMPT_MAX);
