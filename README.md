@@ -1,6 +1,4 @@
-# Post Quantum Shell (PQS) Project Documentation
-
-The Post Quantum Shell Protocol
+# PQS: Post Quantum Shell
 
 ## Introduction
 
