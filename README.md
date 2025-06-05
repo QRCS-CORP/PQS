@@ -17,6 +17,10 @@ The Post Quantum Shell Protocol
 [![Custom: Standard](https://img.shields.io/static/v1?label=Security%20Standard&message=RFC%4253&color=blue)](https://datatracker.ietf.org/doc/html/rfc4253)
 [![Custom: Target](https://img.shields.io/static/v1?label=Target%20Industry&message=Financial/Defense&color=brightgreen)](#)
 
+**PQS: A Lightweight Post-Quantum One-Way Trust Key Exchange Protocol for Secure Client-Server Tunnels**
+
+## Overview
+
 The Post Quantum Shell (PQS) project implements a secure, post-quantum key exchange protocol based on a one-way trust model. In this model, the client trusts the server, and a single shared secret is securely established between them. PQS is designed for efficiency, using the Simplex exchange that is both fast and lightweight while providing 256-bit post-quantum security. This ensures robust protection against future quantum-based threats.
 
 [PQS Help Documentation](https://qrcs-corp.github.io/PQS/)  
