@@ -12,10 +12,10 @@ The Post Quantum Shell Protocol
 [![License: QRCS License](https://img.shields.io/badge/License-QRCS%20License-blue.svg)](https://github.com/QRCS-CORP/HKDS/blob/main/QRCS-PL%20License.txt)
 [![Language](https://img.shields.io/static/v1?label=Language&message=C%2023&color=blue)](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3220.pdf)
 [![docs](https://img.shields.io/badge/docs-online-brightgreen)](https://qrcs-corp.github.io/PQS/)
-![GitHub release](https://img.shields.io/github/v/release/QRCS-CORP/PQS)
+[![GitHub release](https://img.shields.io/github/v/release/QRCS-CORP/PQS)](https://github.com/QRCS-CORP/PQS/releases/tag/2025-06-04)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/QRCS-CORP/PQS.svg)](https://github.com/QRCS-CORP/PQS/commits/main)
 [![Custom: Standard](https://img.shields.io/static/v1?label=Security%20Standard&message=RFC%4253&color=blue)](https://datatracker.ietf.org/doc/html/rfc4253)
-![Custom: Target](https://img.shields.io/static/v1?label=Target%20Industry&message=Financial/Defense&color=brightgreen)
+[![Custom: Target](https://img.shields.io/static/v1?label=Target%20Industry&message=Financial/Defense&color=brightgreen)](#)
 
 The Post Quantum Shell (PQS) project implements a secure, post-quantum key exchange protocol based on a one-way trust model. In this model, the client trusts the server, and a single shared secret is securely established between them. PQS is designed for efficiency, using the Simplex exchange that is both fast and lightweight while providing 256-bit post-quantum security. This ensures robust protection against future quantum-based threats.
 
