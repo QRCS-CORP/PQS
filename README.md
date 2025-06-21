@@ -30,7 +30,7 @@ The Post Quantum Shell (PQS) project implements a secure, post-quantum key excha
 
 The PQS exchange is a one-way trust, client-to-server key-exchange model in which the client trusts the server, and a single shared secret is securely shared between them. Designed for efficiency, the key exchange is fast and lightweight, while providing 256-bit post-quantum security. This protocol is versatile and can be used in a wide range of applications, such as:
 
-- Client registration on networks
+- Client registration on networks 
 - Secure cloud storage
 - Hub-and-spoke model communications
 - Commodity trading
