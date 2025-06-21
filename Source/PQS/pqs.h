@@ -58,7 +58,7 @@
  * using combinations of the Dilithium (for signatures) and Kyber (for key encapsulation) schemes.
  * 
  * The protocol configuration is determined at compile-time by preprocessor definitions (such as
- * QSC_DILITHIUM_S1P2544, QSC_KYBER_S1P1632, etc.) defined in the QSC library's common.h file. Although
+ * QSC_DILITHIUM_S1P44, QSC_KYBER_S1K2P512, etc.) defined in the QSC library's common.h file. Although
  * library defaults are used by default, the parameter sets may be changed to suit different security or
  * performance requirements.
  *
@@ -141,38 +141,38 @@
  * The value is chosen via a set of nested preprocessor directives based on the defined
  * parameter sets.
  */
-#if defined(QSC_DILITHIUM_S1P2544)
-#	if defined(QSC_KYBER_S1P1632)
+#if defined(QSC_DILITHIUM_S1P44)
+#	if defined(QSC_KYBER_S1K2P512)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s1_kyber-s1_sha3_rcs";
-#	elif defined(QSC_KYBER_S3P2400)
+#	elif defined(QSC_KYBER_S3K3P768)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s1_kyber-s3_sha3_rcs";
-#	elif defined(QSC_KYBER_S5P3168)
+#	elif defined(QSC_KYBER_S5K4P1024)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s1_kyber-s5_sha3_rcs";
-#	elif defined(QSC_KYBER_S6P3936)
+#	elif defined(QSC_KYBER_S6K5P1280)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s1_kyber-s6_sha3_rcs";
 #	else
 #		error Invalid parameter set!
 #	endif
-#elif defined(QSC_DILITHIUM_S3P4016)
-#	if defined(QSC_KYBER_S1P1632)
+#elif defined(QSC_DILITHIUM_S3P65)
+#	if defined(QSC_KYBER_S1K2P512)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s3_kyber-s1_sha3_rcs";
-#	elif defined(QSC_KYBER_S3P2400)
+#	elif defined(QSC_KYBER_S3K3P768)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s3_kyber-s3_sha3_rcs";
-#	elif defined(QSC_KYBER_S5P3168)
+#	elif defined(QSC_KYBER_S5K4P1024)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s3_kyber-s5_sha3_rcs";
-#	elif defined(QSC_KYBER_S6P3936)
+#	elif defined(QSC_KYBER_S6K5P1280)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s3_kyber-s6_sha3_rcs";
 #	else
 #		error Invalid parameter set!
 #	endif
-#elif defined(QSC_DILITHIUM_S5P4880)
-#	if defined(QSC_KYBER_S1P1632)
+#elif defined(QSC_DILITHIUM_S5P87)
+#	if defined(QSC_KYBER_S1K2P512)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s1_sha3_rcs";
-#	elif defined(QSC_KYBER_S3P2400)
+#	elif defined(QSC_KYBER_S3K3P768)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s3_sha3_rcs";
-#	elif defined(QSC_KYBER_S5P3168)
+#	elif defined(QSC_KYBER_S5K4P1024)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s5_sha3_rcs";
-#	elif defined(QSC_KYBER_S6P3936)
+#	elif defined(QSC_KYBER_S6K5P1280)
 static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sha3_rcs";
 #	else
 #		error Invalid parameter set!
@@ -236,11 +236,11 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  *
  * The encoding size varies depending on the selected Dilithium parameter set.
  */
-#if defined(QSC_DILITHIUM_S1P2544)
+#if defined(QSC_DILITHIUM_S1P44)
 #	define PQS_PUBKEY_ENCODING_SIZE 1752U
-#elif defined(QSC_DILITHIUM_S3P4016)
+#elif defined(QSC_DILITHIUM_S3P65)
 #	define PQS_PUBKEY_ENCODING_SIZE 2604U
-#elif defined(QSC_DILITHIUM_S5P4880)
+#elif defined(QSC_DILITHIUM_S5P87)
 #	define PQS_PUBKEY_ENCODING_SIZE 3456U
 #else
 #	error invalid dilithium parameter!
@@ -252,11 +252,11 @@ static const char PQS_CONFIG_STRING[PQS_CONFIG_SIZE] = "dilithium-s5_kyber-s6_sh
  *
  * This defines the length of the string produced when encoding a public key.
  */
-#if defined(QSC_DILITHIUM_S1P2544)
+#if defined(QSC_DILITHIUM_S1P44)
 #	define PQS_PUBKEY_STRING_SIZE 2014U
-#elif defined(QSC_DILITHIUM_S3P4016)
+#elif defined(QSC_DILITHIUM_S3P65)
 #	define PQS_PUBKEY_STRING_SIZE 2879U
-#elif defined(QSC_DILITHIUM_S5P4880)
+#elif defined(QSC_DILITHIUM_S5P87)
 #	define PQS_PUBKEY_STRING_SIZE 3745U
 #else
 #	error invalid dilithium parameter!
