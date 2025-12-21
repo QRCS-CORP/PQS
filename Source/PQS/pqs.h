@@ -517,7 +517,7 @@ static const char PQS_PUBKEY_FOOTER[] = "------END PQS PUBLIC KEY BLOCK------";
 -----------------------------------------------------------------------------*/
 
 /** \cond DOXYGEN_IGNORE */
-#define PQS_ERROR_STRING_DEPTH 32U
+#define PQS_ERROR_STRING_DEPTH 33U
 #define PQS_ERROR_STRING_WIDTH 128U
 #define PQS_MESSAGE_STRING_DEPTH 21U
 #define PQS_MESSAGE_STRING_WIDTH 128U
@@ -585,7 +585,8 @@ static const char PQS_ERROR_STRINGS[PQS_ERROR_STRING_DEPTH][PQS_ERROR_STRING_WID
 	"The client received an authentication failure response",
 	"The client received an authentication success response",
 	"The packet valid time has expired",
-	"The connection was refused by the remote server"
+	"The connection was refused by the remote server",
+	"The remote host sent an error or disconnect message"
 };
 /** \endcond DOXYGEN_IGNORE */
 
@@ -601,10 +602,10 @@ static const char PQS_ERROR_STRINGS[PQS_ERROR_STRING_DEPTH][PQS_ERROR_STRING_WID
  */
 PQS_EXPORT_API typedef enum pqs_client_commands
 {
-	pqs_client_command_none = 0x00U,        /*!< No command was specified */
-	pqs_client_command_cprint = 0x01U,      /*!< The certificate print command */
-	pqs_client_command_execute = 0x02U,     /*!< The execute command */
-	pqs_client_command_quit = 0x03U,        /*!< The quit command */
+	pqs_client_command_none = 0x00U,				/*!< No command was specified */
+	pqs_client_command_cprint = 0x01U,				/*!< The certificate print command */
+	pqs_client_command_execute = 0x02U,				/*!< The execute command */
+	pqs_client_command_quit = 0x03U,				/*!< The quit command */
 } pqs_client_commands;
 
 /*!
@@ -616,38 +617,39 @@ PQS_EXPORT_API typedef enum pqs_client_commands
  */
 PQS_EXPORT_API typedef enum pqs_errors
 {
-	pqs_error_none = 0x00U,                  /*!< No error was detected */
-	pqs_error_accept_fail = 0x01U,           /*!< The socket accept function returned an error */
-	pqs_error_authentication_failure = 0x02U,/*!< The symmetric cipher had an authentication failure */
-	pqs_error_bad_keep_alive = 0x03U,        /*!< The keep alive check failed */
-	pqs_error_channel_down = 0x04U,          /*!< The communications channel has failed */
-	pqs_error_connection_failure = 0x05U,    /*!< The device could not make a connection to the remote host */
-	pqs_error_connect_failure = 0x06U,       /*!< The transmission failed at the KEX connection phase */
-	pqs_error_decapsulation_failure = 0x07U, /*!< The asymmetric cipher failed to decapsulate the shared secret */
-	pqs_error_decryption_failure = 0x08U,    /*!< The decryption authentication has failed */
-	pqs_error_establish_failure = 0x09U,     /*!< The transmission failed at the KEX establish phase */
-	pqs_error_exchange_failure = 0x0AU,      /*!< The transmission failed at the KEX exchange phase */
-	pqs_error_hash_invalid = 0x0BU,          /*!< The public-key hash is invalid */
-	pqs_error_hosts_exceeded = 0x0CU,        /*!< The server has run out of socket connections */
-	pqs_error_invalid_input = 0x0DU,         /*!< The expected input was invalid */
-	pqs_error_invalid_request = 0x0EU,       /*!< The packet flag was unexpected */
-	pqs_error_keepalive_expired = 0x0FU,     /*!< The keep alive has expired with no response */
-	pqs_error_keepalive_timeout = 0x10U,     /*!< The decryption authentication has failed */
-	pqs_error_key_expired = 0x11U,           /*!< The PQS public key has expired  */
-	pqs_error_key_unrecognized = 0x12U,      /*!< The key identity is unrecognized */
-	pqs_error_keychain_fail = 0x13U,         /*!< The ratchet operation has failed */
-	pqs_error_listener_fail = 0x14U,         /*!< The listener function failed to initialize */
-	pqs_error_memory_allocation = 0x15U,     /*!< The server has run out of memory */
-	pqs_error_packet_unsequenced = 0x16U,    /*!< The packet was received out of sequence */
-	pqs_error_random_failure = 0x17U,        /*!< The random generator has failed */
-	pqs_error_receive_failure = 0x18U,       /*!< The receiver failed at the network layer */
-	pqs_error_transmit_failure = 0x19U,      /*!< The transmitter failed at the network layer */
-	pqs_error_unknown_protocol = 0x1AU,      /*!< The protocol string was not recognized */
-	pqs_error_verify_failure = 0x1BU,        /*!< The expected data could not be verified */
-	pqs_error_login_failure = 0x1CU,         /*!< The client received an authentication failure response */
-	pqs_error_login_success = 0x1DU,         /*!< The client received an authentication success response */
-	pqs_error_message_time_invalid = 0x1EU,  /*!< The packet valid time has expired */
-	pqs_error_connection_refused = 0x1FU,    /*!< The connection was refused by the remote server */
+	pqs_error_none = 0x00U,							/*!< No error was detected */
+	pqs_error_accept_fail = 0x01U,					/*!< The socket accept function returned an error */
+	pqs_error_authentication_failure = 0x02U,		/*!< The symmetric cipher had an authentication failure */
+	pqs_error_bad_keep_alive = 0x03U,				/*!< The keep alive check failed */
+	pqs_error_channel_down = 0x04U,					/*!< The communications channel has failed */
+	pqs_error_connection_failure = 0x05U,			/*!< The device could not make a connection to the remote host */
+	pqs_error_connect_failure = 0x06U,				/*!< The transmission failed at the KEX connection phase */
+	pqs_error_decapsulation_failure = 0x07U,		/*!< The asymmetric cipher failed to decapsulate the shared secret */
+	pqs_error_decryption_failure = 0x08U,			/*!< The decryption authentication has failed */
+	pqs_error_establish_failure = 0x09U,			/*!< The transmission failed at the KEX establish phase */
+	pqs_error_exchange_failure = 0x0AU,				/*!< The transmission failed at the KEX exchange phase */
+	pqs_error_hash_invalid = 0x0BU,					/*!< The public-key hash is invalid */
+	pqs_error_hosts_exceeded = 0x0CU,				/*!< The server has run out of socket connections */
+	pqs_error_invalid_input = 0x0DU,				/*!< The expected input was invalid */
+	pqs_error_invalid_request = 0x0EU,				/*!< The packet flag was unexpected */
+	pqs_error_keepalive_expired = 0x0FU,			/*!< The keep alive has expired with no response */
+	pqs_error_keepalive_timeout = 0x10U,			/*!< The decryption authentication has failed */
+	pqs_error_key_expired = 0x11U,					/*!< The PQS public key has expired  */
+	pqs_error_key_unrecognized = 0x12U,				/*!< The key identity is unrecognized */
+	pqs_error_keychain_fail = 0x13U,				/*!< The ratchet operation has failed */
+	pqs_error_listener_fail = 0x14U,				/*!< The listener function failed to initialize */
+	pqs_error_memory_allocation = 0x15U,			/*!< The server has run out of memory */
+	pqs_error_packet_unsequenced = 0x16U,			/*!< The packet was received out of sequence */
+	pqs_error_random_failure = 0x17U,				/*!< The random generator has failed */
+	pqs_error_receive_failure = 0x18U,				/*!< The receiver failed at the network layer */
+	pqs_error_transmit_failure = 0x19U,				/*!< The transmitter failed at the network layer */
+	pqs_error_unknown_protocol = 0x1AU,				/*!< The protocol string was not recognized */
+	pqs_error_verify_failure = 0x1BU,				/*!< The expected data could not be verified */
+	pqs_error_login_failure = 0x1CU,				/*!< The client received an authentication failure response */
+	pqs_error_login_success = 0x1DU,				/*!< The client received an authentication success response */
+	pqs_error_message_time_invalid = 0x1EU,			/*!< The packet valid time has expired */
+	pqs_error_connection_refused = 0x1FU,			/*!< The connection was refused by the remote server */
+	pqs_messages_system_message = 0x20U,			/*!< The remote host sent an error or disconnect message */
 } pqs_errors;
 
 /*!
@@ -693,27 +695,27 @@ PQS_EXPORT_API typedef enum pqs_flags
  */
 PQS_EXPORT_API typedef enum pqs_messages
 {
-	pqs_messages_none = 0x00U,             /*!< No configuration was specified */
-	pqs_messages_accept_fail = 0x01U,      /*!< The socket accept failed */
-	pqs_messages_listen_fail = 0x02U,      /*!< The listener socket could not connect */
-	pqs_messages_bind_fail = 0x03U,        /*!< The listener socket could not bind to the address */
-	pqs_messages_create_fail = 0x04U,      /*!< The listener socket could not be created */
-	pqs_messages_connect_success = 0x05U,  /*!< The server connected to a host */
-	pqs_messages_receive_fail = 0x06U,     /*!< The socket receive function failed */
-	pqs_messages_allocate_fail = 0x07U,    /*!< The server memory allocation request has failed */
-	pqs_messages_kex_fail = 0x08U,         /*!< The key exchange has experienced a failure */
-	pqs_messages_disconnect = 0x09U,       /*!< The server has disconnected the client */
-	pqs_messages_disconnect_fail = 0x0AU,  /*!< The server has disconnected the client due to an error */
-	pqs_messages_socket_message = 0x0BU,   /*!< The server has had a socket level error */
-	pqs_messages_queue_empty = 0x0CU,      /*!< The server has reached the maximum number of connections */
-	pqs_messages_listener_fail = 0x0DU,    /*!< The server listener socket has failed */
-	pqs_messages_sockalloc_fail = 0x0EU,   /*!< The server has run out of socket connections */
-	pqs_messages_decryption_fail = 0x0FU,  /*!< The message decryption has failed */
-	pqs_messages_keepalive_fail = 0x10U,   /*!< The keepalive function has failed */
-	pqs_messages_keepalive_timeout = 0x11U,/*!< The keepalive period has been exceeded */
-	pqs_messages_connection_fail = 0x12U,  /*!< The connection failed or was interrupted */
-	pqs_messages_invalid_request = 0x13U,  /*!< The function received an invalid request */
-	pqs_messages_connection_refused = 0x14U, /*!< The remote host is busy and refused the connection */
+	pqs_messages_none = 0x00U,						/*!< No configuration was specified */
+	pqs_messages_accept_fail = 0x01U,				/*!< The socket accept failed */
+	pqs_messages_listen_fail = 0x02U,				/*!< The listener socket could not connect */
+	pqs_messages_bind_fail = 0x03U,					/*!< The listener socket could not bind to the address */
+	pqs_messages_create_fail = 0x04U,				/*!< The listener socket could not be created */
+	pqs_messages_connect_success = 0x05U,			/*!< The server connected to a host */
+	pqs_messages_receive_fail = 0x06U,				/*!< The socket receive function failed */
+	pqs_messages_allocate_fail = 0x07U,				/*!< The server memory allocation request has failed */
+	pqs_messages_kex_fail = 0x08U,					/*!< The key exchange has experienced a failure */
+	pqs_messages_disconnect = 0x09U,				/*!< The server has disconnected the client */
+	pqs_messages_disconnect_fail = 0x0AU,			/*!< The server has disconnected the client due to an error */
+	pqs_messages_socket_message = 0x0BU,			/*!< The server has had a socket level error */
+	pqs_messages_queue_empty = 0x0CU,				/*!< The server has reached the maximum number of connections */
+	pqs_messages_listener_fail = 0x0DU,				/*!< The server listener socket has failed */
+	pqs_messages_sockalloc_fail = 0x0EU,			/*!< The server has run out of socket connections */
+	pqs_messages_decryption_fail = 0x0FU,			/*!< The message decryption has failed */
+	pqs_messages_keepalive_fail = 0x10U,			/*!< The keepalive function has failed */
+	pqs_messages_keepalive_timeout = 0x11U,			/*!< The keepalive period has been exceeded */
+	pqs_messages_connection_fail = 0x12U,			/*!< The connection failed or was interrupted */
+	pqs_messages_invalid_request = 0x13U,			/*!< The function received an invalid request */
+	pqs_messages_connection_refused = 0x14U,		/*!< The remote host is busy and refused the connection */
 } pqs_messages;
 
 /*=============================================================================
@@ -729,8 +731,8 @@ PQS_EXPORT_API typedef enum pqs_messages
  */
 PQS_EXPORT_API typedef struct pqs_asymmetric_cipher_keypair
 {
-	uint8_t prikey[PQS_ASYMMETRIC_PRIVATE_KEY_SIZE];  /*!< The private key array */
-	uint8_t pubkey[PQS_ASYMMETRIC_PUBLIC_KEY_SIZE];     /*!< The public key array */
+	uint8_t prikey[PQS_ASYMMETRIC_PRIVATE_KEY_SIZE]; /*!< The private key array */
+	uint8_t pubkey[PQS_ASYMMETRIC_PUBLIC_KEY_SIZE];  /*!< The public key array */
 } pqs_asymmetric_cipher_keypair;
 
 /*!
@@ -742,8 +744,8 @@ PQS_EXPORT_API typedef struct pqs_asymmetric_cipher_keypair
  */
 PQS_EXPORT_API typedef struct pqs_asymmetric_signature_keypair
 {
-	uint8_t sigkey[PQS_ASYMMETRIC_SIGNING_KEY_SIZE];    /*!< The secret signing key */
-	uint8_t verkey[PQS_ASYMMETRIC_VERIFY_KEY_SIZE];       /*!< The public verification key */
+	uint8_t sigkey[PQS_ASYMMETRIC_SIGNING_KEY_SIZE]; /*!< The secret signing key */
+	uint8_t verkey[PQS_ASYMMETRIC_VERIFY_KEY_SIZE];  /*!< The public verification key */
 } pqs_asymmetric_signature_keypair;
 
 /*!
@@ -755,11 +757,11 @@ PQS_EXPORT_API typedef struct pqs_asymmetric_signature_keypair
  */
 PQS_EXPORT_API typedef struct pqs_network_packet
 {
-	uint8_t flag;         /*!< The packet flag */
-	uint32_t msglen;      /*!< The length in bytes of the message payload */
-	uint64_t sequence;    /*!< The packet sequence number */
-	uint64_t utctime;     /*!< The UTC timestamp when the packet was created (in seconds) */
-	uint8_t* pmessage;    /*!< Pointer to the packet's message buffer */
+	uint8_t flag;									/*!< The packet flag */
+	uint32_t msglen;								/*!< The length in bytes of the message payload */
+	uint64_t sequence;								/*!< The packet sequence number */
+	uint64_t utctime;								/*!< The UTC timestamp when the packet was created (in seconds) */
+	uint8_t* pmessage;								/*!< Pointer to the packet's message buffer */
 } pqs_network_packet;
 
 /*!
@@ -772,10 +774,10 @@ PQS_EXPORT_API typedef struct pqs_network_packet
  */
 PQS_EXPORT_API typedef struct pqs_client_verification_key
 {
-	uint64_t expiration;                           /*!< The expiration time (in seconds from epoch) */
-	uint8_t config[PQS_CONFIG_SIZE];               /*!< The cryptographic configuration string */
-	uint8_t keyid[PQS_KEYID_SIZE];                 /*!< The key identity string */
-	uint8_t verkey[PQS_ASYMMETRIC_VERIFY_KEY_SIZE];  /*!< The public verification key for signatures */
+	uint64_t expiration;							/*!< The expiration time (in seconds from epoch) */
+	uint8_t config[PQS_CONFIG_SIZE];				/*!< The cryptographic configuration string */
+	uint8_t keyid[PQS_KEYID_SIZE];					/*!< The key identity string */
+	uint8_t verkey[PQS_ASYMMETRIC_VERIFY_KEY_SIZE]; /*!< The public verification key for signatures */
 } pqs_client_verification_key;
 
 /*!
@@ -790,8 +792,8 @@ PQS_EXPORT_API typedef struct pqs_server_signature_key
 	uint64_t expiration;                             /*!< The expiration time (in seconds from epoch) */
 	uint8_t config[PQS_CONFIG_SIZE];                 /*!< The cryptographic configuration string */
 	uint8_t keyid[PQS_KEYID_SIZE];                   /*!< The key identity string */
-	uint8_t sigkey[PQS_ASYMMETRIC_SIGNING_KEY_SIZE];   /*!< The secret signing key */
-	uint8_t verkey[PQS_ASYMMETRIC_VERIFY_KEY_SIZE];    /*!< The public verification key */
+	uint8_t sigkey[PQS_ASYMMETRIC_SIGNING_KEY_SIZE]; /*!< The secret signing key */
+	uint8_t verkey[PQS_ASYMMETRIC_VERIFY_KEY_SIZE];  /*!< The public verification key */
 	uint8_t rkhash[PQS_HASH_SIZE];                   /*!< The remote login key hash */
 } pqs_server_signature_key;
 
@@ -804,10 +806,10 @@ PQS_EXPORT_API typedef struct pqs_server_signature_key
  */
 PQS_EXPORT_API typedef struct pqs_keep_alive_state
 {
-	qsc_socket target;  /*!< The target socket for keep-alive messages */
-	uint64_t etime;     /*!< The epoch time associated with the keep-alive state */
-	uint64_t seqctr;    /*!< The keep-alive packet sequence counter */
-	bool recd;          /*!< Flag indicating if a keep-alive response was received */
+	qsc_socket target;								/*!< The target socket for keep-alive messages */
+	uint64_t etime;									/*!< The epoch time associated with the keep-alive state */
+	uint64_t seqctr;								/*!< The keep-alive packet sequence counter */
+	bool recd;										/*!< Flag indicating if a keep-alive response was received */
 } pqs_keep_alive_state;
 
 /*!
@@ -820,14 +822,14 @@ PQS_EXPORT_API typedef struct pqs_keep_alive_state
  */
 PQS_EXPORT_API typedef struct pqs_connection_state
 {
-	qsc_socket target;       /*!< The target socket structure */
-	pqs_cipher_state rxcpr;  /*!< The receive channel cipher state */
-	pqs_cipher_state txcpr;  /*!< The transmit channel cipher state */
-	uint64_t rxseq;          /*!< The receive channel packet sequence number */
-	uint64_t txseq;          /*!< The transmit channel packet sequence number */
-	uint32_t cid;            /*!< The connection instance count */
-	pqs_flags exflag;        /*!< The key exchange stage flag */
-	bool receiver;           /*!< True if the connection was initialized in listener mode */
+	qsc_socket target;								/*!< The target socket structure */
+	pqs_cipher_state rxcpr;							/*!< The receive channel cipher state */
+	pqs_cipher_state txcpr;							/*!< The transmit channel cipher state */
+	uint64_t rxseq;									/*!< The receive channel packet sequence number */
+	uint64_t txseq;									/*!< The transmit channel packet sequence number */
+	uint32_t cid;									/*!< The connection instance count */
+	pqs_flags exflag;								/*!< The key exchange stage flag */
+	bool receiver;									/*!< True if the connection was initialized in listener mode */
 } pqs_connection_state;
 
 /*=============================================================================
@@ -847,6 +849,17 @@ PQS_EXPORT_API typedef struct pqs_connection_state
  * \param notify Set to true to notify the remote host of the connection closure.
  */
 PQS_EXPORT_API void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify);
+
+/*!
+ * \brief Decrypt an error message.
+ *
+ * \param cns A pointer to the PQS connection state structure.
+ * \param message [const] The serialized error packet.
+ * \param merr A pointer to an \c pqs_errors error value.
+ *
+ * \return Returns true if the message was decrypted successfully, false on failure.
+ */
+PQS_EXPORT_API bool pqs_decrypt_error_message(pqs_errors* merr, pqs_connection_state* cns, const uint8_t* message);
 
 /*!
  * \brief Resets and disposes of the connection state.
@@ -909,6 +922,13 @@ PQS_EXPORT_API void pqs_log_error(pqs_messages emsg, qsc_socket_exceptions err, 
  * \param emsg The message enumeration to be logged.
  */
 PQS_EXPORT_API void pqs_log_message(pqs_messages emsg);
+
+/*!
+* \brief Log a system error message
+*
+* \param err: The system error enumerator
+*/
+PQS_EXPORT_API void pqs_log_system_error(pqs_errors err);
 
 /*!
  * \brief Logs a message with an accompanying description.

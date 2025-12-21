@@ -18,43 +18,43 @@ void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify
 		{
 			if (notify == true)
 			{
-				if (err == pqs_error_none)
+				pqs_network_packet resp = { 0U };
+
+				/* build a disconnect message */
+				cns->txseq += 1U;
+				resp.flag = pqs_flag_error_condition;
+				resp.sequence = cns->txseq;
+				resp.msglen = PQS_MACTAG_SIZE + 1U;
+
+				pqs_packet_time_set(&resp);
+
+				/* tunnel gets encrypted message */
+				if (cns->exflag == pqs_flag_session_established)
 				{
-					pqs_network_packet resp = { 0 };
-					uint8_t spct[PQS_HEADER_SIZE] = { 0U };
+					uint8_t spct[PQS_HEADER_SIZE + PQS_MACTAG_SIZE + 1U] = { 0U };
+					uint8_t pmsg[1U] = { 0U };
 
-					/* send a disconnect message */
 					resp.pmessage = spct + PQS_HEADER_SIZE;
-					resp.flag = pqs_flag_connection_terminate;
-					resp.sequence = PQS_SEQUENCE_TERMINATOR;
-					resp.msglen = 0;
-					resp.pmessage = NULL;
-
 					pqs_packet_header_serialize(&resp, spct);
+					/* the error is the message */
+					pmsg[0U] = (uint8_t)err;
+
+					/* add the header to aad */
+					pqs_cipher_set_associated(&cns->txcpr, spct, PQS_HEADER_SIZE);
+					/* encrypt the message */
+					pqs_cipher_transform(&cns->txcpr, resp.pmessage, pmsg, sizeof(pmsg));
+					/* send the message */
 					qsc_socket_send(&cns->target, spct, sizeof(spct), qsc_socket_send_flag_none);
 				}
 				else
 				{
-					pqs_network_packet resp = { 0 };
-					uint8_t spct[PQS_HEADER_SIZE + PQS_FLAG_SIZE + PQS_MACTAG_SIZE] = { 0U };
-					uint8_t perr[PQS_ERROR_MESSAGE_SIZE] = { 0U };
-					pqs_errors qerr;
+					/* pre-established phase */
+					uint8_t spct[PQS_HEADER_SIZE + 1U] = { 0U };
 
-					/* send a disconnect message */
-					resp.pmessage = spct + PQS_HEADER_SIZE;
-					resp.flag = pqs_flag_connection_terminate;
-					resp.sequence = PQS_SEQUENCE_TERMINATOR;
-					resp.msglen = PQS_ERROR_MESSAGE_SIZE;
-					resp.pmessage = spct + PQS_HEADER_SIZE;
-					perr[0U] = err;
-
-					qerr = pqs_packet_encrypt(cns, &resp, perr, PQS_ERROR_MESSAGE_SIZE);
-
-					if (qerr == pqs_error_none)
-					{
-						pqs_packet_header_serialize(&resp, spct);
-						qsc_socket_send(&cns->target, spct, sizeof(spct), qsc_socket_send_flag_none);
-					}
+					pqs_packet_header_serialize(&resp, spct);
+					spct[PQS_HEADER_SIZE] = (uint8_t)err;
+					/* send the message */
+					qsc_socket_send(&cns->target, spct, sizeof(spct), qsc_socket_send_flag_none);
 				}
 			}
 
@@ -62,6 +62,62 @@ void pqs_connection_close(pqs_connection_state* cns, pqs_errors err, bool notify
 			qsc_socket_close_socket(&cns->target);
 		}
 	}
+}
+
+bool pqs_decrypt_error_message(pqs_errors* merr, pqs_connection_state* cns, const uint8_t* message)
+{
+	PQS_ASSERT(merr != NULL);
+	PQS_ASSERT(cns != NULL);
+	PQS_ASSERT(message != NULL);
+
+	pqs_network_packet pkt = { 0U };
+	uint8_t dmsg[1U] = { 0U };
+	const uint8_t* emsg;
+	size_t mlen;
+	pqs_errors err;
+	bool res;
+
+	mlen = 0U;
+	res = false;
+	err = pqs_error_invalid_input;
+
+	if (cns->exflag == pqs_flag_session_established)
+	{
+		pqs_packet_header_deserialize(message, &pkt);
+		emsg = message + PQS_HEADER_SIZE;
+
+		if (cns != NULL && message != NULL)
+		{
+			cns->rxseq += 1;
+
+			if (pkt.sequence == cns->rxseq)
+			{
+				if (cns->exflag == pqs_flag_session_established)
+				{
+					/* anti-replay; verify the packet time */
+					if (pqs_packet_time_validate(&pkt) == true)
+					{
+						pqs_cipher_set_associated(&cns->rxcpr, message, PQS_HEADER_SIZE);
+						mlen = pkt.msglen - PQS_MACTAG_SIZE;
+
+						if (mlen == 1U)
+						{
+							/* authenticate then decrypt the data */
+							if (pqs_cipher_transform(&cns->rxcpr, dmsg, emsg, mlen) == true)
+							{
+								err = (pqs_errors)dmsg[0U];
+								res = true;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	*merr = err;
+
+	return res;
 }
 
 void pqs_connection_state_dispose(pqs_connection_state* cns)
@@ -190,6 +246,22 @@ void pqs_log_message(pqs_messages emsg)
 	{
 		pqs_logger_write(msg);
 	}
+}
+
+void pqs_log_system_error(pqs_errors err)
+{
+	char mtmp[PQS_ERROR_STRING_WIDTH * 2U] = { 0 };
+	const char* perr;
+	const char* pmsg;
+
+	perr = pqs_error_to_string(pqs_messages_system_message);
+	pmsg = pqs_error_to_string(err);
+
+	qsc_stringutils_copy_string(mtmp, sizeof(mtmp), perr);
+	qsc_stringutils_concat_strings(mtmp, sizeof(mtmp), ": ");
+	qsc_stringutils_concat_strings(mtmp, sizeof(mtmp), pmsg);
+
+	pqs_logger_write(mtmp);
 }
 
 void pqs_log_write(pqs_messages emsg, const char* msg)

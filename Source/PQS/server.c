@@ -163,6 +163,16 @@ static void server_receive_loop(server_receiver_state* prcv)
 										break;
 									}
 								}
+								else if (pkt.flag == pqs_flag_error_condition)
+								{
+									/* anti-dos: break on error message is conditional
+									   on succesful authentication/decryption */
+									if (pqs_decrypt_error_message(&qerr, prcv->pcns, rbuf) == true)
+									{
+										pqs_log_system_error(qerr);
+										break;
+									}
+								}
 								else if (pkt.flag == pqs_flag_connection_terminate)
 								{
 									/* close the connection */
