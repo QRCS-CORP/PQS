@@ -22,8 +22,11 @@
 The Post Quantum Shell (PQS) project implements a secure, post-quantum key exchange protocol based on a one-way trust model. In this model, the client trusts the server, and a single shared secret is securely established between them. PQS is designed for efficiency, using the Simplex exchange that is both fast and lightweight while providing 256-bit post-quantum security. This ensures robust protection against future quantum-based threats.
 
 [PQS Help Documentation](https://qrcs-corp.github.io/PQS/)  
-[PQS Protocol Specification](https://qrcs-corp.github.io/PQS/pdf/PQS_Specification.pdf)  
-[PQS Summary Document](https://qrcs-corp.github.io/PQS/pdf/PQS_Summary.pdf)  
+[PQS Summary Document](https://qrcs-corp.github.io/PQS/pdf/pqs_summary.pdf)  
+[PQS Protocol Specification](https://qrcs-corp.github.io/PQS/pdf/pqs_specification.pdf)  
+[PQS Formal Analysis](https://qrcs-corp.github.io/PQS/pdf/pqs_formal.pdf)  
+[PQS Implementation Analysis](https://qrcs-corp.github.io/PQS/pdf/pqs_analysis.pdf)  
+[PQS Integration Guide](https://qrcs-corp.github.io/PQS/pdf/pqs_integration.pdf)  
 
 
 ## Protocol Description
@@ -142,9 +145,10 @@ Sample flag sets and their meanings:
 
 ## License
 
-ACQUISITION INQUIRIES:
-QRCS is currently seeking a corporate acquirer for this technology.
-Parties interested in exclusive licensing or acquisition should contact: contact@qrcscorp.ca  
+INVESTMENT INQUIRIES:
+QRCS is currently seeking a corporate investor for this technology.
+Parties interested in licensing or investment should connect to us at: contact@qrcscorp.ca  
+Visit https://www.qrcscorp.ca for a full inventory of our products and services.  
 
 PATENT NOTICE:
 One or more patent applications (provisional and/or non-provisional) covering aspects of this software have been filed with the United States Patent and 
