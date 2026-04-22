@@ -20,6 +20,17 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(QSC)
 
+
+# Download and build QSMP
+include(FetchContent)
+FetchContent_Declare(
+  QSMP
+  GIT_REPOSITORY https://github.com/QRCS-CORP/QSMP.git
+  GIT_TAG master
+)
+FetchContent_MakeAvailable(QSMP)
+
+
 # PQS Static Library
 file(GLOB_RECURSE PQS_SOURCES "Source/PQS/*.c")
 file(GLOB_RECURSE PQS_HEADERS "Source/PQS/*.h")
@@ -27,6 +38,7 @@ file(GLOB_RECURSE PQS_HEADERS "Source/PQS/*.h")
 add_library(pqs STATIC ${PQS_SOURCES} ${PQS_HEADERS})
 target_include_directories(pqs PUBLIC "Source/PQS")
 target_link_libraries(pqs PUBLIC qsc)
+target_link_libraries(pqs PUBLIC qsmp)
 
 # PQS Client
 file(GLOB_RECURSE PQS_CLIENT_SOURCES "Source/Client/*.c")
