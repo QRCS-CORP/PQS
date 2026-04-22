@@ -412,6 +412,7 @@ static void server_command_loop(void* src)
 	char sin[PQS_SERVER_INPUT_MAX] = { 0 };
 	size_t mlen;
 
+	(void)src;
 	mlen = 0U;
 
 	server_print_message("Type 'quit' to shut down the server.");
