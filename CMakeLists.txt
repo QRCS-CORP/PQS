@@ -38,7 +38,7 @@ file(GLOB_RECURSE PQS_HEADERS "Source/PQS/*.h")
 add_library(pqs STATIC ${PQS_SOURCES} ${PQS_HEADERS})
 target_include_directories(pqs PUBLIC "Source/PQS")
 target_link_libraries(pqs PUBLIC qsc)
-target_link_libraries(pqs PUBLIC qsmp)
+target_link_libraries(pqs PUBLIC qsms)
 
 # PQS Client
 file(GLOB_RECURSE PQS_CLIENT_SOURCES "Source/Client/*.c")
