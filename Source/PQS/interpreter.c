@@ -272,8 +272,9 @@ size_t pqs_interpreter_command_execute(char* result, size_t reslen, const char* 
                         if (tlen + bavail >= reslen)
                         {
                             char* tmpr;
-
-                            tmpr = qsc_memutils_realloc(result, reslen + bavail + sizeof(char));
+                            
+                            slen = reslen + bavail + sizeof(char);
+                            tmpr = qsc_memutils_realloc(result, slen);
 
                             if (tmpr != NULL)
                             {
