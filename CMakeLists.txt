@@ -26,7 +26,7 @@ include(FetchContent)
 FetchContent_Declare(
   QSMP
   GIT_REPOSITORY https://github.com/QRCS-CORP/QSMP.git
-  GIT_TAG master
+  GIT_TAG main
 )
 FetchContent_MakeAvailable(QSMP)
 
