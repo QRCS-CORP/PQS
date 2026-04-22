@@ -410,10 +410,8 @@ static void server_receive_callback(qsms_connection_state* cns, const uint8_t* m
 static void server_command_loop(void* src)
 {
 	char sin[PQS_SERVER_INPUT_MAX] = { 0 };
-	qsc_socket* psrc;
 	size_t mlen;
 
-	psrc = (qsc_socket*)src;
 	mlen = 0U;
 
 	server_print_message("Type 'quit' to shut down the server.");
