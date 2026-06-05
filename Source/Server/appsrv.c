@@ -2415,15 +2415,24 @@ static void server_policy_show(const char* name)
 
 	if (record != NULL)
 	{
-		snprintf(msg, sizeof(msg), "name=%s mode=%s enabled=%s mask=%u allowlist=[%s] denylist=[%s] forced=%s",
+		qsc_memutils_clear(msg, sizeof(msg));
+		snprintf(msg, sizeof(msg), "name=%s mode=%s enabled=%s mask=%u",
 			record->name,
 			pqs_policy_mode_to_string(record->mode),
 			(record->enabled == true) ? "yes" : "no",
-			record->privilege_mask,
-			record->allowlist,
-			record->denylist,
-			record->forced);
+			record->privilege_mask);
+		server_print_message(msg);
 
+		qsc_memutils_clear(msg, sizeof(msg));
+		snprintf(msg, sizeof(msg), "allowlist=[%.*s]", 256, record->allowlist);
+		server_print_message(msg);
+
+		qsc_memutils_clear(msg, sizeof(msg));
+		snprintf(msg, sizeof(msg), "denylist=[%.*s]", 256, record->denylist);
+		server_print_message(msg);
+
+		qsc_memutils_clear(msg, sizeof(msg));
+		snprintf(msg, sizeof(msg), "forced=%.*s", 256, record->forced);
 		server_print_message(msg);
 	}
 	else
