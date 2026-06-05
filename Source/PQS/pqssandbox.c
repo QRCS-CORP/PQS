@@ -15,7 +15,6 @@
 #   include <stdlib.h>
 #endif
 
-
 static bool pqs_sandbox_canonicalize_path(const char* path, char* output, size_t outlen)
 {
 	bool res;

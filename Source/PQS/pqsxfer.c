@@ -14,6 +14,12 @@
 #	include <fcntl.h>
 #	include <io.h>
 #else
+#	if !defined(QSC_SYSTEM_OS_WINDOWS)
+#		if !defined(PATH_MAX)
+#			define PATH_MAX 4096
+#		endif
+#	endif
+#	include <limits.h>
 #	include <errno.h>
 #	include <fcntl.h>
 #	include <dirent.h>
@@ -32,6 +38,7 @@ static bool pqs_xfer_is_path_separator(char ch)
 	return (ch == '/' || ch == '\\');
 }
 
+#if defined(QSC_SYSTEM_OS_WINDOWS)
 static bool pqs_xfer_component_name_equals(const char* component, size_t length, const char* name)
 {
 	size_t nlen;
@@ -76,6 +83,7 @@ static bool pqs_xfer_component_name_equals(const char* component, size_t length,
 
 	return res;
 }
+#endif
 
 static bool pqs_xfer_component_is_windows_reserved(const char* component, size_t length)
 {
@@ -722,16 +730,8 @@ bool pqs_xfer_extract_relative(char* output, size_t outlen, const uint8_t* messa
 	return res;
 }
 
-bool pqs_xfer_path_is_confined(const char* root, const char* path, bool existing)
+bool pqs_xfer_path_is_confined(const char* root, const char* path)
 {
-	PQS_ASSERT(root != NULL);
-	PQS_ASSERT(path != NULL);
-
-	char croot[QSC_SYSTEM_MAX_PATH] = { 0 };
-	char cpath[QSC_SYSTEM_MAX_PATH] = { 0 };
-	const char* rptr;
-	const char* pptr;
-	size_t rlen;
 	bool res;
 
 	res = false;
@@ -739,77 +739,66 @@ bool pqs_xfer_path_is_confined(const char* root, const char* path, bool existing
 	if (root != NULL && path != NULL)
 	{
 #if defined(QSC_SYSTEM_OS_WINDOWS)
-		DWORD rsize;
-		DWORD psize;
-		char parent[QSC_SYSTEM_MAX_PATH] = { 0 };
-		char* last;
+		char rroot[QSC_SYSTEM_MAX_PATH];
+		char rpath[QSC_SYSTEM_MAX_PATH];
+		DWORD rlen;
+		DWORD plen;
 
-		rsize = GetFullPathNameA(root, (DWORD)sizeof(croot), croot, NULL);
+		qsc_memutils_clear(rroot, sizeof(rroot));
+		qsc_memutils_clear(rpath, sizeof(rpath));
 
-		if (existing == true)
+		rlen = GetFullPathNameA(root, (DWORD)sizeof(rroot), rroot, NULL);
+		plen = GetFullPathNameA(path, (DWORD)sizeof(rpath), rpath, NULL);
+
+		if (rlen > 0UL && rlen < sizeof(rroot) && plen > 0UL && plen < sizeof(rpath))
 		{
-			psize = GetFullPathNameA(path, (DWORD)sizeof(cpath), cpath, NULL);
-		}
-		else
-		{
-			qsc_stringutils_copy_string(parent, sizeof(parent), path);
-			last = strrchr(parent, '\\');
+			size_t rsize;
 
-			if (last == NULL)
+			rsize = qsc_stringutils_string_size(rroot);
+
+			if (rsize != 0U)
 			{
-				last = strrchr(parent, '/');
+				if (rroot[rsize - 1U] != '\\' && rroot[rsize - 1U] != '/')
+				{
+					qsc_stringutils_concat_strings(rroot, sizeof(rroot), "\\");
+					rsize = qsc_stringutils_string_size(rroot);
+				}
+
+				if (qsc_stringutils_string_compare(rroot, rpath, rsize) == 0 ||
+					qsc_stringutils_string_compare(rroot, path, rsize) == 0)
+				{
+					res = true;
+				}
 			}
-
-			if (last != NULL)
-			{
-				*last = '\0';
-			}
-
-			psize = GetFullPathNameA(parent, (DWORD)sizeof(cpath), cpath, NULL);
-		}
-
-		if (rsize != 0U && rsize < sizeof(croot) && psize != 0U && psize < sizeof(cpath))
-		{
-			rptr = croot;
-			pptr = cpath;
-			rlen = qsc_stringutils_string_size(croot);
-			res = (_strnicmp(rptr, pptr, rlen) == 0 && (pptr[rlen] == '\0' || pqs_xfer_is_path_separator(pptr[rlen]) == true));
 		}
 #else
-		char parent[QSC_SYSTEM_MAX_PATH] = { 0 };
-		char* last;
+		char rroot[PATH_MAX];
+		char rpath[PATH_MAX];
 
-		if (realpath(root, croot) != NULL)
+		qsc_memutils_clear(rroot, sizeof(rroot));
+		qsc_memutils_clear(rpath, sizeof(rpath));
+
+		if (realpath(root, rroot) != NULL)
 		{
-			if (existing == true)
+			if (realpath(path, rpath) != NULL)
 			{
-				if (realpath(path, cpath) == NULL)
-				{
-					cpath[0U] = '\0';
-				}
-			}
-			else
-			{
-				qsc_stringutils_copy_string(parent, sizeof(parent), path);
-				last = strrchr(parent, '/');
+				size_t rsize;
 
-				if (last != NULL)
-				{
-					*last = '\0';
-				}
+				rsize = qsc_stringutils_string_size(rroot);
 
-				if (realpath(parent, cpath) == NULL)
+				if (rsize != 0U)
 				{
-					cpath[0U] = '\0';
-				}
-			}
+					if (rroot[rsize - 1U] != '/')
+					{
+						qsc_stringutils_concat_strings(rroot, sizeof(rroot), "/");
+						rsize = qsc_stringutils_string_size(rroot);
+					}
 
-			if (cpath[0U] != '\0')
-			{
-				rptr = croot;
-				pptr = cpath;
-				rlen = qsc_stringutils_string_size(croot);
-				res = (strncmp(rptr, pptr, rlen) == 0 && (pptr[rlen] == '\0' || pqs_xfer_is_path_separator(pptr[rlen]) == true));
+					if (qsc_stringutils_string_compare(rroot, rpath, rsize) == 0)
+					{
+						res = true;
+					}
+				}
 			}
 		}
 #endif
