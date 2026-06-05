@@ -256,20 +256,6 @@ static void client_print_string(const char* message)
 	}
 }
 
-static void client_print_banner(void)
-{
-	qsc_consoleutils_print_line("PQS: Post Quantum Shell Client");
-	qsc_consoleutils_print_line("Quantum-Secure remote command shell client.");
-	qsc_consoleutils_print_line("Enter the address, server public key, and password to connect.");
-	qsc_consoleutils_print_line("Type ':quit' to close the connection and exit the application after login.");
-	qsc_consoleutils_print_line("Local PQS commands use ':' after login: :key, :fp, :known, :khremove [host], :get, :put, :list, :mkdir, :remove, :help, :detail, :quit.");
-	qsc_consoleutils_print_line("");
-	qsc_consoleutils_print_line("Release:   v1.1.0.0a (A1)");
-	qsc_consoleutils_print_line("Date:      June 03, 2026");
-	qsc_consoleutils_print_line("Contact:   contact@qrcscorp.ca");
-	qsc_consoleutils_print_line("");
-}
-
 static bool client_get_default_storage_path(char* fpath, size_t pathlen)
 {
 	bool res;
@@ -1441,27 +1427,6 @@ static bool client_send_login_request(qsms_connection_state* cns, const char* pa
 	return res;
 }
 
-static void server_print_client_help(void)
-{
-	client_print_message("client mode commands:");
-	client_print_message(":key -Display the connected server public key and fingerprint.");
-	client_print_message(":fp -Display the connected server public-key fingerprint.");
-	client_print_message(":known -List known-host entries.");
-	client_print_message(":khremove [host] -Remove a host entry from the known-hosts database.");
-	client_print_message(":get [rpath] [lpath] -Download a file from the server.");
-	client_print_message(":get -r [rdir] [ldir] -Recursively download a directory from the server.");
-	client_print_message(":put [lpath] [rpath] -Upload a file to the server.");
-	client_print_message(":put -r [ldir] [rdir] -Recursively upload a directory from the client to the server.");
-	client_print_message(":list [rpath] -List files using the PQS file-transfer subsystem.");
-	client_print_message(":mkdir [rpath] -Create a directory using the PQS file-transfer subsystem.");
-	client_print_message(":remove [rpath] -Remove a file using the PQS file-transfer subsystem.");
-	client_print_message(":admin [status|version|fingerprint|sandbox|audit verify|config|users|policies|shells] -Run a typed administrative command.");
-	client_print_message(":help -Show this help.");
-	client_print_message(":detail -Show detailed setup and operations help.");
-	client_print_message(":quit -Shut down the PQS client.");
-	client_print_message("After login, unprefixed input is sent to the remote shell.");
-}
-
 static void client_send_loop(qsms_connection_state* cns)
 {
 	char lmsg[128] = { 0 };
@@ -1560,12 +1525,12 @@ static void client_send_loop(qsms_connection_state* cns)
 					}
 					else if (m_client_connection_state.command == pqs_client_command_help)
 					{
-						server_print_client_help();
+						pqs_help_client_print_help();
 						m_client_connection_state.command = pqs_client_command_none;
 					}
 					else if (m_client_connection_state.command == pqs_client_command_help_detail)
 					{
-						qsc_consoleutils_print_safe(pqs_help_client_detail());
+						pqs_help_client_print_detail();
 						m_client_connection_state.command = pqs_client_command_none;
 					}
 					else if (m_client_connection_state.command == pqs_client_command_file_get)
@@ -1663,7 +1628,7 @@ int main(void)
 	}
 
 	client_get_prompt();
-	client_print_banner();
+	pqs_help_client_print_banner();
 
 	if (client_get_log_path(lpath, sizeof(lpath)) == true)
 	{

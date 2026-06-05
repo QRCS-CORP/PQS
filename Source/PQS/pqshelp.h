@@ -18,17 +18,33 @@
 #include "pqscommon.h"
 
 /**
- * \brief Return the detailed PQS client setup and operations help text.
- *
- * \return Returns a constant NUL-terminated help string.
+ * \brief Print the PQS client banner text.
  */
-PQS_EXPORT_API const char* pqs_help_client_detail(void);
+PQS_EXPORT_API void pqs_help_client_print_banner(void);
 
 /**
- * \brief Return the detailed PQS server setup and operations help text.
- *
- * \return Returns a constant NUL-terminated help string.
+ * \brief Print the detailed PQS client setup and operations help text.
  */
-PQS_EXPORT_API const char* pqs_help_server_detail(void);
+PQS_EXPORT_API void pqs_help_client_print_detail(void);
+
+/**
+ * \brief Print the detailed PQS server setup and operations help text.
+ */
+PQS_EXPORT_API void pqs_help_client_print_help(void);
+
+/**
+ * \brief Print the PQS server banner text.
+ */
+PQS_EXPORT_API void pqs_help_server_print_banner(void);
+
+/**
+ * \brief Print the detailed PQS server setup and operations help text.
+ */
+PQS_EXPORT_API void pqs_help_server_print_detail(void);
+
+/**
+ * \brief Print the detailed PQS server setup and operations help text.
+ */
+PQS_EXPORT_API void pqs_help_server_print_help(void);
 
 #endif

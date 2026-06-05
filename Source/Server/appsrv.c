@@ -78,7 +78,6 @@ static pqs_sandbox_profile m_server_sandbox;
 static qsms_client_verification_key m_server_public_key;
 static pqs_server_config m_server_config;
 
-
 static bool server_certificate_is_expired(uint64_t expiration)
 {
 	uint64_t now;
@@ -220,17 +219,6 @@ static void server_print_error(qsms_errors error)
 	{
 		server_print_message(msg);
 	}
-}
-
-static void server_print_banner(void)
-{
-	qsc_consoleutils_print_line("PQS: Post Quantum Shell Server");
-	qsc_consoleutils_print_line("Quantum-Secure remote command shell server.");
-	qsc_consoleutils_print_line("");
-	qsc_consoleutils_print_line("Release:   v1.1.0.0a (A1)");
-	qsc_consoleutils_print_line("Date:      June 03, 2026");
-	qsc_consoleutils_print_line("Contact:   contact@qrcscorp.ca");
-	qsc_consoleutils_print_line("");
 }
 
 static bool server_get_default_storage_path(char* fpath, size_t pathlen)
@@ -2123,24 +2111,6 @@ static bool server_generate_passphrase(char* passphrase, size_t passlen)
 	return res;
 }
 
-static void server_print_shell_help(void)
-{
-	server_print_message("shell mode commands:");
-	server_print_message("list -List shell profiles.");
-	server_print_message("add [name] [type] [path] -Add a shell profile.");
-	server_print_message("remove [name] -Remove a shell profile.");
-	server_print_message("enable [name] -Enable a shell profile.");
-	server_print_message("disable [name] -Disable a shell profile.");
-	server_print_message("default [name] -Set the default shell profile.");
-	server_print_message("assign [username] [name] -Assign a shell profile to a user.");
-	server_print_message("allow [guest|user|admin] [name] -Allow a privilege to use a profile.");
-	server_print_message("deny [guest|user|admin] [name] -Deny a privilege from using a profile.");
-	server_print_message("show [name] -Show a shell profile.");
-	server_print_message("help -Show this help.");
-	server_print_message("detail -Show detailed setup and operations help.");
-	server_print_message("exit -Return to server mode.");
-}
-
 static void server_shell_list(void)
 {
 	size_t pos;
@@ -2247,11 +2217,11 @@ static void server_shell_mode_execute(char* line, char* tokens[], size_t tcount)
 	{
 		if (tcount > 1U && qsc_stringutils_strings_equal(tokens[1U], "detail") == true)
 		{
-			qsc_consoleutils_print_safe(pqs_help_server_detail());
+			pqs_help_server_print_detail();
 		}
 		else
 		{
-			server_print_shell_help();
+			pqs_help_server_print_help();
 		}
 	}
 	else if (qsc_stringutils_strings_equal(tokens[0U], "exit") == true)
@@ -2359,7 +2329,7 @@ static void server_shell_mode_execute(char* line, char* tokens[], size_t tcount)
 	else
 	{
 		server_print_message("The shell command was not recognized.");
-		server_print_shell_help();
+		pqs_help_server_print_help();
 	}
 }
 
@@ -2465,7 +2435,7 @@ static void server_policy_mode_execute(char* tokens[], size_t tcount)
 	{
 		if (tcount > 1U && qsc_stringutils_strings_equal(tokens[1U], "detail") == true)
 		{
-			qsc_consoleutils_print_safe(pqs_help_server_detail());
+			pqs_help_server_print_detail();
 		}
 		else
 		{
@@ -2820,7 +2790,7 @@ static void server_user_mode_execute(char* tokens[], size_t tcount)
 	}
 	else if (qsc_stringutils_strings_equal(tokens[0U], "detail") == true)
 	{
-		qsc_consoleutils_print_safe(pqs_help_server_detail());
+		pqs_help_server_print_detail();
 	}
 	else if (qsc_stringutils_strings_equal(tokens[0U], "exit") == true)
 	{
@@ -2935,7 +2905,7 @@ static bool server_root_mode_execute(char* tokens[], size_t tcount)
 	}
 	else if (qsc_stringutils_strings_equal(tokens[0U], "detail") == true)
 	{
-		qsc_consoleutils_print_safe(pqs_help_server_detail());
+		pqs_help_server_print_detail();
 	}
 	else if (qsc_stringutils_strings_equal(tokens[0U], "help") == true)
 	{
@@ -3065,7 +3035,7 @@ int main(void)
 	m_server_connection_state.login_attempts = 0U;
 	m_server_connection_state.state = pqs_session_state_none;
 
-	server_print_banner();
+	pqs_help_server_print_banner();
 
 	if (server_get_log_path(lpath, sizeof(lpath)) == true)
 	{
