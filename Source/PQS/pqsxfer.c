@@ -5,7 +5,9 @@
 #include "memutils.h"
 #include "sha3.h"
 #include "stringutils.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #if defined(QSC_SYSTEM_OS_WINDOWS)
 #   if !defined(WIN32_LEAN_AND_MEAN)
 #       define WIN32_LEAN_AND_MEAN
@@ -29,9 +31,6 @@
 #		define O_CLOEXEC 0
 #	endif
 #endif
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 static bool pqs_xfer_is_path_separator(char ch)
 {
@@ -730,7 +729,7 @@ bool pqs_xfer_extract_relative(char* output, size_t outlen, const uint8_t* messa
 	return res;
 }
 
-bool pqs_xfer_path_is_confined(const char* root, const char* path)
+bool pqs_xfer_path_is_confined(const char* root, const char* path, bool existing)
 {
 	bool res;
 
@@ -764,10 +763,12 @@ bool pqs_xfer_path_is_confined(const char* root, const char* path)
 					rsize = qsc_stringutils_string_size(rroot);
 				}
 
-				if (qsc_stringutils_string_compare(rroot, rpath, rsize) == 0 ||
-					qsc_stringutils_string_compare(rroot, path, rsize) == 0)
+				if (qsc_stringutils_string_compare(rroot, rpath, rsize) == 0)
 				{
-					res = true;
+					if (existing == false || qsc_fileutils_exists(rpath) == true || qsc_folderutils_directory_exists(rpath) == true)
+					{
+						res = true;
+					}
 				}
 			}
 		}
@@ -780,23 +781,38 @@ bool pqs_xfer_path_is_confined(const char* root, const char* path)
 
 		if (realpath(root, rroot) != NULL)
 		{
-			if (realpath(path, rpath) != NULL)
+			size_t rsize;
+
+			rsize = qsc_stringutils_string_size(rroot);
+
+			if (rsize != 0U)
 			{
-				size_t rsize;
-
-				rsize = qsc_stringutils_string_size(rroot);
-
-				if (rsize != 0U)
+				if (rroot[rsize - 1U] != '/')
 				{
-					if (rroot[rsize - 1U] != '/')
-					{
-						qsc_stringutils_concat_strings(rroot, sizeof(rroot), "/");
-						rsize = qsc_stringutils_string_size(rroot);
-					}
+					qsc_stringutils_concat_strings(rroot, sizeof(rroot), "/");
+					rsize = qsc_stringutils_string_size(rroot);
+				}
 
-					if (qsc_stringutils_string_compare(rroot, rpath, rsize) == 0)
+				if (existing == true)
+				{
+					if (realpath(path, rpath) != NULL)
 					{
-						res = true;
+						if (qsc_stringutils_string_compare(rroot, rpath, rsize) == 0)
+						{
+							res = true;
+						}
+					}
+				}
+				else
+				{
+					if (qsc_stringutils_string_size(path) < sizeof(rpath))
+					{
+						qsc_stringutils_copy_string(rpath, sizeof(rpath), path);
+
+						if (qsc_stringutils_string_compare(rroot, rpath, rsize) == 0)
+						{
+							res = true;
+						}
 					}
 				}
 			}
