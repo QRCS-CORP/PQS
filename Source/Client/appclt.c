@@ -1,3 +1,11 @@
+#if !defined(QSC_SYSTEM_OS_WINDOWS)
+#	if defined(__APPLE__) && !defined(_DARWIN_C_SOURCE)
+#		define _DARWIN_C_SOURCE 1
+#	endif
+#	if !defined(_POSIX_C_SOURCE)
+#		define _POSIX_C_SOURCE 200809L
+#	endif
+#endif
 #include "appclt.h"
 #include "pqs.h"
 #include "pqslogger.h"
@@ -137,69 +145,6 @@ static void client_get_prompt(void)
 	else
 	{
 		qsc_stringutils_copy_string(m_client_connection_state.prompt, PQS_CLIENT_PROMPT_MAX, "pqs-client> ");
-	}
-}
-
-static void client_set_prompt(const char* message, size_t msglen)
-{
-	size_t end;
-	size_t len;
-	size_t pos;
-	size_t start;
-	bool found;
-
-	if (message != NULL && msglen != 0U)
-	{
-		end = msglen;
-
-		while (end != 0U && (message[end - 1U] == '\0' || message[end - 1U] == '\n' || message[end - 1U] == '\r'))
-		{
-			--end;
-		}
-
-		if (end != 0U)
-		{
-			start = 0U;
-			pos = end;
-
-			while (pos != 0U)
-			{
-				--pos;
-
-				if (message[pos] == '\n' || message[pos] == '\r')
-				{
-					start = pos + 1U;
-					break;
-				}
-			}
-
-			len = end - start;
-			found = false;
-
-			if (len >= 2U)
-			{
-				for (pos = start + 1U; pos < end; ++pos)
-				{
-					if (message[pos - 1U] == ':' && message[pos] == '\\')
-					{
-						found = true;
-						break;
-					}
-				}
-			}
-
-			if (found == true)
-			{
-				if (len >= PQS_CLIENT_PROMPT_MAX)
-				{
-					len = PQS_CLIENT_PROMPT_MAX - 1U;
-				}
-
-				qsc_memutils_clear(m_client_connection_state.prompt, PQS_CLIENT_PROMPT_MAX);
-				qsc_memutils_copy(m_client_connection_state.prompt, message + start, len);
-				m_client_connection_state.prompt[len] = '\0';
-			}
-		}
 	}
 }
 
@@ -538,21 +483,6 @@ static bool client_ipv4_dialogue(qsc_ipinfo_ipv4_address* address)
 	}
 
 	return res;
-}
-
-static const char* client_format_message(const char* message, size_t msglen)
-{
-	int64_t npos;
-
-	(void)msglen;
-	npos = qsc_stringutils_find_string(message, "\n");
-
-	if (npos < 0)
-	{
-		npos = 0;
-	}
-
-	return (const char*)message + npos;
 }
 
 static void client_xfer_close_download(bool success, const char* metadata)

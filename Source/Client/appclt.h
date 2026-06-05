@@ -52,11 +52,6 @@
 #ifndef PQS_CLIENT_APP_H
 #define PQS_CLIENT_APP_H
 
-#include <assert.h>
-#include <errno.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <string.h>
 #include "pqscommon.h"
 
 /**
