@@ -2365,14 +2365,43 @@ static void server_policy_list(void)
 
 			record = &m_server_policy_store.records[pos];
 
-			snprintf(msg, sizeof(msg), "%s mode=%s enabled=%s mask=%u allow=[%s] deny=[%s] forced=%s",
+			int32_t slen;
+
+			qsc_memutils_clear(msg, sizeof(msg));
+			slen = snprintf(msg, sizeof(msg), "name=%s mode=%s enabled=%s mask=%u",
 				record->name,
 				pqs_policy_mode_to_string(record->mode),
-				(record->enabled == true) ? "yes" : "no",
-				record->privilege_mask,
-				record->allowlist,
-				record->denylist,
-				record->forced);
+				record->enabled == true ? "true" : "false",
+				record->privilege_mask);
+
+			if (slen > 0)
+			{
+				server_print_message(msg);
+			}
+
+			qsc_memutils_clear(msg, sizeof(msg));
+			slen = snprintf(msg, sizeof(msg), "allow=[%.*s]", (int)PQS_SERVER_POLICY_FIELD_DISPLAY_MAX, record->allowlist);
+
+			if (slen > 0)
+			{
+				server_print_message(msg);
+			}
+
+			qsc_memutils_clear(msg, sizeof(msg));
+			slen = snprintf(msg, sizeof(msg), "deny=[%.*s]", (int)PQS_SERVER_POLICY_FIELD_DISPLAY_MAX, record->denylist);
+
+			if (slen > 0)
+			{
+				server_print_message(msg);
+			}
+
+			qsc_memutils_clear(msg, sizeof(msg));
+			slen = snprintf(msg, sizeof(msg), "forced=%.*s", (int)PQS_SERVER_POLICY_FIELD_DISPLAY_MAX, record->forced);
+
+			if (slen > 0)
+			{
+				server_print_message(msg);
+			}
 
 			server_print_message(msg);
 		}
