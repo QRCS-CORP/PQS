@@ -1,5 +1,5 @@
 #include "pqsprocess.h"
-#if defined(__APPLE__) && !defined(_DARWIN_C_SOURCE)
+#if defined(QSC_SYSTEM_OS_MAC) && !defined(_DARWIN_C_SOURCE)
 #	define _DARWIN_C_SOURCE 1
 #endif
 #include "memutils.h"
@@ -26,7 +26,7 @@
 #   include <sys/wait.h>
 #   include <time.h>
 #   include <unistd.h>
-#   if defined(__linux__)
+#   if defined(QSC_SYSTEM_OS_LINUX)
 #       include <sys/prctl.h>
 #   endif
 #endif
@@ -578,20 +578,22 @@ static bool pqs_process_apply_confinement(const pqs_sandbox_profile* sandbox, co
 
 	if (sandbox != NULL && identity != NULL)
 	{
-#if defined(__linux__)
+#if defined(QSC_SYSTEM_OS_LINUX)
 		(void)prctl(PR_SET_DUMPABLE, 0UL, 0UL, 0UL, 0UL);
 		(void)prctl(PR_SET_NO_NEW_PRIVS, 1UL, 0UL, 0UL, 0UL);
 #endif
-		if (sandbox->chroot_enabled == true)
+#if !defined(QSC_SYSTEM_OS_MAC)
+		if (getuid() == (uid_t)0 && chroot(sandbox->working_directory) == 0 && chdir("/") == 0)
 		{
-			if (getuid() == (uid_t)0 && chroot(sandbox->working_directory) == 0 && chdir("/") == 0)
+			res = true;
+		}
+		else
+#endif
+		{
+			if (chdir(sandbox->working_directory) == 0)
 			{
 				res = true;
 			}
-		}
-		else
-		{
-			res = (chdir(sandbox->working_directory) == 0);
 		}
 
 		if (res == true && getuid() == (uid_t)0)
