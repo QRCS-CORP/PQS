@@ -1,7 +1,7 @@
-#if defined(QSC_SYSTEM_OS_MAC) && !defined(_DARWIN_C_SOURCE)
+#if defined(__APPLE__) && !defined(_DARWIN_C_SOURCE)
 #	define _DARWIN_C_SOURCE 1
 #endif
-#if defined(QSC_SYSTEM_OS_LINUX)
+#if defined(__linux__)
 #	if !defined(_POSIX_C_SOURCE)
 #		define _POSIX_C_SOURCE 200809L
 #	endif
@@ -44,6 +44,8 @@
 #		include <sys/prctl.h>
 #	endif
 #endif
+
+#define PQS_SERVER_POLICY_FIELD_DISPLAY_MAX 384
 
 typedef enum server_console_modes
 {
@@ -781,7 +783,6 @@ static bool server_send_error_message(qsms_connection_state* cns, const char* me
 
 	return res;
 }
-
 
 static bool server_send_admin_chunk(qsms_connection_state* cns, const char* message, size_t msglen, bool final)
 {
@@ -1818,7 +1819,6 @@ static bool server_handle_login_request(qsms_connection_state* cns, const uint8_
 	return res;
 }
 
-
 static bool server_handle_admin_request(qsms_connection_state* cns, const uint8_t* message, size_t msglen)
 {
 	pqs_admin_context context = { 0 };
@@ -2388,7 +2388,7 @@ static void server_policy_show(const char* name)
 
 	if (record != NULL)
 	{
-		snprintf(msg, sizeof(msg), "name=%s mode=%s enabled=%s mask=%u allow=[%s] deny=[%s] forced=%s",
+		snprintf(msg, sizeof(msg), "name=%s mode=%s enabled=%s mask=%u allowlist=[%s] denylist=[%s] forced=%s",
 			record->name,
 			pqs_policy_mode_to_string(record->mode),
 			(record->enabled == true) ? "yes" : "no",
