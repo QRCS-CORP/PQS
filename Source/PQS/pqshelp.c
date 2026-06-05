@@ -206,3 +206,25 @@ void pqs_help_server_print_help(void)
 	qsc_consoleutils_print_line("detail -Show detailed setup and operations help.");
 	qsc_consoleutils_print_line("exit -Return to server mode.");
 }
+
+
+void pqs_help_server_print_policy(void)
+{
+	server_print_message("policy mode commands:");
+	server_print_message("list -List command policies and privilege assignments.");
+	server_print_message("add [name] [no-shell|restricted|forced|raw-shell]  -Add a command policy.");
+	server_print_message("remove [name] -Remove an unassigned command policy.");
+	server_print_message("enable [name] -Enable a command policy.");
+	server_print_message("disable [name] -Disable a command policy.");
+	server_print_message("mode [name] [no-shell|restricted|forced|raw-shell] -Set a policy mode.");
+	server_print_message("force [name] [command] -Set the forced command for a policy.");
+	server_print_message("allow [name] [command] -Add a command to the policy allow-list.");
+	server_print_message("deny [name] [command] -Add a command to the policy deny-list.");
+	server_print_message("unallow [name] [command] -Remove a command from the allow-list.");
+	server_print_message("undeny [name] [command] -Remove a command from the deny-list.");
+	server_print_message("assign [guest|user|admin] [name] -Assign a policy to a privilege level.");
+	server_print_message("show [name] -Show a command policy.");
+	server_print_message("help -Show this help.");
+	server_print_message("detail -Show detailed setup and operations help.");
+	server_print_message("exit -Return to server mode.");
+}

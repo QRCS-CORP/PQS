@@ -47,4 +47,9 @@ PQS_EXPORT_API void pqs_help_server_print_detail(void);
  */
 PQS_EXPORT_API void pqs_help_server_print_help(void);
 
+/**
+ * \brief Print the detailed PQS server policy help text.
+ */
+PQS_EXPORT_API void pqs_help_server_print_policy(void);
+
 #endif

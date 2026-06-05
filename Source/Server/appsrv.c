@@ -1,3 +1,8 @@
+#if !defined(QSC_SYSTEM_OS_WINDOWS)
+#	if !defined(_POSIX_C_SOURCE)
+#		define _POSIX_C_SOURCE 200809L
+#	endif
+#endif
 #include "appsrv.h"
 #include "pqs.h"
 #include "pqsadmin.h"
@@ -2333,27 +2338,6 @@ static void server_shell_mode_execute(char* line, char* tokens[], size_t tcount)
 	}
 }
 
-static void server_print_policy_help(void)
-{
-	server_print_message("policy mode commands:");
-	server_print_message("list -List command policies and privilege assignments.");
-	server_print_message("add [name] [no-shell|restricted|forced|raw-shell]  -Add a command policy.");
-	server_print_message("remove [name] -Remove an unassigned command policy.");
-	server_print_message("enable [name] -Enable a command policy.");
-	server_print_message("disable [name] -Disable a command policy.");
-	server_print_message("mode [name] [no-shell|restricted|forced|raw-shell] -Set a policy mode.");
-	server_print_message("force [name] [command] -Set the forced command for a policy.");
-	server_print_message("allow [name] [command] -Add a command to the policy allow-list.");
-	server_print_message("deny [name] [command] -Add a command to the policy deny-list.");
-	server_print_message("unallow [name] [command] -Remove a command from the allow-list.");
-	server_print_message("undeny [name] [command] -Remove a command from the deny-list.");
-	server_print_message("assign [guest|user|admin] [name] -Assign a policy to a privilege level.");
-	server_print_message("show [name] -Show a command policy.");
-	server_print_message("help -Show this help.");
-	server_print_message("detail -Show detailed setup and operations help.");
-	server_print_message("exit -Return to server mode.");
-}
-
 static void server_policy_list(void)
 {
 	char msg[512] = { 0 };
@@ -2439,7 +2423,7 @@ static void server_policy_mode_execute(char* tokens[], size_t tcount)
 		}
 		else
 		{
-			server_print_policy_help();
+			pqs_help_server_print_policy();
 		}
 	}
 	else if (qsc_stringutils_strings_equal(tokens[0U], "exit") == true)
@@ -2551,7 +2535,7 @@ static void server_policy_mode_execute(char* tokens[], size_t tcount)
 	else
 	{
 		server_print_message("The policy command was not recognized.");
-		server_print_policy_help();
+		pqs_help_server_print_policy();
 	}
 }
 
