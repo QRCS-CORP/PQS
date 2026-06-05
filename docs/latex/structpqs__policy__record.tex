@@ -1,0 +1,83 @@
+\doxysection{pqs\+\_\+policy\+\_\+record Struct Reference}
+\hypertarget{structpqs__policy__record}{}\label{structpqs__policy__record}\index{pqs\_policy\_record@{pqs\_policy\_record}}
+
+
+A PQS server command policy record.  
+
+
+
+
+{\ttfamily \#include $<$pqspolicy.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structpqs__policy__record_ac682180785a0399b98435ab6623a6fa3}{name}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__policy__record_ac5318a52ca17cc2656b3cb36c2b37327}{allowlist}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+COMMAND\+\_\+\+LIST\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__policy__record_a712b76afc0abc5cfdf1c6f2eb3fcc33f}{denylist}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+COMMAND\+\_\+\+LIST\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__policy__record_a1f06b4cf78965e7c6a40b68a62c4589a}{forced}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+COMMAND\+\_\+\+MAX\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__policy__record_a7d29c89a75d9d9812046b7bbd8f6a89c}{privilege\+\_\+mask}}
+\item 
+\mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} \mbox{\hyperlink{structpqs__policy__record_a0d35f9a84b5cb5dc18d7ba60307061a3}{mode}}
+\item 
+bool \mbox{\hyperlink{structpqs__policy__record_a8740ba80e30dd75e71d09fa1dcf04f3d}{enabled}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A PQS server command policy record. 
+
+\label{doc-variable-members}
+\Hypertarget{structpqs__policy__record_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__policy__record_ac5318a52ca17cc2656b3cb36c2b37327}\index{pqs\_policy\_record@{pqs\_policy\_record}!allowlist@{allowlist}}
+\index{allowlist@{allowlist}!pqs\_policy\_record@{pqs\_policy\_record}}
+\doxysubsubsection{\texorpdfstring{allowlist}{allowlist}}
+{\footnotesize\ttfamily \label{structpqs__policy__record_ac5318a52ca17cc2656b3cb36c2b37327} 
+char allowlist\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+COMMAND\+\_\+\+LIST\+\_\+\+MAX\mbox{]}}
+
+A comma-\/separated allowed command list. \Hypertarget{structpqs__policy__record_a712b76afc0abc5cfdf1c6f2eb3fcc33f}\index{pqs\_policy\_record@{pqs\_policy\_record}!denylist@{denylist}}
+\index{denylist@{denylist}!pqs\_policy\_record@{pqs\_policy\_record}}
+\doxysubsubsection{\texorpdfstring{denylist}{denylist}}
+{\footnotesize\ttfamily \label{structpqs__policy__record_a712b76afc0abc5cfdf1c6f2eb3fcc33f} 
+char denylist\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+COMMAND\+\_\+\+LIST\+\_\+\+MAX\mbox{]}}
+
+A comma-\/separated denied command list. \Hypertarget{structpqs__policy__record_a8740ba80e30dd75e71d09fa1dcf04f3d}\index{pqs\_policy\_record@{pqs\_policy\_record}!enabled@{enabled}}
+\index{enabled@{enabled}!pqs\_policy\_record@{pqs\_policy\_record}}
+\doxysubsubsection{\texorpdfstring{enabled}{enabled}}
+{\footnotesize\ttfamily \label{structpqs__policy__record_a8740ba80e30dd75e71d09fa1dcf04f3d} 
+bool enabled}
+
+The policy enabled flag. \Hypertarget{structpqs__policy__record_a1f06b4cf78965e7c6a40b68a62c4589a}\index{pqs\_policy\_record@{pqs\_policy\_record}!forced@{forced}}
+\index{forced@{forced}!pqs\_policy\_record@{pqs\_policy\_record}}
+\doxysubsubsection{\texorpdfstring{forced}{forced}}
+{\footnotesize\ttfamily \label{structpqs__policy__record_a1f06b4cf78965e7c6a40b68a62c4589a} 
+char forced\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+COMMAND\+\_\+\+MAX\mbox{]}}
+
+The forced command name or command prefix. \Hypertarget{structpqs__policy__record_a0d35f9a84b5cb5dc18d7ba60307061a3}\index{pqs\_policy\_record@{pqs\_policy\_record}!mode@{mode}}
+\index{mode@{mode}!pqs\_policy\_record@{pqs\_policy\_record}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily \label{structpqs__policy__record_a0d35f9a84b5cb5dc18d7ba60307061a3} 
+\mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} mode}
+
+The policy mode. \Hypertarget{structpqs__policy__record_ac682180785a0399b98435ab6623a6fa3}\index{pqs\_policy\_record@{pqs\_policy\_record}!name@{name}}
+\index{name@{name}!pqs\_policy\_record@{pqs\_policy\_record}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{structpqs__policy__record_ac682180785a0399b98435ab6623a6fa3} 
+char name\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}}
+
+The policy name. \Hypertarget{structpqs__policy__record_a7d29c89a75d9d9812046b7bbd8f6a89c}\index{pqs\_policy\_record@{pqs\_policy\_record}!privilege\_mask@{privilege\_mask}}
+\index{privilege\_mask@{privilege\_mask}!pqs\_policy\_record@{pqs\_policy\_record}}
+\doxysubsubsection{\texorpdfstring{privilege\_mask}{privilege\_mask}}
+{\footnotesize\ttfamily \label{structpqs__policy__record_a7d29c89a75d9d9812046b7bbd8f6a89c} 
+uint32\+\_\+t privilege\+\_\+mask}
+
+The allowed privilege mask. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqspolicy_8h}{pqspolicy.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,115 @@
+\doxysection{pqs\+\_\+admin\+\_\+context Struct Reference}
+\hypertarget{structpqs__admin__context}{}\label{structpqs__admin__context}\index{pqs\_admin\_context@{pqs\_admin\_context}}
+
+
+The server-\/side context made available to a typed administrative command.  
+
+
+
+
+{\ttfamily \#include $<$pqsadmin.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_a6b1334b7d911b18440d1fd652de154fe}{user}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_a7322e63f910f743c18b0a475a2d1b448}{peer}}
+\item 
+pqs\+\_\+user\+\_\+privileges \mbox{\hyperlink{structpqs__admin__context_ab88757667fd0d41d3ef64ac788889d8e}{privilege}}
+\item 
+bool \mbox{\hyperlink{structpqs__admin__context_a3764bd4f6c2a90398f051875278281d9}{authenticated}}
+\item 
+const \mbox{\hyperlink{structpqs__server__config}{pqs\+\_\+server\+\_\+config}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_a38d51aac8e5a5a6e07b30f73327b5bf2}{config}}
+\item 
+const \mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_a5e0fd5b03fd36bcfc3076cd00bcaaaec}{users}}
+\item 
+const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_a1a6586ab4b0462c8b11aa05058f0368b}{shells}}
+\item 
+const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_aeea1c4fc9e018bac2b85b853700f6547}{policies}}
+\item 
+const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_a6675f566b47a297985de8e93a3a0d01e}{sandbox}}
+\item 
+const qsms\+\_\+client\+\_\+verification\+\_\+key \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpqs__admin__context_abfb823e43c996de1744fa29724e756a2}{public\+\_\+key}}
+\item 
+bool \mbox{\hyperlink{structpqs__admin__context_a05aa7e944a7a992997121bd6be91382b}{logger\+\_\+failed}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The server-\/side context made available to a typed administrative command. 
+
+\label{doc-variable-members}
+\Hypertarget{structpqs__admin__context_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__admin__context_a3764bd4f6c2a90398f051875278281d9}\index{pqs\_admin\_context@{pqs\_admin\_context}!authenticated@{authenticated}}
+\index{authenticated@{authenticated}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{authenticated}{authenticated}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a3764bd4f6c2a90398f051875278281d9} 
+bool authenticated}
+
+The server session authentication state. \Hypertarget{structpqs__admin__context_a38d51aac8e5a5a6e07b30f73327b5bf2}\index{pqs\_admin\_context@{pqs\_admin\_context}!config@{config}}
+\index{config@{config}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a38d51aac8e5a5a6e07b30f73327b5bf2} 
+const \mbox{\hyperlink{structpqs__server__config}{pqs\+\_\+server\+\_\+config}}\texorpdfstring{$\ast$}{*} config}
+
+The active server configuration. \Hypertarget{structpqs__admin__context_a05aa7e944a7a992997121bd6be91382b}\index{pqs\_admin\_context@{pqs\_admin\_context}!logger\_failed@{logger\_failed}}
+\index{logger\_failed@{logger\_failed}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{logger\_failed}{logger\_failed}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a05aa7e944a7a992997121bd6be91382b} 
+bool logger\+\_\+failed}
+
+True when the audit logger has reported a write failure. \Hypertarget{structpqs__admin__context_a7322e63f910f743c18b0a475a2d1b448}\index{pqs\_admin\_context@{pqs\_admin\_context}!peer@{peer}}
+\index{peer@{peer}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{peer}{peer}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a7322e63f910f743c18b0a475a2d1b448} 
+const char\texorpdfstring{$\ast$}{*} peer}
+
+The authenticated peer address string. \Hypertarget{structpqs__admin__context_aeea1c4fc9e018bac2b85b853700f6547}\index{pqs\_admin\_context@{pqs\_admin\_context}!policies@{policies}}
+\index{policies@{policies}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{policies}{policies}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_aeea1c4fc9e018bac2b85b853700f6547} 
+const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}}\texorpdfstring{$\ast$}{*} policies}
+
+The active command-\/policy database. \Hypertarget{structpqs__admin__context_ab88757667fd0d41d3ef64ac788889d8e}\index{pqs\_admin\_context@{pqs\_admin\_context}!privilege@{privilege}}
+\index{privilege@{privilege}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{privilege}{privilege}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_ab88757667fd0d41d3ef64ac788889d8e} 
+pqs\+\_\+user\+\_\+privileges privilege}
+
+The authenticated PQS privilege level. \Hypertarget{structpqs__admin__context_abfb823e43c996de1744fa29724e756a2}\index{pqs\_admin\_context@{pqs\_admin\_context}!public\_key@{public\_key}}
+\index{public\_key@{public\_key}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{public\_key}{public\_key}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_abfb823e43c996de1744fa29724e756a2} 
+const qsms\+\_\+client\+\_\+verification\+\_\+key\texorpdfstring{$\ast$}{*} public\+\_\+key}
+
+The server public verification key. \Hypertarget{structpqs__admin__context_a6675f566b47a297985de8e93a3a0d01e}\index{pqs\_admin\_context@{pqs\_admin\_context}!sandbox@{sandbox}}
+\index{sandbox@{sandbox}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{sandbox}{sandbox}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a6675f566b47a297985de8e93a3a0d01e} 
+const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}}\texorpdfstring{$\ast$}{*} sandbox}
+
+The active command sandbox profile. \Hypertarget{structpqs__admin__context_a1a6586ab4b0462c8b11aa05058f0368b}\index{pqs\_admin\_context@{pqs\_admin\_context}!shells@{shells}}
+\index{shells@{shells}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{shells}{shells}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a1a6586ab4b0462c8b11aa05058f0368b} 
+const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}}\texorpdfstring{$\ast$}{*} shells}
+
+The active shell-\/profile database. \Hypertarget{structpqs__admin__context_a6b1334b7d911b18440d1fd652de154fe}\index{pqs\_admin\_context@{pqs\_admin\_context}!user@{user}}
+\index{user@{user}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a6b1334b7d911b18440d1fd652de154fe} 
+const char\texorpdfstring{$\ast$}{*} user}
+
+The authenticated PQS user name. \Hypertarget{structpqs__admin__context_a5e0fd5b03fd36bcfc3076cd00bcaaaec}\index{pqs\_admin\_context@{pqs\_admin\_context}!users@{users}}
+\index{users@{users}!pqs\_admin\_context@{pqs\_admin\_context}}
+\doxysubsubsection{\texorpdfstring{users}{users}}
+{\footnotesize\ttfamily \label{structpqs__admin__context_a5e0fd5b03fd36bcfc3076cd00bcaaaec} 
+const \mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}}\texorpdfstring{$\ast$}{*} users}
+
+The active user database. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqsadmin_8h}{pqsadmin.\+h}}\end{DoxyCompactItemize}

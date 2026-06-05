@@ -1,0 +1,243 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqsadmin.h File Reference}
+\hypertarget{pqsadmin_8h}{}\label{pqsadmin_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsadmin.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsadmin.h}}
+
+
+PQS typed administrative command functions.  
+
+
+{\ttfamily \#include "{}pqsconfig.\+h"{}}\newline
+{\ttfamily \#include "{}pqskey.\+h"{}}\newline
+{\ttfamily \#include "{}pqslogger.\+h"{}}\newline
+{\ttfamily \#include "{}pqspolicy.\+h"{}}\newline
+{\ttfamily \#include "{}pqssandbox.\+h"{}}\newline
+{\ttfamily \#include "{}pqsshell.\+h"{}}\newline
+{\ttfamily \#include "{}pqsuser.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__admin__request}{pqs\+\_\+admin\+\_\+request}}
+\begin{DoxyCompactList}\small\item\em A parsed PQS administrative command request. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__admin__context}{pqs\+\_\+admin\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em The server-\/side context made available to a typed administrative command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsadmin_8h_a027595647cb2c25a5e5b588f7cf213d9}\label{pqsadmin_8h_a027595647cb2c25a5e5b588f7cf213d9} 
+\#define {\bfseries PQS\+\_\+\+ADMIN\+\_\+\+ARGUMENT\+\_\+\+MAX}~128U
+\begin{DoxyCompactList}\small\item\em The maximum administrative command argument buffer size. \end{DoxyCompactList}\item 
+\Hypertarget{pqsadmin_8h_a4a25d004c7dff94386aad19abc5f29b2}\label{pqsadmin_8h_a4a25d004c7dff94386aad19abc5f29b2} 
+\#define {\bfseries PQS\+\_\+\+ADMIN\+\_\+\+OUTPUT\+\_\+\+MAX}~2048U
+\begin{DoxyCompactList}\small\item\em The maximum formatted administrative command response size. \end{DoxyCompactList}\item 
+\Hypertarget{pqsadmin_8h_a3522959c1db184ef05d75cb328cbef27}\label{pqsadmin_8h_a3522959c1db184ef05d75cb328cbef27} 
+\#define {\bfseries PQS\+\_\+\+ADMIN\+\_\+\+POLICY\+\_\+\+PREFIX}~"{}admin."{}
+\begin{DoxyCompactList}\small\item\em The administrative policy command namespace prefix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsadmin_8h_a7fd96abfb594a6dcaff22f94f9e9b4e5}\label{pqsadmin_8h_a7fd96abfb594a6dcaff22f94f9e9b4e5} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\+\_\+admin\+\_\+command\+\_\+ids}} {\bfseries pqs\+\_\+admin\+\_\+command\+\_\+ids}
+\item 
+\Hypertarget{pqsadmin_8h_a670f672b3ee48ab5b84cb2d94702b7aa}\label{pqsadmin_8h_a670f672b3ee48ab5b84cb2d94702b7aa} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+admin\+\_\+request {\bfseries pqs\+\_\+admin\+\_\+request}
+\item 
+\Hypertarget{pqsadmin_8h_aae424b0fbbad228e0886a52b5837b864}\label{pqsadmin_8h_aae424b0fbbad228e0886a52b5837b864} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+admin\+\_\+context {\bfseries pqs\+\_\+admin\+\_\+context}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\+\_\+admin\+\_\+command\+\_\+ids}} \{ \newline
+\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a362f6aba3e7c99ac6a62472a15316b72}{pqs\+\_\+admin\+\_\+command\+\_\+none}} = 0x0000U
+, \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a5e496583e57ebb42340c5488cf2debf6}{pqs\+\_\+admin\+\_\+command\+\_\+server\+\_\+status}} = 0x0001U
+, \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a801c535126bdddf40604f0dae18d905f}{pqs\+\_\+admin\+\_\+command\+\_\+server\+\_\+version}} = 0x0002U
+, \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a8ecf7bcd792f8ed9aae2094b453ffe03}{pqs\+\_\+admin\+\_\+command\+\_\+server\+\_\+fingerprint}} = 0x0003U
+, \newline
+\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a406efef374c813d482d853b230dcb5af}{pqs\+\_\+admin\+\_\+command\+\_\+sandbox\+\_\+status}} = 0x0004U
+, \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255af5cac846b0cfe4231f38891a6b0aa7f5}{pqs\+\_\+admin\+\_\+command\+\_\+audit\+\_\+verify}} = 0x0005U
+, \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a306220d33fdb6739da368d9529377b81}{pqs\+\_\+admin\+\_\+command\+\_\+config\+\_\+summary}} = 0x0006U
+, \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aefb351ce171f61cab976704e86ed0abc}{pqs\+\_\+admin\+\_\+command\+\_\+user\+\_\+list}} = 0x0007U
+, \newline
+\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a72c2a8c4b78fb95a6e1e24fd6dd936b0}{pqs\+\_\+admin\+\_\+command\+\_\+policy\+\_\+list}} = 0x0008U
+, \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aca76c8d14ee2532e5dcf4e4c0b624045}{pqs\+\_\+admin\+\_\+command\+\_\+shell\+\_\+list}} = 0x0009U
+ \}
+\begin{DoxyCompactList}\small\item\em Stable PQS typed administrative command identifiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsadmin_8h_acbdf07694577aa8ed8fe8d98671ceb56}{pqs\+\_\+admin\+\_\+authorize}} (const \mbox{\hyperlink{structpqs__admin__context}{pqs\+\_\+admin\+\_\+context}} \texorpdfstring{$\ast$}{*}context, const \mbox{\hyperlink{structpqs__admin__request}{pqs\+\_\+admin\+\_\+request}} \texorpdfstring{$\ast$}{*}request)
+\begin{DoxyCompactList}\small\item\em Authorize a typed administrative command against privilege and policy. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsadmin_8h_ade3f9d2e00b8113e71259610ecde4c1d}{pqs\+\_\+admin\+\_\+execute}} (const \mbox{\hyperlink{structpqs__admin__context}{pqs\+\_\+admin\+\_\+context}} \texorpdfstring{$\ast$}{*}context, const \mbox{\hyperlink{structpqs__admin__request}{pqs\+\_\+admin\+\_\+request}} \texorpdfstring{$\ast$}{*}request, char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen)
+\begin{DoxyCompactList}\small\item\em Execute a typed administrative command into a bounded response buffer. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsadmin_8h_a8c042a1c2b002859e7a038e8bcfeeaef}{pqs\+\_\+admin\+\_\+request\+\_\+parse}} (\mbox{\hyperlink{structpqs__admin__request}{pqs\+\_\+admin\+\_\+request}} \texorpdfstring{$\ast$}{*}request, const char \texorpdfstring{$\ast$}{*}command)
+\begin{DoxyCompactList}\small\item\em Parse a bounded administrative request string. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsadmin_8h_abb55e40c7392b9fe10a03c40018aeed0}{pqs\+\_\+admin\+\_\+command\+\_\+to\+\_\+string}} (\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\+\_\+admin\+\_\+command\+\_\+ids}} command)
+\begin{DoxyCompactList}\small\item\em Return the stable command name for a typed administrative command. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsadmin_8h_a31434ac9654c7beda063061434d061e3}{pqs\+\_\+admin\+\_\+policy\+\_\+verb}} (\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\+\_\+admin\+\_\+command\+\_\+ids}} command)
+\begin{DoxyCompactList}\small\item\em Return the policy verb associated with a typed administrative command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS typed administrative command functions. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{pqsadmin_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_ids@{pqs\_admin\_command\_ids}}
+\index{pqs\_admin\_command\_ids@{pqs\_admin\_command\_ids}!pqsadmin.h@{pqsadmin.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_admin\_command\_ids}{pqs\_admin\_command\_ids}}
+{\footnotesize\ttfamily \label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255} 
+enum \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\+\_\+admin\+\_\+command\+\_\+ids}}}
+
+
+
+Stable PQS typed administrative command identifiers. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_none@{pqs\_admin\_command\_none}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_none@{pqs\_admin\_command\_none}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a362f6aba3e7c99ac6a62472a15316b72}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a362f6aba3e7c99ac6a62472a15316b72} 
+pqs\+\_\+admin\+\_\+command\+\_\+none&No administrative command. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_server\_status@{pqs\_admin\_command\_server\_status}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_server\_status@{pqs\_admin\_command\_server\_status}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a5e496583e57ebb42340c5488cf2debf6}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a5e496583e57ebb42340c5488cf2debf6} 
+pqs\+\_\+admin\+\_\+command\+\_\+server\+\_\+status&Print the authenticated server-\/session status. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_server\_version@{pqs\_admin\_command\_server\_version}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_server\_version@{pqs\_admin\_command\_server\_version}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a801c535126bdddf40604f0dae18d905f}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a801c535126bdddf40604f0dae18d905f} 
+pqs\+\_\+admin\+\_\+command\+\_\+server\+\_\+version&Print the PQS server version string. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_server\_fingerprint@{pqs\_admin\_command\_server\_fingerprint}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_server\_fingerprint@{pqs\_admin\_command\_server\_fingerprint}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a8ecf7bcd792f8ed9aae2094b453ffe03}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a8ecf7bcd792f8ed9aae2094b453ffe03} 
+pqs\+\_\+admin\+\_\+command\+\_\+server\+\_\+fingerprint&Print the server public-\/key fingerprint. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_sandbox\_status@{pqs\_admin\_command\_sandbox\_status}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_sandbox\_status@{pqs\_admin\_command\_sandbox\_status}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a406efef374c813d482d853b230dcb5af}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a406efef374c813d482d853b230dcb5af} 
+pqs\+\_\+admin\+\_\+command\+\_\+sandbox\+\_\+status&Print the active sandbox profile status. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_audit\_verify@{pqs\_admin\_command\_audit\_verify}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_audit\_verify@{pqs\_admin\_command\_audit\_verify}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255af5cac846b0cfe4231f38891a6b0aa7f5}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255af5cac846b0cfe4231f38891a6b0aa7f5} 
+pqs\+\_\+admin\+\_\+command\+\_\+audit\+\_\+verify&Verify the configured tamper-\/evident audit log. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_config\_summary@{pqs\_admin\_command\_config\_summary}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_config\_summary@{pqs\_admin\_command\_config\_summary}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a306220d33fdb6739da368d9529377b81}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a306220d33fdb6739da368d9529377b81} 
+pqs\+\_\+admin\+\_\+command\+\_\+config\+\_\+summary&Print a bounded server configuration summary. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_user\_list@{pqs\_admin\_command\_user\_list}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_user\_list@{pqs\_admin\_command\_user\_list}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aefb351ce171f61cab976704e86ed0abc}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aefb351ce171f61cab976704e86ed0abc} 
+pqs\+\_\+admin\+\_\+command\+\_\+user\+\_\+list&Print a bounded user database summary. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_policy\_list@{pqs\_admin\_command\_policy\_list}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_policy\_list@{pqs\_admin\_command\_policy\_list}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a72c2a8c4b78fb95a6e1e24fd6dd936b0}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a72c2a8c4b78fb95a6e1e24fd6dd936b0} 
+pqs\+\_\+admin\+\_\+command\+\_\+policy\+\_\+list&Print a bounded command-\/policy summary. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_admin\_command\_shell\_list@{pqs\_admin\_command\_shell\_list}!pqsadmin.h@{pqsadmin.h}}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_shell\_list@{pqs\_admin\_command\_shell\_list}}}\Hypertarget{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aca76c8d14ee2532e5dcf4e4c0b624045}\label{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aca76c8d14ee2532e5dcf4e4c0b624045} 
+pqs\+\_\+admin\+\_\+command\+\_\+shell\+\_\+list&Print a bounded shell-\/profile summary. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{pqsadmin_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqsadmin_8h_acbdf07694577aa8ed8fe8d98671ceb56}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_authorize@{pqs\_admin\_authorize}}
+\index{pqs\_admin\_authorize@{pqs\_admin\_authorize}!pqsadmin.h@{pqsadmin.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_admin\_authorize()}{pqs\_admin\_authorize()}}
+{\footnotesize\ttfamily \label{pqsadmin_8h_acbdf07694577aa8ed8fe8d98671ceb56} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+admin\+\_\+authorize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__admin__context}{pqs\+\_\+admin\+\_\+context}} \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{const \mbox{\hyperlink{structpqs__admin__request}{pqs\+\_\+admin\+\_\+request}} \texorpdfstring{$\ast$}{*}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Authorize a typed administrative command against privilege and policy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & \mbox{[}const struct\mbox{]} The server-\/side administrative context. \\
+\hline
+{\em request} & \mbox{[}const struct\mbox{]} The parsed administrative request.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true when the request is administratively authorized. 
+\end{DoxyReturn}
+\Hypertarget{pqsadmin_8h_abb55e40c7392b9fe10a03c40018aeed0}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_command\_to\_string@{pqs\_admin\_command\_to\_string}}
+\index{pqs\_admin\_command\_to\_string@{pqs\_admin\_command\_to\_string}!pqsadmin.h@{pqsadmin.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_admin\_command\_to\_string()}{pqs\_admin\_command\_to\_string()}}
+{\footnotesize\ttfamily \label{pqsadmin_8h_abb55e40c7392b9fe10a03c40018aeed0} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} pqs\+\_\+admin\+\_\+command\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\+\_\+admin\+\_\+command\+\_\+ids}}}]{command}{}\end{DoxyParamCaption})}
+
+
+
+Return the stable command name for a typed administrative command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & \mbox{[}enum\mbox{]} The administrative command identifier.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the stable command name, or "{}none"{}. 
+\end{DoxyReturn}
+\Hypertarget{pqsadmin_8h_ade3f9d2e00b8113e71259610ecde4c1d}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_execute@{pqs\_admin\_execute}}
+\index{pqs\_admin\_execute@{pqs\_admin\_execute}!pqsadmin.h@{pqsadmin.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_admin\_execute()}{pqs\_admin\_execute()}}
+{\footnotesize\ttfamily \label{pqsadmin_8h_ade3f9d2e00b8113e71259610ecde4c1d} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+admin\+\_\+execute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__admin__context}{pqs\+\_\+admin\+\_\+context}} \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{const \mbox{\hyperlink{structpqs__admin__request}{pqs\+\_\+admin\+\_\+request}} \texorpdfstring{$\ast$}{*}}]{request}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{}\end{DoxyParamCaption})}
+
+
+
+Execute a typed administrative command into a bounded response buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & \mbox{[}const struct\mbox{]} The server-\/side administrative context. \\
+\hline
+{\em request} & \mbox{[}const struct\mbox{]} The parsed administrative request. \\
+\hline
+{\em output} & The output buffer receiving the response. \\
+\hline
+{\em outlen} & The output buffer size.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the command completed and a response was written. 
+\end{DoxyReturn}
+\Hypertarget{pqsadmin_8h_a31434ac9654c7beda063061434d061e3}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_policy\_verb@{pqs\_admin\_policy\_verb}}
+\index{pqs\_admin\_policy\_verb@{pqs\_admin\_policy\_verb}!pqsadmin.h@{pqsadmin.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_admin\_policy\_verb()}{pqs\_admin\_policy\_verb()}}
+{\footnotesize\ttfamily \label{pqsadmin_8h_a31434ac9654c7beda063061434d061e3} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} pqs\+\_\+admin\+\_\+policy\+\_\+verb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\+\_\+admin\+\_\+command\+\_\+ids}}}]{command}{}\end{DoxyParamCaption})}
+
+
+
+Return the policy verb associated with a typed administrative command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & \mbox{[}enum\mbox{]} The administrative command identifier.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the policy verb, or "{}admin.\+none"{}. 
+\end{DoxyReturn}
+\Hypertarget{pqsadmin_8h_a8c042a1c2b002859e7a038e8bcfeeaef}\index{pqsadmin.h@{pqsadmin.h}!pqs\_admin\_request\_parse@{pqs\_admin\_request\_parse}}
+\index{pqs\_admin\_request\_parse@{pqs\_admin\_request\_parse}!pqsadmin.h@{pqsadmin.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_admin\_request\_parse()}{pqs\_admin\_request\_parse()}}
+{\footnotesize\ttfamily \label{pqsadmin_8h_a8c042a1c2b002859e7a038e8bcfeeaef} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+admin\+\_\+request\+\_\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__admin__request}{pqs\+\_\+admin\+\_\+request}} \texorpdfstring{$\ast$}{*}}]{request}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{command}{}\end{DoxyParamCaption})}
+
+
+
+Parse a bounded administrative request string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & \mbox{[}struct\mbox{]} The parsed administrative request output. \\
+\hline
+{\em command} & \mbox{[}const\mbox{]} The NUL-\/terminated request text.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the request text matched a supported typed command. 
+\end{DoxyReturn}

@@ -1,14 +1,16 @@
 var annotated_dup =
 [
-    [ "client_connection_state", "structclient__connection__state.html", null ],
-    [ "pqs_asymmetric_cipher_keypair", "structpqs__asymmetric__cipher__keypair.html", "structpqs__asymmetric__cipher__keypair" ],
-    [ "pqs_asymmetric_signature_keypair", "structpqs__asymmetric__signature__keypair.html", "structpqs__asymmetric__signature__keypair" ],
-    [ "pqs_client_verification_key", "structpqs__client__verification__key.html", "structpqs__client__verification__key" ],
-    [ "pqs_connection_set", "structpqs__connection__set.html", "structpqs__connection__set" ],
-    [ "pqs_connection_state", "structpqs__connection__state.html", "structpqs__connection__state" ],
-    [ "pqs_keep_alive_state", "structpqs__keep__alive__state.html", "structpqs__keep__alive__state" ],
-    [ "pqs_kex_client_state", "structpqs__kex__client__state.html", "structpqs__kex__client__state" ],
-    [ "pqs_kex_server_state", "structpqs__kex__server__state.html", "structpqs__kex__server__state" ],
-    [ "pqs_network_packet", "structpqs__network__packet.html", "structpqs__network__packet" ],
-    [ "pqs_server_signature_key", "structpqs__server__signature__key.html", "structpqs__server__signature__key" ]
+    [ "pqs_admin_context", "structpqs__admin__context.html", "structpqs__admin__context" ],
+    [ "pqs_admin_request", "structpqs__admin__request.html", "structpqs__admin__request" ],
+    [ "pqs_client_config", "structpqs__client__config.html", "structpqs__client__config" ],
+    [ "pqs_logger_state", "structpqs__logger__state.html", null ],
+    [ "pqs_policy_record", "structpqs__policy__record.html", "structpqs__policy__record" ],
+    [ "pqs_policy_store", "structpqs__policy__store.html", "structpqs__policy__store" ],
+    [ "pqs_process_identity", "structpqs__process__identity.html", null ],
+    [ "pqs_sandbox_profile", "structpqs__sandbox__profile.html", null ],
+    [ "pqs_server_config", "structpqs__server__config.html", "structpqs__server__config" ],
+    [ "pqs_shell_profile", "structpqs__shell__profile.html", "structpqs__shell__profile" ],
+    [ "pqs_shell_store", "structpqs__shell__store.html", "structpqs__shell__store" ],
+    [ "pqs_user_record", "structpqs__user__record.html", "structpqs__user__record" ],
+    [ "pqs_user_store", "structpqs__user__store.html", "structpqs__user__store" ]
 ];

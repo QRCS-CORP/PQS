@@ -1,0 +1,473 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqslogger.h File Reference}
+\hypertarget{pqslogger_8h}{}\label{pqslogger_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqslogger.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqslogger.h}}
+
+
+The PQS structured logging functions.  
+
+
+{\ttfamily \#include "{}pqscommon.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqslogger_8h_af400625803f083040aa55d7f40d034a3}\label{pqslogger_8h_af400625803f083040aa55d7f40d034a3} 
+\#define {\bfseries PQS\+\_\+\+LOGGER\+\_\+\+LINE\+\_\+\+MAX}~1536U
+\begin{DoxyCompactList}\small\item\em The maximum formatted log line length. \end{DoxyCompactList}\item 
+\Hypertarget{pqslogger_8h_a938b13d32c3f6f508ab697b6a0de4500}\label{pqslogger_8h_a938b13d32c3f6f508ab697b6a0de4500} 
+\#define {\bfseries PQS\+\_\+\+LOGGER\+\_\+\+USER\+\_\+\+MAX}~64U
+\begin{DoxyCompactList}\small\item\em The maximum user identifier length stored in a log event. \end{DoxyCompactList}\item 
+\Hypertarget{pqslogger_8h_af2aeba31b4b8be12a7f3ab3a225da852}\label{pqslogger_8h_af2aeba31b4b8be12a7f3ab3a225da852} 
+\#define {\bfseries PQS\+\_\+\+LOGGER\+\_\+\+DETAIL\+\_\+\+MAX}~384U
+\begin{DoxyCompactList}\small\item\em The maximum detail field length stored in a log event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqslogger_8h_a019f9a26868891c6ad56f333e46ad27c}\label{pqslogger_8h_a019f9a26868891c6ad56f333e46ad27c} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} {\bfseries pqs\+\_\+log\+\_\+level}
+\item 
+\Hypertarget{pqslogger_8h_a877040f78598c4d9729e0747a1f611ae}\label{pqslogger_8h_a877040f78598c4d9729e0747a1f611ae} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\+\_\+log\+\_\+event}} {\bfseries pqs\+\_\+log\+\_\+event}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} \{ \newline
+\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072af2b189c530dc9f985d85b88ae3f771d2}{pqs\+\_\+log\+\_\+level\+\_\+none}} = 0x00U
+, \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a115e02e26955277dbf304be67a4b095f}{pqs\+\_\+log\+\_\+level\+\_\+error}} = 0x01U
+, \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ae2d0c59f984a796b4f69582452e3d186}{pqs\+\_\+log\+\_\+level\+\_\+warning}} = 0x02U
+, \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a71f764c6c1d3c1f177f54b26ca7364d2}{pqs\+\_\+log\+\_\+level\+\_\+info}} = 0x03U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ab76f2f9d1976d648dba01bf150852a5f}{pqs\+\_\+log\+\_\+level\+\_\+audit}} = 0x04U
+, \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a0fdea22e4cdea2133fec225d6a1a10d9}{pqs\+\_\+log\+\_\+level\+\_\+debug}} = 0x05U
+ \}
+\begin{DoxyCompactList}\small\item\em The PQS log severity levels. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\+\_\+log\+\_\+event}} \{ \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa97aebdd61d6851aac149a1591b894bfd}{pqs\+\_\+log\+\_\+event\+\_\+none}} = 0x0000U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaae7131ec328268ef8d0b60db62172af19}{pqs\+\_\+log\+\_\+event\+\_\+application\+\_\+start}} = 0x1000U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa7faa0bf858b651b2e2aecfdbc919bba6}{pqs\+\_\+log\+\_\+event\+\_\+application\+\_\+stop}} = 0x1001U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e816f853732b665e16c1bd020bd89d7}{pqs\+\_\+log\+\_\+event\+\_\+key\+\_\+loaded}} = 0x1100U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa09ead6a8d2a927b3b0c3961b73656689}{pqs\+\_\+log\+\_\+event\+\_\+key\+\_\+generated}} = 0x1101U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3a6b94a15a03d9214db7cfa05a8607e5}{pqs\+\_\+log\+\_\+event\+\_\+connection\+\_\+open}} = 0x1200U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9a3b40a54e5984e2460b263ad9db4d91}{pqs\+\_\+log\+\_\+event\+\_\+connection\+\_\+close}} = 0x1201U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa02b570680ca5711e7e74024c90a2461f}{pqs\+\_\+log\+\_\+event\+\_\+connection\+\_\+refused}} = 0x1202U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa382339add15f3a3add9feb156fd763fb}{pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+received}} = 0x1300U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa757323d79d023c1156eb0f8be74401be}{pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+complete}} = 0x1301U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa01f017caa5ab9986327a457cf9e634d}{pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+failed}} = 0x1302U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e0a84ddf9336328261382dc885a466e}{pqs\+\_\+log\+\_\+event\+\_\+auth\+\_\+success}} = 0x1400U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8fa00acedce0b34cc545c6876979d915}{pqs\+\_\+log\+\_\+event\+\_\+auth\+\_\+failure}} = 0x1401U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa345b3828c7ad09ed3a895a5f1b3bbf13}{pqs\+\_\+log\+\_\+event\+\_\+auth\+\_\+lockout}} = 0x1402U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac90639c32197c7bedd7f2236ce621753}{pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+database\+\_\+loaded}} = 0x1410U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2d68b839a2e46b99ce78f8814b02713b}{pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+database\+\_\+created}} = 0x1411U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5aa0451cbf0d89449d78376546e78176}{pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+added}} = 0x1412U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa0b68e5bf8924235218c920f1263fbab5}{pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+removed}} = 0x1413U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa540580ed78f981e6f9f7afae5054e67f}{pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+updated}} = 0x1414U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3496aa364d51ae48eef90e101064268a}{pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+database\+\_\+loaded}} = 0x1420U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa80d9a956898c80f69c65838140bf55c8}{pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+database\+\_\+created}} = 0x1421U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaf3be7ff44177f2a36482437d3e7095de}{pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+added}} = 0x1422U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaafeb33130bad4c9b56f2a7cd9638d493e}{pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+removed}} = 0x1423U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa51656c25f1b16ee3ec6e4352130d8fe6}{pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+updated}} = 0x1424U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac8d242701636d92adba9a87c38235465}{pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+database\+\_\+loaded}} = 0x1430U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa515f541e86289fe1e4367da357ff7ece}{pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+database\+\_\+created}} = 0x1431U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa69d6891406775074e0d12146f3a7db1}{pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+added}} = 0x1432U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa50b944493be769ae414492dca5c7323b}{pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+removed}} = 0x1433U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa82c8d9706ff2315876025179ad6cea1e}{pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+updated}} = 0x1434U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaaa872ad38a2e065ed8dcab91f8d6c8c9}{pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+allowed}} = 0x1435U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9ca4fc7e06bbd1b103919b845a7cd722}{pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+denied}} = 0x1436U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5ebd6d40701b8a1c979367d88df3470a}{pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+loaded}} = 0x1440U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8a79b81caa652f165a2f53ac09f32978}{pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+pinned}} = 0x1441U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9195cb396d24974b0a651ad110909559}{pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+verified}} = 0x1442U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac37bd680697bad106002d0de4887c57b}{pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+changed}} = 0x1443U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa2ed4d11f47c6564ac598d953c0a65a2}{pqs\+\_\+log\+\_\+event\+\_\+sandbox\+\_\+enabled}} = 0x1450U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa588023ac3e8f7e60d6b66023e80c3430}{pqs\+\_\+log\+\_\+event\+\_\+sandbox\+\_\+violation}} = 0x1451U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa6b05e602129fb05fefb113635fbf37c3}{pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+timeout}} = 0x1452U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa98bea825c88da96f9c171e6e1958309f}{pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+output\+\_\+limit}} = 0x1453U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaacefa7bb45d7381fe09ad63f030a00c20}{pqs\+\_\+log\+\_\+event\+\_\+file\+\_\+transfer\+\_\+start}} = 0x1460U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaad671f8060e1513bdfbf1e44b83c40c24}{pqs\+\_\+log\+\_\+event\+\_\+file\+\_\+transfer\+\_\+complete}} = 0x1461U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaefe98d4d582e95e3d9f1323590e7531e}{pqs\+\_\+log\+\_\+event\+\_\+file\+\_\+transfer\+\_\+failed}} = 0x1462U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa003e1f5248fdb85d528586a3c63a693f}{pqs\+\_\+log\+\_\+event\+\_\+protocol\+\_\+error}} = 0x1500U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaed91270869c925cbfb96e79e5ef62274}{pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+request}} = 0x1550U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2839fb41d40cae5479ee2e558a05933b}{pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+allowed}} = 0x1551U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2b5f9b84f5fa96763d4943bf590a6033}{pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+denied}} = 0x1552U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa923044e1c7ac08b7d66afd99917e0952}{pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+complete}} = 0x1553U
+, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaab4339d2cb0f6a8c405c421007f715110}{pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+failed}} = 0x1554U
+, \newline
+\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa78bde1895c3889ab2a8c2f08442c8649}{pqs\+\_\+log\+\_\+event\+\_\+audit\+\_\+chain\+\_\+start}} = 0x1600U
+ \}
+\begin{DoxyCompactList}\small\item\em The PQS structured log event identifiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqslogger_8h_aec106156979d60e33f5def45fa810c39}\label{pqslogger_8h_aec106156979d60e33f5def45fa810c39} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void {\bfseries pqs\+\_\+logger\+\_\+dispose} (void)
+\begin{DoxyCompactList}\small\item\em Dispose of the PQS logger state. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqslogger_8h_a69e72fb1e9d85dd0bc6c2444f2f38d35}{pqs\+\_\+logger\+\_\+initialize}} (const char \texorpdfstring{$\ast$}{*}path, \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} level)
+\begin{DoxyCompactList}\small\item\em Initialize the PQS file logger. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqslogger_8h_adb33f12c2465c0eada8fb1d832e19139}{pqs\+\_\+logger\+\_\+is\+\_\+initialized}} (void)
+\begin{DoxyCompactList}\small\item\em Test if the logger has been initialized. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqslogger_8h_aa0fef0fd3fcab5164d24c8e237eb6404}{pqs\+\_\+logger\+\_\+failure\+\_\+occurred}} (void)
+\begin{DoxyCompactList}\small\item\em Test whether a logger write failure has occurred since initialization. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqslogger_8h_aa51a6fc24ae6ea8da27d3b9c362ee598}{pqs\+\_\+logger\+\_\+verify\+\_\+chain}} (const char \texorpdfstring{$\ast$}{*}path, uint64\+\_\+t \texorpdfstring{$\ast$}{*}records)
+\begin{DoxyCompactList}\small\item\em Verify the tamper-\/evident PQS audit-\/log chain. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqslogger_8h_a76b00c714db07a0b0b65bb866d41ad08}{pqs\+\_\+logger\+\_\+write}} (\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} level, \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\+\_\+log\+\_\+event}} event, const char \texorpdfstring{$\ast$}{*}user, const char \texorpdfstring{$\ast$}{*}peer, const char \texorpdfstring{$\ast$}{*}detail)
+\begin{DoxyCompactList}\small\item\em Write a structured PQS log event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The PQS structured logging functions. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{pqslogger_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfea}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event@{pqs\_log\_event}}
+\index{pqs\_log\_event@{pqs\_log\_event}!pqslogger.h@{pqslogger.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_log\_event}{pqs\_log\_event}}
+{\footnotesize\ttfamily \label{pqslogger_8h_ad54282d907cd734eec232904c970bfea} 
+enum \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\+\_\+log\+\_\+event}}}
+
+
+
+The PQS structured log event identifiers. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_none@{pqs\_log\_event\_none}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_none@{pqs\_log\_event\_none}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa97aebdd61d6851aac149a1591b894bfd}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa97aebdd61d6851aac149a1591b894bfd} 
+pqs\+\_\+log\+\_\+event\+\_\+none&No event. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_application\_start@{pqs\_log\_event\_application\_start}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_application\_start@{pqs\_log\_event\_application\_start}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaae7131ec328268ef8d0b60db62172af19}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaae7131ec328268ef8d0b60db62172af19} 
+pqs\+\_\+log\+\_\+event\+\_\+application\+\_\+start&The application started. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_application\_stop@{pqs\_log\_event\_application\_stop}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_application\_stop@{pqs\_log\_event\_application\_stop}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa7faa0bf858b651b2e2aecfdbc919bba6}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa7faa0bf858b651b2e2aecfdbc919bba6} 
+pqs\+\_\+log\+\_\+event\+\_\+application\+\_\+stop&The application stopped. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_key\_loaded@{pqs\_log\_event\_key\_loaded}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_key\_loaded@{pqs\_log\_event\_key\_loaded}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e816f853732b665e16c1bd020bd89d7}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e816f853732b665e16c1bd020bd89d7} 
+pqs\+\_\+log\+\_\+event\+\_\+key\+\_\+loaded&The PQS key was loaded. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_key\_generated@{pqs\_log\_event\_key\_generated}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_key\_generated@{pqs\_log\_event\_key\_generated}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa09ead6a8d2a927b3b0c3961b73656689}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa09ead6a8d2a927b3b0c3961b73656689} 
+pqs\+\_\+log\+\_\+event\+\_\+key\+\_\+generated&A new PQS key was generated. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_connection\_open@{pqs\_log\_event\_connection\_open}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_connection\_open@{pqs\_log\_event\_connection\_open}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3a6b94a15a03d9214db7cfa05a8607e5}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3a6b94a15a03d9214db7cfa05a8607e5} 
+pqs\+\_\+log\+\_\+event\+\_\+connection\+\_\+open&A connection opened. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_connection\_close@{pqs\_log\_event\_connection\_close}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_connection\_close@{pqs\_log\_event\_connection\_close}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9a3b40a54e5984e2460b263ad9db4d91}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9a3b40a54e5984e2460b263ad9db4d91} 
+pqs\+\_\+log\+\_\+event\+\_\+connection\+\_\+close&A connection closed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_connection\_refused@{pqs\_log\_event\_connection\_refused}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_connection\_refused@{pqs\_log\_event\_connection\_refused}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa02b570680ca5711e7e74024c90a2461f}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa02b570680ca5711e7e74024c90a2461f} 
+pqs\+\_\+log\+\_\+event\+\_\+connection\+\_\+refused&A connection was refused. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_command\_received@{pqs\_log\_event\_command\_received}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_command\_received@{pqs\_log\_event\_command\_received}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa382339add15f3a3add9feb156fd763fb}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa382339add15f3a3add9feb156fd763fb} 
+pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+received&A command request was received. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_command\_complete@{pqs\_log\_event\_command\_complete}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_command\_complete@{pqs\_log\_event\_command\_complete}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa757323d79d023c1156eb0f8be74401be}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa757323d79d023c1156eb0f8be74401be} 
+pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+complete&Command output completed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_command\_failed@{pqs\_log\_event\_command\_failed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_command\_failed@{pqs\_log\_event\_command\_failed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa01f017caa5ab9986327a457cf9e634d}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa01f017caa5ab9986327a457cf9e634d} 
+pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+failed&Command execution failed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_auth\_success@{pqs\_log\_event\_auth\_success}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_auth\_success@{pqs\_log\_event\_auth\_success}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e0a84ddf9336328261382dc885a466e}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e0a84ddf9336328261382dc885a466e} 
+pqs\+\_\+log\+\_\+event\+\_\+auth\+\_\+success&Authentication succeeded. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_auth\_failure@{pqs\_log\_event\_auth\_failure}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_auth\_failure@{pqs\_log\_event\_auth\_failure}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8fa00acedce0b34cc545c6876979d915}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8fa00acedce0b34cc545c6876979d915} 
+pqs\+\_\+log\+\_\+event\+\_\+auth\+\_\+failure&Authentication failed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_auth\_lockout@{pqs\_log\_event\_auth\_lockout}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_auth\_lockout@{pqs\_log\_event\_auth\_lockout}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa345b3828c7ad09ed3a895a5f1b3bbf13}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa345b3828c7ad09ed3a895a5f1b3bbf13} 
+pqs\+\_\+log\+\_\+event\+\_\+auth\+\_\+lockout&Authentication failed and the account was locked. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_user\_database\_loaded@{pqs\_log\_event\_user\_database\_loaded}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_user\_database\_loaded@{pqs\_log\_event\_user\_database\_loaded}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac90639c32197c7bedd7f2236ce621753}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac90639c32197c7bedd7f2236ce621753} 
+pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+database\+\_\+loaded&The server user database was loaded. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_user\_database\_created@{pqs\_log\_event\_user\_database\_created}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_user\_database\_created@{pqs\_log\_event\_user\_database\_created}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2d68b839a2e46b99ce78f8814b02713b}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2d68b839a2e46b99ce78f8814b02713b} 
+pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+database\+\_\+created&The server user database was created. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_user\_added@{pqs\_log\_event\_user\_added}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_user\_added@{pqs\_log\_event\_user\_added}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5aa0451cbf0d89449d78376546e78176}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5aa0451cbf0d89449d78376546e78176} 
+pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+added&A server user record was added. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_user\_removed@{pqs\_log\_event\_user\_removed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_user\_removed@{pqs\_log\_event\_user\_removed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa0b68e5bf8924235218c920f1263fbab5}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa0b68e5bf8924235218c920f1263fbab5} 
+pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+removed&A server user record was removed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_user\_updated@{pqs\_log\_event\_user\_updated}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_user\_updated@{pqs\_log\_event\_user\_updated}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa540580ed78f981e6f9f7afae5054e67f}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa540580ed78f981e6f9f7afae5054e67f} 
+pqs\+\_\+log\+\_\+event\+\_\+user\+\_\+updated&A server user record was updated. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_shell\_database\_loaded@{pqs\_log\_event\_shell\_database\_loaded}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_shell\_database\_loaded@{pqs\_log\_event\_shell\_database\_loaded}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3496aa364d51ae48eef90e101064268a}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3496aa364d51ae48eef90e101064268a} 
+pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+database\+\_\+loaded&The server shell profile database was loaded. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_shell\_database\_created@{pqs\_log\_event\_shell\_database\_created}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_shell\_database\_created@{pqs\_log\_event\_shell\_database\_created}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa80d9a956898c80f69c65838140bf55c8}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa80d9a956898c80f69c65838140bf55c8} 
+pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+database\+\_\+created&The server shell profile database was created. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_shell\_added@{pqs\_log\_event\_shell\_added}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_shell\_added@{pqs\_log\_event\_shell\_added}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaf3be7ff44177f2a36482437d3e7095de}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaf3be7ff44177f2a36482437d3e7095de} 
+pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+added&A server shell profile was added. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_shell\_removed@{pqs\_log\_event\_shell\_removed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_shell\_removed@{pqs\_log\_event\_shell\_removed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaafeb33130bad4c9b56f2a7cd9638d493e}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaafeb33130bad4c9b56f2a7cd9638d493e} 
+pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+removed&A server shell profile was removed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_shell\_updated@{pqs\_log\_event\_shell\_updated}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_shell\_updated@{pqs\_log\_event\_shell\_updated}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa51656c25f1b16ee3ec6e4352130d8fe6}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa51656c25f1b16ee3ec6e4352130d8fe6} 
+pqs\+\_\+log\+\_\+event\+\_\+shell\+\_\+updated&A server shell profile was updated. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_policy\_database\_loaded@{pqs\_log\_event\_policy\_database\_loaded}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_policy\_database\_loaded@{pqs\_log\_event\_policy\_database\_loaded}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac8d242701636d92adba9a87c38235465}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac8d242701636d92adba9a87c38235465} 
+pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+database\+\_\+loaded&The server command policy database was loaded. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_policy\_database\_created@{pqs\_log\_event\_policy\_database\_created}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_policy\_database\_created@{pqs\_log\_event\_policy\_database\_created}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa515f541e86289fe1e4367da357ff7ece}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa515f541e86289fe1e4367da357ff7ece} 
+pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+database\+\_\+created&The server command policy database was created. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_policy\_added@{pqs\_log\_event\_policy\_added}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_policy\_added@{pqs\_log\_event\_policy\_added}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa69d6891406775074e0d12146f3a7db1}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa69d6891406775074e0d12146f3a7db1} 
+pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+added&A server command policy was added. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_policy\_removed@{pqs\_log\_event\_policy\_removed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_policy\_removed@{pqs\_log\_event\_policy\_removed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa50b944493be769ae414492dca5c7323b}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa50b944493be769ae414492dca5c7323b} 
+pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+removed&A server command policy was removed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_policy\_updated@{pqs\_log\_event\_policy\_updated}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_policy\_updated@{pqs\_log\_event\_policy\_updated}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa82c8d9706ff2315876025179ad6cea1e}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa82c8d9706ff2315876025179ad6cea1e} 
+pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+updated&A server command policy was updated. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_policy\_allowed@{pqs\_log\_event\_policy\_allowed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_policy\_allowed@{pqs\_log\_event\_policy\_allowed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaaa872ad38a2e065ed8dcab91f8d6c8c9}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaaa872ad38a2e065ed8dcab91f8d6c8c9} 
+pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+allowed&A command was permitted by policy. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_policy\_denied@{pqs\_log\_event\_policy\_denied}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_policy\_denied@{pqs\_log\_event\_policy\_denied}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9ca4fc7e06bbd1b103919b845a7cd722}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9ca4fc7e06bbd1b103919b845a7cd722} 
+pqs\+\_\+log\+\_\+event\+\_\+policy\+\_\+denied&A command was denied by policy. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_hostkey\_loaded@{pqs\_log\_event\_hostkey\_loaded}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_hostkey\_loaded@{pqs\_log\_event\_hostkey\_loaded}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5ebd6d40701b8a1c979367d88df3470a}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5ebd6d40701b8a1c979367d88df3470a} 
+pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+loaded&A host key was loaded. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_hostkey\_pinned@{pqs\_log\_event\_hostkey\_pinned}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_hostkey\_pinned@{pqs\_log\_event\_hostkey\_pinned}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8a79b81caa652f165a2f53ac09f32978}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8a79b81caa652f165a2f53ac09f32978} 
+pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+pinned&A host key fingerprint was pinned. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_hostkey\_verified@{pqs\_log\_event\_hostkey\_verified}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_hostkey\_verified@{pqs\_log\_event\_hostkey\_verified}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9195cb396d24974b0a651ad110909559}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9195cb396d24974b0a651ad110909559} 
+pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+verified&A host key fingerprint was verified. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_hostkey\_changed@{pqs\_log\_event\_hostkey\_changed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_hostkey\_changed@{pqs\_log\_event\_hostkey\_changed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac37bd680697bad106002d0de4887c57b}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac37bd680697bad106002d0de4887c57b} 
+pqs\+\_\+log\+\_\+event\+\_\+hostkey\+\_\+changed&A host key fingerprint differed from a known-\/hosts entry. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_sandbox\_enabled@{pqs\_log\_event\_sandbox\_enabled}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_sandbox\_enabled@{pqs\_log\_event\_sandbox\_enabled}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa2ed4d11f47c6564ac598d953c0a65a2}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa2ed4d11f47c6564ac598d953c0a65a2} 
+pqs\+\_\+log\+\_\+event\+\_\+sandbox\+\_\+enabled&The command sandbox was initialized. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_sandbox\_violation@{pqs\_log\_event\_sandbox\_violation}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_sandbox\_violation@{pqs\_log\_event\_sandbox\_violation}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa588023ac3e8f7e60d6b66023e80c3430}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa588023ac3e8f7e60d6b66023e80c3430} 
+pqs\+\_\+log\+\_\+event\+\_\+sandbox\+\_\+violation&The command sandbox rejected an execution condition. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_command\_timeout@{pqs\_log\_event\_command\_timeout}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_command\_timeout@{pqs\_log\_event\_command\_timeout}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa6b05e602129fb05fefb113635fbf37c3}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa6b05e602129fb05fefb113635fbf37c3} 
+pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+timeout&A command was terminated by the sandbox timeout. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_command\_output\_limit@{pqs\_log\_event\_command\_output\_limit}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_command\_output\_limit@{pqs\_log\_event\_command\_output\_limit}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa98bea825c88da96f9c171e6e1958309f}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa98bea825c88da96f9c171e6e1958309f} 
+pqs\+\_\+log\+\_\+event\+\_\+command\+\_\+output\+\_\+limit&A command was terminated by the sandbox output limit. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_file\_transfer\_start@{pqs\_log\_event\_file\_transfer\_start}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_file\_transfer\_start@{pqs\_log\_event\_file\_transfer\_start}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaacefa7bb45d7381fe09ad63f030a00c20}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaacefa7bb45d7381fe09ad63f030a00c20} 
+pqs\+\_\+log\+\_\+event\+\_\+file\+\_\+transfer\+\_\+start&A file-\/transfer operation started. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_file\_transfer\_complete@{pqs\_log\_event\_file\_transfer\_complete}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_file\_transfer\_complete@{pqs\_log\_event\_file\_transfer\_complete}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaad671f8060e1513bdfbf1e44b83c40c24}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaad671f8060e1513bdfbf1e44b83c40c24} 
+pqs\+\_\+log\+\_\+event\+\_\+file\+\_\+transfer\+\_\+complete&A file-\/transfer operation completed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_file\_transfer\_failed@{pqs\_log\_event\_file\_transfer\_failed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_file\_transfer\_failed@{pqs\_log\_event\_file\_transfer\_failed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaefe98d4d582e95e3d9f1323590e7531e}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaefe98d4d582e95e3d9f1323590e7531e} 
+pqs\+\_\+log\+\_\+event\+\_\+file\+\_\+transfer\+\_\+failed&A file-\/transfer operation failed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_protocol\_error@{pqs\_log\_event\_protocol\_error}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_protocol\_error@{pqs\_log\_event\_protocol\_error}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa003e1f5248fdb85d528586a3c63a693f}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa003e1f5248fdb85d528586a3c63a693f} 
+pqs\+\_\+log\+\_\+event\+\_\+protocol\+\_\+error&A protocol error was detected. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_admin\_request@{pqs\_log\_event\_admin\_request}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_admin\_request@{pqs\_log\_event\_admin\_request}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaed91270869c925cbfb96e79e5ef62274}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaed91270869c925cbfb96e79e5ef62274} 
+pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+request&A typed administrative command was requested. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_admin\_allowed@{pqs\_log\_event\_admin\_allowed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_admin\_allowed@{pqs\_log\_event\_admin\_allowed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2839fb41d40cae5479ee2e558a05933b}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2839fb41d40cae5479ee2e558a05933b} 
+pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+allowed&A typed administrative command was authorized. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_admin\_denied@{pqs\_log\_event\_admin\_denied}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_admin\_denied@{pqs\_log\_event\_admin\_denied}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2b5f9b84f5fa96763d4943bf590a6033}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2b5f9b84f5fa96763d4943bf590a6033} 
+pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+denied&A typed administrative command was denied. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_admin\_complete@{pqs\_log\_event\_admin\_complete}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_admin\_complete@{pqs\_log\_event\_admin\_complete}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa923044e1c7ac08b7d66afd99917e0952}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa923044e1c7ac08b7d66afd99917e0952} 
+pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+complete&A typed administrative command completed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_admin\_failed@{pqs\_log\_event\_admin\_failed}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_admin\_failed@{pqs\_log\_event\_admin\_failed}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaab4339d2cb0f6a8c405c421007f715110}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaab4339d2cb0f6a8c405c421007f715110} 
+pqs\+\_\+log\+\_\+event\+\_\+admin\+\_\+failed&A typed administrative command failed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_event\_audit\_chain\_start@{pqs\_log\_event\_audit\_chain\_start}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_event\_audit\_chain\_start@{pqs\_log\_event\_audit\_chain\_start}}}\Hypertarget{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa78bde1895c3889ab2a8c2f08442c8649}\label{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa78bde1895c3889ab2a8c2f08442c8649} 
+pqs\+\_\+log\+\_\+event\+\_\+audit\+\_\+chain\+\_\+start&The audit-\/log hash chain was initialized. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_level@{pqs\_log\_level}}
+\index{pqs\_log\_level@{pqs\_log\_level}!pqslogger.h@{pqslogger.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_log\_level}{pqs\_log\_level}}
+{\footnotesize\ttfamily \label{pqslogger_8h_a00b9a5da996a650860f5c2079619e072} 
+enum \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}}}
+
+
+
+The PQS log severity levels. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_level\_none@{pqs\_log\_level\_none}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_level\_none@{pqs\_log\_level\_none}}}\Hypertarget{pqslogger_8h_a00b9a5da996a650860f5c2079619e072af2b189c530dc9f985d85b88ae3f771d2}\label{pqslogger_8h_a00b9a5da996a650860f5c2079619e072af2b189c530dc9f985d85b88ae3f771d2} 
+pqs\+\_\+log\+\_\+level\+\_\+none&Logging is disabled. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_level\_error@{pqs\_log\_level\_error}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_level\_error@{pqs\_log\_level\_error}}}\Hypertarget{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a115e02e26955277dbf304be67a4b095f}\label{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a115e02e26955277dbf304be67a4b095f} 
+pqs\+\_\+log\+\_\+level\+\_\+error&Error-\/level events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_level\_warning@{pqs\_log\_level\_warning}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_level\_warning@{pqs\_log\_level\_warning}}}\Hypertarget{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ae2d0c59f984a796b4f69582452e3d186}\label{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ae2d0c59f984a796b4f69582452e3d186} 
+pqs\+\_\+log\+\_\+level\+\_\+warning&Warning-\/level events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_level\_info@{pqs\_log\_level\_info}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_level\_info@{pqs\_log\_level\_info}}}\Hypertarget{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a71f764c6c1d3c1f177f54b26ca7364d2}\label{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a71f764c6c1d3c1f177f54b26ca7364d2} 
+pqs\+\_\+log\+\_\+level\+\_\+info&Informational events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_level\_audit@{pqs\_log\_level\_audit}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_level\_audit@{pqs\_log\_level\_audit}}}\Hypertarget{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ab76f2f9d1976d648dba01bf150852a5f}\label{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ab76f2f9d1976d648dba01bf150852a5f} 
+pqs\+\_\+log\+\_\+level\+\_\+audit&Security audit events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_log\_level\_debug@{pqs\_log\_level\_debug}!pqslogger.h@{pqslogger.h}}\index{pqslogger.h@{pqslogger.h}!pqs\_log\_level\_debug@{pqs\_log\_level\_debug}}}\Hypertarget{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a0fdea22e4cdea2133fec225d6a1a10d9}\label{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a0fdea22e4cdea2133fec225d6a1a10d9} 
+pqs\+\_\+log\+\_\+level\+\_\+debug&Debug events. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{pqslogger_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqslogger_8h_aa0fef0fd3fcab5164d24c8e237eb6404}\index{pqslogger.h@{pqslogger.h}!pqs\_logger\_failure\_occurred@{pqs\_logger\_failure\_occurred}}
+\index{pqs\_logger\_failure\_occurred@{pqs\_logger\_failure\_occurred}!pqslogger.h@{pqslogger.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_logger\_failure\_occurred()}{pqs\_logger\_failure\_occurred()}}
+{\footnotesize\ttfamily \label{pqslogger_8h_aa0fef0fd3fcab5164d24c8e237eb6404} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+logger\+\_\+failure\+\_\+occurred (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a logger write failure has occurred since initialization. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if a logger write or initialization append failed. 
+\end{DoxyReturn}
+\Hypertarget{pqslogger_8h_a69e72fb1e9d85dd0bc6c2444f2f38d35}\index{pqslogger.h@{pqslogger.h}!pqs\_logger\_initialize@{pqs\_logger\_initialize}}
+\index{pqs\_logger\_initialize@{pqs\_logger\_initialize}!pqslogger.h@{pqslogger.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_logger\_initialize()}{pqs\_logger\_initialize()}}
+{\footnotesize\ttfamily \label{pqslogger_8h_a69e72fb1e9d85dd0bc6c2444f2f38d35} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+logger\+\_\+initialize (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}}}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the PQS file logger. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The log file path. \\
+\hline
+{\em level} & \mbox{[}enum\mbox{]} The minimum enabled log level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the logger was initialized. 
+\end{DoxyReturn}
+\Hypertarget{pqslogger_8h_adb33f12c2465c0eada8fb1d832e19139}\index{pqslogger.h@{pqslogger.h}!pqs\_logger\_is\_initialized@{pqs\_logger\_is\_initialized}}
+\index{pqs\_logger\_is\_initialized@{pqs\_logger\_is\_initialized}!pqslogger.h@{pqslogger.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_logger\_is\_initialized()}{pqs\_logger\_is\_initialized()}}
+{\footnotesize\ttfamily \label{pqslogger_8h_adb33f12c2465c0eada8fb1d832e19139} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+logger\+\_\+is\+\_\+initialized (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Test if the logger has been initialized. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if initialized. 
+\end{DoxyReturn}
+\Hypertarget{pqslogger_8h_aa51a6fc24ae6ea8da27d3b9c362ee598}\index{pqslogger.h@{pqslogger.h}!pqs\_logger\_verify\_chain@{pqs\_logger\_verify\_chain}}
+\index{pqs\_logger\_verify\_chain@{pqs\_logger\_verify\_chain}!pqslogger.h@{pqslogger.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_logger\_verify\_chain()}{pqs\_logger\_verify\_chain()}}
+{\footnotesize\ttfamily \label{pqslogger_8h_aa51a6fc24ae6ea8da27d3b9c362ee598} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+logger\+\_\+verify\+\_\+chain (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{uint64\+\_\+t \texorpdfstring{$\ast$}{*}}]{records}{}\end{DoxyParamCaption})}
+
+
+
+Verify the tamper-\/evident PQS audit-\/log chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The log file path. \\
+\hline
+{\em records} & \mbox{[}uint64\+\_\+t\texorpdfstring{$\ast$}{*}\mbox{]} The number of verified records, or NULL.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if every chained record verifies. 
+\end{DoxyReturn}
+\Hypertarget{pqslogger_8h_a76b00c714db07a0b0b65bb866d41ad08}\index{pqslogger.h@{pqslogger.h}!pqs\_logger\_write@{pqs\_logger\_write}}
+\index{pqs\_logger\_write@{pqs\_logger\_write}!pqslogger.h@{pqslogger.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_logger\_write()}{pqs\_logger\_write()}}
+{\footnotesize\ttfamily \label{pqslogger_8h_a76b00c714db07a0b0b65bb866d41ad08} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+logger\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}}}]{level}{, }\item[{\mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\+\_\+log\+\_\+event}}}]{event}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{user}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{peer}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{detail}{}\end{DoxyParamCaption})}
+
+
+
+Write a structured PQS log event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & \mbox{[}enum\mbox{]} The event log level. \\
+\hline
+{\em event} & \mbox{[}enum\mbox{]} The event identifier. \\
+\hline
+{\em user} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The authenticated PQS user, or NULL. \\
+\hline
+{\em peer} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The peer address, or NULL. \\
+\hline
+{\em detail} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} A non-\/secret event detail string, or NULL.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the event was written. 
+\end{DoxyReturn}

@@ -1,0 +1,63 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqsprocess.h File Reference}
+\hypertarget{pqsprocess_8h}{}\label{pqsprocess_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsprocess.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsprocess.h}}
+
+
+PQS server process-\/execution isolation helper.  
+
+
+{\ttfamily \#include "{}pqs.\+h"{}}\newline
+{\ttfamily \#include "{}pqssandbox.\+h"{}}\newline
+{\ttfamily \#include "{}pqsshell.\+h"{}}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsprocess_8h_a6c92586d05ee1ea81353f73bc468a689}\label{pqsprocess_8h_a6c92586d05ee1ea81353f73bc468a689} 
+typedef bool(\texorpdfstring{$\ast$}{*} {\bfseries pqs\+\_\+process\+\_\+output\+\_\+callback}) (void \texorpdfstring{$\ast$}{*}context, const char \texorpdfstring{$\ast$}{*}message, size\+\_\+t msglen)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsprocess_8h_ada9eacd5c020efddae4237231ec31e11}{pqs\+\_\+process\+\_\+execute}} (const char \texorpdfstring{$\ast$}{*}command, size\+\_\+t cmdlen, const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile, const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}sandbox, pqs\+\_\+process\+\_\+output\+\_\+callback callback, void \texorpdfstring{$\ast$}{*}context, bool \texorpdfstring{$\ast$}{*}timedout, bool \texorpdfstring{$\ast$}{*}outputlimited)
+\begin{DoxyCompactList}\small\item\em Execute a command through an approved shell profile and stream output through a callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS server process-\/execution isolation helper. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{pqsprocess_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqsprocess_8h_ada9eacd5c020efddae4237231ec31e11}\index{pqsprocess.h@{pqsprocess.h}!pqs\_process\_execute@{pqs\_process\_execute}}
+\index{pqs\_process\_execute@{pqs\_process\_execute}!pqsprocess.h@{pqsprocess.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_process\_execute()}{pqs\_process\_execute()}}
+{\footnotesize\ttfamily \label{pqsprocess_8h_ada9eacd5c020efddae4237231ec31e11} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+process\+\_\+execute (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{command}{, }\item[{size\+\_\+t}]{cmdlen}{, }\item[{const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{, }\item[{const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{sandbox}{, }\item[{pqs\+\_\+process\+\_\+output\+\_\+callback}]{callback}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{bool \texorpdfstring{$\ast$}{*}}]{timedout}{, }\item[{bool \texorpdfstring{$\ast$}{*}}]{outputlimited}{}\end{DoxyParamCaption})}
+
+
+
+Execute a command through an approved shell profile and stream output through a callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & \mbox{[}const\mbox{]} The NUL-\/terminated command string. \\
+\hline
+{\em cmdlen} & The command length in bytes. \\
+\hline
+{\em profile} & \mbox{[}const\mbox{]} The resolved shell profile. \\
+\hline
+{\em sandbox} & \mbox{[}const\mbox{]} The server sandbox profile. \\
+\hline
+{\em callback} & The output streaming callback. \\
+\hline
+{\em context} & An opaque callback context. \\
+\hline
+{\em timedout} & \mbox{[}bool\mbox{]} Optional output set to true when the sandbox timeout terminates the process. \\
+\hline
+{\em outputlimited} & \mbox{[}bool\mbox{]} Optional output set to true when the sandbox output limit terminates the process.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if command output was produced or the command completed without a process-\/launch error. 
+\end{DoxyReturn}

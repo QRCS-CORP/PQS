@@ -1,0 +1,577 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqsxfer.h File Reference}
+\hypertarget{pqsxfer_8h}{}\label{pqsxfer_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsxfer.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsxfer.h}}
+
+
+PQS native file-\/transfer helpers.  
+
+
+{\ttfamily \#include "{}pqscommon.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsxfer_8h_a7719d422ef60db2b2686dc0e3f5dc542}\label{pqsxfer_8h_a7719d422ef60db2b2686dc0e3f5dc542} 
+typedef enum \mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2d}{pqs\+\_\+xfer\+\_\+walk\+\_\+events}} {\bfseries pqs\+\_\+xfer\+\_\+walk\+\_\+events}
+\item 
+typedef bool(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsxfer_8h_a43fbb920d37cf10d7d2c8e1ea30299f8}{pqs\+\_\+xfer\+\_\+walk\+\_\+callback}}) (\mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2d}{pqs\+\_\+xfer\+\_\+walk\+\_\+events}} event, const char \texorpdfstring{$\ast$}{*}localpath, const char \texorpdfstring{$\ast$}{*}relative, void \texorpdfstring{$\ast$}{*}context)
+\begin{DoxyCompactList}\small\item\em File-\/transfer directory walk callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2d}{pqs\+\_\+xfer\+\_\+walk\+\_\+events}} \{ \mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da49830addbe997c1a356a20f1d181cc2b}{pqs\+\_\+xfer\+\_\+walk\+\_\+event\+\_\+directory\+\_\+begin}} = 0x01U
+, \mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da3d84eb42c4b40626fb695ecaad4258a4}{pqs\+\_\+xfer\+\_\+walk\+\_\+event\+\_\+file}} = 0x02U
+, \mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da365cb5558935e219f173abc43fade054}{pqs\+\_\+xfer\+\_\+walk\+\_\+event\+\_\+directory\+\_\+end}} = 0x03U
+ \}
+\begin{DoxyCompactList}\small\item\em File-\/transfer directory walk event types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t \mbox{\hyperlink{pqsxfer_8h_a36eb1fecef6546bf6826abdd889fe5cf}{pqs\+\_\+xfer\+\_\+payload\+\_\+size}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}message, size\+\_\+t msglen)
+\begin{DoxyCompactList}\small\item\em Return the plaintext payload length carried after the PQS application message header. \end{DoxyCompactList}\item 
+\Hypertarget{pqsxfer_8h_abfec975b2c6b2b8d464eaaa40d8bfb0b}\label{pqsxfer_8h_abfec975b2c6b2b8d464eaaa40d8bfb0b} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void {\bfseries pqs\+\_\+xfer\+\_\+join\+\_\+path} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}first, const char \texorpdfstring{$\ast$}{*}second)
+\begin{DoxyCompactList}\small\item\em Join two local file-\/system path components. \end{DoxyCompactList}\item 
+\Hypertarget{pqsxfer_8h_a7d88b51d0860ed58ac0aede58e684fc7}\label{pqsxfer_8h_a7d88b51d0860ed58ac0aede58e684fc7} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void {\bfseries pqs\+\_\+xfer\+\_\+join\+\_\+remote} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}first, const char \texorpdfstring{$\ast$}{*}second)
+\begin{DoxyCompactList}\small\item\em Join two remote transfer path components using the PQS remote delimiter. \end{DoxyCompactList}\item 
+\Hypertarget{pqsxfer_8h_a5077bac38c2da112d20eaf8553cb4e03}\label{pqsxfer_8h_a5077bac38c2da112d20eaf8553cb4e03} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool {\bfseries pqs\+\_\+xfer\+\_\+local\+\_\+path\+\_\+is\+\_\+directory} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Test whether a local path is a directory. \end{DoxyCompactList}\item 
+\Hypertarget{pqsxfer_8h_aec4c76feb27608dc721e87af266910f1}\label{pqsxfer_8h_aec4c76feb27608dc721e87af266910f1} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool {\bfseries pqs\+\_\+xfer\+\_\+create\+\_\+parent\+\_\+directories} (const char \texorpdfstring{$\ast$}{*}fpath)
+\begin{DoxyCompactList}\small\item\em Create all parent directories for a local output path. \end{DoxyCompactList}\item 
+\Hypertarget{pqsxfer_8h_a4378caa9f0126da6cea20cd1484fa1cd}\label{pqsxfer_8h_a4378caa9f0126da6cea20cd1484fa1cd} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool {\bfseries pqs\+\_\+xfer\+\_\+make\+\_\+local\+\_\+recursive\+\_\+path} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Build a local path for a recursive transfer member. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a25b7e69e391032ac974eba7b45175c9c}{pqs\+\_\+xfer\+\_\+walk\+\_\+directory}} (const char \texorpdfstring{$\ast$}{*}localroot, const char \texorpdfstring{$\ast$}{*}remoteroot, size\+\_\+t maxdepth, \mbox{\hyperlink{pqsxfer_8h_a43fbb920d37cf10d7d2c8e1ea30299f8}{pqs\+\_\+xfer\+\_\+walk\+\_\+callback}} callback, void \texorpdfstring{$\ast$}{*}context)
+\begin{DoxyCompactList}\small\item\em Walk a local directory tree and report PQS transfer paths through a callback. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_aedb31f478391d21a3759ac8ff71ce781}{pqs\+\_\+xfer\+\_\+make\+\_\+path}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Build a confined absolute path from a transfer root and a relative remote path. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a9a6e8629fa3dba4b23255272bd36fd17}{pqs\+\_\+xfer\+\_\+extract\+\_\+relative}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}message, size\+\_\+t msglen)
+\begin{DoxyCompactList}\small\item\em Extract a bounded relative path from a file-\/transfer application message. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_aa273ae94d6c919090ea7f1fbd604ecf5}{pqs\+\_\+xfer\+\_\+path\+\_\+is\+\_\+confined}} (const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}path, bool existing)
+\begin{DoxyCompactList}\small\item\em Test whether a local path resolves inside the configured root. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_aac5b1965982cea2f18ca7633e6d3fc58}{pqs\+\_\+xfer\+\_\+path\+\_\+is\+\_\+safe}} (const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Test whether a remote file-\/transfer path is safe. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_ab0c842e5e07d858e1b794b1c8e160ef3}{pqs\+\_\+xfer\+\_\+make\+\_\+user\+\_\+root}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}username)
+\begin{DoxyCompactList}\small\item\em Build a per-\/user transfer root path. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsxfer_8h_aa89c8243d1f63dbc202efbb993274e4f}{pqs\+\_\+xfer\+\_\+open\+\_\+read\+\_\+confined}} (const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Open a confined transfer file for binary reading. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsxfer_8h_ab5d10ee4f33a95b0152c4f70babfe75b}{pqs\+\_\+xfer\+\_\+open\+\_\+write\+\_\+confined}} (const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Open a confined transfer file for binary writing. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_adffef5ddd495bf2939ebf9875f574f81}{pqs\+\_\+xfer\+\_\+make\+\_\+temporary\+\_\+path}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Build a confined temporary upload path from a relative target path. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a362af123ee88b1c876fc3a550aad31b3}{pqs\+\_\+xfer\+\_\+remove\+\_\+confined}} (const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Remove a confined file inside the configured transfer root. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_ab5d068133d59c7967c42ecf56440c095}{pqs\+\_\+xfer\+\_\+make\+\_\+directory\+\_\+confined}} (const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Create a confined directory inside the configured transfer root. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a42efe33913916afe0488c649244cdc3c}{pqs\+\_\+xfer\+\_\+publish\+\_\+temporary\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}temporary, const char \texorpdfstring{$\ast$}{*}relative)
+\begin{DoxyCompactList}\small\item\em Publish a staged temporary upload as its final confined file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a5b5ea3cb08935f2e50fa839c9e7724b7}{pqs\+\_\+xfer\+\_\+hash\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}fpath, char \texorpdfstring{$\ast$}{*}hexhash, size\+\_\+t hexlen, size\+\_\+t \texorpdfstring{$\ast$}{*}filesize)
+\begin{DoxyCompactList}\small\item\em Compute the SHA3-\/256 hash of a local file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_ab9a4102089f4edc258009dacc7bce7e2}{pqs\+\_\+xfer\+\_\+format\+\_\+metadata}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, size\+\_\+t filesize, const char \texorpdfstring{$\ast$}{*}hexhash)
+\begin{DoxyCompactList}\small\item\em Format file-\/transfer metadata text. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a222185bfc19ccfa7db4038b9b165f1eb}{pqs\+\_\+xfer\+\_\+parse\+\_\+metadata}} (const char \texorpdfstring{$\ast$}{*}metadata, size\+\_\+t \texorpdfstring{$\ast$}{*}filesize, char \texorpdfstring{$\ast$}{*}hexhash, size\+\_\+t hexlen)
+\begin{DoxyCompactList}\small\item\em Parse file-\/transfer metadata text. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a2de8bb0a5ba4045b6771767ddfa4ea7e}{pqs\+\_\+xfer\+\_\+format\+\_\+file\+\_\+metadata}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}relative, size\+\_\+t filesize, const char \texorpdfstring{$\ast$}{*}hexhash)
+\begin{DoxyCompactList}\small\item\em Format recursive file-\/transfer metadata text. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_ab299efed0448422fcf84f82a3507d3f3}{pqs\+\_\+xfer\+\_\+parse\+\_\+file\+\_\+metadata}} (const char \texorpdfstring{$\ast$}{*}metadata, char \texorpdfstring{$\ast$}{*}relative, size\+\_\+t relen, size\+\_\+t \texorpdfstring{$\ast$}{*}filesize, char \texorpdfstring{$\ast$}{*}hexhash, size\+\_\+t hexlen)
+\begin{DoxyCompactList}\small\item\em Parse recursive file-\/transfer metadata text. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsxfer_8h_a8c91cfe99be3d0c57a16024429132b9a}{pqs\+\_\+xfer\+\_\+path\+\_\+is\+\_\+symlink}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Test whether a file-\/system path is a symbolic link or reparse point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS native file-\/transfer helpers. 
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{pqsxfer_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{pqsxfer_8h_a43fbb920d37cf10d7d2c8e1ea30299f8}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_walk\_callback@{pqs\_xfer\_walk\_callback}}
+\index{pqs\_xfer\_walk\_callback@{pqs\_xfer\_walk\_callback}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_walk\_callback}{pqs\_xfer\_walk\_callback}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a43fbb920d37cf10d7d2c8e1ea30299f8} 
+typedef bool(\texorpdfstring{$\ast$}{*} pqs\+\_\+xfer\+\_\+walk\+\_\+callback) (\mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2d}{pqs\+\_\+xfer\+\_\+walk\+\_\+events}} event, const char \texorpdfstring{$\ast$}{*}localpath, const char \texorpdfstring{$\ast$}{*}relative, void \texorpdfstring{$\ast$}{*}context)}
+
+
+
+File-\/transfer directory walk callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The directory-\/walk event type. \\
+\hline
+{\em localpath} & \mbox{[}const\mbox{]} The local file-\/system path for the event. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The relative PQS transfer path for the event. \\
+\hline
+{\em context} & \mbox{[}void\mbox{]} An application-\/defined callback context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true to continue traversal; otherwise, false. 
+\end{DoxyReturn}
+
+
+\label{doc-enum-members}
+\Hypertarget{pqsxfer_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2d}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_walk\_events@{pqs\_xfer\_walk\_events}}
+\index{pqs\_xfer\_walk\_events@{pqs\_xfer\_walk\_events}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_walk\_events}{pqs\_xfer\_walk\_events}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2d} 
+enum \mbox{\hyperlink{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2d}{pqs\+\_\+xfer\+\_\+walk\+\_\+events}}}
+
+
+
+File-\/transfer directory walk event types. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_xfer\_walk\_event\_directory\_begin@{pqs\_xfer\_walk\_event\_directory\_begin}!pqsxfer.h@{pqsxfer.h}}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_walk\_event\_directory\_begin@{pqs\_xfer\_walk\_event\_directory\_begin}}}\Hypertarget{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da49830addbe997c1a356a20f1d181cc2b}\label{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da49830addbe997c1a356a20f1d181cc2b} 
+pqs\+\_\+xfer\+\_\+walk\+\_\+event\+\_\+directory\+\_\+begin&A directory has been entered and its relative transfer path is available to the callback. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_xfer\_walk\_event\_file@{pqs\_xfer\_walk\_event\_file}!pqsxfer.h@{pqsxfer.h}}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_walk\_event\_file@{pqs\_xfer\_walk\_event\_file}}}\Hypertarget{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da3d84eb42c4b40626fb695ecaad4258a4}\label{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da3d84eb42c4b40626fb695ecaad4258a4} 
+pqs\+\_\+xfer\+\_\+walk\+\_\+event\+\_\+file&A regular file has been discovered and its local and relative transfer paths are available to the callback. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_xfer\_walk\_event\_directory\_end@{pqs\_xfer\_walk\_event\_directory\_end}!pqsxfer.h@{pqsxfer.h}}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_walk\_event\_directory\_end@{pqs\_xfer\_walk\_event\_directory\_end}}}\Hypertarget{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da365cb5558935e219f173abc43fade054}\label{pqsxfer_8h_adc5ef79eb52e45f8f89182c8cf5fed2da365cb5558935e219f173abc43fade054} 
+pqs\+\_\+xfer\+\_\+walk\+\_\+event\+\_\+directory\+\_\+end&A directory has been fully processed and its relative transfer path is available to the callback. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{pqsxfer_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqsxfer_8h_a9a6e8629fa3dba4b23255272bd36fd17}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_extract\_relative@{pqs\_xfer\_extract\_relative}}
+\index{pqs\_xfer\_extract\_relative@{pqs\_xfer\_extract\_relative}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_extract\_relative()}{pqs\_xfer\_extract\_relative()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a9a6e8629fa3dba4b23255272bd36fd17} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+extract\+\_\+relative (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{message}{, }\item[{size\+\_\+t}]{msglen}{}\end{DoxyParamCaption})}
+
+
+
+Extract a bounded relative path from a file-\/transfer application message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\mbox{]} The output path buffer. \\
+\hline
+{\em outlen} & The length of the output path buffer. \\
+\hline
+{\em message} & \mbox{[}const\mbox{]} The application message buffer. \\
+\hline
+{\em msglen} & The application message length.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if a NUL-\/terminated relative path was extracted safely; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a2de8bb0a5ba4045b6771767ddfa4ea7e}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_format\_file\_metadata@{pqs\_xfer\_format\_file\_metadata}}
+\index{pqs\_xfer\_format\_file\_metadata@{pqs\_xfer\_format\_file\_metadata}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_format\_file\_metadata()}{pqs\_xfer\_format\_file\_metadata()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a2de8bb0a5ba4045b6771767ddfa4ea7e} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+format\+\_\+file\+\_\+metadata (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{, }\item[{size\+\_\+t}]{filesize}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{hexhash}{}\end{DoxyParamCaption})}
+
+
+
+Format recursive file-\/transfer metadata text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\mbox{]} The output metadata buffer. \\
+\hline
+{\em outlen} & The length of the output metadata buffer. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The relative file path inside the recursive transfer root. \\
+\hline
+{\em filesize} & The file size associated with the transfer. \\
+\hline
+{\em hexhash} & \mbox{[}const\mbox{]} The NUL-\/terminated SHA3-\/256 hexadecimal hash.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if metadata text was written successfully; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_ab9a4102089f4edc258009dacc7bce7e2}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_format\_metadata@{pqs\_xfer\_format\_metadata}}
+\index{pqs\_xfer\_format\_metadata@{pqs\_xfer\_format\_metadata}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_format\_metadata()}{pqs\_xfer\_format\_metadata()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_ab9a4102089f4edc258009dacc7bce7e2} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+format\+\_\+metadata (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{size\+\_\+t}]{filesize}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{hexhash}{}\end{DoxyParamCaption})}
+
+
+
+Format file-\/transfer metadata text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\mbox{]} The output metadata buffer. \\
+\hline
+{\em outlen} & The length of the output metadata buffer. \\
+\hline
+{\em filesize} & The file size associated with the transfer. \\
+\hline
+{\em hexhash} & \mbox{[}const\mbox{]} The NUL-\/terminated SHA3-\/256 hexadecimal hash.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if metadata text was written successfully; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a5b5ea3cb08935f2e50fa839c9e7724b7}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_hash\_file@{pqs\_xfer\_hash\_file}}
+\index{pqs\_xfer\_hash\_file@{pqs\_xfer\_hash\_file}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_hash\_file()}{pqs\_xfer\_hash\_file()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a5b5ea3cb08935f2e50fa839c9e7724b7} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+hash\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{hexhash}{, }\item[{size\+\_\+t}]{hexlen}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{filesize}{}\end{DoxyParamCaption})}
+
+
+
+Compute the SHA3-\/256 hash of a local file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpath} & \mbox{[}const\mbox{]} The local file path. \\
+\hline
+{\em hexhash} & \mbox{[}char\mbox{]} The output hexadecimal hash buffer. \\
+\hline
+{\em hexlen} & The length of the output hexadecimal hash buffer. \\
+\hline
+{\em filesize} & \mbox{[}size\+\_\+t\mbox{]} An optional output parameter receiving the file size.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the hash was computed successfully; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_ab5d068133d59c7967c42ecf56440c095}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_make\_directory\_confined@{pqs\_xfer\_make\_directory\_confined}}
+\index{pqs\_xfer\_make\_directory\_confined@{pqs\_xfer\_make\_directory\_confined}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_make\_directory\_confined()}{pqs\_xfer\_make\_directory\_confined()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_ab5d068133d59c7967c42ecf56440c095} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+make\+\_\+directory\+\_\+confined (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Create a confined directory inside the configured transfer root. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \mbox{[}const\mbox{]} The configured transfer root directory. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The relative directory path to create.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the confined directory was created or already exists; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_aedb31f478391d21a3759ac8ff71ce781}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_make\_path@{pqs\_xfer\_make\_path}}
+\index{pqs\_xfer\_make\_path@{pqs\_xfer\_make\_path}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_make\_path()}{pqs\_xfer\_make\_path()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_aedb31f478391d21a3759ac8ff71ce781} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+make\+\_\+path (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Build a confined absolute path from a transfer root and a relative remote path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\mbox{]} The output path buffer. \\
+\hline
+{\em outlen} & The length of the output path buffer. \\
+\hline
+{\em root} & \mbox{[}const\mbox{]} The configured transfer root directory. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The remote path supplied by the peer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the resulting path is confined to the root; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_adffef5ddd495bf2939ebf9875f574f81}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_make\_temporary\_path@{pqs\_xfer\_make\_temporary\_path}}
+\index{pqs\_xfer\_make\_temporary\_path@{pqs\_xfer\_make\_temporary\_path}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_make\_temporary\_path()}{pqs\_xfer\_make\_temporary\_path()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_adffef5ddd495bf2939ebf9875f574f81} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+make\+\_\+temporary\+\_\+path (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Build a confined temporary upload path from a relative target path. 
+
+The temporary path remains relative to the same transfer root and is suitable for writing a staged upload before final hash verification.
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\mbox{]} The output relative temporary path. \\
+\hline
+{\em outlen} & The length of the output path buffer. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The final relative target path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the temporary relative path was created safely. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_ab0c842e5e07d858e1b794b1c8e160ef3}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_make\_user\_root@{pqs\_xfer\_make\_user\_root}}
+\index{pqs\_xfer\_make\_user\_root@{pqs\_xfer\_make\_user\_root}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_make\_user\_root()}{pqs\_xfer\_make\_user\_root()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_ab0c842e5e07d858e1b794b1c8e160ef3} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+make\+\_\+user\+\_\+root (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Build a per-\/user transfer root path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\mbox{]} The output path buffer. \\
+\hline
+{\em outlen} & The length of the output path buffer. \\
+\hline
+{\em root} & \mbox{[}const\mbox{]} The configured global transfer root directory. \\
+\hline
+{\em username} & \mbox{[}const\mbox{]} The authenticated PQS user name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the per-\/user root path was created or already existed; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_aa89c8243d1f63dbc202efbb993274e4f}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_open\_read\_confined@{pqs\_xfer\_open\_read\_confined}}
+\index{pqs\_xfer\_open\_read\_confined@{pqs\_xfer\_open\_read\_confined}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_open\_read\_confined()}{pqs\_xfer\_open\_read\_confined()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_aa89c8243d1f63dbc202efbb993274e4f} 
+PQS\+\_\+\+EXPORT\+\_\+\+API FILE \texorpdfstring{$\ast$}{*} pqs\+\_\+xfer\+\_\+open\+\_\+read\+\_\+confined (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Open a confined transfer file for binary reading. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \mbox{[}const\mbox{]} The configured transfer root directory. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The relative transfer path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}FILE\texorpdfstring{$\ast$}{*}\mbox{]} Returns an open file pointer, or NULL on failure. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_ab5d10ee4f33a95b0152c4f70babfe75b}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_open\_write\_confined@{pqs\_xfer\_open\_write\_confined}}
+\index{pqs\_xfer\_open\_write\_confined@{pqs\_xfer\_open\_write\_confined}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_open\_write\_confined()}{pqs\_xfer\_open\_write\_confined()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_ab5d10ee4f33a95b0152c4f70babfe75b} 
+PQS\+\_\+\+EXPORT\+\_\+\+API FILE \texorpdfstring{$\ast$}{*} pqs\+\_\+xfer\+\_\+open\+\_\+write\+\_\+confined (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Open a confined transfer file for binary writing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \mbox{[}const\mbox{]} The configured transfer root directory. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The relative transfer path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}FILE\texorpdfstring{$\ast$}{*}\mbox{]} Returns an open file pointer, or NULL on failure. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_ab299efed0448422fcf84f82a3507d3f3}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_parse\_file\_metadata@{pqs\_xfer\_parse\_file\_metadata}}
+\index{pqs\_xfer\_parse\_file\_metadata@{pqs\_xfer\_parse\_file\_metadata}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_parse\_file\_metadata()}{pqs\_xfer\_parse\_file\_metadata()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_ab299efed0448422fcf84f82a3507d3f3} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+parse\+\_\+file\+\_\+metadata (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{metadata}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{relative}{, }\item[{size\+\_\+t}]{relen}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{filesize}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{hexhash}{, }\item[{size\+\_\+t}]{hexlen}{}\end{DoxyParamCaption})}
+
+
+
+Parse recursive file-\/transfer metadata text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em metadata} & \mbox{[}const\mbox{]} The NUL-\/terminated metadata string. \\
+\hline
+{\em relative} & \mbox{[}char\mbox{]} The output relative path buffer. \\
+\hline
+{\em relen} & The length of the relative path output buffer. \\
+\hline
+{\em filesize} & \mbox{[}size\+\_\+t\mbox{]} The parsed file size output parameter. \\
+\hline
+{\em hexhash} & \mbox{[}char\mbox{]} The output hash text buffer. \\
+\hline
+{\em hexlen} & The length of the output hash text buffer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the metadata was parsed successfully; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a222185bfc19ccfa7db4038b9b165f1eb}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_parse\_metadata@{pqs\_xfer\_parse\_metadata}}
+\index{pqs\_xfer\_parse\_metadata@{pqs\_xfer\_parse\_metadata}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_parse\_metadata()}{pqs\_xfer\_parse\_metadata()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a222185bfc19ccfa7db4038b9b165f1eb} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+parse\+\_\+metadata (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{metadata}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{filesize}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{hexhash}{, }\item[{size\+\_\+t}]{hexlen}{}\end{DoxyParamCaption})}
+
+
+
+Parse file-\/transfer metadata text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em metadata} & \mbox{[}const\mbox{]} The NUL-\/terminated metadata string. \\
+\hline
+{\em filesize} & \mbox{[}size\+\_\+t\mbox{]} The parsed file size output parameter. \\
+\hline
+{\em hexhash} & \mbox{[}char\mbox{]} The output hash text buffer. \\
+\hline
+{\em hexlen} & The length of the output hash text buffer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the metadata was parsed successfully; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_aa273ae94d6c919090ea7f1fbd604ecf5}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_path\_is\_confined@{pqs\_xfer\_path\_is\_confined}}
+\index{pqs\_xfer\_path\_is\_confined@{pqs\_xfer\_path\_is\_confined}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_path\_is\_confined()}{pqs\_xfer\_path\_is\_confined()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_aa273ae94d6c919090ea7f1fbd604ecf5} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+path\+\_\+is\+\_\+confined (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{bool}]{existing}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a local path resolves inside the configured root. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \mbox{[}const\mbox{]} The configured root path. \\
+\hline
+{\em path} & \mbox{[}const\mbox{]} The path to test. \\
+\hline
+{\em existing} & Set to true when the target path must already exist.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the resolved path remains inside the root; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_aac5b1965982cea2f18ca7633e6d3fc58}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_path\_is\_safe@{pqs\_xfer\_path\_is\_safe}}
+\index{pqs\_xfer\_path\_is\_safe@{pqs\_xfer\_path\_is\_safe}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_path\_is\_safe()}{pqs\_xfer\_path\_is\_safe()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_aac5b1965982cea2f18ca7633e6d3fc58} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+path\+\_\+is\+\_\+safe (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a remote file-\/transfer path is safe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relative} & \mbox{[}const\mbox{]} The NUL-\/terminated remote path to test.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the path is a relative, non-\/traversing PQS transfer path; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a8c91cfe99be3d0c57a16024429132b9a}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_path\_is\_symlink@{pqs\_xfer\_path\_is\_symlink}}
+\index{pqs\_xfer\_path\_is\_symlink@{pqs\_xfer\_path\_is\_symlink}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_path\_is\_symlink()}{pqs\_xfer\_path\_is\_symlink()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a8c91cfe99be3d0c57a16024429132b9a} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+path\+\_\+is\+\_\+symlink (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a file-\/system path is a symbolic link or reparse point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & \mbox{[}const\mbox{]} The local file-\/system path to test.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the path is a symbolic link or reparse point; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a36eb1fecef6546bf6826abdd889fe5cf}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_payload\_size@{pqs\_xfer\_payload\_size}}
+\index{pqs\_xfer\_payload\_size@{pqs\_xfer\_payload\_size}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_payload\_size()}{pqs\_xfer\_payload\_size()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a36eb1fecef6546bf6826abdd889fe5cf} 
+PQS\+\_\+\+EXPORT\+\_\+\+API size\+\_\+t pqs\+\_\+xfer\+\_\+payload\+\_\+size (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{message}{, }\item[{size\+\_\+t}]{msglen}{}\end{DoxyParamCaption})}
+
+
+
+Return the plaintext payload length carried after the PQS application message header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \mbox{[}const\mbox{]} The application message buffer. \\
+\hline
+{\em msglen} & The application message length.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the payload length, or zero if the message is not valid. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a42efe33913916afe0488c649244cdc3c}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_publish\_temporary\_file@{pqs\_xfer\_publish\_temporary\_file}}
+\index{pqs\_xfer\_publish\_temporary\_file@{pqs\_xfer\_publish\_temporary\_file}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_publish\_temporary\_file()}{pqs\_xfer\_publish\_temporary\_file()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a42efe33913916afe0488c649244cdc3c} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+publish\+\_\+temporary\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{temporary}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Publish a staged temporary upload as its final confined file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \mbox{[}const\mbox{]} The configured transfer root directory. \\
+\hline
+{\em temporary} & \mbox{[}const\mbox{]} The relative temporary upload path. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The final relative target path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the temporary file was renamed into its final path; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a362af123ee88b1c876fc3a550aad31b3}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_remove\_confined@{pqs\_xfer\_remove\_confined}}
+\index{pqs\_xfer\_remove\_confined@{pqs\_xfer\_remove\_confined}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_remove\_confined()}{pqs\_xfer\_remove\_confined()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a362af123ee88b1c876fc3a550aad31b3} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+remove\+\_\+confined (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{relative}{}\end{DoxyParamCaption})}
+
+
+
+Remove a confined file inside the configured transfer root. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & \mbox{[}const\mbox{]} The configured transfer root directory. \\
+\hline
+{\em relative} & \mbox{[}const\mbox{]} The relative transfer path to remove.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the confined file was removed; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsxfer_8h_a25b7e69e391032ac974eba7b45175c9c}\index{pqsxfer.h@{pqsxfer.h}!pqs\_xfer\_walk\_directory@{pqs\_xfer\_walk\_directory}}
+\index{pqs\_xfer\_walk\_directory@{pqs\_xfer\_walk\_directory}!pqsxfer.h@{pqsxfer.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_xfer\_walk\_directory()}{pqs\_xfer\_walk\_directory()}}
+{\footnotesize\ttfamily \label{pqsxfer_8h_a25b7e69e391032ac974eba7b45175c9c} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+xfer\+\_\+walk\+\_\+directory (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{localroot}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{remoteroot}{, }\item[{size\+\_\+t}]{maxdepth}{, }\item[{\mbox{\hyperlink{pqsxfer_8h_a43fbb920d37cf10d7d2c8e1ea30299f8}{pqs\+\_\+xfer\+\_\+walk\+\_\+callback}}}]{callback}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Walk a local directory tree and report PQS transfer paths through a callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em localroot} & \mbox{[}const\mbox{]} The local root directory to traverse. \\
+\hline
+{\em remoteroot} & \mbox{[}const\mbox{]} The relative PQS transfer root associated with localroot. \\
+\hline
+{\em maxdepth} & The maximum recursion depth accepted by the traversal. \\
+\hline
+{\em callback} & \mbox{[}\doxylink{pqsxfer_8h_a43fbb920d37cf10d7d2c8e1ea30299f8}{pqs\+\_\+xfer\+\_\+walk\+\_\+callback}\mbox{]} The traversal callback. \\
+\hline
+{\em context} & \mbox{[}void\mbox{]} The caller-\/defined callback context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the traversal completed successfully; otherwise, false. 
+\end{DoxyReturn}

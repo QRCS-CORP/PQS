@@ -1,0 +1,59 @@
+\doxysection{pqs\+\_\+user\+\_\+store Struct Reference}
+\hypertarget{structpqs__user__store}{}\label{structpqs__user__store}\index{pqs\_user\_store@{pqs\_user\_store}}
+
+
+The fixed-\/size PQS server user database.  
+
+
+
+
+{\ttfamily \#include $<$pqsuser.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \mbox{\hyperlink{structpqs__user__store_a6425bb2a6533f7b514fa785e4c2dc9c5}{records}} \mbox{[}PQS\+\_\+\+USER\+\_\+\+DATABASE\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__user__store_aa96601216800349d95bf5f7e7fecba61}{path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+size\+\_\+t \mbox{\hyperlink{structpqs__user__store_a76d971a3c552bc58ba9f0d5fceae9806}{count}}
+\item 
+bool \mbox{\hyperlink{structpqs__user__store_aedeffc7d23da25d52b9a50045189fe2b}{initialized}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The fixed-\/size PQS server user database. 
+
+\label{doc-variable-members}
+\Hypertarget{structpqs__user__store_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__user__store_a76d971a3c552bc58ba9f0d5fceae9806}\index{pqs\_user\_store@{pqs\_user\_store}!count@{count}}
+\index{count@{count}!pqs\_user\_store@{pqs\_user\_store}}
+\doxysubsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily \label{structpqs__user__store_a76d971a3c552bc58ba9f0d5fceae9806} 
+size\+\_\+t count}
+
+The active user record count. \Hypertarget{structpqs__user__store_aedeffc7d23da25d52b9a50045189fe2b}\index{pqs\_user\_store@{pqs\_user\_store}!initialized@{initialized}}
+\index{initialized@{initialized}!pqs\_user\_store@{pqs\_user\_store}}
+\doxysubsubsection{\texorpdfstring{initialized}{initialized}}
+{\footnotesize\ttfamily \label{structpqs__user__store_aedeffc7d23da25d52b9a50045189fe2b} 
+bool initialized}
+
+The database initialization flag. \Hypertarget{structpqs__user__store_aa96601216800349d95bf5f7e7fecba61}\index{pqs\_user\_store@{pqs\_user\_store}!path@{path}}
+\index{path@{path}!pqs\_user\_store@{pqs\_user\_store}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily \label{structpqs__user__store_aa96601216800349d95bf5f7e7fecba61} 
+char path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The persistent database file path. \Hypertarget{structpqs__user__store_a6425bb2a6533f7b514fa785e4c2dc9c5}\index{pqs\_user\_store@{pqs\_user\_store}!records@{records}}
+\index{records@{records}!pqs\_user\_store@{pqs\_user\_store}}
+\doxysubsubsection{\texorpdfstring{records}{records}}
+{\footnotesize\ttfamily \label{structpqs__user__store_a6425bb2a6533f7b514fa785e4c2dc9c5} 
+\mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} records\mbox{[}PQS\+\_\+\+USER\+\_\+\+DATABASE\+\_\+\+MAX\mbox{]}}
+
+User account records. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqsuser_8h}{pqsuser.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,267 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqskey.h File Reference}
+\hypertarget{pqskey_8h}{}\label{pqskey_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqskey.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqskey.h}}
+
+
+PQS host-\/key fingerprint and known-\/hosts helper functions.  
+
+
+{\ttfamily \#include "{}pqscommon.\+h"{}}\newline
+{\ttfamily \#include "{}qsms.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqskey_8h_aea2a113fa45540610e244864b2be1ddb}\label{pqskey_8h_aea2a113fa45540610e244864b2be1ddb} 
+\#define {\bfseries PQS\+\_\+\+KEY\+\_\+\+FINGERPRINT\+\_\+\+SIZE}~32U
+\begin{DoxyCompactList}\small\item\em The binary SHA3-\/256 host-\/key fingerprint size. \end{DoxyCompactList}\item 
+\Hypertarget{pqskey_8h_a3ddf11343f7a77ddea5bd8db3d5ebc62}\label{pqskey_8h_a3ddf11343f7a77ddea5bd8db3d5ebc62} 
+\#define {\bfseries PQS\+\_\+\+KEY\+\_\+\+FINGERPRINT\+\_\+\+STRING\+\_\+\+SIZE}~((\mbox{\hyperlink{pqskey_8h_aea2a113fa45540610e244864b2be1ddb}{PQS\+\_\+\+KEY\+\_\+\+FINGERPRINT\+\_\+\+SIZE}} \texorpdfstring{$\ast$}{*} 2U) + PQS\+\_\+\+STRING\+\_\+\+TERMINATOR\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em The NUL-\/terminated hexadecimal host-\/key fingerprint string size. \end{DoxyCompactList}\item 
+\Hypertarget{pqskey_8h_ab66a1926aeab27a3f3b5f2d318c51e3a}\label{pqskey_8h_ab66a1926aeab27a3f3b5f2d318c51e3a} 
+\#define {\bfseries PQS\+\_\+\+KEY\+\_\+\+KNOWN\+\_\+\+HOST\+\_\+\+LINE\+\_\+\+MAX}~384U
+\begin{DoxyCompactList}\small\item\em The maximum known-\/hosts line length. \end{DoxyCompactList}\item 
+\Hypertarget{pqskey_8h_a46c4b43048da667837db726832329d1b}\label{pqskey_8h_a46c4b43048da667837db726832329d1b} 
+\#define {\bfseries PQS\+\_\+\+KEY\+\_\+\+HOST\+\_\+\+NAME\+\_\+\+MAX}~256U
+\begin{DoxyCompactList}\small\item\em The maximum host identifier length in a known-\/hosts record. \end{DoxyCompactList}\item 
+\Hypertarget{pqskey_8h_a4239624d4c0f08f023c7ca217241d79e}\label{pqskey_8h_a4239624d4c0f08f023c7ca217241d79e} 
+\#define {\bfseries PQS\+\_\+\+KEY\+\_\+\+KNOWN\+\_\+\+HOST\+\_\+\+MAGIC}~"{}\# PQSKNOWNHOSTS1"{}
+\begin{DoxyCompactList}\small\item\em The known-\/hosts database header string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_aa6c63bd90997e69eadd138454a849af9}{pqs\+\_\+key\+\_\+host\+\_\+is\+\_\+valid}} (const char \texorpdfstring{$\ast$}{*}host)
+\begin{DoxyCompactList}\small\item\em Test whether a host token is valid for known-\/host storage. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_ad6f788f5fa00518368d62e5cd45bcb89}{pqs\+\_\+key\+\_\+private\+\_\+file\+\_\+permissions\+\_\+are\+\_\+strict}} (const char \texorpdfstring{$\ast$}{*}fpath)
+\begin{DoxyCompactList}\small\item\em Test whether a private key file has strict local permissions where supported. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqskey_8h_a620b0ec3e515c14dcb42e825d4b6a6e3}{pqs\+\_\+key\+\_\+fingerprint}} (uint8\+\_\+t output\mbox{[}\mbox{\hyperlink{pqskey_8h_aea2a113fa45540610e244864b2be1ddb}{PQS\+\_\+\+KEY\+\_\+\+FINGERPRINT\+\_\+\+SIZE}}\mbox{]}, const qsms\+\_\+client\+\_\+verification\+\_\+key \texorpdfstring{$\ast$}{*}pubkey)
+\begin{DoxyCompactList}\small\item\em Compute the PQS host-\/key fingerprint. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_a3606f117ed79722f771b5e908d160820}{pqs\+\_\+key\+\_\+fingerprint\+\_\+string}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const qsms\+\_\+client\+\_\+verification\+\_\+key \texorpdfstring{$\ast$}{*}pubkey)
+\begin{DoxyCompactList}\small\item\em Compute the PQS host-\/key fingerprint as hexadecimal text. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_a8bd0ff80d5f15dab5a63e6d371b1e9b6}{pqs\+\_\+key\+\_\+fingerprint\+\_\+file}} (char \texorpdfstring{$\ast$}{*}output, size\+\_\+t outlen, const char \texorpdfstring{$\ast$}{*}fpath)
+\begin{DoxyCompactList}\small\item\em Compute the PQS host-\/key fingerprint from an encoded public-\/key file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_a10bc30b8ea69381f05bf6f9c66122a3d}{pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+find}} (const char \texorpdfstring{$\ast$}{*}fpath, const char \texorpdfstring{$\ast$}{*}host, char \texorpdfstring{$\ast$}{*}fingerprint, size\+\_\+t fplen)
+\begin{DoxyCompactList}\small\item\em Read the expected fingerprint for a host from a known-\/hosts file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_af72f51410e4d325b74d648b3ad26e94b}{pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+set}} (const char \texorpdfstring{$\ast$}{*}fpath, const char \texorpdfstring{$\ast$}{*}host, const char \texorpdfstring{$\ast$}{*}fingerprint)
+\begin{DoxyCompactList}\small\item\em Add or replace a host fingerprint in a known-\/hosts file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_a08b290bc205759a303f5a395827ce83f}{pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+remove}} (const char \texorpdfstring{$\ast$}{*}fpath, const char \texorpdfstring{$\ast$}{*}host)
+\begin{DoxyCompactList}\small\item\em Remove a host fingerprint from a known-\/hosts file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_a162b6930796076364bdc32ba4a3a324f}{pqs\+\_\+key\+\_\+fingerprint\+\_\+is\+\_\+valid}} (const char \texorpdfstring{$\ast$}{*}fingerprint)
+\begin{DoxyCompactList}\small\item\em Test whether a string is a valid PQS host-\/key fingerprint. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqskey_8h_ae2a721268e7c47730e3f80f6f5194f97}{pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+verify}} (const char \texorpdfstring{$\ast$}{*}fpath, const char \texorpdfstring{$\ast$}{*}host, const char \texorpdfstring{$\ast$}{*}fingerprint)
+\begin{DoxyCompactList}\small\item\em Verify a host fingerprint against the known-\/hosts file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS host-\/key fingerprint and known-\/hosts helper functions. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{pqskey_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqskey_8h_a620b0ec3e515c14dcb42e825d4b6a6e3}\index{pqskey.h@{pqskey.h}!pqs\_key\_fingerprint@{pqs\_key\_fingerprint}}
+\index{pqs\_key\_fingerprint@{pqs\_key\_fingerprint}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_fingerprint()}{pqs\_key\_fingerprint()}}
+{\footnotesize\ttfamily \label{pqskey_8h_a620b0ec3e515c14dcb42e825d4b6a6e3} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+key\+\_\+fingerprint (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{output}{\mbox{[}\+PQS\+\_\+\+KEY\+\_\+\+FINGERPRINT\+\_\+\+SIZE\mbox{]}, }\item[{const qsms\+\_\+client\+\_\+verification\+\_\+key \texorpdfstring{$\ast$}{*}}]{pubkey}{}\end{DoxyParamCaption})}
+
+
+
+Compute the PQS host-\/key fingerprint. 
+
+The fingerprint is SHA3-\/256 over the QSMS public-\/key identity fields used by PQS.
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}uint8\+\_\+t\texorpdfstring{$\ast$}{*}\mbox{]} The fingerprint output buffer. \\
+\hline
+{\em pubkey} & \mbox{[}const struct\mbox{]} The QSMS public verification key. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqskey_8h_a8bd0ff80d5f15dab5a63e6d371b1e9b6}\index{pqskey.h@{pqskey.h}!pqs\_key\_fingerprint\_file@{pqs\_key\_fingerprint\_file}}
+\index{pqs\_key\_fingerprint\_file@{pqs\_key\_fingerprint\_file}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_fingerprint\_file()}{pqs\_key\_fingerprint\_file()}}
+{\footnotesize\ttfamily \label{pqskey_8h_a8bd0ff80d5f15dab5a63e6d371b1e9b6} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+fingerprint\+\_\+file (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{}\end{DoxyParamCaption})}
+
+
+
+Compute the PQS host-\/key fingerprint from an encoded public-\/key file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\texorpdfstring{$\ast$}{*}\mbox{]} The output buffer receiving a NUL-\/terminated hexadecimal fingerprint. \\
+\hline
+{\em outlen} & \mbox{[}size\+\_\+t\mbox{]} The output buffer length. \\
+\hline
+{\em fpath} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The encoded server public-\/key path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the public key was loaded and fingerprinted. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_a162b6930796076364bdc32ba4a3a324f}\index{pqskey.h@{pqskey.h}!pqs\_key\_fingerprint\_is\_valid@{pqs\_key\_fingerprint\_is\_valid}}
+\index{pqs\_key\_fingerprint\_is\_valid@{pqs\_key\_fingerprint\_is\_valid}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_fingerprint\_is\_valid()}{pqs\_key\_fingerprint\_is\_valid()}}
+{\footnotesize\ttfamily \label{pqskey_8h_a162b6930796076364bdc32ba4a3a324f} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+fingerprint\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fingerprint}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a string is a valid PQS host-\/key fingerprint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fingerprint} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The NUL-\/terminated hexadecimal fingerprint string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the fingerprint has the expected length and hex format. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_a3606f117ed79722f771b5e908d160820}\index{pqskey.h@{pqskey.h}!pqs\_key\_fingerprint\_string@{pqs\_key\_fingerprint\_string}}
+\index{pqs\_key\_fingerprint\_string@{pqs\_key\_fingerprint\_string}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_fingerprint\_string()}{pqs\_key\_fingerprint\_string()}}
+{\footnotesize\ttfamily \label{pqskey_8h_a3606f117ed79722f771b5e908d160820} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+fingerprint\+\_\+string (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{size\+\_\+t}]{outlen}{, }\item[{const qsms\+\_\+client\+\_\+verification\+\_\+key \texorpdfstring{$\ast$}{*}}]{pubkey}{}\end{DoxyParamCaption})}
+
+
+
+Compute the PQS host-\/key fingerprint as hexadecimal text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & \mbox{[}char\texorpdfstring{$\ast$}{*}\mbox{]} The output buffer receiving a NUL-\/terminated hexadecimal fingerprint. \\
+\hline
+{\em outlen} & \mbox{[}size\+\_\+t\mbox{]} The output buffer length. \\
+\hline
+{\em pubkey} & \mbox{[}const struct\mbox{]} The QSMS public verification key.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the fingerprint was written. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_aa6c63bd90997e69eadd138454a849af9}\index{pqskey.h@{pqskey.h}!pqs\_key\_host\_is\_valid@{pqs\_key\_host\_is\_valid}}
+\index{pqs\_key\_host\_is\_valid@{pqs\_key\_host\_is\_valid}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_host\_is\_valid()}{pqs\_key\_host\_is\_valid()}}
+{\footnotesize\ttfamily \label{pqskey_8h_aa6c63bd90997e69eadd138454a849af9} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+host\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{host}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a host token is valid for known-\/host storage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em host} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The host identifier.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the host token is bounded and contains no control characters or record separators. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_a10bc30b8ea69381f05bf6f9c66122a3d}\index{pqskey.h@{pqskey.h}!pqs\_key\_known\_host\_find@{pqs\_key\_known\_host\_find}}
+\index{pqs\_key\_known\_host\_find@{pqs\_key\_known\_host\_find}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_known\_host\_find()}{pqs\_key\_known\_host\_find()}}
+{\footnotesize\ttfamily \label{pqskey_8h_a10bc30b8ea69381f05bf6f9c66122a3d} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+find (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{host}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{fingerprint}{, }\item[{size\+\_\+t}]{fplen}{}\end{DoxyParamCaption})}
+
+
+
+Read the expected fingerprint for a host from a known-\/hosts file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpath} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The known-\/hosts database path. \\
+\hline
+{\em host} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The host identifier. \\
+\hline
+{\em fingerprint} & \mbox{[}char\texorpdfstring{$\ast$}{*}\mbox{]} The output buffer receiving the fingerprint. \\
+\hline
+{\em fplen} & \mbox{[}size\+\_\+t\mbox{]} The fingerprint output buffer length.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if a matching host entry was found. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_a08b290bc205759a303f5a395827ce83f}\index{pqskey.h@{pqskey.h}!pqs\_key\_known\_host\_remove@{pqs\_key\_known\_host\_remove}}
+\index{pqs\_key\_known\_host\_remove@{pqs\_key\_known\_host\_remove}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_known\_host\_remove()}{pqs\_key\_known\_host\_remove()}}
+{\footnotesize\ttfamily \label{pqskey_8h_a08b290bc205759a303f5a395827ce83f} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+remove (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{host}{}\end{DoxyParamCaption})}
+
+
+
+Remove a host fingerprint from a known-\/hosts file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpath} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The known-\/hosts database path. \\
+\hline
+{\em host} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The host identifier.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the known-\/hosts file was updated. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_af72f51410e4d325b74d648b3ad26e94b}\index{pqskey.h@{pqskey.h}!pqs\_key\_known\_host\_set@{pqs\_key\_known\_host\_set}}
+\index{pqs\_key\_known\_host\_set@{pqs\_key\_known\_host\_set}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_known\_host\_set()}{pqs\_key\_known\_host\_set()}}
+{\footnotesize\ttfamily \label{pqskey_8h_af72f51410e4d325b74d648b3ad26e94b} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+set (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{host}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fingerprint}{}\end{DoxyParamCaption})}
+
+
+
+Add or replace a host fingerprint in a known-\/hosts file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpath} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The known-\/hosts database path. \\
+\hline
+{\em host} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The host identifier. \\
+\hline
+{\em fingerprint} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The NUL-\/terminated hexadecimal fingerprint.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the known-\/hosts file was updated. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_ae2a721268e7c47730e3f80f6f5194f97}\index{pqskey.h@{pqskey.h}!pqs\_key\_known\_host\_verify@{pqs\_key\_known\_host\_verify}}
+\index{pqs\_key\_known\_host\_verify@{pqs\_key\_known\_host\_verify}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_known\_host\_verify()}{pqs\_key\_known\_host\_verify()}}
+{\footnotesize\ttfamily \label{pqskey_8h_ae2a721268e7c47730e3f80f6f5194f97} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+known\+\_\+host\+\_\+verify (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{host}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fingerprint}{}\end{DoxyParamCaption})}
+
+
+
+Verify a host fingerprint against the known-\/hosts file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpath} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The known-\/hosts database path. \\
+\hline
+{\em host} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The host identifier. \\
+\hline
+{\em fingerprint} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The NUL-\/terminated hexadecimal fingerprint.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true only if a matching host entry exists and matches the fingerprint. 
+\end{DoxyReturn}
+\Hypertarget{pqskey_8h_ad6f788f5fa00518368d62e5cd45bcb89}\index{pqskey.h@{pqskey.h}!pqs\_key\_private\_file\_permissions\_are\_strict@{pqs\_key\_private\_file\_permissions\_are\_strict}}
+\index{pqs\_key\_private\_file\_permissions\_are\_strict@{pqs\_key\_private\_file\_permissions\_are\_strict}!pqskey.h@{pqskey.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_key\_private\_file\_permissions\_are\_strict()}{pqs\_key\_private\_file\_permissions\_are\_strict()}}
+{\footnotesize\ttfamily \label{pqskey_8h_ad6f788f5fa00518368d62e5cd45bcb89} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+key\+\_\+private\+\_\+file\+\_\+permissions\+\_\+are\+\_\+strict (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a private key file has strict local permissions where supported. 
+
+On POSIX systems this requires a regular file with no group or world permissions. On Windows this verifies that the path exists and is not a directory; detailed DACL validation is deployment-\/specific and should be handled by installer policy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fpath} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The private key path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the file permission posture is acceptable for the platform check. 
+\end{DoxyReturn}

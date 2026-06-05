@@ -1,0 +1,137 @@
+\doxysection{pqspolicy.\+h}
+\hypertarget{pqspolicy_8h_source}{}\label{pqspolicy_8h_source}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqspolicy.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqspolicy.h}}
+\mbox{\hyperlink{pqspolicy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ 2025-\/2026\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ NOTICE:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ and\ all\ accompanying\ materials\ are\ the\ exclusive\ property\ of}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation\ (QRCS).\ The\ intellectual}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ and\ technical\ concepts\ contained\ herein\ are\ proprietary\ to\ QRCS\ and\ are}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ protected\ under\ applicable\ Canadian,\ U.S.,\ and\ international\ copyright,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ patent,\ and\ trade\ secret\ laws.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ CRYPTOGRAPHIC\ ALGORITHMS\ AND\ IMPLEMENTATIONS:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ -\/\ This\ software\ includes\ implementations\ of\ cryptographic\ primitives\ and}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ algorithms\ that\ are\ standardized\ or\ in\ the\ public\ domain,\ such\ as\ AES}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ and\ SHA-\/3,\ which\ are\ not\ proprietary\ to\ QRCS.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ -\/\ This\ software\ also\ includes\ cryptographic\ primitives,\ constructions,\ and}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ algorithms\ designed\ by\ QRCS,\ including\ but\ not\ limited\ to\ RCS,\ SCB,\ CSX,\ QMAC,\ and}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ related\ components,\ which\ are\ proprietary\ to\ QRCS.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ -\/\ All\ source\ code,\ implementations,\ protocol\ compositions,\ optimizations,}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ \ \ parameter\ selections,\ and\ engineering\ work\ contained\ in\ this\ software\ are}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ original\ works\ of\ QRCS\ and\ are\ protected\ under\ this\ license.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ LICENSE\ AND\ USE\ RESTRICTIONS:}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ -\/\ This\ software\ is\ licensed\ under\ the\ Quantum\ Resistant\ Cryptographic\ Solutions}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ \ Public\ Research\ and\ Evaluation\ License\ (QRCS-\/PREL),\ 2025-\/2026.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ -\/\ Permission\ is\ granted\ solely\ for\ non-\/commercial\ evaluation,\ academic\ research,}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ \ cryptographic\ analysis,\ interoperability\ testing,\ and\ feasibility\ assessment.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ -\/\ Commercial\ use,\ production\ deployment,\ commercial\ redistribution,\ or}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ \ \ integration\ into\ products\ or\ services\ is\ strictly\ prohibited\ without\ a}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ \ separate\ written\ license\ agreement\ executed\ with\ QRCS.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ -\/\ Licensing\ and\ authorized\ distribution\ are\ solely\ at\ the\ discretion\ of\ QRCS.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ EXPERIMENTAL\ CRYPTOGRAPHY\ NOTICE:}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ Portions\ of\ this\ software\ may\ include\ experimental,\ novel,\ or\ evolving}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ cryptographic\ designs.\ Use\ of\ this\ software\ is\ entirely\ at\ the\ user's\ risk.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ DISCLAIMER:}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ WARRANTIES\ OF\ MERCHANTABILITY,\ FITNESS}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ FOR\ A\ PARTICULAR\ PURPOSE,\ SECURITY,\ OR\ NON-\/INFRINGEMENT.\ QRCS\ DISCLAIMS\ ALL}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ LIABILITY\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ OR\ CONSEQUENTIAL\ DAMAGES}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ ARISING\ FROM\ THE\ USE\ OR\ MISUSE\ OF\ THIS\ SOFTWARE.}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ FULL\ LICENSE:}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ This\ software\ is\ subject\ to\ the\ Quantum\ Resistant\ Cryptographic\ Solutions}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ Public\ Research\ and\ Evaluation\ License\ (QRCS-\/PREL),\ 2025-\/2026.\ The\ complete\ license\ terms}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ are\ provided\ in\ the\ accompanying\ LICENSE\ file\ or\ at\ https://www.qrcscorp.ca.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ Written\ by:\ John\ G.\ Underhill}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ Contact:\ contact@qrcscorp.ca}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ PQS\_POLICY\_H}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ PQS\_POLICY\_H}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}pqs.h"{}}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ PQS\_POLICY\_DATABASE\_MAGIC\ "{}PQSPOLICYDB1"{}}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ PQS\_POLICY\_DEFAULT\_GUEST\ "{}guest"{}}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ PQS\_POLICY\_DEFAULT\_USER\ "{}user"{}}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ PQS\_POLICY\_DEFAULT\_ADMIN\ "{}admin"{}}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\_policy\_modes}}}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a15b925ab5f8d3a7da1103fe5d893584e}{pqs\_policy\_mode\_none}}\ =\ 0x00U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83ac6344ac1b9cae5af173aecd9b477d179}{pqs\_policy\_mode\_restricted}}\ =\ 0x01U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83af1d12ba700f2526f6179551c42332718}{pqs\_policy\_mode\_forced}}\ =\ 0x02U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a5a2db9207a3c8a8a1a42203edcbe9e05}{pqs\_policy\_mode\_raw}}\ =\ 0x03U\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \}\ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\_policy\_modes}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00096\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpqs__policy__record}{pqs\_policy\_record}}}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__record_ac682180785a0399b98435ab6623a6fa3}{name}}[PQS\_POLICY\_NAME\_MAX];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__record_ac5318a52ca17cc2656b3cb36c2b37327}{allowlist}}[PQS\_POLICY\_COMMAND\_LIST\_MAX];\ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__record_a712b76afc0abc5cfdf1c6f2eb3fcc33f}{denylist}}[PQS\_POLICY\_COMMAND\_LIST\_MAX];\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__record_a1f06b4cf78965e7c6a40b68a62c4589a}{forced}}[PQS\_POLICY\_COMMAND\_MAX];\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structpqs__policy__record_a7d29c89a75d9d9812046b7bbd8f6a89c}{privilege\_mask}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\_policy\_modes}}\ \mbox{\hyperlink{structpqs__policy__record_a0d35f9a84b5cb5dc18d7ba60307061a3}{mode}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structpqs__policy__record_a8740ba80e30dd75e71d09fa1dcf04f3d}{enabled}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \}\ \mbox{\hyperlink{structpqs__policy__record}{pqs\_policy\_record}};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00110\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{structpqs__policy__record}{pqs\_policy\_record}}\ \mbox{\hyperlink{structpqs__policy__store_aed6f661f335c8fd29a76a80c79a638b9}{records}}[PQS\_POLICY\_DATABASE\_MAX];\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__store_aa96601216800349d95bf5f7e7fecba61}{path}}[QSC\_SYSTEM\_MAX\_PATH];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__store_a1c2d07650267c9cc1fc6a019ae3f2551}{guest\_policy}}[PQS\_POLICY\_NAME\_MAX];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__store_a02bdedb22a993c1b4774712bc6536dbd}{user\_policy}}[PQS\_POLICY\_NAME\_MAX];\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__policy__store_adb137f2c78e5c95ca52604a4da2246a2}{admin\_policy}}[PQS\_POLICY\_NAME\_MAX];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structpqs__policy__store_a76d971a3c552bc58ba9f0d5fceae9806}{count}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structpqs__policy__store_aedeffc7d23da25d52b9a50045189fe2b}{initialized}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \}\ \mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00132\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a420bcb2d0b060d22f9067f4dd794340c}{pqs\_policy\_store\_add}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\_policy\_modes}}\ mode,\ uint32\_t\ privilege\_mask,\ \textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00144\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a2dddb9371d8970af92f81da59c2d8494}{pqs\_policy\_store\_add\_command}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ command,\ \textcolor{keywordtype}{bool}\ allowed);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00155\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a0463ce87ffca101f909580ee8ac933a5}{pqs\_policy\_store\_assign\_privilege}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ pqs\_user\_privileges\ privilege,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ policy);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00175\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a524725f4ddf4d6957c4f90b4f90af935}{pqs\_policy\_command\_is\_safe}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ command);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00209\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a6fddf2d261ee630582c1a67771d62337}{pqs\_policy\_store\_authorize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ pqs\_user\_privileges\ privilege,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ command,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__policy__record}{pqs\_policy\_record}}**\ matched);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00220\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_aa113d49ecd3d0f570eb60bf102e3ea3d}{pqs\_policy\_store\_enable}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00230\ PQS\_EXPORT\_API\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__policy__record}{pqs\_policy\_record}}*\ \mbox{\hyperlink{pqspolicy_8h_a37a614706ec060ccf8629c942ba8fd7e}{pqs\_policy\_store\_find}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00240\ PQS\_EXPORT\_API\ \mbox{\hyperlink{structpqs__policy__record}{pqs\_policy\_record}}*\ \mbox{\hyperlink{pqspolicy_8h_afc730a814b8bbf1686e80861a1b82bd2}{pqs\_policy\_store\_find\_mutable}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00250\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a310d832ef0a9eb246ee96e2884719705}{pqs\_policy\_store\_initialize}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path);}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00260\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a1874d7beebaaa7cdf9bf0f5d39803dd7}{pqs\_policy\_store\_remove}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name);}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00272\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a20a3c472912b724c94acae79ed8867c8}{pqs\_policy\_store\_remove\_command}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ command,\ \textcolor{keywordtype}{bool}\ allowed);}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00281\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a2a3ad91630bfd06a129e75da9d5ef9ea}{pqs\_policy\_store\_save}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00292\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a3047fc66372941fc4225f4a60897a1f1}{pqs\_policy\_store\_set\_forced}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ command);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00303\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqspolicy_8h_a15f3c95868e4d7ab24a885c6ed5babff}{pqs\_policy\_store\_set\_mode}}(\mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ store,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\_policy\_modes}}\ mode);}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00312\ PQS\_EXPORT\_API\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{pqspolicy_8h_a3facdecbe133ade3d9aaf8384d7fc1d5}{pqs\_policy\_mode\_to\_string}}(\mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\_policy\_modes}}\ mode);}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00321\ PQS\_EXPORT\_API\ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\_policy\_modes}}\ \mbox{\hyperlink{pqspolicy_8h_a8ff4509847423ab994d7ffd18438024d}{pqs\_policy\_mode\_from\_string}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ value);}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00330\ PQS\_EXPORT\_API\ uint32\_t\ \mbox{\hyperlink{pqspolicy_8h_a3f406263f4ddea8cb40dda153018e498}{pqs\_policy\_privilege\_to\_mask}}(pqs\_user\_privileges\ privilege);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

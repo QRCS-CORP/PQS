@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "PQS: Post Quantum Shell", "index.html", [
+  [ "PQS: Post Quantum Shell Protocol", "index.html", [
     [ "Post Quantum Shell (PQS) Project Documentation", "index.html", "index" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -37,8 +37,9 @@ var NAVTREE =
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [
-        [ "All", "globals.html", null ],
+        [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
@@ -50,8 +51,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structpqs__connection__state.html#a1b9dac0a156c3747fc39192a04f01aa0"
+"pqsxfer_8h.html#a43fbb920d37cf10d7d2c8e1ea30299f8"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
 var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

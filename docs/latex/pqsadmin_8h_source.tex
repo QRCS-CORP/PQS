@@ -1,0 +1,87 @@
+\doxysection{pqsadmin.\+h}
+\hypertarget{pqsadmin_8h_source}{}\label{pqsadmin_8h_source}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsadmin.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsadmin.h}}
+\mbox{\hyperlink{pqsadmin_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ 2025-\/2026\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ NOTICE:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ and\ all\ accompanying\ materials\ are\ the\ exclusive\ property\ of}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation\ (QRCS).\ The\ intellectual}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ and\ technical\ concepts\ contained\ herein\ are\ proprietary\ to\ QRCS\ and\ are}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ protected\ under\ applicable\ Canadian,\ U.S.,\ and\ international\ copyright,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ patent,\ and\ trade\ secret\ laws.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ This\ software\ is\ subject\ to\ the\ Quantum\ Resistant\ Cryptographic\ Solutions}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ Public\ Research\ and\ Evaluation\ License\ (QRCS-\/PREL),\ 2025-\/2026.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ Written\ by:\ John\ G.\ Underhill}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ Contact:\ contact@qrcscorp.ca}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ PQS\_ADMIN\_H}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ PQS\_ADMIN\_H}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pqsconfig_8h}{pqsconfig.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pqskey_8h}{pqskey.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pqslogger_8h}{pqslogger.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pqspolicy_8h}{pqspolicy.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pqssandbox_8h}{pqssandbox.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pqsshell_8h}{pqsshell.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pqsuser_8h}{pqsuser.h}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ PQS\_ADMIN\_ARGUMENT\_MAX\ 128U}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ PQS\_ADMIN\_OUTPUT\_MAX\ 2048U}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ PQS\_ADMIN\_POLICY\_PREFIX\ "{}admin."{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\_admin\_command\_ids}}}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a362f6aba3e7c99ac6a62472a15316b72}{pqs\_admin\_command\_none}}\ =\ 0x0000U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a5e496583e57ebb42340c5488cf2debf6}{pqs\_admin\_command\_server\_status}}\ =\ 0x0001U,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a801c535126bdddf40604f0dae18d905f}{pqs\_admin\_command\_server\_version}}\ =\ 0x0002U,\ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a8ecf7bcd792f8ed9aae2094b453ffe03}{pqs\_admin\_command\_server\_fingerprint}}\ =\ 0x0003U,\ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a406efef374c813d482d853b230dcb5af}{pqs\_admin\_command\_sandbox\_status}}\ =\ 0x0004U,\ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255af5cac846b0cfe4231f38891a6b0aa7f5}{pqs\_admin\_command\_audit\_verify}}\ =\ 0x0005U,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a306220d33fdb6739da368d9529377b81}{pqs\_admin\_command\_config\_summary}}\ =\ 0x0006U,\ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aefb351ce171f61cab976704e86ed0abc}{pqs\_admin\_command\_user\_list}}\ =\ 0x0007U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255a72c2a8c4b78fb95a6e1e24fd6dd936b0}{pqs\_admin\_command\_policy\_list}}\ =\ 0x0008U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255aca76c8d14ee2532e5dcf4e4c0b624045}{pqs\_admin\_command\_shell\_list}}\ =\ 0x0009U\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \}\ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\_admin\_command\_ids}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpqs__admin__request}{pqs\_admin\_request}}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\_admin\_command\_ids}}\ \mbox{\hyperlink{structpqs__admin__request_af00e9d0377742227e14425ff033fded2}{command}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpqs__admin__request_a09575f9e1ba85011d02c7607b79512d2}{arguments}}[\mbox{\hyperlink{pqsadmin_8h_a027595647cb2c25a5e5b588f7cf213d9}{PQS\_ADMIN\_ARGUMENT\_MAX}}];\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \}\ \mbox{\hyperlink{structpqs__admin__request}{pqs\_admin\_request}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpqs__admin__context}{pqs\_admin\_context}}}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structpqs__admin__context_a6b1334b7d911b18440d1fd652de154fe}{user}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structpqs__admin__context_a7322e63f910f743c18b0a475a2d1b448}{peer}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ pqs\_user\_privileges\ \mbox{\hyperlink{structpqs__admin__context_ab88757667fd0d41d3ef64ac788889d8e}{privilege}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structpqs__admin__context_a3764bd4f6c2a90398f051875278281d9}{authenticated}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__server__config}{pqs\_server\_config}}*\ \mbox{\hyperlink{structpqs__admin__context_a38d51aac8e5a5a6e07b30f73327b5bf2}{config}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__user__store}{pqs\_user\_store}}*\ \mbox{\hyperlink{structpqs__admin__context_a5e0fd5b03fd36bcfc3076cd00bcaaaec}{users}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__shell__store}{pqs\_shell\_store}}*\ \mbox{\hyperlink{structpqs__admin__context_a1a6586ab4b0462c8b11aa05058f0368b}{shells}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__policy__store}{pqs\_policy\_store}}*\ \mbox{\hyperlink{structpqs__admin__context_aeea1c4fc9e018bac2b85b853700f6547}{policies}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ \mbox{\hyperlink{structpqs__admin__context_a6675f566b47a297985de8e93a3a0d01e}{sandbox}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ qsms\_client\_verification\_key*\ \mbox{\hyperlink{structpqs__admin__context_abfb823e43c996de1744fa29724e756a2}{public\_key}};\ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structpqs__admin__context_a05aa7e944a7a992997121bd6be91382b}{logger\_failed}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \}\ \mbox{\hyperlink{structpqs__admin__context}{pqs\_admin\_context}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00101\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqsadmin_8h_acbdf07694577aa8ed8fe8d98671ceb56}{pqs\_admin\_authorize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__admin__context}{pqs\_admin\_context}}*\ context,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__admin__request}{pqs\_admin\_request}}*\ request);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00113\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqsadmin_8h_ade3f9d2e00b8113e71259610ecde4c1d}{pqs\_admin\_execute}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__admin__context}{pqs\_admin\_context}}*\ context,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__admin__request}{pqs\_admin\_request}}*\ request,\ \textcolor{keywordtype}{char}*\ output,\ \textcolor{keywordtype}{size\_t}\ outlen);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00123\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqsadmin_8h_a8c042a1c2b002859e7a038e8bcfeeaef}{pqs\_admin\_request\_parse}}(\mbox{\hyperlink{structpqs__admin__request}{pqs\_admin\_request}}*\ request,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ command);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00132\ PQS\_EXPORT\_API\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{pqsadmin_8h_abb55e40c7392b9fe10a03c40018aeed0}{pqs\_admin\_command\_to\_string}}(\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\_admin\_command\_ids}}\ command);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00141\ PQS\_EXPORT\_API\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{pqsadmin_8h_a31434ac9654c7beda063061434d061e3}{pqs\_admin\_policy\_verb}}(\mbox{\hyperlink{pqsadmin_8h_aa368efbe343eb9c9e54350c9fc8bb255}{pqs\_admin\_command\_ids}}\ command);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

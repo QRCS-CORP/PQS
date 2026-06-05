@@ -56,6 +56,7 @@
 #include <assert.h>
 #include <errno.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -110,10 +111,10 @@
 #endif
 
 #if defined(DEBUG) || defined(_DEBUG) || defined(__DEBUG__) || (defined(__GNUC__) && !defined(__OPTIMIZE__))
-  /*!
-   * \def PQS_DEBUG_MODE
-   * \brief Defined when the build is in debug mode.
-   */
+    /*!
+	 * \def PQS_DEBUG_MODE
+	 * \brief Defined when the build is in debug mode.
+	 */
 #	define PQS_DEBUG_MODE
 #endif
 
@@ -128,5 +129,245 @@
 #endif
 
 /** \endcond DOXYGEN_IGNORE */
+
+/*!
+ * \def PQS_STRING_TERMINATOR_SIZE
+ * \brief The storage size, in bytes, reserved for a terminating C string character.
+ */
+#define PQS_STRING_TERMINATOR_SIZE 1U
+
+/*!
+ * \def PQS_MINIMUM_MESSAGE_SIZE
+ * \brief The minimum non-empty plaintext message length accepted by PQS application helpers.
+ */
+#define PQS_MINIMUM_MESSAGE_SIZE 1U
+
+/*!
+ * \def PQS_APPLICATION_MESSAGE_TYPE_SIZE
+ * \brief The size, in bytes, of the PQS application-layer message type prefix.
+ */
+#define PQS_APPLICATION_MESSAGE_TYPE_SIZE 1U
+
+/*!
+ * \def PQS_APPLICATION_MESSAGE_HEADER_SIZE
+ * \brief The fixed plaintext header size used by PQS application messages.
+ */
+#define PQS_APPLICATION_MESSAGE_HEADER_SIZE PQS_APPLICATION_MESSAGE_TYPE_SIZE
+
+#ifndef PQS_SERVER_COMMAND_MAX
+	/*!
+	 * \def PQS_SERVER_COMMAND_MAX
+	 * \brief The maximum server command buffer size.
+	 */
+#	define PQS_SERVER_COMMAND_MAX 1280U
+#endif
+
+#ifndef PQS_SERVER_COMMAND_TEXT_MAX
+	/*!
+	 * \def PQS_SERVER_COMMAND_TEXT_MAX
+	 * \brief The maximum NUL-terminated server command text length.
+	 */
+#	define PQS_SERVER_COMMAND_TEXT_MAX (PQS_SERVER_COMMAND_MAX - PQS_STRING_TERMINATOR_SIZE)
+#endif
+
+#ifndef PQS_INTERPRETER_COMMAND_BUFFER_SIZE
+	/*!
+	 * \def PQS_INTERPRETER_COMMAND_BUFFER_SIZE
+	 * \brief The maximum server command-output chunk buffer size.
+	 */
+#	define PQS_INTERPRETER_COMMAND_BUFFER_SIZE 128U
+#endif
+
+/*!
+ * \def PQS_XFER_PATH_MAX
+ * \brief The maximum remote file-transfer path buffer size.
+ */
+#define PQS_XFER_PATH_MAX 256U
+
+/*!
+ * \def PQS_XFER_CHUNK_SIZE
+ * \brief The maximum file-transfer data chunk carried in one PQS application message.
+ */
+#define PQS_XFER_CHUNK_SIZE 512U
+
+/*!
+ * \def PQS_XFER_LIST_BUFFER_SIZE
+ * \brief The maximum directory listing buffer used by the PQS file-transfer subsystem.
+ */
+#define PQS_XFER_LIST_BUFFER_SIZE 4096U
+
+/*!
+ * \def PQS_XFER_HASH_SIZE
+ * \brief The SHA3-256 hash size used by the PQS file-transfer subsystem.
+ */
+#define PQS_XFER_HASH_SIZE 32U
+
+/*!
+ * \def PQS_XFER_HASH_TEXT_SIZE
+ * \brief The NUL-terminated hexadecimal SHA3-256 hash text size.
+ */
+#define PQS_XFER_HASH_TEXT_SIZE ((PQS_XFER_HASH_SIZE * 2U) + PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_XFER_METADATA_MAX
+ * \brief The maximum transfer metadata text buffer size.
+ */
+#define PQS_XFER_METADATA_MAX 512U
+
+/*!
+ * \def PQS_XFER_USERS_ROOT_NAME
+ * \brief The directory name used for per-user PQS transfer roots.
+ */
+#define PQS_XFER_USERS_ROOT_NAME "users"
+
+/*!
+ * \def PQS_XFER_RECURSIVE_PREFIX
+ * \brief The command prefix used to request recursive file-transfer operations.
+ */
+#define PQS_XFER_RECURSIVE_PREFIX "-r"
+
+/**
+ * \def PQS_XFER_RECURSION_MAX
+ * \brief The maximum recursive file-transfer traversal depth.
+ */
+#define PQS_XFER_RECURSION_MAX 64U
+
+/*!
+ * \def PQS_USERNAME_MAX
+ * \brief The maximum storage size, in bytes, of a PQS user name.
+ */
+#define PQS_USERNAME_MAX 64U
+
+/*!
+ * \def PQS_USERNAME_TEXT_MAX
+ * \brief The maximum NUL-terminated PQS user name text length.
+ */
+#define PQS_USERNAME_TEXT_MAX (PQS_USERNAME_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_SHELL_PROFILE_NAME_MAX
+ * \brief The maximum storage size, in bytes, of a shell profile name.
+ */
+#define PQS_SHELL_PROFILE_NAME_MAX 64U
+
+/*!
+ * \def PQS_SHELL_PROFILE_TEXT_MAX
+ * \brief The maximum NUL-terminated shell profile text length.
+ */
+#define PQS_SHELL_PROFILE_TEXT_MAX (PQS_SHELL_PROFILE_NAME_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_PASSPHRASE_MIN
+ * \brief The minimum accepted PQS passphrase length.
+ */
+#define PQS_PASSPHRASE_MIN 8U
+
+/*!
+ * \def PQS_PASSPHRASE_MAX
+ * \brief The maximum accepted PQS passphrase storage size.
+ */
+#define PQS_PASSPHRASE_MAX 128U
+
+/*!
+ * \def PQS_PASSPHRASE_TEXT_MAX
+ * \brief The maximum NUL-terminated PQS passphrase text length.
+ */
+#define PQS_PASSPHRASE_TEXT_MAX (PQS_PASSPHRASE_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_LOGIN_REQUEST_PAYLOAD_SIZE
+ * \brief The fixed payload size of a PQS username/passphrase login request.
+ */
+#define PQS_LOGIN_REQUEST_PAYLOAD_SIZE (PQS_USERNAME_MAX + PQS_PASSPHRASE_MAX)
+
+/*!
+ * \def PQS_LOGIN_REQUEST_MESSAGE_SIZE
+ * \brief The fixed plaintext size of a PQS login request message, excluding the terminating byte added by the sender.
+ */
+#define PQS_LOGIN_REQUEST_MESSAGE_SIZE (PQS_APPLICATION_MESSAGE_HEADER_SIZE + PQS_LOGIN_REQUEST_PAYLOAD_SIZE)
+
+/*!
+ * \def PQS_USER_SALT_SIZE
+ * \brief The PQS user passphrase salt size.
+ */
+#define PQS_USER_SALT_SIZE 32U
+
+/*!
+ * \def PQS_USER_VERIFIER_SIZE
+ * \brief The PQS user SCB passphrase verifier size.
+ */
+#define PQS_USER_VERIFIER_SIZE 32U
+
+/*!
+ * \def PQS_USER_DATABASE_MAX
+ * \brief The maximum number of records in the PQS server user database.
+ */
+#define PQS_USER_DATABASE_MAX 128U
+
+/*!
+ * \def PQS_USER_DATABASE_VERSION
+ * \brief The PQS server user database format version.
+ */
+#define PQS_USER_DATABASE_VERSION 2U
+
+/*!
+ * \def PQS_SHELL_PROFILE_DATABASE_MAX
+ * \brief The maximum number of shell profile records in the PQS server shell database.
+ */
+#define PQS_SHELL_PROFILE_DATABASE_MAX 32U
+
+/*!
+ * \def PQS_SHELL_PROFILE_PATH_MAX
+ * \brief The maximum shell executable path buffer size.
+ */
+#define PQS_SHELL_PROFILE_PATH_MAX QSC_SYSTEM_MAX_PATH
+
+/*!
+ * \def PQS_SHELL_PROFILE_TYPE_MAX
+ * \brief The maximum shell profile type buffer size.
+ */
+#define PQS_SHELL_PROFILE_TYPE_MAX 24U
+
+/*!
+ * \def PQS_SHELL_PROFILE_TYPE_TEXT_MAX
+ * \brief The maximum NUL-terminated shell profile type text length.
+ */
+#define PQS_SHELL_PROFILE_TYPE_TEXT_MAX (PQS_SHELL_PROFILE_TYPE_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_POLICY_DATABASE_MAX
+ * \brief The maximum number of command policy records in the PQS server policy database.
+ */
+#define PQS_POLICY_DATABASE_MAX 64U
+
+/*!
+ * \def PQS_POLICY_NAME_MAX
+ * \brief The maximum storage size, in bytes, of a command policy name.
+ */
+#define PQS_POLICY_NAME_MAX 64U
+
+/*!
+ * \def PQS_POLICY_NAME_TEXT_MAX
+ * \brief The maximum NUL-terminated command policy name text length.
+ */
+#define PQS_POLICY_NAME_TEXT_MAX (PQS_POLICY_NAME_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_POLICY_COMMAND_MAX
+ * \brief The maximum storage size, in bytes, of a command name in a policy list.
+ */
+#define PQS_POLICY_COMMAND_MAX 64U
+
+/*!
+ * \def PQS_POLICY_COMMAND_TEXT_MAX
+ * \brief The maximum NUL-terminated command name text length.
+ */
+#define PQS_POLICY_COMMAND_TEXT_MAX (PQS_POLICY_COMMAND_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_POLICY_COMMAND_LIST_MAX
+ * \brief The maximum storage size, in bytes, of a comma-separated command list.
+ */
+#define PQS_POLICY_COMMAND_LIST_MAX 768U
 
 #endif

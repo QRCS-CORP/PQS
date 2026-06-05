@@ -1,0 +1,213 @@
+\doxysection{pqs\+\_\+server\+\_\+config Struct Reference}
+\hypertarget{structpqs__server__config}{}\label{structpqs__server__config}\index{pqs\_server\_config@{pqs\_server\_config}}
+
+
+The PQS server configuration state.  
+
+
+
+
+{\ttfamily \#include $<$pqsconfig.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_a07f04019577718595bfbdd138beb1123}{application\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_ae30bc7004f6bce71d5b29b336ee9d188}{private\+\_\+key\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_a5f56f20adc41f6761702f2c2a300ec10}{public\+\_\+key\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_a4d9d41309b4fc1f5772bbb25f6b857e8}{user\+\_\+database\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_afb8d0223f1076c1b325b97feaff6b7c8}{shell\+\_\+database\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_a70752235c347f3af9961128a866e87a6}{policy\+\_\+database\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_ae8f8051cb1507c6b09e1b79ec5dea124}{log\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_af5bdbb8d9373ea1c808edce82c88d7e7}{listen\+\_\+address}} \mbox{[}QSC\+\_\+\+IPINFO\+\_\+\+IPV4\+\_\+\+STRNLEN\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structpqs__server__config_a122db9a14b0b635141b81b7b05a3ff40}{listen\+\_\+port}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__server__config_aa5de84217d8e2bfaeba6260169298c10}{max\+\_\+sessions}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__server__config_acc800d0e16362dfa767d0072cc68ae53}{max\+\_\+login\+\_\+attempts}}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_af7e42850a0920d779ec1bc6a9ba20398}{sandbox\+\_\+working\+\_\+directory}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_a9f8ad91c063abef03cf7917ea5417954}{sandbox\+\_\+run\+\_\+as\+\_\+user}} \mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__server__config_a079df32454e68b9ed6a5eec8e45ad5be}{sandbox\+\_\+run\+\_\+as\+\_\+group}} \mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__server__config_a51f8cabb635225d0c0f6baaf923f3290}{login\+\_\+timeout\+\_\+seconds}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__server__config_a527d7c5db2224a138502f952c586a903}{idle\+\_\+timeout\+\_\+seconds}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__server__config_a5f15729cebe84390677a979adeb9a546}{command\+\_\+timeout\+\_\+seconds}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__server__config_ad85ae6e4b4f19c27881e559309a30e14}{command\+\_\+output\+\_\+max\+\_\+bytes}}
+\item 
+\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} \mbox{\hyperlink{structpqs__server__config_a44d000c8f5060771fc29c861d0da499b}{log\+\_\+level}}
+\item 
+bool \mbox{\hyperlink{structpqs__server__config_a98d625df78ca0c546fb1c45d00203fba}{sandbox\+\_\+enabled}}
+\item 
+bool \mbox{\hyperlink{structpqs__server__config_af7bca9e8f992a94c6755e3fb169dc33d}{sandbox\+\_\+clear\+\_\+environment}}
+\item 
+bool \mbox{\hyperlink{structpqs__server__config_aee92697b6d26bc30ad76d90f9313501f}{sandbox\+\_\+chroot\+\_\+enabled}}
+\item 
+bool \mbox{\hyperlink{structpqs__server__config_aa3b97d8be67dead1468f98b7d28b96c6}{sandbox\+\_\+allow\+\_\+same\+\_\+user}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The PQS server configuration state. 
+
+This structure contains the resolved server configuration used to initialize the PQS server application, including storage paths, network binding values, authentication limits, logging behavior, and command sandbox settings. 
+
+\label{doc-variable-members}
+\Hypertarget{structpqs__server__config_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__server__config_a07f04019577718595bfbdd138beb1123}\index{pqs\_server\_config@{pqs\_server\_config}!application\_path@{application\_path}}
+\index{application\_path@{application\_path}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{application\_path}{application\_path}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a07f04019577718595bfbdd138beb1123} 
+char application\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The base PQS application storage directory \Hypertarget{structpqs__server__config_ad85ae6e4b4f19c27881e559309a30e14}\index{pqs\_server\_config@{pqs\_server\_config}!command\_output\_max\_bytes@{command\_output\_max\_bytes}}
+\index{command\_output\_max\_bytes@{command\_output\_max\_bytes}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{command\_output\_max\_bytes}{command\_output\_max\_bytes}}
+{\footnotesize\ttfamily \label{structpqs__server__config_ad85ae6e4b4f19c27881e559309a30e14} 
+uint32\+\_\+t command\+\_\+output\+\_\+max\+\_\+bytes}
+
+The maximum command-\/output byte count returned for one server-\/side command \Hypertarget{structpqs__server__config_a5f15729cebe84390677a979adeb9a546}\index{pqs\_server\_config@{pqs\_server\_config}!command\_timeout\_seconds@{command\_timeout\_seconds}}
+\index{command\_timeout\_seconds@{command\_timeout\_seconds}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{command\_timeout\_seconds}{command\_timeout\_seconds}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a5f15729cebe84390677a979adeb9a546} 
+uint32\+\_\+t command\+\_\+timeout\+\_\+seconds}
+
+The maximum execution time, in seconds, permitted for a server-\/side command \Hypertarget{structpqs__server__config_a527d7c5db2224a138502f952c586a903}\index{pqs\_server\_config@{pqs\_server\_config}!idle\_timeout\_seconds@{idle\_timeout\_seconds}}
+\index{idle\_timeout\_seconds@{idle\_timeout\_seconds}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{idle\_timeout\_seconds}{idle\_timeout\_seconds}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a527d7c5db2224a138502f952c586a903} 
+uint32\+\_\+t idle\+\_\+timeout\+\_\+seconds}
+
+The maximum idle time, in seconds, permitted for an established session \Hypertarget{structpqs__server__config_af5bdbb8d9373ea1c808edce82c88d7e7}\index{pqs\_server\_config@{pqs\_server\_config}!listen\_address@{listen\_address}}
+\index{listen\_address@{listen\_address}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{listen\_address}{listen\_address}}
+{\footnotesize\ttfamily \label{structpqs__server__config_af5bdbb8d9373ea1c808edce82c88d7e7} 
+char listen\+\_\+address\mbox{[}QSC\+\_\+\+IPINFO\+\_\+\+IPV4\+\_\+\+STRNLEN\mbox{]}}
+
+The IPv4 address used by the server listener \Hypertarget{structpqs__server__config_a122db9a14b0b635141b81b7b05a3ff40}\index{pqs\_server\_config@{pqs\_server\_config}!listen\_port@{listen\_port}}
+\index{listen\_port@{listen\_port}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{listen\_port}{listen\_port}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a122db9a14b0b635141b81b7b05a3ff40} 
+uint16\+\_\+t listen\+\_\+port}
+
+The TCP port used by the server listener \Hypertarget{structpqs__server__config_a44d000c8f5060771fc29c861d0da499b}\index{pqs\_server\_config@{pqs\_server\_config}!log\_level@{log\_level}}
+\index{log\_level@{log\_level}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{log\_level}{log\_level}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a44d000c8f5060771fc29c861d0da499b} 
+\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} log\+\_\+level}
+
+The configured server logging level \Hypertarget{structpqs__server__config_ae8f8051cb1507c6b09e1b79ec5dea124}\index{pqs\_server\_config@{pqs\_server\_config}!log\_path@{log\_path}}
+\index{log\_path@{log\_path}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{log\_path}{log\_path}}
+{\footnotesize\ttfamily \label{structpqs__server__config_ae8f8051cb1507c6b09e1b79ec5dea124} 
+char log\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the PQS server log file \Hypertarget{structpqs__server__config_a51f8cabb635225d0c0f6baaf923f3290}\index{pqs\_server\_config@{pqs\_server\_config}!login\_timeout\_seconds@{login\_timeout\_seconds}}
+\index{login\_timeout\_seconds@{login\_timeout\_seconds}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{login\_timeout\_seconds}{login\_timeout\_seconds}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a51f8cabb635225d0c0f6baaf923f3290} 
+uint32\+\_\+t login\+\_\+timeout\+\_\+seconds}
+
+The maximum time, in seconds, permitted for a login exchange \Hypertarget{structpqs__server__config_acc800d0e16362dfa767d0072cc68ae53}\index{pqs\_server\_config@{pqs\_server\_config}!max\_login\_attempts@{max\_login\_attempts}}
+\index{max\_login\_attempts@{max\_login\_attempts}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{max\_login\_attempts}{max\_login\_attempts}}
+{\footnotesize\ttfamily \label{structpqs__server__config_acc800d0e16362dfa767d0072cc68ae53} 
+uint32\+\_\+t max\+\_\+login\+\_\+attempts}
+
+The maximum number of login attempts permitted before rejecting the session \Hypertarget{structpqs__server__config_aa5de84217d8e2bfaeba6260169298c10}\index{pqs\_server\_config@{pqs\_server\_config}!max\_sessions@{max\_sessions}}
+\index{max\_sessions@{max\_sessions}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{max\_sessions}{max\_sessions}}
+{\footnotesize\ttfamily \label{structpqs__server__config_aa5de84217d8e2bfaeba6260169298c10} 
+uint32\+\_\+t max\+\_\+sessions}
+
+The maximum number of authenticated server sessions permitted; PQS currently enforces one active session \Hypertarget{structpqs__server__config_a70752235c347f3af9961128a866e87a6}\index{pqs\_server\_config@{pqs\_server\_config}!policy\_database\_path@{policy\_database\_path}}
+\index{policy\_database\_path@{policy\_database\_path}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{policy\_database\_path}{policy\_database\_path}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a70752235c347f3af9961128a866e87a6} 
+char policy\+\_\+database\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the PQS command policy database file \Hypertarget{structpqs__server__config_ae30bc7004f6bce71d5b29b336ee9d188}\index{pqs\_server\_config@{pqs\_server\_config}!private\_key\_path@{private\_key\_path}}
+\index{private\_key\_path@{private\_key\_path}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{private\_key\_path}{private\_key\_path}}
+{\footnotesize\ttfamily \label{structpqs__server__config_ae30bc7004f6bce71d5b29b336ee9d188} 
+char private\+\_\+key\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the encoded PQS server private key file \Hypertarget{structpqs__server__config_a5f56f20adc41f6761702f2c2a300ec10}\index{pqs\_server\_config@{pqs\_server\_config}!public\_key\_path@{public\_key\_path}}
+\index{public\_key\_path@{public\_key\_path}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{public\_key\_path}{public\_key\_path}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a5f56f20adc41f6761702f2c2a300ec10} 
+char public\+\_\+key\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the encoded PQS server public key file \Hypertarget{structpqs__server__config_aa3b97d8be67dead1468f98b7d28b96c6}\index{pqs\_server\_config@{pqs\_server\_config}!sandbox\_allow\_same\_user@{sandbox\_allow\_same\_user}}
+\index{sandbox\_allow\_same\_user@{sandbox\_allow\_same\_user}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{sandbox\_allow\_same\_user}{sandbox\_allow\_same\_user}}
+{\footnotesize\ttfamily \label{structpqs__server__config_aa3b97d8be67dead1468f98b7d28b96c6} 
+bool sandbox\+\_\+allow\+\_\+same\+\_\+user}
+
+A flag indicating whether POSIX same-\/user command execution is explicitly allowed \Hypertarget{structpqs__server__config_aee92697b6d26bc30ad76d90f9313501f}\index{pqs\_server\_config@{pqs\_server\_config}!sandbox\_chroot\_enabled@{sandbox\_chroot\_enabled}}
+\index{sandbox\_chroot\_enabled@{sandbox\_chroot\_enabled}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{sandbox\_chroot\_enabled}{sandbox\_chroot\_enabled}}
+{\footnotesize\ttfamily \label{structpqs__server__config_aee92697b6d26bc30ad76d90f9313501f} 
+bool sandbox\+\_\+chroot\+\_\+enabled}
+
+A flag indicating whether POSIX chroot confinement is used \Hypertarget{structpqs__server__config_af7bca9e8f992a94c6755e3fb169dc33d}\index{pqs\_server\_config@{pqs\_server\_config}!sandbox\_clear\_environment@{sandbox\_clear\_environment}}
+\index{sandbox\_clear\_environment@{sandbox\_clear\_environment}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{sandbox\_clear\_environment}{sandbox\_clear\_environment}}
+{\footnotesize\ttfamily \label{structpqs__server__config_af7bca9e8f992a94c6755e3fb169dc33d} 
+bool sandbox\+\_\+clear\+\_\+environment}
+
+A flag indicating whether the command execution environment is cleared \Hypertarget{structpqs__server__config_a98d625df78ca0c546fb1c45d00203fba}\index{pqs\_server\_config@{pqs\_server\_config}!sandbox\_enabled@{sandbox\_enabled}}
+\index{sandbox\_enabled@{sandbox\_enabled}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{sandbox\_enabled}{sandbox\_enabled}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a98d625df78ca0c546fb1c45d00203fba} 
+bool sandbox\+\_\+enabled}
+
+A flag indicating whether command sandbox controls are enabled \Hypertarget{structpqs__server__config_a079df32454e68b9ed6a5eec8e45ad5be}\index{pqs\_server\_config@{pqs\_server\_config}!sandbox\_run\_as\_group@{sandbox\_run\_as\_group}}
+\index{sandbox\_run\_as\_group@{sandbox\_run\_as\_group}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{sandbox\_run\_as\_group}{sandbox\_run\_as\_group}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a079df32454e68b9ed6a5eec8e45ad5be} 
+char sandbox\+\_\+run\+\_\+as\+\_\+group\mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}}
+
+The POSIX group name used for command privilege drop \Hypertarget{structpqs__server__config_a9f8ad91c063abef03cf7917ea5417954}\index{pqs\_server\_config@{pqs\_server\_config}!sandbox\_run\_as\_user@{sandbox\_run\_as\_user}}
+\index{sandbox\_run\_as\_user@{sandbox\_run\_as\_user}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{sandbox\_run\_as\_user}{sandbox\_run\_as\_user}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a9f8ad91c063abef03cf7917ea5417954} 
+char sandbox\+\_\+run\+\_\+as\+\_\+user\mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}}
+
+The POSIX user name used for command privilege drop \Hypertarget{structpqs__server__config_af7e42850a0920d779ec1bc6a9ba20398}\index{pqs\_server\_config@{pqs\_server\_config}!sandbox\_working\_directory@{sandbox\_working\_directory}}
+\index{sandbox\_working\_directory@{sandbox\_working\_directory}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{sandbox\_working\_directory}{sandbox\_working\_directory}}
+{\footnotesize\ttfamily \label{structpqs__server__config_af7e42850a0920d779ec1bc6a9ba20398} 
+char sandbox\+\_\+working\+\_\+directory\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The working directory used for sandboxed command execution \Hypertarget{structpqs__server__config_afb8d0223f1076c1b325b97feaff6b7c8}\index{pqs\_server\_config@{pqs\_server\_config}!shell\_database\_path@{shell\_database\_path}}
+\index{shell\_database\_path@{shell\_database\_path}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{shell\_database\_path}{shell\_database\_path}}
+{\footnotesize\ttfamily \label{structpqs__server__config_afb8d0223f1076c1b325b97feaff6b7c8} 
+char shell\+\_\+database\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the PQS shell profile database file \Hypertarget{structpqs__server__config_a4d9d41309b4fc1f5772bbb25f6b857e8}\index{pqs\_server\_config@{pqs\_server\_config}!user\_database\_path@{user\_database\_path}}
+\index{user\_database\_path@{user\_database\_path}!pqs\_server\_config@{pqs\_server\_config}}
+\doxysubsubsection{\texorpdfstring{user\_database\_path}{user\_database\_path}}
+{\footnotesize\ttfamily \label{structpqs__server__config_a4d9d41309b4fc1f5772bbb25f6b857e8} 
+char user\+\_\+database\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the PQS user database file 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqsconfig_8h}{pqsconfig.\+h}}\end{DoxyCompactItemize}

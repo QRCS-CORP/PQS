@@ -1,0 +1,99 @@
+\doxysection{pqs\+\_\+user\+\_\+record Struct Reference}
+\hypertarget{structpqs__user__record}{}\label{structpqs__user__record}\index{pqs\_user\_record@{pqs\_user\_record}}
+
+
+A PQS server user account record.  
+
+
+
+
+{\ttfamily \#include $<$pqsuser.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structpqs__user__record_a7020611f157874c065ee0f84674e34b3}{username}} \mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__user__record_ac8d44d7541efd2d94d01ecc6865e0dc4}{shellprofile}} \mbox{[}PQS\+\_\+\+SHELL\+\_\+\+PROFILE\+\_\+\+NAME\+\_\+\+MAX\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpqs__user__record_a4532119342dc2a93fb925c459fa91ac1}{salt}} \mbox{[}PQS\+\_\+\+USER\+\_\+\+SALT\+\_\+\+SIZE\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpqs__user__record_ad0829baaa702247e47f4b24c3063b99c}{verifier}} \mbox{[}PQS\+\_\+\+USER\+\_\+\+VERIFIER\+\_\+\+SIZE\mbox{]}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structpqs__user__record_a2091748c311f02f85177b1af486a7ef9}{created}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structpqs__user__record_a2fda3c82b46834b861511b118d7f6cda}{modified}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structpqs__user__record_a1bbb8741756b744dfeff1e0dd257171f}{failures}}
+\item 
+pqs\+\_\+user\+\_\+privileges \mbox{\hyperlink{structpqs__user__record_ab88757667fd0d41d3ef64ac788889d8e}{privilege}}
+\item 
+bool \mbox{\hyperlink{structpqs__user__record_a8740ba80e30dd75e71d09fa1dcf04f3d}{enabled}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A PQS server user account record. 
+
+\label{doc-variable-members}
+\Hypertarget{structpqs__user__record_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__user__record_a2091748c311f02f85177b1af486a7ef9}\index{pqs\_user\_record@{pqs\_user\_record}!created@{created}}
+\index{created@{created}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{created}{created}}
+{\footnotesize\ttfamily \label{structpqs__user__record_a2091748c311f02f85177b1af486a7ef9} 
+uint64\+\_\+t created}
+
+The record creation timestamp. \Hypertarget{structpqs__user__record_a8740ba80e30dd75e71d09fa1dcf04f3d}\index{pqs\_user\_record@{pqs\_user\_record}!enabled@{enabled}}
+\index{enabled@{enabled}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{enabled}{enabled}}
+{\footnotesize\ttfamily \label{structpqs__user__record_a8740ba80e30dd75e71d09fa1dcf04f3d} 
+bool enabled}
+
+The account enabled flag. \Hypertarget{structpqs__user__record_a1bbb8741756b744dfeff1e0dd257171f}\index{pqs\_user\_record@{pqs\_user\_record}!failures@{failures}}
+\index{failures@{failures}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{failures}{failures}}
+{\footnotesize\ttfamily \label{structpqs__user__record_a1bbb8741756b744dfeff1e0dd257171f} 
+uint32\+\_\+t failures}
+
+The consecutive authentication failure count. \Hypertarget{structpqs__user__record_a2fda3c82b46834b861511b118d7f6cda}\index{pqs\_user\_record@{pqs\_user\_record}!modified@{modified}}
+\index{modified@{modified}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{modified}{modified}}
+{\footnotesize\ttfamily \label{structpqs__user__record_a2fda3c82b46834b861511b118d7f6cda} 
+uint64\+\_\+t modified}
+
+The record modification timestamp. \Hypertarget{structpqs__user__record_ab88757667fd0d41d3ef64ac788889d8e}\index{pqs\_user\_record@{pqs\_user\_record}!privilege@{privilege}}
+\index{privilege@{privilege}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{privilege}{privilege}}
+{\footnotesize\ttfamily \label{structpqs__user__record_ab88757667fd0d41d3ef64ac788889d8e} 
+pqs\+\_\+user\+\_\+privileges privilege}
+
+The user privilege level. \Hypertarget{structpqs__user__record_a4532119342dc2a93fb925c459fa91ac1}\index{pqs\_user\_record@{pqs\_user\_record}!salt@{salt}}
+\index{salt@{salt}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{salt}{salt}}
+{\footnotesize\ttfamily \label{structpqs__user__record_a4532119342dc2a93fb925c459fa91ac1} 
+uint8\+\_\+t salt\mbox{[}PQS\+\_\+\+USER\+\_\+\+SALT\+\_\+\+SIZE\mbox{]}}
+
+The SCB verifier salt. \Hypertarget{structpqs__user__record_ac8d44d7541efd2d94d01ecc6865e0dc4}\index{pqs\_user\_record@{pqs\_user\_record}!shellprofile@{shellprofile}}
+\index{shellprofile@{shellprofile}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{shellprofile}{shellprofile}}
+{\footnotesize\ttfamily \label{structpqs__user__record_ac8d44d7541efd2d94d01ecc6865e0dc4} 
+char shellprofile\mbox{[}PQS\+\_\+\+SHELL\+\_\+\+PROFILE\+\_\+\+NAME\+\_\+\+MAX\mbox{]}}
+
+The assigned shell profile name. \Hypertarget{structpqs__user__record_a7020611f157874c065ee0f84674e34b3}\index{pqs\_user\_record@{pqs\_user\_record}!username@{username}}
+\index{username@{username}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily \label{structpqs__user__record_a7020611f157874c065ee0f84674e34b3} 
+char username\mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}}
+
+The PQS user name. \Hypertarget{structpqs__user__record_ad0829baaa702247e47f4b24c3063b99c}\index{pqs\_user\_record@{pqs\_user\_record}!verifier@{verifier}}
+\index{verifier@{verifier}!pqs\_user\_record@{pqs\_user\_record}}
+\doxysubsubsection{\texorpdfstring{verifier}{verifier}}
+{\footnotesize\ttfamily \label{structpqs__user__record_ad0829baaa702247e47f4b24c3063b99c} 
+uint8\+\_\+t verifier\mbox{[}PQS\+\_\+\+USER\+\_\+\+VERIFIER\+\_\+\+SIZE\mbox{]}}
+
+The SCB passphrase verifier. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqsuser_8h}{pqsuser.\+h}}\end{DoxyCompactItemize}

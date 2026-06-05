@@ -1,0 +1,513 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqspolicy.h File Reference}
+\hypertarget{pqspolicy_8h}{}\label{pqspolicy_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqspolicy.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqspolicy.h}}
+
+
+PQS server-\/side command policy database functions.  
+
+
+{\ttfamily \#include "{}pqs.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}}
+\begin{DoxyCompactList}\small\item\em A PQS server command policy record. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}}
+\begin{DoxyCompactList}\small\item\em The fixed-\/size PQS command policy database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqspolicy_8h_a3937373e8d6c3bf3ff17ec4fb7717feb}\label{pqspolicy_8h_a3937373e8d6c3bf3ff17ec4fb7717feb} 
+\#define {\bfseries PQS\+\_\+\+POLICY\+\_\+\+DATABASE\+\_\+\+MAGIC}~"{}PQSPOLICYDB1"{}
+\begin{DoxyCompactList}\small\item\em The fixed text header written to PQS command policy database files. \end{DoxyCompactList}\item 
+\Hypertarget{pqspolicy_8h_a83832b2c59c02a2d48bd45edc027e137}\label{pqspolicy_8h_a83832b2c59c02a2d48bd45edc027e137} 
+\#define {\bfseries PQS\+\_\+\+POLICY\+\_\+\+DEFAULT\+\_\+\+GUEST}~"{}guest"{}
+\begin{DoxyCompactList}\small\item\em The default guest privilege command policy name. \end{DoxyCompactList}\item 
+\Hypertarget{pqspolicy_8h_aaba920f400b1472671b860868df9e0b4}\label{pqspolicy_8h_aaba920f400b1472671b860868df9e0b4} 
+\#define {\bfseries PQS\+\_\+\+POLICY\+\_\+\+DEFAULT\+\_\+\+USER}~"{}user"{}
+\begin{DoxyCompactList}\small\item\em The default user privilege command policy name. \end{DoxyCompactList}\item 
+\Hypertarget{pqspolicy_8h_a5fc8a3da13f011cb0c78e23ca90ca07b}\label{pqspolicy_8h_a5fc8a3da13f011cb0c78e23ca90ca07b} 
+\#define {\bfseries PQS\+\_\+\+POLICY\+\_\+\+DEFAULT\+\_\+\+ADMIN}~"{}admin"{}
+\begin{DoxyCompactList}\small\item\em The default administrative privilege command policy name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqspolicy_8h_a5c660a0242e57ab92e2c74d3cfdec65d}\label{pqspolicy_8h_a5c660a0242e57ab92e2c74d3cfdec65d} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API enum \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} {\bfseries pqs\+\_\+policy\+\_\+modes}
+\item 
+\Hypertarget{pqspolicy_8h_a3c525fd79dce2804a1ac582bf52b7be7}\label{pqspolicy_8h_a3c525fd79dce2804a1ac582bf52b7be7} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+policy\+\_\+record {\bfseries pqs\+\_\+policy\+\_\+record}
+\item 
+\Hypertarget{pqspolicy_8h_ad559b5eddf6ae7219aba81719035fc37}\label{pqspolicy_8h_ad559b5eddf6ae7219aba81719035fc37} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+policy\+\_\+store {\bfseries pqs\+\_\+policy\+\_\+store}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} \{ \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a15b925ab5f8d3a7da1103fe5d893584e}{pqs\+\_\+policy\+\_\+mode\+\_\+none}} = 0x00U
+, \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83ac6344ac1b9cae5af173aecd9b477d179}{pqs\+\_\+policy\+\_\+mode\+\_\+restricted}} = 0x01U
+, \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83af1d12ba700f2526f6179551c42332718}{pqs\+\_\+policy\+\_\+mode\+\_\+forced}} = 0x02U
+, \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a5a2db9207a3c8a8a1a42203edcbe9e05}{pqs\+\_\+policy\+\_\+mode\+\_\+raw}} = 0x03U
+ \}
+\begin{DoxyCompactList}\small\item\em Command policy execution modes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a420bcb2d0b060d22f9067f4dd794340c}{pqs\+\_\+policy\+\_\+store\+\_\+add}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} mode, uint32\+\_\+t privilege\+\_\+mask, bool enabled)
+\begin{DoxyCompactList}\small\item\em Add a command policy record to a policy store. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a2dddb9371d8970af92f81da59c2d8494}{pqs\+\_\+policy\+\_\+store\+\_\+add\+\_\+command}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}command, bool allowed)
+\begin{DoxyCompactList}\small\item\em Add a command verb to a policy allow-\/list or deny-\/list. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a0463ce87ffca101f909580ee8ac933a5}{pqs\+\_\+policy\+\_\+store\+\_\+assign\+\_\+privilege}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, pqs\+\_\+user\+\_\+privileges privilege, const char \texorpdfstring{$\ast$}{*}policy)
+\begin{DoxyCompactList}\small\item\em Assign a named policy to a privilege level. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a524725f4ddf4d6957c4f90b4f90af935}{pqs\+\_\+policy\+\_\+command\+\_\+is\+\_\+safe}} (const char \texorpdfstring{$\ast$}{*}command)
+\begin{DoxyCompactList}\small\item\em Authorize a command for a privilege level using the active policy assignment. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a6fddf2d261ee630582c1a67771d62337}{pqs\+\_\+policy\+\_\+store\+\_\+authorize}} (const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, pqs\+\_\+user\+\_\+privileges privilege, const char \texorpdfstring{$\ast$}{*}command, const \mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}matched)
+\begin{DoxyCompactList}\small\item\em Authorizes a command request against the policy assigned to a privilege class. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_aa113d49ecd3d0f570eb60bf102e3ea3d}{pqs\+\_\+policy\+\_\+store\+\_\+enable}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, bool enabled)
+\begin{DoxyCompactList}\small\item\em Enable or disable a command policy record. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqspolicy_8h_a37a614706ec060ccf8629c942ba8fd7e}{pqs\+\_\+policy\+\_\+store\+\_\+find}} (const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Find a command policy record by name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqspolicy_8h_afc730a814b8bbf1686e80861a1b82bd2}{pqs\+\_\+policy\+\_\+store\+\_\+find\+\_\+mutable}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Find a mutable command policy record by name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a310d832ef0a9eb246ee96e2884719705}{pqs\+\_\+policy\+\_\+store\+\_\+initialize}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Initialize a command policy store from persistent storage. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a1874d7beebaaa7cdf9bf0f5d39803dd7}{pqs\+\_\+policy\+\_\+store\+\_\+remove}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Remove a command policy record from a policy store. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a20a3c472912b724c94acae79ed8867c8}{pqs\+\_\+policy\+\_\+store\+\_\+remove\+\_\+command}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}command, bool allowed)
+\begin{DoxyCompactList}\small\item\em Remove a command verb from a policy allow-\/list or deny-\/list. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a2a3ad91630bfd06a129e75da9d5ef9ea}{pqs\+\_\+policy\+\_\+store\+\_\+save}} (const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store)
+\begin{DoxyCompactList}\small\item\em Save a command policy store to persistent storage. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a3047fc66372941fc4225f4a60897a1f1}{pqs\+\_\+policy\+\_\+store\+\_\+set\+\_\+forced}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}command)
+\begin{DoxyCompactList}\small\item\em Set the forced command associated with a command policy. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqspolicy_8h_a15f3c95868e4d7ab24a885c6ed5babff}{pqs\+\_\+policy\+\_\+store\+\_\+set\+\_\+mode}} (\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} mode)
+\begin{DoxyCompactList}\small\item\em Set the enforcement mode of a command policy. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqspolicy_8h_a3facdecbe133ade3d9aaf8384d7fc1d5}{pqs\+\_\+policy\+\_\+mode\+\_\+to\+\_\+string}} (\mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} mode)
+\begin{DoxyCompactList}\small\item\em Convert a policy mode enumeration value to a string. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} \mbox{\hyperlink{pqspolicy_8h_a8ff4509847423ab994d7ffd18438024d}{pqs\+\_\+policy\+\_\+mode\+\_\+from\+\_\+string}} (const char \texorpdfstring{$\ast$}{*}value)
+\begin{DoxyCompactList}\small\item\em Convert a policy mode string to a policy mode enumeration value. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t \mbox{\hyperlink{pqspolicy_8h_a3f406263f4ddea8cb40dda153018e498}{pqs\+\_\+policy\+\_\+privilege\+\_\+to\+\_\+mask}} (pqs\+\_\+user\+\_\+privileges privilege)
+\begin{DoxyCompactList}\small\item\em Convert a PQS user privilege level to a policy privilege mask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS server-\/side command policy database functions. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{pqspolicy_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_modes@{pqs\_policy\_modes}}
+\index{pqs\_policy\_modes@{pqs\_policy\_modes}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_modes}{pqs\_policy\_modes}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83} 
+enum \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}}}
+
+
+
+Command policy execution modes. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_policy\_mode\_none@{pqs\_policy\_mode\_none}!pqspolicy.h@{pqspolicy.h}}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_mode\_none@{pqs\_policy\_mode\_none}}}\Hypertarget{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a15b925ab5f8d3a7da1103fe5d893584e}\label{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a15b925ab5f8d3a7da1103fe5d893584e} 
+pqs\+\_\+policy\+\_\+mode\+\_\+none&No command execution is permitted. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_policy\_mode\_restricted@{pqs\_policy\_mode\_restricted}!pqspolicy.h@{pqspolicy.h}}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_mode\_restricted@{pqs\_policy\_mode\_restricted}}}\Hypertarget{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83ac6344ac1b9cae5af173aecd9b477d179}\label{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83ac6344ac1b9cae5af173aecd9b477d179} 
+pqs\+\_\+policy\+\_\+mode\+\_\+restricted&Only explicitly allowed commands are permitted. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_policy\_mode\_forced@{pqs\_policy\_mode\_forced}!pqspolicy.h@{pqspolicy.h}}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_mode\_forced@{pqs\_policy\_mode\_forced}}}\Hypertarget{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83af1d12ba700f2526f6179551c42332718}\label{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83af1d12ba700f2526f6179551c42332718} 
+pqs\+\_\+policy\+\_\+mode\+\_\+forced&Only the configured forced command is permitted. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pqs\_policy\_mode\_raw@{pqs\_policy\_mode\_raw}!pqspolicy.h@{pqspolicy.h}}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_mode\_raw@{pqs\_policy\_mode\_raw}}}\Hypertarget{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a5a2db9207a3c8a8a1a42203edcbe9e05}\label{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83a5a2db9207a3c8a8a1a42203edcbe9e05} 
+pqs\+\_\+policy\+\_\+mode\+\_\+raw&Raw shell command execution is permitted. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{pqspolicy_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqspolicy_8h_a524725f4ddf4d6957c4f90b4f90af935}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_command\_is\_safe@{pqs\_policy\_command\_is\_safe}}
+\index{pqs\_policy\_command\_is\_safe@{pqs\_policy\_command\_is\_safe}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_command\_is\_safe()}{pqs\_policy\_command\_is\_safe()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a524725f4ddf4d6957c4f90b4f90af935} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+command\+\_\+is\+\_\+safe (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{command}{}\end{DoxyParamCaption})}
+
+
+
+Authorize a command for a privilege level using the active policy assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} A pointer to the policy store to query. \\
+\hline
+{\em privilege} & \mbox{[}enum\mbox{]} The authenticated user\textquotesingle{}s privilege level. \\
+\hline
+{\em command} & \mbox{[}const\mbox{]} The NUL-\/terminated command string or command verb to evaluate. \\
+\hline
+{\em matched} & \mbox{[}const struct\mbox{]} A pointer to the matched policy record output parameter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the command is authorized by the matched policy; otherwise, returns false.
+\end{DoxyReturn}
+Test whether a user-\/supplied shell command avoids shell-\/control metacharacters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & \mbox{[}const\mbox{]} The NUL-\/terminated command string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the command contains only direct-\/command characters; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a8ff4509847423ab994d7ffd18438024d}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_mode\_from\_string@{pqs\_policy\_mode\_from\_string}}
+\index{pqs\_policy\_mode\_from\_string@{pqs\_policy\_mode\_from\_string}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_mode\_from\_string()}{pqs\_policy\_mode\_from\_string()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a8ff4509847423ab994d7ffd18438024d} 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}} pqs\+\_\+policy\+\_\+mode\+\_\+from\+\_\+string (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Convert a policy mode string to a policy mode enumeration value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \mbox{[}const\mbox{]} The NUL-\/terminated policy mode string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the corresponding policy mode value, or the default invalid/disabled value when the string is not recognized. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a3facdecbe133ade3d9aaf8384d7fc1d5}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_mode\_to\_string@{pqs\_policy\_mode\_to\_string}}
+\index{pqs\_policy\_mode\_to\_string@{pqs\_policy\_mode\_to\_string}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_mode\_to\_string()}{pqs\_policy\_mode\_to\_string()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a3facdecbe133ade3d9aaf8384d7fc1d5} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} pqs\+\_\+policy\+\_\+mode\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}}}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Convert a policy mode enumeration value to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & \mbox{[}enum\mbox{]} The policy mode value to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a constant NUL-\/terminated string representing the policy mode. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a3f406263f4ddea8cb40dda153018e498}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_privilege\_to\_mask@{pqs\_policy\_privilege\_to\_mask}}
+\index{pqs\_policy\_privilege\_to\_mask@{pqs\_policy\_privilege\_to\_mask}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_privilege\_to\_mask()}{pqs\_policy\_privilege\_to\_mask()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a3f406263f4ddea8cb40dda153018e498} 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t pqs\+\_\+policy\+\_\+privilege\+\_\+to\+\_\+mask (\begin{DoxyParamCaption}\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{}\end{DoxyParamCaption})}
+
+
+
+Convert a PQS user privilege level to a policy privilege mask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em privilege} & \mbox{[}enum\mbox{]} The user privilege level to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the policy privilege mask corresponding to the user privilege level. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a420bcb2d0b060d22f9067f4dd794340c}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_add@{pqs\_policy\_store\_add}}
+\index{pqs\_policy\_store\_add@{pqs\_policy\_store\_add}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_add()}{pqs\_policy\_store\_add()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a420bcb2d0b060d22f9067f4dd794340c} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{\mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}}}]{mode}{, }\item[{uint32\+\_\+t}]{privilege\+\_\+mask}{, }\item[{bool}]{enabled}{}\end{DoxyParamCaption})}
+
+
+
+Add a command policy record to a policy store. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name. \\
+\hline
+{\em mode} & \mbox{[}enum\mbox{]} The policy enforcement mode. \\
+\hline
+{\em privilege\+\_\+mask} & The privilege mask allowed to use the policy. \\
+\hline
+{\em enabled} & A flag indicating whether the policy is enabled.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the policy record was added; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a2dddb9371d8970af92f81da59c2d8494}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_add\_command@{pqs\_policy\_store\_add\_command}}
+\index{pqs\_policy\_store\_add\_command@{pqs\_policy\_store\_add\_command}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_add\_command()}{pqs\_policy\_store\_add\_command()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a2dddb9371d8970af92f81da59c2d8494} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+add\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{command}{, }\item[{bool}]{allowed}{}\end{DoxyParamCaption})}
+
+
+
+Add a command verb to a policy allow-\/list or deny-\/list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name. \\
+\hline
+{\em command} & \mbox{[}const\mbox{]} The NUL-\/terminated command verb to add. \\
+\hline
+{\em allowed} & A flag selecting the target list; true adds to the allow-\/list, false adds to the deny-\/list.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the command was added to the selected policy list; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a0463ce87ffca101f909580ee8ac933a5}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_assign\_privilege@{pqs\_policy\_store\_assign\_privilege}}
+\index{pqs\_policy\_store\_assign\_privilege@{pqs\_policy\_store\_assign\_privilege}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_assign\_privilege()}{pqs\_policy\_store\_assign\_privilege()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a0463ce87ffca101f909580ee8ac933a5} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+assign\+\_\+privilege (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{policy}{}\end{DoxyParamCaption})}
+
+
+
+Assign a named policy to a privilege level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em privilege} & \mbox{[}enum\mbox{]} The privilege level to assign. \\
+\hline
+{\em policy} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name to associate with the privilege level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the privilege assignment was updated; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a6fddf2d261ee630582c1a67771d62337}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_authorize@{pqs\_policy\_store\_authorize}}
+\index{pqs\_policy\_store\_authorize@{pqs\_policy\_store\_authorize}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_authorize()}{pqs\_policy\_store\_authorize()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a6fddf2d261ee630582c1a67771d62337} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+authorize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{command}{, }\item[{const \mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{matched}{}\end{DoxyParamCaption})}
+
+
+
+Authorizes a command request against the policy assigned to a privilege class. 
+
+Evaluates the command policy associated with the supplied privilege level and determines whether the requested command is permitted. The function resolves the policy record assigned to {\ttfamily privilege}, validates the supplied command string, extracts the command verb used for policy matching, and applies the configured policy mode.
+
+The authorization result depends on the matched policy mode\+:
+
+\begin{DoxyItemize}
+\item {\ttfamily pqs\+\_\+policy\+\_\+mode\+\_\+none} denies all command execution. \item {\ttfamily pqs\+\_\+policy\+\_\+mode\+\_\+restricted} permits only commands present in the policy allow list. \item {\ttfamily pqs\+\_\+policy\+\_\+mode\+\_\+forced} permits execution through the configured forced command. \item {\ttfamily pqs\+\_\+policy\+\_\+mode\+\_\+raw} permits commands unless explicitly denied by the policy.\end{DoxyItemize}
+User-\/supplied command strings are also subject to shell-\/safety validation. Commands containing shell-\/control metacharacters or unsafe shell syntax are rejected before execution authorization succeeds. This prevents a permitted command verb from being used to carry additional shell expressions that would bypass the policy decision.
+
+If {\ttfamily matched} is not NULL, it receives the address of the policy record used for the decision when a policy is resolved. The returned pointer refers to storage owned by {\ttfamily store} and remains valid only while the store remains valid and unmodified.
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const\mbox{]} A pointer to the initialized policy store. \\
+\hline
+{\em privilege} & \mbox{[}enum\mbox{]} The user privilege class whose assigned policy is evaluated. \\
+\hline
+{\em command} & \mbox{[}const\mbox{]} A pointer to the NUL-\/terminated command string to authorize. \\
+\hline
+{\em matched} & \mbox{[}out\mbox{]} An optional pointer that receives the matched policy record.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the command is authorized by the matched policy; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_aa113d49ecd3d0f570eb60bf102e3ea3d}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_enable@{pqs\_policy\_store\_enable}}
+\index{pqs\_policy\_store\_enable@{pqs\_policy\_store\_enable}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_enable()}{pqs\_policy\_store\_enable()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_aa113d49ecd3d0f570eb60bf102e3ea3d} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{bool}]{enabled}{}\end{DoxyParamCaption})}
+
+
+
+Enable or disable a command policy record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name. \\
+\hline
+{\em enabled} & A flag indicating whether the policy is enabled.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the policy state was updated; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a37a614706ec060ccf8629c942ba8fd7e}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_find@{pqs\_policy\_store\_find}}
+\index{pqs\_policy\_store\_find@{pqs\_policy\_store\_find}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_find()}{pqs\_policy\_store\_find()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a37a614706ec060ccf8629c942ba8fd7e} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} \texorpdfstring{$\ast$}{*} pqs\+\_\+policy\+\_\+store\+\_\+find (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Find a command policy record by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} A pointer to the policy store to query. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a constant pointer to the matching policy record, or NULL if no matching record exists. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_afc730a814b8bbf1686e80861a1b82bd2}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_find\_mutable@{pqs\_policy\_store\_find\_mutable}}
+\index{pqs\_policy\_store\_find\_mutable@{pqs\_policy\_store\_find\_mutable}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_find\_mutable()}{pqs\_policy\_store\_find\_mutable()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_afc730a814b8bbf1686e80861a1b82bd2} 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} \texorpdfstring{$\ast$}{*} pqs\+\_\+policy\+\_\+store\+\_\+find\+\_\+mutable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Find a mutable command policy record by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to query. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a mutable pointer to the matching policy record, or NULL if no matching record exists. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a310d832ef0a9eb246ee96e2884719705}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_initialize@{pqs\_policy\_store\_initialize}}
+\index{pqs\_policy\_store\_initialize@{pqs\_policy\_store\_initialize}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_initialize()}{pqs\_policy\_store\_initialize()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a310d832ef0a9eb246ee96e2884719705} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a command policy store from persistent storage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to initialize. \\
+\hline
+{\em path} & \mbox{[}const\mbox{]} The NUL-\/terminated path to the policy database file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the policy store was initialized; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a1874d7beebaaa7cdf9bf0f5d39803dd7}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_remove@{pqs\_policy\_store\_remove}}
+\index{pqs\_policy\_store\_remove@{pqs\_policy\_store\_remove}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_remove()}{pqs\_policy\_store\_remove()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a1874d7beebaaa7cdf9bf0f5d39803dd7} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Remove a command policy record from a policy store. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the policy record was removed; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a20a3c472912b724c94acae79ed8867c8}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_remove\_command@{pqs\_policy\_store\_remove\_command}}
+\index{pqs\_policy\_store\_remove\_command@{pqs\_policy\_store\_remove\_command}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_remove\_command()}{pqs\_policy\_store\_remove\_command()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a20a3c472912b724c94acae79ed8867c8} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+remove\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{command}{, }\item[{bool}]{allowed}{}\end{DoxyParamCaption})}
+
+
+
+Remove a command verb from a policy allow-\/list or deny-\/list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name. \\
+\hline
+{\em command} & \mbox{[}const\mbox{]} The NUL-\/terminated command verb to remove. \\
+\hline
+{\em allowed} & A flag selecting the target list; true removes from the allow-\/list, false removes from the deny-\/list.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the command was removed from the selected policy list; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a2a3ad91630bfd06a129e75da9d5ef9ea}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_save@{pqs\_policy\_store\_save}}
+\index{pqs\_policy\_store\_save@{pqs\_policy\_store\_save}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_save()}{pqs\_policy\_store\_save()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a2a3ad91630bfd06a129e75da9d5ef9ea} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+save (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{}\end{DoxyParamCaption})}
+
+
+
+Save a command policy store to persistent storage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} A pointer to the policy store to save.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the policy store was written successfully; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a3047fc66372941fc4225f4a60897a1f1}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_set\_forced@{pqs\_policy\_store\_set\_forced}}
+\index{pqs\_policy\_store\_set\_forced@{pqs\_policy\_store\_set\_forced}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_set\_forced()}{pqs\_policy\_store\_set\_forced()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a3047fc66372941fc4225f4a60897a1f1} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+set\+\_\+forced (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{command}{}\end{DoxyParamCaption})}
+
+
+
+Set the forced command associated with a command policy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name. \\
+\hline
+{\em command} & \mbox{[}const\mbox{]} The NUL-\/terminated forced command string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the forced command was updated; otherwise, returns false. 
+\end{DoxyReturn}
+\Hypertarget{pqspolicy_8h_a15f3c95868e4d7ab24a885c6ed5babff}\index{pqspolicy.h@{pqspolicy.h}!pqs\_policy\_store\_set\_mode@{pqs\_policy\_store\_set\_mode}}
+\index{pqs\_policy\_store\_set\_mode@{pqs\_policy\_store\_set\_mode}!pqspolicy.h@{pqspolicy.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_policy\_store\_set\_mode()}{pqs\_policy\_store\_set\_mode()}}
+{\footnotesize\ttfamily \label{pqspolicy_8h_a15f3c95868e4d7ab24a885c6ed5babff} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+policy\+\_\+store\+\_\+set\+\_\+mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__policy__store}{pqs\+\_\+policy\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{\mbox{\hyperlink{pqspolicy_8h_a53c2729081e4227f87ecc6ccac0a0a83}{pqs\+\_\+policy\+\_\+modes}}}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Set the enforcement mode of a command policy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the policy store to update. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The NUL-\/terminated policy name. \\
+\hline
+{\em mode} & \mbox{[}enum\mbox{]} The new policy enforcement mode.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the policy mode was updated; otherwise, returns false. 
+\end{DoxyReturn}

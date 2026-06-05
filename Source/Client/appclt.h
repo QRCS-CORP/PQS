@@ -65,16 +65,86 @@
 * Version 1.0
 */
 
-#define PQS_CLIENT_INPUT_MAX 1280
-#define PQS_CLIENT_INPUT_MIN 3
-#define PQS_CLIENT_LOGIN_ATTEMPTS_MAX 3
-#define PQS_CLIENT_LOGIN_PASSWORD_MIN 8
-#define PQS_CLIENT_LOGIN_TIME_INCREMENT 250
-#define PQS_CLIENT_LOGIN_TIME_MAXIMUM 3000
-#define PQS_CLIENT_PASSWORD_LENGTH_MAX 256
-#define PQS_CLIENT_PROMPT_MAX 256
-#define PQS_CLIENT_TITLE_SIZE 64
+/*!
+ * \def PQS_CLIENT_INPUT_MAX
+ * \brief The maximum command input buffer size, including command text storage.
+ */
+#define PQS_CLIENT_INPUT_MAX 1280U
+
+/*!
+ * \def PQS_CLIENT_INPUT_MIN
+ * \brief The minimum command length accepted by the client send loop.
+ */
+#define PQS_CLIENT_INPUT_MIN 3U
+
+/*!
+ * \def PQS_CLIENT_INPUT_TEXT_MAX
+ * \brief The maximum NUL-terminated command text length copied into the client input buffer.
+ */
+#define PQS_CLIENT_INPUT_TEXT_MAX (PQS_CLIENT_INPUT_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_CLIENT_COMMAND_PAYLOAD_MAX
+ * \brief The maximum client command text payload carried after the PQS application message type.
+ */
+#define PQS_CLIENT_COMMAND_PAYLOAD_MAX (PQS_CLIENT_INPUT_MAX - PQS_APPLICATION_MESSAGE_HEADER_SIZE - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_CLIENT_LOGIN_ATTEMPTS_MAX
+ * \brief The maximum number of failed login attempts before the client login path fails.
+ */
+#define PQS_CLIENT_LOGIN_ATTEMPTS_MAX 3U
+
+/*!
+ * \def PQS_CLIENT_LOGIN_PASSWORD_MIN
+ * \brief The minimum accepted login password length.
+ */
+#define PQS_CLIENT_LOGIN_PASSWORD_MIN 8U
+
+/*!
+ * \def PQS_CLIENT_LOGIN_TIME_INCREMENT
+ * \brief The retry-delay increment, in milliseconds, applied after failed login attempts.
+ */
+#define PQS_CLIENT_LOGIN_TIME_INCREMENT 250U
+
+/*!
+ * \def PQS_CLIENT_LOGIN_TIME_MAXIMUM
+ * \brief The maximum retry delay, in milliseconds, applied after failed login attempts.
+ */
+#define PQS_CLIENT_LOGIN_TIME_MAXIMUM 3000U
+
+/*!
+ * \def PQS_CLIENT_PASSWORD_LENGTH_MAX
+ * \brief The maximum login password buffer size.
+ */
+#define PQS_CLIENT_PASSWORD_LENGTH_MAX 256U
+
+/*!
+ * \def PQS_CLIENT_PASSWORD_TEXT_MAX
+ * \brief The maximum NUL-terminated login password text length.
+ */
+#define PQS_CLIENT_PASSWORD_TEXT_MAX (PQS_CLIENT_PASSWORD_LENGTH_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_CLIENT_PROMPT_MAX
+ * \brief The fixed client prompt buffer size.
+ */
+#define PQS_CLIENT_PROMPT_MAX 256U
+
+/*!
+ * \def PQS_CLIENT_PROMPT_TEXT_MAX
+ * \brief The maximum NUL-terminated prompt text length copied from server output.
+ */
+#define PQS_CLIENT_PROMPT_TEXT_MAX (PQS_CLIENT_PROMPT_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_CLIENT_TITLE_SIZE
+ * \brief The client console title buffer size.
+ */
+#define PQS_CLIENT_TITLE_SIZE 64U
 
 static const char PQS_PUBKEY_NAME[] = "server_public_key.pqpkey";
+static const char PQS_APP_PATH[] = "PQS";
+static const char PQS_CLIENT_LOG_NAME[] = "pqs_client.log";
 
 #endif

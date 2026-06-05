@@ -1,0 +1,26 @@
+var structpqs__server__config =
+[
+    [ "application_path", "structpqs__server__config.html#a07f04019577718595bfbdd138beb1123", null ],
+    [ "command_output_max_bytes", "structpqs__server__config.html#ad85ae6e4b4f19c27881e559309a30e14", null ],
+    [ "command_timeout_seconds", "structpqs__server__config.html#a5f15729cebe84390677a979adeb9a546", null ],
+    [ "idle_timeout_seconds", "structpqs__server__config.html#a527d7c5db2224a138502f952c586a903", null ],
+    [ "listen_address", "structpqs__server__config.html#af5bdbb8d9373ea1c808edce82c88d7e7", null ],
+    [ "listen_port", "structpqs__server__config.html#a122db9a14b0b635141b81b7b05a3ff40", null ],
+    [ "log_level", "structpqs__server__config.html#a44d000c8f5060771fc29c861d0da499b", null ],
+    [ "log_path", "structpqs__server__config.html#ae8f8051cb1507c6b09e1b79ec5dea124", null ],
+    [ "login_timeout_seconds", "structpqs__server__config.html#a51f8cabb635225d0c0f6baaf923f3290", null ],
+    [ "max_login_attempts", "structpqs__server__config.html#acc800d0e16362dfa767d0072cc68ae53", null ],
+    [ "max_sessions", "structpqs__server__config.html#aa5de84217d8e2bfaeba6260169298c10", null ],
+    [ "policy_database_path", "structpqs__server__config.html#a70752235c347f3af9961128a866e87a6", null ],
+    [ "private_key_path", "structpqs__server__config.html#ae30bc7004f6bce71d5b29b336ee9d188", null ],
+    [ "public_key_path", "structpqs__server__config.html#a5f56f20adc41f6761702f2c2a300ec10", null ],
+    [ "sandbox_allow_same_user", "structpqs__server__config.html#aa3b97d8be67dead1468f98b7d28b96c6", null ],
+    [ "sandbox_chroot_enabled", "structpqs__server__config.html#aee92697b6d26bc30ad76d90f9313501f", null ],
+    [ "sandbox_clear_environment", "structpqs__server__config.html#af7bca9e8f992a94c6755e3fb169dc33d", null ],
+    [ "sandbox_enabled", "structpqs__server__config.html#a98d625df78ca0c546fb1c45d00203fba", null ],
+    [ "sandbox_run_as_group", "structpqs__server__config.html#a079df32454e68b9ed6a5eec8e45ad5be", null ],
+    [ "sandbox_run_as_user", "structpqs__server__config.html#a9f8ad91c063abef03cf7917ea5417954", null ],
+    [ "sandbox_working_directory", "structpqs__server__config.html#af7e42850a0920d779ec1bc6a9ba20398", null ],
+    [ "shell_database_path", "structpqs__server__config.html#afb8d0223f1076c1b325b97feaff6b7c8", null ],
+    [ "user_database_path", "structpqs__server__config.html#a4d9d41309b4fc1f5772bbb25f6b857e8", null ]
+];

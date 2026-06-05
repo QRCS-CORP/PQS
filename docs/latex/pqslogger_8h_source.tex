@@ -1,0 +1,145 @@
+\doxysection{pqslogger.\+h}
+\hypertarget{pqslogger_8h_source}{}\label{pqslogger_8h_source}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqslogger.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqslogger.h}}
+\mbox{\hyperlink{pqslogger_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ 2025-\/2026\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ NOTICE:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ and\ all\ accompanying\ materials\ are\ the\ exclusive\ property\ of}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation\ (QRCS).\ The\ intellectual}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ and\ technical\ concepts\ contained\ herein\ are\ proprietary\ to\ QRCS\ and\ are}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ protected\ under\ applicable\ Canadian,\ U.S.,\ and\ international\ copyright,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ patent,\ and\ trade\ secret\ laws.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ CRYPTOGRAPHIC\ ALGORITHMS\ AND\ IMPLEMENTATIONS:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ -\/\ This\ software\ includes\ implementations\ of\ cryptographic\ primitives\ and}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ algorithms\ that\ are\ standardized\ or\ in\ the\ public\ domain,\ such\ as\ AES}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ and\ SHA-\/3,\ which\ are\ not\ proprietary\ to\ QRCS.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ -\/\ This\ software\ also\ includes\ cryptographic\ primitives,\ constructions,\ and}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ algorithms\ designed\ by\ QRCS,\ including\ but\ not\ limited\ to\ RCS,\ SCB,\ CSX,\ QMAC,\ and}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ related\ components,\ which\ are\ proprietary\ to\ QRCS.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ -\/\ All\ source\ code,\ implementations,\ protocol\ compositions,\ optimizations,}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ \ \ parameter\ selections,\ and\ engineering\ work\ contained\ in\ this\ software\ are}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ original\ works\ of\ QRCS\ and\ are\ protected\ under\ this\ license.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ LICENSE\ AND\ USE\ RESTRICTIONS:}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ -\/\ This\ software\ is\ licensed\ under\ the\ Quantum\ Resistant\ Cryptographic\ Solutions}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ \ Public\ Research\ and\ Evaluation\ License\ (QRCS-\/PREL),\ 2025-\/2026.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ -\/\ Permission\ is\ granted\ solely\ for\ non-\/commercial\ evaluation,\ academic\ research,}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ \ cryptographic\ analysis,\ interoperability\ testing,\ and\ feasibility\ assessment.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ -\/\ Commercial\ use,\ production\ deployment,\ commercial\ redistribution,\ or}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ \ \ integration\ into\ products\ or\ services\ is\ strictly\ prohibited\ without\ a}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ \ separate\ written\ license\ agreement\ executed\ with\ QRCS.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ -\/\ Licensing\ and\ authorized\ distribution\ are\ solely\ at\ the\ discretion\ of\ QRCS.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ EXPERIMENTAL\ CRYPTOGRAPHY\ NOTICE:}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ Portions\ of\ this\ software\ may\ include\ experimental,\ novel,\ or\ evolving}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ cryptographic\ designs.\ Use\ of\ this\ software\ is\ entirely\ at\ the\ user's\ risk.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ DISCLAIMER:}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ WARRANTIES\ OF\ MERCHANTABILITY,\ FITNESS}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ FOR\ A\ PARTICULAR\ PURPOSE,\ SECURITY,\ OR\ NON-\/INFRINGEMENT.\ QRCS\ DISCLAIMS\ ALL}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ LIABILITY\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ OR\ CONSEQUENTIAL\ DAMAGES}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ ARISING\ FROM\ THE\ USE\ OR\ MISUSE\ OF\ THIS\ SOFTWARE.}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ FULL\ LICENSE:}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ This\ software\ is\ subject\ to\ the\ Quantum\ Resistant\ Cryptographic\ Solutions}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ Public\ Research\ and\ Evaluation\ License\ (QRCS-\/PREL),\ 2025-\/2026.\ The\ complete\ license\ terms}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ are\ provided\ in\ the\ accompanying\ LICENSE\ file\ or\ at\ https://www.qrcscorp.ca.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ Written\ by:\ John\ G.\ Underhill}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ Contact:\ contact@qrcscorp.ca}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ PQS\_LOGGER\_H}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ PQS\_LOGGER\_H}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}pqscommon.h"{}}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ PQS\_LOGGER\_LINE\_MAX\ 1536U}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ PQS\_LOGGER\_USER\_MAX\ 64U}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ PQS\_LOGGER\_DETAIL\_MAX\ 384U}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\_log\_level}}}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072af2b189c530dc9f985d85b88ae3f771d2}{pqs\_log\_level\_none}}\ =\ 0x00U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a115e02e26955277dbf304be67a4b095f}{pqs\_log\_level\_error}}\ =\ 0x01U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ae2d0c59f984a796b4f69582452e3d186}{pqs\_log\_level\_warning}}\ =\ 0x02U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a71f764c6c1d3c1f177f54b26ca7364d2}{pqs\_log\_level\_info}}\ =\ 0x03U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072ab76f2f9d1976d648dba01bf150852a5f}{pqs\_log\_level\_audit}}\ =\ 0x04U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072a0fdea22e4cdea2133fec225d6a1a10d9}{pqs\_log\_level\_debug}}\ =\ 0x05U\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \}\ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\_log\_level}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\_log\_event}}}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa97aebdd61d6851aac149a1591b894bfd}{pqs\_log\_event\_none}}\ =\ 0x0000U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaae7131ec328268ef8d0b60db62172af19}{pqs\_log\_event\_application\_start}}\ =\ 0x1000U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa7faa0bf858b651b2e2aecfdbc919bba6}{pqs\_log\_event\_application\_stop}}\ =\ 0x1001U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e816f853732b665e16c1bd020bd89d7}{pqs\_log\_event\_key\_loaded}}\ =\ 0x1100U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa09ead6a8d2a927b3b0c3961b73656689}{pqs\_log\_event\_key\_generated}}\ =\ 0x1101U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3a6b94a15a03d9214db7cfa05a8607e5}{pqs\_log\_event\_connection\_open}}\ =\ 0x1200U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9a3b40a54e5984e2460b263ad9db4d91}{pqs\_log\_event\_connection\_close}}\ =\ 0x1201U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa02b570680ca5711e7e74024c90a2461f}{pqs\_log\_event\_connection\_refused}}\ =\ 0x1202U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa382339add15f3a3add9feb156fd763fb}{pqs\_log\_event\_command\_received}}\ =\ 0x1300U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa757323d79d023c1156eb0f8be74401be}{pqs\_log\_event\_command\_complete}}\ =\ 0x1301U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa01f017caa5ab9986327a457cf9e634d}{pqs\_log\_event\_command\_failed}}\ =\ 0x1302U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8e0a84ddf9336328261382dc885a466e}{pqs\_log\_event\_auth\_success}}\ =\ 0x1400U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8fa00acedce0b34cc545c6876979d915}{pqs\_log\_event\_auth\_failure}}\ =\ 0x1401U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa345b3828c7ad09ed3a895a5f1b3bbf13}{pqs\_log\_event\_auth\_lockout}}\ =\ 0x1402U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac90639c32197c7bedd7f2236ce621753}{pqs\_log\_event\_user\_database\_loaded}}\ =\ 0x1410U,\ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2d68b839a2e46b99ce78f8814b02713b}{pqs\_log\_event\_user\_database\_created}}\ =\ 0x1411U,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5aa0451cbf0d89449d78376546e78176}{pqs\_log\_event\_user\_added}}\ =\ 0x1412U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa0b68e5bf8924235218c920f1263fbab5}{pqs\_log\_event\_user\_removed}}\ =\ 0x1413U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa540580ed78f981e6f9f7afae5054e67f}{pqs\_log\_event\_user\_updated}}\ =\ 0x1414U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa3496aa364d51ae48eef90e101064268a}{pqs\_log\_event\_shell\_database\_loaded}}\ =\ 0x1420U,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa80d9a956898c80f69c65838140bf55c8}{pqs\_log\_event\_shell\_database\_created}}\ =\ 0x1421U,\ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaf3be7ff44177f2a36482437d3e7095de}{pqs\_log\_event\_shell\_added}}\ =\ 0x1422U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaafeb33130bad4c9b56f2a7cd9638d493e}{pqs\_log\_event\_shell\_removed}}\ =\ 0x1423U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa51656c25f1b16ee3ec6e4352130d8fe6}{pqs\_log\_event\_shell\_updated}}\ =\ 0x1424U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac8d242701636d92adba9a87c38235465}{pqs\_log\_event\_policy\_database\_loaded}}\ =\ 0x1430U,\ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa515f541e86289fe1e4367da357ff7ece}{pqs\_log\_event\_policy\_database\_created}}\ =\ 0x1431U,\ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa69d6891406775074e0d12146f3a7db1}{pqs\_log\_event\_policy\_added}}\ =\ 0x1432U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa50b944493be769ae414492dca5c7323b}{pqs\_log\_event\_policy\_removed}}\ =\ 0x1433U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa82c8d9706ff2315876025179ad6cea1e}{pqs\_log\_event\_policy\_updated}}\ =\ 0x1434U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaaa872ad38a2e065ed8dcab91f8d6c8c9}{pqs\_log\_event\_policy\_allowed}}\ =\ 0x1435U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9ca4fc7e06bbd1b103919b845a7cd722}{pqs\_log\_event\_policy\_denied}}\ =\ 0x1436U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa5ebd6d40701b8a1c979367d88df3470a}{pqs\_log\_event\_hostkey\_loaded}}\ =\ 0x1440U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa8a79b81caa652f165a2f53ac09f32978}{pqs\_log\_event\_hostkey\_pinned}}\ =\ 0x1441U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa9195cb396d24974b0a651ad110909559}{pqs\_log\_event\_hostkey\_verified}}\ =\ 0x1442U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaac37bd680697bad106002d0de4887c57b}{pqs\_log\_event\_hostkey\_changed}}\ =\ 0x1443U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaa2ed4d11f47c6564ac598d953c0a65a2}{pqs\_log\_event\_sandbox\_enabled}}\ =\ 0x1450U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa588023ac3e8f7e60d6b66023e80c3430}{pqs\_log\_event\_sandbox\_violation}}\ =\ 0x1451U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa6b05e602129fb05fefb113635fbf37c3}{pqs\_log\_event\_command\_timeout}}\ =\ 0x1452U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa98bea825c88da96f9c171e6e1958309f}{pqs\_log\_event\_command\_output\_limit}}\ =\ 0x1453U,\ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaacefa7bb45d7381fe09ad63f030a00c20}{pqs\_log\_event\_file\_transfer\_start}}\ =\ 0x1460U,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaad671f8060e1513bdfbf1e44b83c40c24}{pqs\_log\_event\_file\_transfer\_complete}}\ =\ 0x1461U,\ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaefe98d4d582e95e3d9f1323590e7531e}{pqs\_log\_event\_file\_transfer\_failed}}\ =\ 0x1462U,\ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa003e1f5248fdb85d528586a3c63a693f}{pqs\_log\_event\_protocol\_error}}\ =\ 0x1500U,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaaed91270869c925cbfb96e79e5ef62274}{pqs\_log\_event\_admin\_request}}\ =\ 0x1550U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2839fb41d40cae5479ee2e558a05933b}{pqs\_log\_event\_admin\_allowed}}\ =\ 0x1551U,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa2b5f9b84f5fa96763d4943bf590a6033}{pqs\_log\_event\_admin\_denied}}\ =\ 0x1552U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa923044e1c7ac08b7d66afd99917e0952}{pqs\_log\_event\_admin\_complete}}\ =\ 0x1553U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaab4339d2cb0f6a8c405c421007f715110}{pqs\_log\_event\_admin\_failed}}\ =\ 0x1554U,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfeaa78bde1895c3889ab2a8c2f08442c8649}{pqs\_log\_event\_audit\_chain\_start}}\ =\ 0x1600U\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \}\ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\_log\_event}};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00149\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pqslogger_8h_aec106156979d60e33f5def45fa810c39}{pqs\_logger\_dispose}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00159\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqslogger_8h_a69e72fb1e9d85dd0bc6c2444f2f38d35}{pqs\_logger\_initialize}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\_log\_level}}\ level);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00166\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqslogger_8h_adb33f12c2465c0eada8fb1d832e19139}{pqs\_logger\_is\_initialized}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00173\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqslogger_8h_aa0fef0fd3fcab5164d24c8e237eb6404}{pqs\_logger\_failure\_occurred}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00183\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqslogger_8h_aa51a6fc24ae6ea8da27d3b9c362ee598}{pqs\_logger\_verify\_chain}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ uint64\_t*\ records);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00196\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqslogger_8h_a76b00c714db07a0b0b65bb866d41ad08}{pqs\_logger\_write}}(\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\_log\_level}}\ level,\ \mbox{\hyperlink{pqslogger_8h_ad54282d907cd734eec232904c970bfea}{pqs\_log\_event}}\ event,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ user,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ peer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ detail);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

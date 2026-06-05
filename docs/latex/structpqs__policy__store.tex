@@ -1,0 +1,83 @@
+\doxysection{pqs\+\_\+policy\+\_\+store Struct Reference}
+\hypertarget{structpqs__policy__store}{}\label{structpqs__policy__store}\index{pqs\_policy\_store@{pqs\_policy\_store}}
+
+
+The fixed-\/size PQS command policy database.  
+
+
+
+
+{\ttfamily \#include $<$pqspolicy.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} \mbox{\hyperlink{structpqs__policy__store_aed6f661f335c8fd29a76a80c79a638b9}{records}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+DATABASE\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__policy__store_aa96601216800349d95bf5f7e7fecba61}{path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__policy__store_a1c2d07650267c9cc1fc6a019ae3f2551}{guest\+\_\+policy}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__policy__store_a02bdedb22a993c1b4774712bc6536dbd}{user\+\_\+policy}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__policy__store_adb137f2c78e5c95ca52604a4da2246a2}{admin\+\_\+policy}} \mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}
+\item 
+size\+\_\+t \mbox{\hyperlink{structpqs__policy__store_a76d971a3c552bc58ba9f0d5fceae9806}{count}}
+\item 
+bool \mbox{\hyperlink{structpqs__policy__store_aedeffc7d23da25d52b9a50045189fe2b}{initialized}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The fixed-\/size PQS command policy database. 
+
+\label{doc-variable-members}
+\Hypertarget{structpqs__policy__store_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__policy__store_adb137f2c78e5c95ca52604a4da2246a2}\index{pqs\_policy\_store@{pqs\_policy\_store}!admin\_policy@{admin\_policy}}
+\index{admin\_policy@{admin\_policy}!pqs\_policy\_store@{pqs\_policy\_store}}
+\doxysubsubsection{\texorpdfstring{admin\_policy}{admin\_policy}}
+{\footnotesize\ttfamily \label{structpqs__policy__store_adb137f2c78e5c95ca52604a4da2246a2} 
+char admin\+\_\+policy\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}}
+
+The assigned admin policy name. \Hypertarget{structpqs__policy__store_a76d971a3c552bc58ba9f0d5fceae9806}\index{pqs\_policy\_store@{pqs\_policy\_store}!count@{count}}
+\index{count@{count}!pqs\_policy\_store@{pqs\_policy\_store}}
+\doxysubsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily \label{structpqs__policy__store_a76d971a3c552bc58ba9f0d5fceae9806} 
+size\+\_\+t count}
+
+The active policy count. \Hypertarget{structpqs__policy__store_a1c2d07650267c9cc1fc6a019ae3f2551}\index{pqs\_policy\_store@{pqs\_policy\_store}!guest\_policy@{guest\_policy}}
+\index{guest\_policy@{guest\_policy}!pqs\_policy\_store@{pqs\_policy\_store}}
+\doxysubsubsection{\texorpdfstring{guest\_policy}{guest\_policy}}
+{\footnotesize\ttfamily \label{structpqs__policy__store_a1c2d07650267c9cc1fc6a019ae3f2551} 
+char guest\+\_\+policy\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}}
+
+The assigned guest policy name. \Hypertarget{structpqs__policy__store_aedeffc7d23da25d52b9a50045189fe2b}\index{pqs\_policy\_store@{pqs\_policy\_store}!initialized@{initialized}}
+\index{initialized@{initialized}!pqs\_policy\_store@{pqs\_policy\_store}}
+\doxysubsubsection{\texorpdfstring{initialized}{initialized}}
+{\footnotesize\ttfamily \label{structpqs__policy__store_aedeffc7d23da25d52b9a50045189fe2b} 
+bool initialized}
+
+The database initialization flag. \Hypertarget{structpqs__policy__store_aa96601216800349d95bf5f7e7fecba61}\index{pqs\_policy\_store@{pqs\_policy\_store}!path@{path}}
+\index{path@{path}!pqs\_policy\_store@{pqs\_policy\_store}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily \label{structpqs__policy__store_aa96601216800349d95bf5f7e7fecba61} 
+char path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The persistent database file path. \Hypertarget{structpqs__policy__store_aed6f661f335c8fd29a76a80c79a638b9}\index{pqs\_policy\_store@{pqs\_policy\_store}!records@{records}}
+\index{records@{records}!pqs\_policy\_store@{pqs\_policy\_store}}
+\doxysubsubsection{\texorpdfstring{records}{records}}
+{\footnotesize\ttfamily \label{structpqs__policy__store_aed6f661f335c8fd29a76a80c79a638b9} 
+\mbox{\hyperlink{structpqs__policy__record}{pqs\+\_\+policy\+\_\+record}} records\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+DATABASE\+\_\+\+MAX\mbox{]}}
+
+Command policy records. \Hypertarget{structpqs__policy__store_a02bdedb22a993c1b4774712bc6536dbd}\index{pqs\_policy\_store@{pqs\_policy\_store}!user\_policy@{user\_policy}}
+\index{user\_policy@{user\_policy}!pqs\_policy\_store@{pqs\_policy\_store}}
+\doxysubsubsection{\texorpdfstring{user\_policy}{user\_policy}}
+{\footnotesize\ttfamily \label{structpqs__policy__store_a02bdedb22a993c1b4774712bc6536dbd} 
+char user\+\_\+policy\mbox{[}PQS\+\_\+\+POLICY\+\_\+\+NAME\+\_\+\+MAX\mbox{]}}
+
+The assigned user policy name. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqspolicy_8h}{pqspolicy.\+h}}\end{DoxyCompactItemize}

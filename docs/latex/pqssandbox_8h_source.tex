@@ -1,0 +1,108 @@
+\doxysection{pqssandbox.\+h}
+\hypertarget{pqssandbox_8h_source}{}\label{pqssandbox_8h_source}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqssandbox.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqssandbox.h}}
+\mbox{\hyperlink{pqssandbox_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ 2025-\/2026\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ NOTICE:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ and\ all\ accompanying\ materials\ are\ the\ exclusive\ property\ of}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Quantum\ Resistant\ Cryptographic\ Solutions\ Corporation\ (QRCS).\ The\ intellectual}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ and\ technical\ concepts\ contained\ herein\ are\ proprietary\ to\ QRCS\ and\ are}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ protected\ under\ applicable\ Canadian,\ U.S.,\ and\ international\ copyright,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ patent,\ and\ trade\ secret\ laws.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ CRYPTOGRAPHIC\ ALGORITHMS\ AND\ IMPLEMENTATIONS:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ -\/\ This\ software\ includes\ implementations\ of\ cryptographic\ primitives\ and}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ algorithms\ that\ are\ standardized\ or\ in\ the\ public\ domain,\ such\ as\ AES}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ and\ SHA-\/3,\ which\ are\ not\ proprietary\ to\ QRCS.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ -\/\ This\ software\ also\ includes\ cryptographic\ primitives,\ constructions,\ and}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ algorithms\ designed\ by\ QRCS,\ including\ but\ not\ limited\ to\ RCS,\ SCB,\ CSX,\ QMAC,\ and}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ related\ components,\ which\ are\ proprietary\ to\ QRCS.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ -\/\ All\ source\ code,\ implementations,\ protocol\ compositions,\ optimizations,}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ \ \ parameter\ selections,\ and\ engineering\ work\ contained\ in\ this\ software\ are}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ original\ works\ of\ QRCS\ and\ are\ protected\ under\ this\ license.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ LICENSE\ AND\ USE\ RESTRICTIONS:}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ -\/\ This\ software\ is\ licensed\ under\ the\ Quantum\ Resistant\ Cryptographic\ Solutions}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ \ Public\ Research\ and\ Evaluation\ License\ (QRCS-\/PREL),\ 2025-\/2026.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ -\/\ Permission\ is\ granted\ solely\ for\ non-\/commercial\ evaluation,\ academic\ research,}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ \ cryptographic\ analysis,\ interoperability\ testing,\ and\ feasibility\ assessment.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ -\/\ Commercial\ use,\ production\ deployment,\ commercial\ redistribution,\ or}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ \ \ integration\ into\ products\ or\ services\ is\ strictly\ prohibited\ without\ a}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ \ separate\ written\ license\ agreement\ executed\ with\ QRCS.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ -\/\ Licensing\ and\ authorized\ distribution\ are\ solely\ at\ the\ discretion\ of\ QRCS.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ EXPERIMENTAL\ CRYPTOGRAPHY\ NOTICE:}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ Portions\ of\ this\ software\ may\ include\ experimental,\ novel,\ or\ evolving}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ cryptographic\ designs.\ Use\ of\ this\ software\ is\ entirely\ at\ the\ user's\ risk.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ DISCLAIMER:}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ WARRANTIES\ OF\ MERCHANTABILITY,\ FITNESS}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ FOR\ A\ PARTICULAR\ PURPOSE,\ SECURITY,\ OR\ NON-\/INFRINGEMENT.\ QRCS\ DISCLAIMS\ ALL}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ LIABILITY\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ OR\ CONSEQUENTIAL\ DAMAGES}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ ARISING\ FROM\ THE\ USE\ OR\ MISUSE\ OF\ THIS\ SOFTWARE.}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ FULL\ LICENSE:}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ This\ software\ is\ subject\ to\ the\ Quantum\ Resistant\ Cryptographic\ Solutions}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ Public\ Research\ and\ Evaluation\ License\ (QRCS-\/PREL),\ 2025-\/2026.\ The\ complete\ license\ terms}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ are\ provided\ in\ the\ accompanying\ LICENSE\ file\ or\ at\ https://www.qrcscorp.ca.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ Written\ by:\ John\ G.\ Underhill}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ Contact:\ contact@qrcscorp.ca}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ PQS\_SANDBOX\_H}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ PQS\_SANDBOX\_H}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}pqscommon.h"{}}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ PQS\_SANDBOX\_DEFAULT\_TIMEOUT\_SECONDS\ 120U}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ PQS\_SANDBOX\_MIN\_TIMEOUT\_SECONDS\ 5U}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ PQS\_SANDBOX\_MAX\_TIMEOUT\_SECONDS\ 3600U}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ PQS\_SANDBOX\_DEFAULT\_OUTPUT\_BYTES\ 1048576U}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ PQS\_SANDBOX\_MIN\_OUTPUT\_BYTES\ 4096U}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ PQS\_SANDBOX\_MAX\_OUTPUT\_BYTES\ 16777216U}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ PQS\_EXPORT\_API\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{char}\ working\_directory[QSC\_SYSTEM\_MAX\_PATH];}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{char}\ run\_as\_user[PQS\_USERNAME\_MAX];}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{char}\ run\_as\_group[PQS\_USERNAME\_MAX];}
+\DoxyCodeLine{00100\ \ \ \ \ uint32\_t\ command\_timeout\_seconds;}
+\DoxyCodeLine{00101\ \ \ \ \ uint32\_t\ max\_output\_bytes;}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ enabled;}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ clear\_environment;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{bool}\ chroot\_enabled;}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{bool}\ allow\_same\_user;}
+\DoxyCodeLine{00106\ \}\ \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00113\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pqssandbox_8h_a7f85b453d63cb8ba7045eb34d58a3761}{pqs\_sandbox\_profile\_defaults}}(\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00124\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pqssandbox_8h_a000a132b1e773d134f6d9cfc6695a5ec}{pqs\_sandbox\_profile\_configure}}(\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile,\ \textcolor{keywordtype}{bool}\ enabled,\ \textcolor{keywordtype}{bool}\ clear\_environment,\ uint32\_t\ timeout\_seconds,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ working\_directory);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00138\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pqssandbox_8h_afeadfdce43e8916fe9bcc8ea87157d0a}{pqs\_sandbox\_profile\_configure\_security}}(\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile,\ \textcolor{keywordtype}{bool}\ enabled,\ \textcolor{keywordtype}{bool}\ clear\_environment,\ uint32\_t\ timeout\_seconds,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ working\_directory,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ run\_as\_user,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ run\_as\_group,\ \textcolor{keywordtype}{bool}\ chroot\_enabled);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00148\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqssandbox_8h_a7cbe1b9841da453e15ab6ab399a8f857}{pqs\_sandbox\_profile\_canonicalize\_working\_directory}}(\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00161\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pqssandbox_8h_a8d822c11deefe7473693ecbf24fa25bc}{pqs\_sandbox\_profile\_set\_allow\_same\_user}}(\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile,\ \textcolor{keywordtype}{bool}\ allow\_same\_user);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00169\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pqssandbox_8h_ac8963fed1a30ee88c2bd49674f0fdc20}{pqs\_sandbox\_profile\_set\_output\_limit}}(\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile,\ uint32\_t\ max\_output\_bytes);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00178\ PQS\_EXPORT\_API\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pqssandbox_8h_a06dc2f70762d18e3266b669aad835a7b}{pqs\_sandbox\_working\_directory\_valid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00187\ PQS\_EXPORT\_API\ uint32\_t\ \mbox{\hyperlink{pqssandbox_8h_af36aa4710be71fca83103b7b82a1d5a1}{pqs\_sandbox\_timeout\_milliseconds}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00196\ PQS\_EXPORT\_API\ uint32\_t\ \mbox{\hyperlink{pqssandbox_8h_a80907fb645d8d34a5e98e8fb12390dce}{pqs\_sandbox\_output\_limit\_bytes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\_sandbox\_profile}}*\ profile);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

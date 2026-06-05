@@ -1,0 +1,101 @@
+\doxysection{pqs\+\_\+client\+\_\+config Struct Reference}
+\hypertarget{structpqs__client__config}{}\label{structpqs__client__config}\index{pqs\_client\_config@{pqs\_client\_config}}
+
+
+The PQS client configuration state.  
+
+
+
+
+{\ttfamily \#include $<$pqsconfig.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structpqs__client__config_a07f04019577718595bfbdd138beb1123}{application\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__client__config_aabc7ab9089d067f573180618dacfcd8f}{server\+\_\+public\+\_\+key\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__client__config_a25bfc99e663f76e5fca682db1245631e}{known\+\_\+hosts\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__client__config_ae8f8051cb1507c6b09e1b79ec5dea124}{log\+\_\+path}} \mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__client__config_a8cb850b2d468f752f7a05cb2466ecf89}{host}} \mbox{[}QSC\+\_\+\+IPINFO\+\_\+\+IPV4\+\_\+\+STRNLEN\mbox{]}
+\item 
+char \mbox{\hyperlink{structpqs__client__config_a7020611f157874c065ee0f84674e34b3}{username}} \mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structpqs__client__config_a8e0798404bf2cf5dabb84c5ba9a4f236}{port}}
+\item 
+bool \mbox{\hyperlink{structpqs__client__config_add952d2f5bbbfdfa0d657647a06a8145}{strict\+\_\+host\+\_\+checking}}
+\item 
+\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} \mbox{\hyperlink{structpqs__client__config_a44d000c8f5060771fc29c861d0da499b}{log\+\_\+level}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The PQS client configuration state. 
+
+This structure contains the resolved client configuration used to initialize the PQS client application, including storage paths, the target host, username, host-\/trust settings, and logging behavior. 
+
+\label{doc-variable-members}
+\Hypertarget{structpqs__client__config_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structpqs__client__config_a07f04019577718595bfbdd138beb1123}\index{pqs\_client\_config@{pqs\_client\_config}!application\_path@{application\_path}}
+\index{application\_path@{application\_path}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{application\_path}{application\_path}}
+{\footnotesize\ttfamily \label{structpqs__client__config_a07f04019577718595bfbdd138beb1123} 
+char application\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The base PQS client application storage directory \Hypertarget{structpqs__client__config_a8cb850b2d468f752f7a05cb2466ecf89}\index{pqs\_client\_config@{pqs\_client\_config}!host@{host}}
+\index{host@{host}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily \label{structpqs__client__config_a8cb850b2d468f752f7a05cb2466ecf89} 
+char host\mbox{[}QSC\+\_\+\+IPINFO\+\_\+\+IPV4\+\_\+\+STRNLEN\mbox{]}}
+
+The IPv4 address or host value used by the client connection \Hypertarget{structpqs__client__config_a25bfc99e663f76e5fca682db1245631e}\index{pqs\_client\_config@{pqs\_client\_config}!known\_hosts\_path@{known\_hosts\_path}}
+\index{known\_hosts\_path@{known\_hosts\_path}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{known\_hosts\_path}{known\_hosts\_path}}
+{\footnotesize\ttfamily \label{structpqs__client__config_a25bfc99e663f76e5fca682db1245631e} 
+char known\+\_\+hosts\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the PQS known-\/hosts database file \Hypertarget{structpqs__client__config_a44d000c8f5060771fc29c861d0da499b}\index{pqs\_client\_config@{pqs\_client\_config}!log\_level@{log\_level}}
+\index{log\_level@{log\_level}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{log\_level}{log\_level}}
+{\footnotesize\ttfamily \label{structpqs__client__config_a44d000c8f5060771fc29c861d0da499b} 
+\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} log\+\_\+level}
+
+The configured client logging level \Hypertarget{structpqs__client__config_ae8f8051cb1507c6b09e1b79ec5dea124}\index{pqs\_client\_config@{pqs\_client\_config}!log\_path@{log\_path}}
+\index{log\_path@{log\_path}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{log\_path}{log\_path}}
+{\footnotesize\ttfamily \label{structpqs__client__config_ae8f8051cb1507c6b09e1b79ec5dea124} 
+char log\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the PQS client log file \Hypertarget{structpqs__client__config_a8e0798404bf2cf5dabb84c5ba9a4f236}\index{pqs\_client\_config@{pqs\_client\_config}!port@{port}}
+\index{port@{port}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily \label{structpqs__client__config_a8e0798404bf2cf5dabb84c5ba9a4f236} 
+uint16\+\_\+t port}
+
+The TCP port used by the client connection \Hypertarget{structpqs__client__config_aabc7ab9089d067f573180618dacfcd8f}\index{pqs\_client\_config@{pqs\_client\_config}!server\_public\_key\_path@{server\_public\_key\_path}}
+\index{server\_public\_key\_path@{server\_public\_key\_path}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{server\_public\_key\_path}{server\_public\_key\_path}}
+{\footnotesize\ttfamily \label{structpqs__client__config_aabc7ab9089d067f573180618dacfcd8f} 
+char server\+\_\+public\+\_\+key\+\_\+path\mbox{[}QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH\mbox{]}}
+
+The path to the encoded PQS server public key file \Hypertarget{structpqs__client__config_add952d2f5bbbfdfa0d657647a06a8145}\index{pqs\_client\_config@{pqs\_client\_config}!strict\_host\_checking@{strict\_host\_checking}}
+\index{strict\_host\_checking@{strict\_host\_checking}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{strict\_host\_checking}{strict\_host\_checking}}
+{\footnotesize\ttfamily \label{structpqs__client__config_add952d2f5bbbfdfa0d657647a06a8145} 
+bool strict\+\_\+host\+\_\+checking}
+
+A flag indicating whether strict host-\/key checking is enabled \Hypertarget{structpqs__client__config_a7020611f157874c065ee0f84674e34b3}\index{pqs\_client\_config@{pqs\_client\_config}!username@{username}}
+\index{username@{username}!pqs\_client\_config@{pqs\_client\_config}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily \label{structpqs__client__config_a7020611f157874c065ee0f84674e34b3} 
+char username\mbox{[}PQS\+\_\+\+USERNAME\+\_\+\+MAX\mbox{]}}
+
+The default PQS username used by the client login dialogue. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/\mbox{\hyperlink{pqsconfig_8h}{pqsconfig.\+h}}\end{DoxyCompactItemize}

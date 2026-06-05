@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -21,10 +21,40 @@
     <ClInclude Include="pqs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="interpreter.h">
+    <ClInclude Include="pqsadmin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqslogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqsuser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="doxymain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqsshell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqspolicy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqsprocess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqskey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqsconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqssandbox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqsxfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pqshelp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,7 +62,37 @@
     <ClCompile Include="pqs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interpreter.c">
+    <ClCompile Include="pqsadmin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqslogger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqsuser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqsshell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqspolicy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqsprocess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqskey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqsconfig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqssandbox.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqsxfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pqshelp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

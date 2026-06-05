@@ -1,0 +1,178 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqsconfig.h File Reference}
+\hypertarget{pqsconfig_8h}{}\label{pqsconfig_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsconfig.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsconfig.h}}
+
+
+PQS client and server configuration file support.  
+
+
+{\ttfamily \#include "{}pqscommon.\+h"{}}\newline
+{\ttfamily \#include "{}pqslogger.\+h"{}}\newline
+{\ttfamily \#include "{}qsms.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__server__config}{pqs\+\_\+server\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em The PQS server configuration state. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__client__config}{pqs\+\_\+client\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em The PQS client configuration state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsconfig_8h_aff6628860e0ee6cccb01ce4cf93e74b3}\label{pqsconfig_8h_aff6628860e0ee6cccb01ce4cf93e74b3} 
+\#define {\bfseries PQS\+\_\+\+CONFIG\+\_\+\+LINE\+\_\+\+MAX}~1024U
+\begin{DoxyCompactList}\small\item\em The maximum length of one configuration line. \end{DoxyCompactList}\item 
+\Hypertarget{pqsconfig_8h_afa29ad5ac7f682be34d488482026368e}\label{pqsconfig_8h_afa29ad5ac7f682be34d488482026368e} 
+\#define {\bfseries PQS\+\_\+\+CONFIG\+\_\+\+KEY\+\_\+\+MAX}~64U
+\begin{DoxyCompactList}\small\item\em The maximum length of a configuration key. \end{DoxyCompactList}\item 
+\Hypertarget{pqsconfig_8h_a6fb785e663d09511c6aad657b69e6ca0}\label{pqsconfig_8h_a6fb785e663d09511c6aad657b69e6ca0} 
+\#define {\bfseries PQS\+\_\+\+CONFIG\+\_\+\+VALUE\+\_\+\+MAX}~QSC\+\_\+\+SYSTEM\+\_\+\+MAX\+\_\+\+PATH
+\begin{DoxyCompactList}\small\item\em The maximum length of a configuration value. \end{DoxyCompactList}\item 
+\Hypertarget{pqsconfig_8h_ab03a491027f9d99871b8705700b1374c}\label{pqsconfig_8h_ab03a491027f9d99871b8705700b1374c} 
+\#define {\bfseries PQS\+\_\+\+SERVER\+\_\+\+CONFIG\+\_\+\+NAME}~"{}pqsd.\+conf"{}
+\begin{DoxyCompactList}\small\item\em The default PQS server configuration file name. \end{DoxyCompactList}\item 
+\Hypertarget{pqsconfig_8h_a485f57742b57ec0120f201b8d92c4b3c}\label{pqsconfig_8h_a485f57742b57ec0120f201b8d92c4b3c} 
+\#define {\bfseries PQS\+\_\+\+CLIENT\+\_\+\+CONFIG\+\_\+\+NAME}~"{}pqs.\+conf"{}
+\begin{DoxyCompactList}\small\item\em The default PQS client configuration file name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+server\+\_\+config \mbox{\hyperlink{pqsconfig_8h_a3a586004c8fc7ed70fe74fc2218c7999}{pqs\+\_\+server\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em The PQS server configuration state. \end{DoxyCompactList}\item 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+client\+\_\+config \mbox{\hyperlink{pqsconfig_8h_ab242f498ad7b8d1b7d6960f213c73e8b}{pqs\+\_\+client\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em The PQS client configuration state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqsconfig_8h_af08528c54f0890cb014b37bd30dd43e3}{pqs\+\_\+config\+\_\+server\+\_\+defaults}} (\mbox{\hyperlink{structpqs__server__config}{pqs\+\_\+server\+\_\+config}} \texorpdfstring{$\ast$}{*}cfg)
+\begin{DoxyCompactList}\small\item\em Initialize a server configuration with safe defaults. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqsconfig_8h_ae90526d1f027aac72409b949a887def9}{pqs\+\_\+config\+\_\+client\+\_\+defaults}} (\mbox{\hyperlink{structpqs__client__config}{pqs\+\_\+client\+\_\+config}} \texorpdfstring{$\ast$}{*}cfg)
+\begin{DoxyCompactList}\small\item\em Initialize a client configuration with safe defaults. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsconfig_8h_a1fc7a5cdad097b26c923b4ec353d0a4a}{pqs\+\_\+config\+\_\+server\+\_\+load}} (\mbox{\hyperlink{structpqs__server__config}{pqs\+\_\+server\+\_\+config}} \texorpdfstring{$\ast$}{*}cfg, const char \texorpdfstring{$\ast$}{*}fpath)
+\begin{DoxyCompactList}\small\item\em Load a PQS server configuration file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsconfig_8h_af527a8a94007258281e6a25eeabcb937}{pqs\+\_\+config\+\_\+client\+\_\+load}} (\mbox{\hyperlink{structpqs__client__config}{pqs\+\_\+client\+\_\+config}} \texorpdfstring{$\ast$}{*}cfg, const char \texorpdfstring{$\ast$}{*}fpath)
+\begin{DoxyCompactList}\small\item\em Load a PQS client configuration file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsconfig_8h_a4dd9d4a0a527db08bf32466a45dd9081}{pqs\+\_\+config\+\_\+log\+\_\+level\+\_\+to\+\_\+string}} (\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}} level)
+\begin{DoxyCompactList}\small\item\em Convert a log level to a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS client and server configuration file support. 
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{pqsconfig_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{pqsconfig_8h_ab242f498ad7b8d1b7d6960f213c73e8b}\index{pqsconfig.h@{pqsconfig.h}!pqs\_client\_config@{pqs\_client\_config}}
+\index{pqs\_client\_config@{pqs\_client\_config}!pqsconfig.h@{pqsconfig.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_client\_config}{pqs\_client\_config}}
+{\footnotesize\ttfamily \label{pqsconfig_8h_ab242f498ad7b8d1b7d6960f213c73e8b} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+client\+\_\+config pqs\+\_\+client\+\_\+config}
+
+
+
+The PQS client configuration state. 
+
+This structure contains the resolved client configuration used to initialize the PQS client application, including storage paths, the target host, username, host-\/trust settings, and logging behavior. \Hypertarget{pqsconfig_8h_a3a586004c8fc7ed70fe74fc2218c7999}\index{pqsconfig.h@{pqsconfig.h}!pqs\_server\_config@{pqs\_server\_config}}
+\index{pqs\_server\_config@{pqs\_server\_config}!pqsconfig.h@{pqsconfig.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_server\_config}{pqs\_server\_config}}
+{\footnotesize\ttfamily \label{pqsconfig_8h_a3a586004c8fc7ed70fe74fc2218c7999} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+server\+\_\+config pqs\+\_\+server\+\_\+config}
+
+
+
+The PQS server configuration state. 
+
+This structure contains the resolved server configuration used to initialize the PQS server application, including storage paths, network binding values, authentication limits, logging behavior, and command sandbox settings. 
+
+\label{doc-func-members}
+\Hypertarget{pqsconfig_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqsconfig_8h_ae90526d1f027aac72409b949a887def9}\index{pqsconfig.h@{pqsconfig.h}!pqs\_config\_client\_defaults@{pqs\_config\_client\_defaults}}
+\index{pqs\_config\_client\_defaults@{pqs\_config\_client\_defaults}!pqsconfig.h@{pqsconfig.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_config\_client\_defaults()}{pqs\_config\_client\_defaults()}}
+{\footnotesize\ttfamily \label{pqsconfig_8h_ae90526d1f027aac72409b949a887def9} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+config\+\_\+client\+\_\+defaults (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__client__config}{pqs\+\_\+client\+\_\+config}} \texorpdfstring{$\ast$}{*}}]{cfg}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a client configuration with safe defaults. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & \mbox{[}struct\mbox{]} The client configuration. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqsconfig_8h_af527a8a94007258281e6a25eeabcb937}\index{pqsconfig.h@{pqsconfig.h}!pqs\_config\_client\_load@{pqs\_config\_client\_load}}
+\index{pqs\_config\_client\_load@{pqs\_config\_client\_load}!pqsconfig.h@{pqsconfig.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_config\_client\_load()}{pqs\_config\_client\_load()}}
+{\footnotesize\ttfamily \label{pqsconfig_8h_af527a8a94007258281e6a25eeabcb937} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+config\+\_\+client\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__client__config}{pqs\+\_\+client\+\_\+config}} \texorpdfstring{$\ast$}{*}}]{cfg}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{}\end{DoxyParamCaption})}
+
+
+
+Load a PQS client configuration file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & \mbox{[}struct\mbox{]} The client configuration. \\
+\hline
+{\em fpath} & \mbox{[}const\mbox{]} The configuration file path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the configuration was loaded or created. 
+\end{DoxyReturn}
+\Hypertarget{pqsconfig_8h_a4dd9d4a0a527db08bf32466a45dd9081}\index{pqsconfig.h@{pqsconfig.h}!pqs\_config\_log\_level\_to\_string@{pqs\_config\_log\_level\_to\_string}}
+\index{pqs\_config\_log\_level\_to\_string@{pqs\_config\_log\_level\_to\_string}!pqsconfig.h@{pqsconfig.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_config\_log\_level\_to\_string()}{pqs\_config\_log\_level\_to\_string()}}
+{\footnotesize\ttfamily \label{pqsconfig_8h_a4dd9d4a0a527db08bf32466a45dd9081} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} pqs\+\_\+config\+\_\+log\+\_\+level\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pqslogger_8h_a00b9a5da996a650860f5c2079619e072}{pqs\+\_\+log\+\_\+level}}}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Convert a log level to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & \mbox{[}enum\mbox{]} The log level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} Returns the log level string. 
+\end{DoxyReturn}
+\Hypertarget{pqsconfig_8h_af08528c54f0890cb014b37bd30dd43e3}\index{pqsconfig.h@{pqsconfig.h}!pqs\_config\_server\_defaults@{pqs\_config\_server\_defaults}}
+\index{pqs\_config\_server\_defaults@{pqs\_config\_server\_defaults}!pqsconfig.h@{pqsconfig.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_config\_server\_defaults()}{pqs\_config\_server\_defaults()}}
+{\footnotesize\ttfamily \label{pqsconfig_8h_af08528c54f0890cb014b37bd30dd43e3} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+config\+\_\+server\+\_\+defaults (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__server__config}{pqs\+\_\+server\+\_\+config}} \texorpdfstring{$\ast$}{*}}]{cfg}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a server configuration with safe defaults. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & \mbox{[}struct\mbox{]} The server configuration. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqsconfig_8h_a1fc7a5cdad097b26c923b4ec353d0a4a}\index{pqsconfig.h@{pqsconfig.h}!pqs\_config\_server\_load@{pqs\_config\_server\_load}}
+\index{pqs\_config\_server\_load@{pqs\_config\_server\_load}!pqsconfig.h@{pqsconfig.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_config\_server\_load()}{pqs\_config\_server\_load()}}
+{\footnotesize\ttfamily \label{pqsconfig_8h_a1fc7a5cdad097b26c923b4ec353d0a4a} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+config\+\_\+server\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__server__config}{pqs\+\_\+server\+\_\+config}} \texorpdfstring{$\ast$}{*}}]{cfg}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fpath}{}\end{DoxyParamCaption})}
+
+
+
+Load a PQS server configuration file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & \mbox{[}struct\mbox{]} The server configuration. \\
+\hline
+{\em fpath} & \mbox{[}const\mbox{]} The configuration file path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the configuration was loaded or created. 
+\end{DoxyReturn}

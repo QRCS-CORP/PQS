@@ -1,0 +1,402 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqsuser.h File Reference}
+\hypertarget{pqsuser_8h}{}\label{pqsuser_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsuser.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsuser.h}}
+
+
+PQS server-\/side user database and passphrase verifier functions.  
+
+
+{\ttfamily \#include "{}pqs.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}}
+\begin{DoxyCompactList}\small\item\em A PQS server user account record. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}}
+\begin{DoxyCompactList}\small\item\em The fixed-\/size PQS server user database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsuser_8h_aa16822af69e9e4acbdf83ab90e83192e}\label{pqsuser_8h_aa16822af69e9e4acbdf83ab90e83192e} 
+\#define {\bfseries PQS\+\_\+\+USER\+\_\+\+DATABASE\+\_\+\+MAGIC}~"{}PQSUSERDB1"{}
+\begin{DoxyCompactList}\small\item\em The fixed text header written to PQS user database files. \end{DoxyCompactList}\item 
+\Hypertarget{pqsuser_8h_a06c9dc37d3fbd459da661738bd9c0d68}\label{pqsuser_8h_a06c9dc37d3fbd459da661738bd9c0d68} 
+\#define {\bfseries PQS\+\_\+\+USER\+\_\+\+DEFAULT\+\_\+\+SHELL\+\_\+\+PROFILE}~"{}default"{}
+\begin{DoxyCompactList}\small\item\em The default shell profile name assigned to new users. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsuser_8h_a1e09a8ffc23d11d1055bc6496272dfe9}\label{pqsuser_8h_a1e09a8ffc23d11d1055bc6496272dfe9} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+user\+\_\+record {\bfseries pqs\+\_\+user\+\_\+record}
+\item 
+\Hypertarget{pqsuser_8h_a94ce0d0e9a93f764044e5a54aef643b7}\label{pqsuser_8h_a94ce0d0e9a93f764044e5a54aef643b7} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+user\+\_\+store {\bfseries pqs\+\_\+user\+\_\+store}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_ab4f537b38ba7f9fe8bc74165134f5d13}{pqs\+\_\+user\+\_\+store\+\_\+add}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}passphrase, pqs\+\_\+user\+\_\+privileges privilege)
+\begin{DoxyCompactList}\small\item\em Add a user to the user database. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a6a94be6470772580d0ff3c10e6c84ec0}{pqs\+\_\+user\+\_\+store\+\_\+enable}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username, bool enabled)
+\begin{DoxyCompactList}\small\item\em Disable or enable a user account. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsuser_8h_a4ddb645adae2f893ea21426bc15b7bf8}{pqs\+\_\+user\+\_\+store\+\_\+find}} (const \mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username)
+\begin{DoxyCompactList}\small\item\em Find a user record by name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsuser_8h_a3937fec843be1415018cda64a80c0962}{pqs\+\_\+user\+\_\+store\+\_\+find\+\_\+mutable}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username)
+\begin{DoxyCompactList}\small\item\em Find a mutable user record by name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a811872cb89d2eb6c9c60e35cd9739925}{pqs\+\_\+user\+\_\+store\+\_\+initialize}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Initialize and load the user database. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_af0dd2cea4a6b5d99bd6b74f4bd41575c}{pqs\+\_\+user\+\_\+store\+\_\+remove}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username)
+\begin{DoxyCompactList}\small\item\em Remove a user from the user database. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a9a1be2182ee462b4f456581a9ec2d949}{pqs\+\_\+user\+\_\+store\+\_\+save}} (const \mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store)
+\begin{DoxyCompactList}\small\item\em Save the user database to disk. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a53afd9769da38c1c5eb9c3d1338b2302}{pqs\+\_\+user\+\_\+store\+\_\+set\+\_\+privilege}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username, pqs\+\_\+user\+\_\+privileges privilege)
+\begin{DoxyCompactList}\small\item\em Set the user privilege level. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_aa5a3e7ac363ca8fd0f54f9215ab4a787}{pqs\+\_\+user\+\_\+store\+\_\+set\+\_\+shell\+\_\+profile}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}shellprofile)
+\begin{DoxyCompactList}\small\item\em Set a user\textquotesingle{}s assigned shell profile name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a3394704c88365b185de56179cd0236a7}{pqs\+\_\+user\+\_\+store\+\_\+set\+\_\+passphrase}} (\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}passphrase)
+\begin{DoxyCompactList}\small\item\em Set a user\textquotesingle{}s passphrase verifier. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_aa0aa6718b6cb7db0317df08fafcd7090}{pqs\+\_\+user\+\_\+name\+\_\+is\+\_\+valid}} (const char \texorpdfstring{$\ast$}{*}username)
+\begin{DoxyCompactList}\small\item\em Test whether a user name is valid for a PQS account and login request. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a2717d93ef4060e25cb5ae4c4fc5176ec}{pqs\+\_\+user\+\_\+passphrase\+\_\+is\+\_\+valid}} (const char \texorpdfstring{$\ast$}{*}passphrase)
+\begin{DoxyCompactList}\small\item\em Test whether a passphrase length is valid for a PQS account and login request. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsuser_8h_ab790cbe2d29c08afbf0a26986f0a363c}{pqs\+\_\+user\+\_\+privilege\+\_\+to\+\_\+string}} (pqs\+\_\+user\+\_\+privileges privilege)
+\begin{DoxyCompactList}\small\item\em Convert a privilege level to its stable text name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API pqs\+\_\+user\+\_\+privileges \mbox{\hyperlink{pqsuser_8h_a157e1748af89a89123ceb9d849ab593e}{pqs\+\_\+user\+\_\+privilege\+\_\+from\+\_\+string}} (const char \texorpdfstring{$\ast$}{*}value)
+\begin{DoxyCompactList}\small\item\em Convert a stable text name to a privilege level. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a1ecd4c8e5a318a00394784fa0bb78fa9}{pqs\+\_\+user\+\_\+verify\+\_\+passphrase}} (const \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*}record, const char \texorpdfstring{$\ast$}{*}passphrase)
+\begin{DoxyCompactList}\small\item\em Verify a plaintext passphrase against a user record. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsuser_8h_a1b099a36b67d9ce48d3845b1a11cd886}{pqs\+\_\+user\+\_\+verify\+\_\+passphrase\+\_\+timing\+\_\+neutral}} (const \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*}record, const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}passphrase)
+\begin{DoxyCompactList}\small\item\em Verify a passphrase using a timing-\/neutral valid or dummy account path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS server-\/side user database and passphrase verifier functions. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{pqsuser_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqsuser_8h_aa0aa6718b6cb7db0317df08fafcd7090}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_name\_is\_valid@{pqs\_user\_name\_is\_valid}}
+\index{pqs\_user\_name\_is\_valid@{pqs\_user\_name\_is\_valid}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_name\_is\_valid()}{pqs\_user\_name\_is\_valid()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_aa0aa6718b6cb7db0317df08fafcd7090} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+name\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a user name is valid for a PQS account and login request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name to validate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the user name is syntactically valid. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a2717d93ef4060e25cb5ae4c4fc5176ec}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_passphrase\_is\_valid@{pqs\_user\_passphrase\_is\_valid}}
+\index{pqs\_user\_passphrase\_is\_valid@{pqs\_user\_passphrase\_is\_valid}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_passphrase\_is\_valid()}{pqs\_user\_passphrase\_is\_valid()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a2717d93ef4060e25cb5ae4c4fc5176ec} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+passphrase\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{passphrase}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a passphrase length is valid for a PQS account and login request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em passphrase} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The passphrase to validate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the passphrase length is valid. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a157e1748af89a89123ceb9d849ab593e}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_privilege\_from\_string@{pqs\_user\_privilege\_from\_string}}
+\index{pqs\_user\_privilege\_from\_string@{pqs\_user\_privilege\_from\_string}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_privilege\_from\_string()}{pqs\_user\_privilege\_from\_string()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a157e1748af89a89123ceb9d849ab593e} 
+PQS\+\_\+\+EXPORT\+\_\+\+API pqs\+\_\+user\+\_\+privileges pqs\+\_\+user\+\_\+privilege\+\_\+from\+\_\+string (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Convert a stable text name to a privilege level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The privilege name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}enum\mbox{]} Returns the privilege level. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_ab790cbe2d29c08afbf0a26986f0a363c}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_privilege\_to\_string@{pqs\_user\_privilege\_to\_string}}
+\index{pqs\_user\_privilege\_to\_string@{pqs\_user\_privilege\_to\_string}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_privilege\_to\_string()}{pqs\_user\_privilege\_to\_string()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_ab790cbe2d29c08afbf0a26986f0a363c} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const char \texorpdfstring{$\ast$}{*} pqs\+\_\+user\+\_\+privilege\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{}\end{DoxyParamCaption})}
+
+
+
+Convert a privilege level to its stable text name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em privilege} & \mbox{[}enum\mbox{]} The privilege level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} Returns the privilege name. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_ab4f537b38ba7f9fe8bc74165134f5d13}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_add@{pqs\_user\_store\_add}}
+\index{pqs\_user\_store\_add@{pqs\_user\_store\_add}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_add()}{pqs\_user\_store\_add()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_ab4f537b38ba7f9fe8bc74165134f5d13} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{passphrase}{, }\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{}\end{DoxyParamCaption})}
+
+
+
+Add a user to the user database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name. \\
+\hline
+{\em passphrase} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The plaintext passphrase used to create the SCB verifier. \\
+\hline
+{\em privilege} & \mbox{[}enum\mbox{]} The assigned privilege level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the user was added. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a6a94be6470772580d0ff3c10e6c84ec0}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_enable@{pqs\_user\_store\_enable}}
+\index{pqs\_user\_store\_enable@{pqs\_user\_store\_enable}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_enable()}{pqs\_user\_store\_enable()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a6a94be6470772580d0ff3c10e6c84ec0} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{bool}]{enabled}{}\end{DoxyParamCaption})}
+
+
+
+Disable or enable a user account. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name. \\
+\hline
+{\em enabled} & \mbox{[}bool\mbox{]} The requested enabled state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the user was updated. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a4ddb645adae2f893ea21426bc15b7bf8}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_find@{pqs\_user\_store\_find}}
+\index{pqs\_user\_store\_find@{pqs\_user\_store\_find}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_find()}{pqs\_user\_store\_find()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a4ddb645adae2f893ea21426bc15b7bf8} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*} pqs\+\_\+user\+\_\+store\+\_\+find (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Find a user record by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}struct\mbox{]} Returns a pointer to the record, or NULL if not found. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a3937fec843be1415018cda64a80c0962}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_find\_mutable@{pqs\_user\_store\_find\_mutable}}
+\index{pqs\_user\_store\_find\_mutable@{pqs\_user\_store\_find\_mutable}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_find\_mutable()}{pqs\_user\_store\_find\_mutable()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a3937fec843be1415018cda64a80c0962} 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*} pqs\+\_\+user\+\_\+store\+\_\+find\+\_\+mutable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Find a mutable user record by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}struct\mbox{]} Returns a pointer to the record, or NULL if not found. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a811872cb89d2eb6c9c60e35cd9739925}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_initialize@{pqs\_user\_store\_initialize}}
+\index{pqs\_user\_store\_initialize@{pqs\_user\_store\_initialize}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_initialize()}{pqs\_user\_store\_initialize()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a811872cb89d2eb6c9c60e35cd9739925} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Initialize and load the user database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em path} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The database file path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the database was initialized. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_af0dd2cea4a6b5d99bd6b74f4bd41575c}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_remove@{pqs\_user\_store\_remove}}
+\index{pqs\_user\_store\_remove@{pqs\_user\_store\_remove}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_remove()}{pqs\_user\_store\_remove()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_af0dd2cea4a6b5d99bd6b74f4bd41575c} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Remove a user from the user database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the user was removed. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a9a1be2182ee462b4f456581a9ec2d949}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_save@{pqs\_user\_store\_save}}
+\index{pqs\_user\_store\_save@{pqs\_user\_store\_save}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_save()}{pqs\_user\_store\_save()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a9a1be2182ee462b4f456581a9ec2d949} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+save (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{}\end{DoxyParamCaption})}
+
+
+
+Save the user database to disk. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} The user database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the database was saved. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a3394704c88365b185de56179cd0236a7}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_set\_passphrase@{pqs\_user\_store\_set\_passphrase}}
+\index{pqs\_user\_store\_set\_passphrase@{pqs\_user\_store\_set\_passphrase}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_set\_passphrase()}{pqs\_user\_store\_set\_passphrase()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a3394704c88365b185de56179cd0236a7} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+set\+\_\+passphrase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{passphrase}{}\end{DoxyParamCaption})}
+
+
+
+Set a user\textquotesingle{}s passphrase verifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name. \\
+\hline
+{\em passphrase} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The new passphrase.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the passphrase verifier was updated. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a53afd9769da38c1c5eb9c3d1338b2302}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_set\_privilege@{pqs\_user\_store\_set\_privilege}}
+\index{pqs\_user\_store\_set\_privilege@{pqs\_user\_store\_set\_privilege}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_set\_privilege()}{pqs\_user\_store\_set\_privilege()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a53afd9769da38c1c5eb9c3d1338b2302} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+set\+\_\+privilege (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{}\end{DoxyParamCaption})}
+
+
+
+Set the user privilege level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name. \\
+\hline
+{\em privilege} & \mbox{[}enum\mbox{]} The requested privilege level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the user was updated. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_aa5a3e7ac363ca8fd0f54f9215ab4a787}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_store\_set\_shell\_profile@{pqs\_user\_store\_set\_shell\_profile}}
+\index{pqs\_user\_store\_set\_shell\_profile@{pqs\_user\_store\_set\_shell\_profile}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_store\_set\_shell\_profile()}{pqs\_user\_store\_set\_shell\_profile()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_aa5a3e7ac363ca8fd0f54f9215ab4a787} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+store\+\_\+set\+\_\+shell\+\_\+profile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__user__store}{pqs\+\_\+user\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{shellprofile}{}\end{DoxyParamCaption})}
+
+
+
+Set a user\textquotesingle{}s assigned shell profile name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} The user database. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The user name. \\
+\hline
+{\em shellprofile} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The shell profile name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the user was updated. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a1ecd4c8e5a318a00394784fa0bb78fa9}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_verify\_passphrase@{pqs\_user\_verify\_passphrase}}
+\index{pqs\_user\_verify\_passphrase@{pqs\_user\_verify\_passphrase}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_verify\_passphrase()}{pqs\_user\_verify\_passphrase()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a1ecd4c8e5a318a00394784fa0bb78fa9} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+verify\+\_\+passphrase (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*}}]{record}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{passphrase}{}\end{DoxyParamCaption})}
+
+
+
+Verify a plaintext passphrase against a user record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em record} & \mbox{[}const struct\mbox{]} The user record. \\
+\hline
+{\em passphrase} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The plaintext passphrase.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the passphrase matches the stored verifier. 
+\end{DoxyReturn}
+\Hypertarget{pqsuser_8h_a1b099a36b67d9ce48d3845b1a11cd886}\index{pqsuser.h@{pqsuser.h}!pqs\_user\_verify\_passphrase\_timing\_neutral@{pqs\_user\_verify\_passphrase\_timing\_neutral}}
+\index{pqs\_user\_verify\_passphrase\_timing\_neutral@{pqs\_user\_verify\_passphrase\_timing\_neutral}!pqsuser.h@{pqsuser.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_user\_verify\_passphrase\_timing\_neutral()}{pqs\_user\_verify\_passphrase\_timing\_neutral()}}
+{\footnotesize\ttfamily \label{pqsuser_8h_a1b099a36b67d9ce48d3845b1a11cd886} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+user\+\_\+verify\+\_\+passphrase\+\_\+timing\+\_\+neutral (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__user__record}{pqs\+\_\+user\+\_\+record}} \texorpdfstring{$\ast$}{*}}]{record}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{passphrase}{}\end{DoxyParamCaption})}
+
+
+
+Verify a passphrase using a timing-\/neutral valid or dummy account path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em record} & \mbox{[}const struct\mbox{]} The user record, or NULL for an unknown account. \\
+\hline
+{\em username} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The requested user name used for the dummy verifier path. \\
+\hline
+{\em passphrase} & \mbox{[}const char\texorpdfstring{$\ast$}{*}\mbox{]} The plaintext passphrase.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the passphrase matches an enabled user record. 
+\end{DoxyReturn}

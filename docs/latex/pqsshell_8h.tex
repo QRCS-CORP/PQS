@@ -1,0 +1,327 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqsshell.h File Reference}
+\hypertarget{pqsshell_8h}{}\label{pqsshell_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsshell.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqsshell.h}}
+
+
+PQS server-\/side shell profile database functions.  
+
+
+{\ttfamily \#include "{}pqs.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}}
+\begin{DoxyCompactList}\small\item\em A PQS server shell profile record. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}}
+\begin{DoxyCompactList}\small\item\em The fixed-\/size PQS server shell profile database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsshell_8h_a7bfcafbf92a698329cf68f55b182ab42}\label{pqsshell_8h_a7bfcafbf92a698329cf68f55b182ab42} 
+\#define {\bfseries PQS\+\_\+\+SHELL\+\_\+\+DATABASE\+\_\+\+MAGIC}~"{}PQSSHELLDB1"{}
+\begin{DoxyCompactList}\small\item\em The fixed text header written to PQS shell profile database files. \end{DoxyCompactList}\item 
+\Hypertarget{pqsshell_8h_a6203cf2a4302b4ee1c1bbe5f52549cfd}\label{pqsshell_8h_a6203cf2a4302b4ee1c1bbe5f52549cfd} 
+\#define {\bfseries PQS\+\_\+\+SHELL\+\_\+\+PRIVILEGE\+\_\+\+GUEST}~0x01U
+\begin{DoxyCompactList}\small\item\em Shell profile privilege mask bit for guest users. \end{DoxyCompactList}\item 
+\Hypertarget{pqsshell_8h_aff4f38c87c42fa6375393a5f64af0875}\label{pqsshell_8h_aff4f38c87c42fa6375393a5f64af0875} 
+\#define {\bfseries PQS\+\_\+\+SHELL\+\_\+\+PRIVILEGE\+\_\+\+USER}~0x02U
+\begin{DoxyCompactList}\small\item\em Shell profile privilege mask bit for standard users. \end{DoxyCompactList}\item 
+\Hypertarget{pqsshell_8h_acfe3fe6763590a91d680a9e8aeda35fb}\label{pqsshell_8h_acfe3fe6763590a91d680a9e8aeda35fb} 
+\#define {\bfseries PQS\+\_\+\+SHELL\+\_\+\+PRIVILEGE\+\_\+\+ADMIN}~0x04U
+\begin{DoxyCompactList}\small\item\em Shell profile privilege mask bit for administrative users. \end{DoxyCompactList}\item 
+\Hypertarget{pqsshell_8h_a71521edea3b7997df95860c25c551cbd}\label{pqsshell_8h_a71521edea3b7997df95860c25c551cbd} 
+\#define {\bfseries PQS\+\_\+\+SHELL\+\_\+\+PRIVILEGE\+\_\+\+ALL}~(\mbox{\hyperlink{pqsshell_8h_a6203cf2a4302b4ee1c1bbe5f52549cfd}{PQS\+\_\+\+SHELL\+\_\+\+PRIVILEGE\+\_\+\+GUEST}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{pqsshell_8h_aff4f38c87c42fa6375393a5f64af0875}{PQS\+\_\+\+SHELL\+\_\+\+PRIVILEGE\+\_\+\+USER}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{pqsshell_8h_acfe3fe6763590a91d680a9e8aeda35fb}{PQS\+\_\+\+SHELL\+\_\+\+PRIVILEGE\+\_\+\+ADMIN}})
+\begin{DoxyCompactList}\small\item\em Shell profile privilege mask for all defined privilege levels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqsshell_8h_ad0526b592f1623c021ee9adbfb8306e1}\label{pqsshell_8h_ad0526b592f1623c021ee9adbfb8306e1} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+shell\+\_\+profile {\bfseries pqs\+\_\+shell\+\_\+profile}
+\item 
+\Hypertarget{pqsshell_8h_a2ab3b367a7889cb21bbe30c2eade5651}\label{pqsshell_8h_a2ab3b367a7889cb21bbe30c2eade5651} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+shell\+\_\+store {\bfseries pqs\+\_\+shell\+\_\+store}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_a3823b8eb8a5c21bd050655b70a83c02a}{pqs\+\_\+shell\+\_\+store\+\_\+add}} (\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}type, const char \texorpdfstring{$\ast$}{*}path, uint32\+\_\+t privilege\+\_\+mask, bool enabled)
+\begin{DoxyCompactList}\small\item\em Add or replace a shell profile record in a PQS shell profile store. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_a304213d8fd543707c25117e524d6986d}{pqs\+\_\+shell\+\_\+store\+\_\+enable}} (\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, bool enabled)
+\begin{DoxyCompactList}\small\item\em Enable or disable an existing shell profile record. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsshell_8h_a932fba7874430fb5427918000536a946}{pqs\+\_\+shell\+\_\+store\+\_\+find}} (const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Find a shell profile record by name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsshell_8h_a245923b59f646f44b85023bf74138d88}{pqs\+\_\+shell\+\_\+store\+\_\+find\+\_\+mutable}} (\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Find a mutable shell profile record by name. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pqsshell_8h_acee859ea68f3062a327db0e1c7176b8b}{pqs\+\_\+shell\+\_\+store\+\_\+default}} (const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store)
+\begin{DoxyCompactList}\small\item\em Find the default shell profile in a PQS shell profile store. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_aea785c6884627fccf46a1ee176542116}{pqs\+\_\+shell\+\_\+store\+\_\+initialize}} (\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Initialize a PQS shell profile store and load or create its persistent database file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_ab76722d27ab34038ef9931126112613f}{pqs\+\_\+shell\+\_\+store\+\_\+remove}} (\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Remove a shell profile record from a PQS shell profile store. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_a702cd191a0c40ce7530c218302ecf519}{pqs\+\_\+shell\+\_\+store\+\_\+save}} (const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store)
+\begin{DoxyCompactList}\small\item\em Save a PQS shell profile store to its persistent database file. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_ac1018596b844c927f2797be53cdd7c01}{pqs\+\_\+shell\+\_\+store\+\_\+set\+\_\+default}} (\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Set the default shell profile for a PQS shell profile store. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_a2bc18d8741ceeb08467089a9d7d234f4}{pqs\+\_\+shell\+\_\+store\+\_\+set\+\_\+privilege}} (\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}store, const char \texorpdfstring{$\ast$}{*}name, pqs\+\_\+user\+\_\+privileges privilege, bool allowed)
+\begin{DoxyCompactList}\small\item\em Enable or disable shell profile access for a specific PQS user privilege level. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t \mbox{\hyperlink{pqsshell_8h_aeebc117fc09e0941f724121987a70117}{pqs\+\_\+shell\+\_\+privilege\+\_\+to\+\_\+mask}} (pqs\+\_\+user\+\_\+privileges privilege)
+\begin{DoxyCompactList}\small\item\em Convert a PQS user privilege value to the corresponding shell profile privilege-\/mask bit. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqsshell_8h_abf83ccb3dd0c11bec4816365fa9ebcd0}{pqs\+\_\+shell\+\_\+profile\+\_\+allows\+\_\+privilege}} (const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile, pqs\+\_\+user\+\_\+privileges privilege)
+\begin{DoxyCompactList}\small\item\em Test whether a shell profile permits access for a specified PQS user privilege level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS server-\/side shell profile database functions. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{pqsshell_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqsshell_8h_aeebc117fc09e0941f724121987a70117}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_privilege\_to\_mask@{pqs\_shell\_privilege\_to\_mask}}
+\index{pqs\_shell\_privilege\_to\_mask@{pqs\_shell\_privilege\_to\_mask}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_privilege\_to\_mask()}{pqs\_shell\_privilege\_to\_mask()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_aeebc117fc09e0941f724121987a70117} 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t pqs\+\_\+shell\+\_\+privilege\+\_\+to\+\_\+mask (\begin{DoxyParamCaption}\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{}\end{DoxyParamCaption})}
+
+
+
+Convert a PQS user privilege value to the corresponding shell profile privilege-\/mask bit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em privilege} & \mbox{[}enum\mbox{]} The PQS user privilege value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the privilege-\/mask bit for the supplied privilege, or zero if the privilege is not recognized. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_abf83ccb3dd0c11bec4816365fa9ebcd0}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_profile\_allows\_privilege@{pqs\_shell\_profile\_allows\_privilege}}
+\index{pqs\_shell\_profile\_allows\_privilege@{pqs\_shell\_profile\_allows\_privilege}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_profile\_allows\_privilege()}{pqs\_shell\_profile\_allows\_privilege()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_abf83ccb3dd0c11bec4816365fa9ebcd0} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+profile\+\_\+allows\+\_\+privilege (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{, }\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a shell profile permits access for a specified PQS user privilege level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}const struct\mbox{]} A pointer to the shell profile record. \\
+\hline
+{\em privilege} & \mbox{[}enum\mbox{]} The PQS user privilege value to test.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the profile is enabled and permits the supplied privilege level; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_a3823b8eb8a5c21bd050655b70a83c02a}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_add@{pqs\_shell\_store\_add}}
+\index{pqs\_shell\_store\_add@{pqs\_shell\_store\_add}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_add()}{pqs\_shell\_store\_add()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_a3823b8eb8a5c21bd050655b70a83c02a} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+store\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{type}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{uint32\+\_\+t}]{privilege\+\_\+mask}{, }\item[{bool}]{enabled}{}\end{DoxyParamCaption})}
+
+
+
+Add or replace a shell profile record in a PQS shell profile store. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the initialized shell profile store. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The shell profile name. \\
+\hline
+{\em type} & \mbox{[}const\mbox{]} The shell type identifier, such as cmd, powershell, sh, bash, zsh, or custom. \\
+\hline
+{\em path} & \mbox{[}const\mbox{]} The absolute or configured executable path for the shell profile. \\
+\hline
+{\em privilege\+\_\+mask} & The privilege mask controlling which PQS user privilege levels may use this profile. \\
+\hline
+{\em enabled} & The profile enabled state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the shell profile was added or replaced; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_acee859ea68f3062a327db0e1c7176b8b}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_default@{pqs\_shell\_store\_default}}
+\index{pqs\_shell\_store\_default@{pqs\_shell\_store\_default}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_default()}{pqs\_shell\_store\_default()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_acee859ea68f3062a327db0e1c7176b8b} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*} pqs\+\_\+shell\+\_\+store\+\_\+default (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{}\end{DoxyParamCaption})}
+
+
+
+Find the default shell profile in a PQS shell profile store. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} A pointer to the initialized shell profile store.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a const pointer to the default shell profile, or NULL if no default profile is configured. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_a304213d8fd543707c25117e524d6986d}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_enable@{pqs\_shell\_store\_enable}}
+\index{pqs\_shell\_store\_enable@{pqs\_shell\_store\_enable}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_enable()}{pqs\_shell\_store\_enable()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_a304213d8fd543707c25117e524d6986d} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+store\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{bool}]{enabled}{}\end{DoxyParamCaption})}
+
+
+
+Enable or disable an existing shell profile record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the initialized shell profile store. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The shell profile name. \\
+\hline
+{\em enabled} & The requested enabled state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the profile was found and updated; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_a932fba7874430fb5427918000536a946}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_find@{pqs\_shell\_store\_find}}
+\index{pqs\_shell\_store\_find@{pqs\_shell\_store\_find}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_find()}{pqs\_shell\_store\_find()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_a932fba7874430fb5427918000536a946} 
+PQS\+\_\+\+EXPORT\+\_\+\+API const \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*} pqs\+\_\+shell\+\_\+store\+\_\+find (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Find a shell profile record by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} A pointer to the initialized shell profile store. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The shell profile name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a const pointer to the matching profile, or NULL if the profile was not found. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_a245923b59f646f44b85023bf74138d88}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_find\_mutable@{pqs\_shell\_store\_find\_mutable}}
+\index{pqs\_shell\_store\_find\_mutable@{pqs\_shell\_store\_find\_mutable}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_find\_mutable()}{pqs\_shell\_store\_find\_mutable()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_a245923b59f646f44b85023bf74138d88} 
+PQS\+\_\+\+EXPORT\+\_\+\+API \mbox{\hyperlink{structpqs__shell__profile}{pqs\+\_\+shell\+\_\+profile}} \texorpdfstring{$\ast$}{*} pqs\+\_\+shell\+\_\+store\+\_\+find\+\_\+mutable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Find a mutable shell profile record by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the initialized shell profile store. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The shell profile name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a mutable pointer to the matching profile, or NULL if the profile was not found. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_aea785c6884627fccf46a1ee176542116}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_initialize@{pqs\_shell\_store\_initialize}}
+\index{pqs\_shell\_store\_initialize@{pqs\_shell\_store\_initialize}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_initialize()}{pqs\_shell\_store\_initialize()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_aea785c6884627fccf46a1ee176542116} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+store\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a PQS shell profile store and load or create its persistent database file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the shell profile store to initialize. \\
+\hline
+{\em path} & \mbox{[}const\mbox{]} The persistent shell profile database file path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the store was initialized successfully; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_ab76722d27ab34038ef9931126112613f}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_remove@{pqs\_shell\_store\_remove}}
+\index{pqs\_shell\_store\_remove@{pqs\_shell\_store\_remove}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_remove()}{pqs\_shell\_store\_remove()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_ab76722d27ab34038ef9931126112613f} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+store\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Remove a shell profile record from a PQS shell profile store. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the initialized shell profile store. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The shell profile name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the profile was found and removed; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_a702cd191a0c40ce7530c218302ecf519}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_save@{pqs\_shell\_store\_save}}
+\index{pqs\_shell\_store\_save@{pqs\_shell\_store\_save}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_save()}{pqs\_shell\_store\_save()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_a702cd191a0c40ce7530c218302ecf519} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+store\+\_\+save (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{}\end{DoxyParamCaption})}
+
+
+
+Save a PQS shell profile store to its persistent database file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}const struct\mbox{]} A pointer to the initialized shell profile store.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the store was written successfully; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_ac1018596b844c927f2797be53cdd7c01}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_set\_default@{pqs\_shell\_store\_set\_default}}
+\index{pqs\_shell\_store\_set\_default@{pqs\_shell\_store\_set\_default}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_set\_default()}{pqs\_shell\_store\_set\_default()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_ac1018596b844c927f2797be53cdd7c01} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+store\+\_\+set\+\_\+default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Set the default shell profile for a PQS shell profile store. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the initialized shell profile store. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The shell profile name to mark as the default profile.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the named profile was found and marked as default; otherwise, false. 
+\end{DoxyReturn}
+\Hypertarget{pqsshell_8h_a2bc18d8741ceeb08467089a9d7d234f4}\index{pqsshell.h@{pqsshell.h}!pqs\_shell\_store\_set\_privilege@{pqs\_shell\_store\_set\_privilege}}
+\index{pqs\_shell\_store\_set\_privilege@{pqs\_shell\_store\_set\_privilege}!pqsshell.h@{pqsshell.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_shell\_store\_set\_privilege()}{pqs\_shell\_store\_set\_privilege()}}
+{\footnotesize\ttfamily \label{pqsshell_8h_a2bc18d8741ceeb08467089a9d7d234f4} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+shell\+\_\+store\+\_\+set\+\_\+privilege (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__shell__store}{pqs\+\_\+shell\+\_\+store}} \texorpdfstring{$\ast$}{*}}]{store}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{pqs\+\_\+user\+\_\+privileges}]{privilege}{, }\item[{bool}]{allowed}{}\end{DoxyParamCaption})}
+
+
+
+Enable or disable shell profile access for a specific PQS user privilege level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em store} & \mbox{[}struct\mbox{]} A pointer to the initialized shell profile store. \\
+\hline
+{\em name} & \mbox{[}const\mbox{]} The shell profile name. \\
+\hline
+{\em privilege} & \mbox{[}enum\mbox{]} The PQS user privilege level to allow or deny. \\
+\hline
+{\em allowed} & The requested access state for the privilege level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the profile was found and updated; otherwise, false. 
+\end{DoxyReturn}

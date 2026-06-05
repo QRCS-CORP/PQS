@@ -1,0 +1,246 @@
+\doxysection{C\+:/\+Users/stepp/\+Documents/\+Visual Studio 2022/\+Projects/\+C/\+PQS/\+PQS/pqssandbox.h File Reference}
+\hypertarget{pqssandbox_8h}{}\label{pqssandbox_8h}\index{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqssandbox.h@{C:/Users/stepp/Documents/Visual Studio 2022/Projects/C/PQS/PQS/pqssandbox.h}}
+
+
+PQS command execution sandbox configuration helpers.  
+
+
+{\ttfamily \#include "{}pqscommon.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}}
+\begin{DoxyCompactList}\small\item\em The PQS command execution sandbox profile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqssandbox_8h_ad6cf156848315e18f1ba7afd595acfd4}\label{pqssandbox_8h_ad6cf156848315e18f1ba7afd595acfd4} 
+\#define {\bfseries PQS\+\_\+\+SANDBOX\+\_\+\+DEFAULT\+\_\+\+TIMEOUT\+\_\+\+SECONDS}~120U
+\begin{DoxyCompactList}\small\item\em The default maximum runtime for a command executed by the PQS server. \end{DoxyCompactList}\item 
+\Hypertarget{pqssandbox_8h_adfe53856f62fed21e0c8e02964e29486}\label{pqssandbox_8h_adfe53856f62fed21e0c8e02964e29486} 
+\#define {\bfseries PQS\+\_\+\+SANDBOX\+\_\+\+MIN\+\_\+\+TIMEOUT\+\_\+\+SECONDS}~5U
+\begin{DoxyCompactList}\small\item\em The minimum accepted non-\/zero command timeout. \end{DoxyCompactList}\item 
+\Hypertarget{pqssandbox_8h_a05c6d2058da2e01a070fc0108ccaea54}\label{pqssandbox_8h_a05c6d2058da2e01a070fc0108ccaea54} 
+\#define {\bfseries PQS\+\_\+\+SANDBOX\+\_\+\+MAX\+\_\+\+TIMEOUT\+\_\+\+SECONDS}~3600U
+\begin{DoxyCompactList}\small\item\em The maximum accepted command timeout. \end{DoxyCompactList}\item 
+\Hypertarget{pqssandbox_8h_aea5477a85a12d2bcb2af9e2332cb40f1}\label{pqssandbox_8h_aea5477a85a12d2bcb2af9e2332cb40f1} 
+\#define {\bfseries PQS\+\_\+\+SANDBOX\+\_\+\+DEFAULT\+\_\+\+OUTPUT\+\_\+\+BYTES}~1048576U
+\begin{DoxyCompactList}\small\item\em The default maximum number of command-\/output bytes returned for one command. \end{DoxyCompactList}\item 
+\Hypertarget{pqssandbox_8h_a26b682f9d370541453429e6605e6ba85}\label{pqssandbox_8h_a26b682f9d370541453429e6605e6ba85} 
+\#define {\bfseries PQS\+\_\+\+SANDBOX\+\_\+\+MIN\+\_\+\+OUTPUT\+\_\+\+BYTES}~4096U
+\begin{DoxyCompactList}\small\item\em The minimum accepted non-\/zero command-\/output byte limit. \end{DoxyCompactList}\item 
+\Hypertarget{pqssandbox_8h_af36c25c9e01fd738c45ccb1834c464b4}\label{pqssandbox_8h_af36c25c9e01fd738c45ccb1834c464b4} 
+\#define {\bfseries PQS\+\_\+\+SANDBOX\+\_\+\+MAX\+\_\+\+OUTPUT\+\_\+\+BYTES}~16777216U
+\begin{DoxyCompactList}\small\item\em The maximum accepted command-\/output byte limit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{pqssandbox_8h_a5234c99f4cc172def3c052e873dafb3e}\label{pqssandbox_8h_a5234c99f4cc172def3c052e873dafb3e} 
+typedef PQS\+\_\+\+EXPORT\+\_\+\+API struct pqs\+\_\+sandbox\+\_\+profile {\bfseries pqs\+\_\+sandbox\+\_\+profile}
+\begin{DoxyCompactList}\small\item\em The PQS command execution sandbox profile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqssandbox_8h_a7f85b453d63cb8ba7045eb34d58a3761}{pqs\+\_\+sandbox\+\_\+profile\+\_\+defaults}} (\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile)
+\begin{DoxyCompactList}\small\item\em Initialize a sandbox profile with safe defaults. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqssandbox_8h_a000a132b1e773d134f6d9cfc6695a5ec}{pqs\+\_\+sandbox\+\_\+profile\+\_\+configure}} (\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile, bool enabled, bool clear\+\_\+environment, uint32\+\_\+t timeout\+\_\+seconds, const char \texorpdfstring{$\ast$}{*}working\+\_\+directory)
+\begin{DoxyCompactList}\small\item\em Configure a sandbox profile. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqssandbox_8h_afeadfdce43e8916fe9bcc8ea87157d0a}{pqs\+\_\+sandbox\+\_\+profile\+\_\+configure\+\_\+security}} (\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile, bool enabled, bool clear\+\_\+environment, uint32\+\_\+t timeout\+\_\+seconds, const char \texorpdfstring{$\ast$}{*}working\+\_\+directory, const char \texorpdfstring{$\ast$}{*}run\+\_\+as\+\_\+user, const char \texorpdfstring{$\ast$}{*}run\+\_\+as\+\_\+group, bool chroot\+\_\+enabled)
+\begin{DoxyCompactList}\small\item\em Configure a sandbox profile with platform privilege-\/separation fields. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqssandbox_8h_a7cbe1b9841da453e15ab6ab399a8f857}{pqs\+\_\+sandbox\+\_\+profile\+\_\+canonicalize\+\_\+working\+\_\+directory}} (\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile)
+\begin{DoxyCompactList}\small\item\em Canonicalize the configured sandbox working directory in place. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqssandbox_8h_a8d822c11deefe7473693ecbf24fa25bc}{pqs\+\_\+sandbox\+\_\+profile\+\_\+set\+\_\+allow\+\_\+same\+\_\+user}} (\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile, bool allow\+\_\+same\+\_\+user)
+\begin{DoxyCompactList}\small\item\em Set the same-\/user execution override for a sandbox profile. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API void \mbox{\hyperlink{pqssandbox_8h_ac8963fed1a30ee88c2bd49674f0fdc20}{pqs\+\_\+sandbox\+\_\+profile\+\_\+set\+\_\+output\+\_\+limit}} (\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile, uint32\+\_\+t max\+\_\+output\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em Set the maximum command-\/output byte count for a sandbox profile. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool \mbox{\hyperlink{pqssandbox_8h_a06dc2f70762d18e3266b669aad835a7b}{pqs\+\_\+sandbox\+\_\+working\+\_\+directory\+\_\+valid}} (const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile)
+\begin{DoxyCompactList}\small\item\em Test whether a sandbox profile has a usable working directory. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t \mbox{\hyperlink{pqssandbox_8h_af36aa4710be71fca83103b7b82a1d5a1}{pqs\+\_\+sandbox\+\_\+timeout\+\_\+milliseconds}} (const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile)
+\begin{DoxyCompactList}\small\item\em Get the command timeout in milliseconds. \end{DoxyCompactList}\item 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t \mbox{\hyperlink{pqssandbox_8h_a80907fb645d8d34a5e98e8fb12390dce}{pqs\+\_\+sandbox\+\_\+output\+\_\+limit\+\_\+bytes}} (const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}profile)
+\begin{DoxyCompactList}\small\item\em Get the configured command-\/output byte limit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PQS command execution sandbox configuration helpers. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{pqssandbox_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pqssandbox_8h_a80907fb645d8d34a5e98e8fb12390dce}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_output\_limit\_bytes@{pqs\_sandbox\_output\_limit\_bytes}}
+\index{pqs\_sandbox\_output\_limit\_bytes@{pqs\_sandbox\_output\_limit\_bytes}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_output\_limit\_bytes()}{pqs\_sandbox\_output\_limit\_bytes()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_a80907fb645d8d34a5e98e8fb12390dce} 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t pqs\+\_\+sandbox\+\_\+output\+\_\+limit\+\_\+bytes (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{}\end{DoxyParamCaption})}
+
+
+
+Get the configured command-\/output byte limit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}const struct\mbox{]} The sandbox profile.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}uint32\+\_\+t\mbox{]} Returns the output byte limit, or zero if disabled. 
+\end{DoxyReturn}
+\Hypertarget{pqssandbox_8h_a7cbe1b9841da453e15ab6ab399a8f857}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_profile\_canonicalize\_working\_directory@{pqs\_sandbox\_profile\_canonicalize\_working\_directory}}
+\index{pqs\_sandbox\_profile\_canonicalize\_working\_directory@{pqs\_sandbox\_profile\_canonicalize\_working\_directory}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_profile\_canonicalize\_working\_directory()}{pqs\_sandbox\_profile\_canonicalize\_working\_directory()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_a7cbe1b9841da453e15ab6ab399a8f857} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+sandbox\+\_\+profile\+\_\+canonicalize\+\_\+working\+\_\+directory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{}\end{DoxyParamCaption})}
+
+
+
+Canonicalize the configured sandbox working directory in place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}struct\mbox{]} The sandbox profile.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the configured working directory exists and was canonicalized. 
+\end{DoxyReturn}
+\Hypertarget{pqssandbox_8h_a000a132b1e773d134f6d9cfc6695a5ec}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_profile\_configure@{pqs\_sandbox\_profile\_configure}}
+\index{pqs\_sandbox\_profile\_configure@{pqs\_sandbox\_profile\_configure}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_profile\_configure()}{pqs\_sandbox\_profile\_configure()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_a000a132b1e773d134f6d9cfc6695a5ec} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+sandbox\+\_\+profile\+\_\+configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{, }\item[{bool}]{enabled}{, }\item[{bool}]{clear\+\_\+environment}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+seconds}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{working\+\_\+directory}{}\end{DoxyParamCaption})}
+
+
+
+Configure a sandbox profile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}struct\mbox{]} The sandbox profile. \\
+\hline
+{\em enabled} & \mbox{[}bool\mbox{]} Enables sandbox controls. \\
+\hline
+{\em clear\+\_\+environment} & \mbox{[}bool\mbox{]} Enables minimal environment execution. \\
+\hline
+{\em timeout\+\_\+seconds} & \mbox{[}uint32\+\_\+t\mbox{]} The command timeout in seconds. \\
+\hline
+{\em working\+\_\+directory} & \mbox{[}const\mbox{]} The confined working directory. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqssandbox_8h_afeadfdce43e8916fe9bcc8ea87157d0a}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_profile\_configure\_security@{pqs\_sandbox\_profile\_configure\_security}}
+\index{pqs\_sandbox\_profile\_configure\_security@{pqs\_sandbox\_profile\_configure\_security}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_profile\_configure\_security()}{pqs\_sandbox\_profile\_configure\_security()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_afeadfdce43e8916fe9bcc8ea87157d0a} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+sandbox\+\_\+profile\+\_\+configure\+\_\+security (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{, }\item[{bool}]{enabled}{, }\item[{bool}]{clear\+\_\+environment}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+seconds}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{working\+\_\+directory}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{run\+\_\+as\+\_\+user}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{run\+\_\+as\+\_\+group}{, }\item[{bool}]{chroot\+\_\+enabled}{}\end{DoxyParamCaption})}
+
+
+
+Configure a sandbox profile with platform privilege-\/separation fields. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}struct\mbox{]} The sandbox profile. \\
+\hline
+{\em enabled} & \mbox{[}bool\mbox{]} Enables sandbox controls. \\
+\hline
+{\em clear\+\_\+environment} & \mbox{[}bool\mbox{]} Enables minimal environment execution. \\
+\hline
+{\em timeout\+\_\+seconds} & \mbox{[}uint32\+\_\+t\mbox{]} The command timeout in seconds. \\
+\hline
+{\em working\+\_\+directory} & \mbox{[}const\mbox{]} The confined working directory. \\
+\hline
+{\em run\+\_\+as\+\_\+user} & \mbox{[}const\mbox{]} The POSIX user name used for privilege drop, or NULL/empty. \\
+\hline
+{\em run\+\_\+as\+\_\+group} & \mbox{[}const\mbox{]} The POSIX group name used for privilege drop, or NULL/empty. \\
+\hline
+{\em chroot\+\_\+enabled} & \mbox{[}bool\mbox{]} Enables POSIX chroot confinement when the server has the required privilege. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqssandbox_8h_a7f85b453d63cb8ba7045eb34d58a3761}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_profile\_defaults@{pqs\_sandbox\_profile\_defaults}}
+\index{pqs\_sandbox\_profile\_defaults@{pqs\_sandbox\_profile\_defaults}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_profile\_defaults()}{pqs\_sandbox\_profile\_defaults()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_a7f85b453d63cb8ba7045eb34d58a3761} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+sandbox\+\_\+profile\+\_\+defaults (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{}\end{DoxyParamCaption})}
+
+
+
+Initialize a sandbox profile with safe defaults. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}struct\mbox{]} The sandbox profile to initialize. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqssandbox_8h_a8d822c11deefe7473693ecbf24fa25bc}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_profile\_set\_allow\_same\_user@{pqs\_sandbox\_profile\_set\_allow\_same\_user}}
+\index{pqs\_sandbox\_profile\_set\_allow\_same\_user@{pqs\_sandbox\_profile\_set\_allow\_same\_user}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_profile\_set\_allow\_same\_user()}{pqs\_sandbox\_profile\_set\_allow\_same\_user()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_a8d822c11deefe7473693ecbf24fa25bc} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+sandbox\+\_\+profile\+\_\+set\+\_\+allow\+\_\+same\+\_\+user (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{, }\item[{bool}]{allow\+\_\+same\+\_\+user}{}\end{DoxyParamCaption})}
+
+
+
+Set the same-\/user execution override for a sandbox profile. 
+
+When disabled, POSIX command execution requires an explicit run-\/as identity. This prevents unconfined same-\/user command execution from being enabled accidentally. The override may be enabled for development or deliberately single-\/user deployments.
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}struct\mbox{]} The sandbox profile. \\
+\hline
+{\em allow\+\_\+same\+\_\+user} & \mbox{[}bool\mbox{]} Enables execution as the server process user when no run-\/as identity is configured. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqssandbox_8h_ac8963fed1a30ee88c2bd49674f0fdc20}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_profile\_set\_output\_limit@{pqs\_sandbox\_profile\_set\_output\_limit}}
+\index{pqs\_sandbox\_profile\_set\_output\_limit@{pqs\_sandbox\_profile\_set\_output\_limit}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_profile\_set\_output\_limit()}{pqs\_sandbox\_profile\_set\_output\_limit()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_ac8963fed1a30ee88c2bd49674f0fdc20} 
+PQS\+\_\+\+EXPORT\+\_\+\+API void pqs\+\_\+sandbox\+\_\+profile\+\_\+set\+\_\+output\+\_\+limit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{, }\item[{uint32\+\_\+t}]{max\+\_\+output\+\_\+bytes}{}\end{DoxyParamCaption})}
+
+
+
+Set the maximum command-\/output byte count for a sandbox profile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}struct\mbox{]} The sandbox profile. \\
+\hline
+{\em max\+\_\+output\+\_\+bytes} & \mbox{[}uint32\+\_\+t\mbox{]} The maximum command-\/output byte count. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pqssandbox_8h_af36aa4710be71fca83103b7b82a1d5a1}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_timeout\_milliseconds@{pqs\_sandbox\_timeout\_milliseconds}}
+\index{pqs\_sandbox\_timeout\_milliseconds@{pqs\_sandbox\_timeout\_milliseconds}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_timeout\_milliseconds()}{pqs\_sandbox\_timeout\_milliseconds()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_af36aa4710be71fca83103b7b82a1d5a1} 
+PQS\+\_\+\+EXPORT\+\_\+\+API uint32\+\_\+t pqs\+\_\+sandbox\+\_\+timeout\+\_\+milliseconds (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{}\end{DoxyParamCaption})}
+
+
+
+Get the command timeout in milliseconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}const struct\mbox{]} The sandbox profile.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}uint32\+\_\+t\mbox{]} Returns the timeout in milliseconds, or zero if disabled. 
+\end{DoxyReturn}
+\Hypertarget{pqssandbox_8h_a06dc2f70762d18e3266b669aad835a7b}\index{pqssandbox.h@{pqssandbox.h}!pqs\_sandbox\_working\_directory\_valid@{pqs\_sandbox\_working\_directory\_valid}}
+\index{pqs\_sandbox\_working\_directory\_valid@{pqs\_sandbox\_working\_directory\_valid}!pqssandbox.h@{pqssandbox.h}}
+\doxysubsubsection{\texorpdfstring{pqs\_sandbox\_working\_directory\_valid()}{pqs\_sandbox\_working\_directory\_valid()}}
+{\footnotesize\ttfamily \label{pqssandbox_8h_a06dc2f70762d18e3266b669aad835a7b} 
+PQS\+\_\+\+EXPORT\+\_\+\+API bool pqs\+\_\+sandbox\+\_\+working\+\_\+directory\+\_\+valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpqs__sandbox__profile}{pqs\+\_\+sandbox\+\_\+profile}} \texorpdfstring{$\ast$}{*}}]{profile}{}\end{DoxyParamCaption})}
+
+
+
+Test whether a sandbox profile has a usable working directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & \mbox{[}const struct\mbox{]} The sandbox profile.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}bool\mbox{]} Returns true if the disabled profile needs no directory, or if the enabled profile has an existing canonicalizable directory. 
+\end{DoxyReturn}

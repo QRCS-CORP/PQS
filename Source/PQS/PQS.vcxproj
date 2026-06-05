@@ -153,12 +153,32 @@
   <ItemGroup>
     <ClInclude Include="pqscommon.h" />
     <ClInclude Include="doxymain.h" />
-    <ClInclude Include="interpreter.h" />
     <ClInclude Include="pqs.h" />
+    <ClInclude Include="pqsadmin.h" />
+    <ClInclude Include="pqslogger.h" />
+    <ClInclude Include="pqsuser.h" />
+    <ClInclude Include="pqsshell.h" />
+    <ClInclude Include="pqspolicy.h" />
+    <ClInclude Include="pqsprocess.h" />
+    <ClInclude Include="pqskey.h" />
+    <ClInclude Include="pqsconfig.h" />
+    <ClInclude Include="pqssandbox.h" />
+    <ClInclude Include="pqsxfer.h" />
+    <ClInclude Include="pqshelp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="interpreter.c" />
     <ClCompile Include="pqs.c" />
+    <ClCompile Include="pqsadmin.c" />
+    <ClCompile Include="pqslogger.c" />
+    <ClCompile Include="pqsuser.c" />
+    <ClCompile Include="pqsshell.c" />
+    <ClCompile Include="pqspolicy.c" />
+    <ClCompile Include="pqsprocess.c" />
+    <ClCompile Include="pqskey.c" />
+    <ClCompile Include="pqsconfig.c" />
+    <ClCompile Include="pqssandbox.c" />
+    <ClCompile Include="pqsxfer.c" />
+    <ClCompile Include="pqshelp.c" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\QSC\QSC\QSC.vcxproj">

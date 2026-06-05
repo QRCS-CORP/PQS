@@ -58,6 +58,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "pqscommon.h"
+#include "qsms.h"
 #include "socketbase.h"
 #include "socketserver.h"
 
@@ -67,18 +68,88 @@
 * Version 1.0
 */
 
-#define PQS_SERVER_COMMAND_MAX 1280
-#define PQS_SERVER_INPUT_MAX 260
-#define PQS_SERVER_MAX_CLIENTS 8192
-#define PQS_SERVER_MAX_LOGIN 3
-#define PQS_SERVER_PASSWORD_MAX 260
-#define PQS_SERVER_PASSWORD_MIN 8
-#define PQS_CRYPTO_PHASH_CPU_COST 4
-#define PQS_CRYPTO_PHASH_MEMORY_COST 1
-#define PQS_SERVER_PROMPT_MAX 32
+#ifndef PQS_SERVER_COMMAND_MAX
+/*!
+ * \def PQS_SERVER_COMMAND_MAX
+ * \brief The maximum server command buffer size.
+ */
+#define PQS_SERVER_COMMAND_MAX 1280U
+#endif
+
+#ifndef PQS_SERVER_COMMAND_TEXT_MAX
+/*!
+ * \def PQS_SERVER_COMMAND_TEXT_MAX
+ * \brief The maximum NUL-terminated server command text length.
+ */
+#define PQS_SERVER_COMMAND_TEXT_MAX (PQS_SERVER_COMMAND_MAX - PQS_STRING_TERMINATOR_SIZE)
+#endif
+
+/*!
+ * \def PQS_SERVER_INPUT_MAX
+ * \brief The maximum server console input buffer size.
+ */
+#define PQS_SERVER_INPUT_MAX 260U
+
+/*!
+ * \def PQS_SERVER_INPUT_TEXT_MAX
+ * \brief The maximum NUL-terminated server console input text length.
+ */
+#define PQS_SERVER_INPUT_TEXT_MAX (PQS_SERVER_INPUT_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_SERVER_MAX_CLIENTS
+ * \brief The maximum number of transport connections allowed by the server application policy.
+ */
+#define PQS_SERVER_MAX_CLIENTS 8192U
+
+/*!
+ * \def PQS_SERVER_MAX_LOGIN
+ * \brief The maximum number of failed login attempts accepted by the server login policy.
+ */
+#define PQS_SERVER_MAX_LOGIN 3U
+
+/*!
+ * \def PQS_SERVER_PASSWORD_MAX
+ * \brief The maximum server password buffer size.
+ */
+#define PQS_SERVER_PASSWORD_MAX 260U
+
+/*!
+ * \def PQS_SERVER_PASSWORD_TEXT_MAX
+ * \brief The maximum NUL-terminated server password text length.
+ */
+#define PQS_SERVER_PASSWORD_TEXT_MAX (PQS_SERVER_PASSWORD_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_SERVER_PASSWORD_MIN
+ * \brief The minimum accepted server password length.
+ */
+#define PQS_SERVER_PASSWORD_MIN 8U
+
+/*!
+ * \def PQS_SERVER_PROMPT_MAX
+ * \brief The fixed server prompt buffer size.
+ */
+#define PQS_SERVER_PROMPT_MAX 64U
+
+/*!
+ * \def PQS_SERVER_PROMPT_TEXT_MAX
+ * \brief The maximum NUL-terminated server prompt text length.
+ */
+#define PQS_SERVER_PROMPT_TEXT_MAX (PQS_SERVER_PROMPT_MAX - PQS_STRING_TERMINATOR_SIZE)
+
+/*!
+ * \def PQS_SERVER_COMMAND_OUTPUT_CHUNK
+ * \brief The largest command-output plaintext chunk that can be transmitted in one QSMS packet.
+ */
+#define PQS_SERVER_COMMAND_OUTPUT_CHUNK (QSMS_MESSAGE_MAX - QSMS_SIMPLEX_MACTAG_SIZE - PQS_APPLICATION_MESSAGE_HEADER_SIZE - PQS_STRING_TERMINATOR_SIZE)
 
 static const char PQS_PUBKEY_NAME[] = "server_public_key.pqpkey";
 static const char PQS_PRIKEY_NAME[] = "server_secret_key.pqskey";
 static const char PQS_APP_PATH[] = "PQS";
+static const char PQS_SERVER_LOG_NAME[] = "pqs_server.log";
+static const char PQS_SERVER_USER_DATABASE_NAME[] = "pqs_users.db";
+static const char PQS_SERVER_SHELL_DATABASE_NAME[] = "pqs_shells.db";
+static const char PQS_SERVER_POLICY_DATABASE_NAME[] = "pqs_policy.db";
 
 #endif
