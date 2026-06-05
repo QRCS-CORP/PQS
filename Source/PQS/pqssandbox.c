@@ -8,6 +8,10 @@
 #   endif
 #   include <windows.h>
 #else
+#	if !defined(PATH_MAX)
+#		define PATH_MAX 4096
+#	endif
+#	include <limits.h>
 #   include <stdlib.h>
 #endif
 
@@ -33,13 +37,18 @@ static bool pqs_sandbox_canonicalize_path(const char* path, char* output, size_t
 			res = true;
 		}
 #else
-		char cpath[QSC_SYSTEM_MAX_PATH] = { 0 };
+		char rpath[PATH_MAX];
 
-		if (realpath(path, cpath) != NULL && qsc_folderutils_directory_exists(cpath) == true &&
-			qsc_stringutils_string_size(cpath) < outlen)
+		qsc_memutils_clear(rpath, sizeof(rpath));
+
+		if (realpath(path, rpath) != NULL)
 		{
-			qsc_stringutils_copy_string(output, outlen, cpath);
-			res = true;
+			if (qsc_folderutils_directory_exists(rpath) == true &&
+				qsc_stringutils_string_size(rpath) < outlen)
+			{
+				qsc_stringutils_copy_string(output, outlen, rpath);
+				res = true;
+			}
 		}
 #endif
 	}
