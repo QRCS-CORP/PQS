@@ -2402,8 +2402,6 @@ static void server_policy_list(void)
 			{
 				server_print_message(msg);
 			}
-
-			server_print_message(msg);
 		}
 	}
 }
