@@ -1,4 +1,7 @@
 #include "pqsprocess.h"
+#if defined(__APPLE__) && !defined(_DARWIN_C_SOURCE)
+#	define _DARWIN_C_SOURCE 1
+#endif
 #include "memutils.h"
 #include "stringutils.h"
 #include <stdio.h>
@@ -11,9 +14,6 @@
 #   endif
 #   include <windows.h>
 #else
-#if defined(__APPLE__) && !defined(_DARWIN_C_SOURCE)
-#	define _DARWIN_C_SOURCE 1
-#endif
 #   include <errno.h>
 #   include <fcntl.h>
 #   include <grp.h>
