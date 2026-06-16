@@ -18,14 +18,7 @@ jobs:
 
     steps:
     - name: Checkout source
-      uses: actions/checkout@v4
-
-    - name: Set up CMake
-      uses: lukka/get-cmake@v3.27.0
-
-    - name: Set up Ninja
-      if: runner.os == 'Windows'
-      uses: seanmiddleditch/gha-setup-ninja@v5
+      uses: actions/checkout@v5
 
     - name: Set up MSVC
       if: runner.os == 'Windows'
@@ -33,20 +26,15 @@ jobs:
       with:
         arch: x64
 
-    - name: Configure PQS Windows
-      if: runner.os == 'Windows'
+    - name: Configure PQS
       run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 
-    - name: Configure PQS POSIX
-      if: runner.os != 'Windows'
-      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-
     - name: Build PQS
-      run: cmake --build build --config Release
+      run: cmake --build build
 
     - name: Run Tests Windows
       if: runner.os == 'Windows'
-      run: ctest --test-dir build -C Release --output-on-failure
+      run: ctest --test-dir build --output-on-failure
 
     - name: Run Tests POSIX
       if: runner.os != 'Windows'
