@@ -13,6 +13,15 @@
 [![PQS Standard](https://img.shields.io/static/v1?label=protocol&message=PQS%201.1&color=blue)](https://qrcs-corp.github.io/PQS/pdf/pqs_specification.pdf)
 [![PQS Enterprise](https://img.shields.io/static/v1?label=enterprise&message=PQS--E&color=brightgreen)](https://www.qrcscorp.ca/pqs/pqse_summary.pdf)
 
+> [!IMPORTANT]
+> **Protocol Demonstration — PQS Enterprise Available**
+>
+> This repository contains the PQS Standard client/server reference implementation for **key exchange (KEX), protocol, and interoperability evaluation only**.
+>
+> The commercial **PQS Enterprise** provides a complete Windows and Linux administration platform with root-anchored post-quantum trust, device-aware authentication, policy-controlled terminals and file transfer, network forwarding, graphical administration, authenticated audit, encrypted session recordings, fleet management, and signed deployment.
+>
+> **[Explore PQS Enterprise and request an evaluation](https://qrcscorp.ca/technology/pqs.html).**
+
 **PQS is a post-quantum remote shell, command, and file-transfer protocol designed as a modern replacement for SSH-class server administration.**
 
 ## Overview

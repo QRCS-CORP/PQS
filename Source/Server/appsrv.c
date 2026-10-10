@@ -3029,6 +3029,7 @@ int main(void)
 	qsc_socket source = { 0 };
 	char lpath[QSC_SYSTEM_MAX_PATH] = { 0 };
 	uint8_t kid[QSMS_KEYID_SIZE] = { 0U };
+	qsc_thread cmdthr;
 	qsms_errors qerr;
 
 	prik = (qsms_server_signature_key*)qsc_memutils_secure_malloc(sizeof(qsms_server_signature_key));
@@ -3078,15 +3079,22 @@ int main(void)
 	if (prik != NULL && server_key_dialogue(prik, &pubk, kid) == true && server_user_database_initialize() == true && server_shell_database_initialize() == true && server_policy_database_initialize() == true && server_sandbox_initialize() == true)
 	{
 		server_print_host_key();
-		server_print_message("Waiting for a connection...");
-		qsc_async_thread_create(&server_command_loop, &source);
+		cmdthr = qsc_async_thread_create(&server_command_loop, &source);
 
-		qerr = qsms_server_start_ipv4(&source, prik, &server_receive_callback, &server_disconnect_callback);
-
-		if (qerr != qsms_error_none && qerr != qsms_error_accept_fail)
+		if (cmdthr != 0)
 		{
-			server_print_error(qerr);
-			server_print_message("The network key-exchange failed, the application will exit.");
+			server_print_message("Waiting for a connection...");
+			qerr = qsms_server_start_ipv4(&source, prik, &server_receive_callback, &server_disconnect_callback);
+
+			if (qerr != qsms_error_none && qerr != qsms_error_accept_fail)
+			{
+				server_print_error(qerr);
+				server_print_message("The network key-exchange failed, the application will exit.");
+			}
+		}
+		else
+		{
+			server_print_message("The server command thread could not be started, the application will exit.");
 		}
 	}
 	else
